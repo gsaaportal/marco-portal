@@ -1181,3 +1181,74 @@ body.borderless #map-wrapper {
 	}
 
 }
+
+
+.topics ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.topics li {
+  float: left;
+}
+.topics li {
+  margin-right: 5px;
+}
+
+.topicsClearer
+{
+  clear: both;
+}
+
+.topic-btn-group
+{
+  margin: 5px 5px 5px 10px;
+}
+.btn-topic
+{
+  border-left: 0 none;
+  overflow: hidden;
+  text-align: left;
+  width: 45%;
+}
+
+#topic-description-overlay {
+  position: absolute;
+  /*border-radius: 4px; can't tell if I want this or not...*/
+  bottom: 0;
+  z-index: 950; 
+  width: 100%;
+  font-size: 12px;
+  /* RGBa with 0.6 opacity */
+  background-color: rgba(60, 110, 160, 0.65);
+  /* For IE 5.5 - 7*/
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#bb2d8998, endColorstr=#bb2d8998);
+  /* For IE 8*/
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#bb2d8998, endColorstr=#bb2d8998)";
+}
+
+#topic-description-overlay > div{
+  padding: 10px 10px 20px 10px;
+  color: white;
+}
+
+#topic-description-overlay a{
+  margin-left: 10px;
+}
+
+#topic-description-overlay .title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#topic-description-overlay .text {
+  font-size: 16px;
+}
+
+#feature-loading
+{
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  background:url(../img/ajax-loader.gif) no-repeat center center;
+}

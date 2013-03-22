@@ -5,7 +5,7 @@ app.init = function () {
     var map = new OpenLayers.Map(null, {
         //allOverlays: true,
         displayProjection: new OpenLayers.Projection("EPSG:4326"),
-        projection: "EPSG:3857"
+        projection: "EPSG:102113"
     });
     
     esriOcean = new OpenLayers.Layer.XYZ("ESRI Ocean", "http://services.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/${z}/${y}/${x}", {
@@ -61,7 +61,7 @@ app.init = function () {
         {
             isBaseLayer: true,
             numZoomLevels: 13,
-            projection: "EPSG:3857"
+            projection: "EPSG:102113"
         }
     );
     
@@ -298,7 +298,11 @@ app.init = function () {
     
 };
 
-app.addLayerToMap = function(layer) {
+app.addLayerToMap = function(layer, isVisible) {
+    //2013-02-20 DWR
+    //Added so we can use the topic button to add the layers into the Active tab, but not make them visible.
+    var layerVisible = typeof(isVisible) === "undefined" ? true : isVisible;
+    
     if (!layer.layer) {
         var opts = {
             displayInLayerSwitcher: false
@@ -323,7 +327,9 @@ app.addLayerToMap = function(layer) {
                 displayInLayerSwitcher: false,
                 useJSONP: false
             });
-             
+            //layer.utfgrid.projection = new OpenLayers.Projection("EPSG:4326");
+            //2013-02-20 DWR
+            layer.layer.setVisibility(isVisible);
             app.map.addLayer(layer.utfgrid);           
             layer.layer = new OpenLayers.Layer.XYZ(
                 layer.name, 
@@ -334,7 +340,9 @@ app.addLayerToMap = function(layer) {
                         isBaseLayer: false //previously set automatically when allOverlays was set to true, must now be set manually
                     }
                 )
-            );  
+            );
+            //2013-02-20 DWR
+            layer.layer.setVisibility(isVisible);            
             app.map.addLayer(layer.layer);  
         } else if (layer.type === 'Vector') {
             var styleMap = new OpenLayers.StyleMap( {
@@ -378,7 +386,7 @@ app.addLayerToMap = function(layer) {
             layer.layer = new OpenLayers.Layer.Vector(
                 layer.name,
                 {
-                    projection: new OpenLayers.Projection('EPSG:3857'),
+                    projection: new OpenLayers.Projection('EPSG:102113'),
                     displayInLayerSwitcher: false,
                     strategies: [new OpenLayers.Strategy.Fixed()],
                     protocol: new OpenLayers.Protocol.HTTP({
@@ -389,21 +397,92 @@ app.addLayerToMap = function(layer) {
                     layerModel: layer
                 }
             );
-            app.map.addLayer(layer.layer); 
-        } else if (layer.type === 'ArcRest') {
+            //2013-02-20 DWR
+            layer.layer.setVisibility(isVisible);
+            //app.addVectorAttribution(layer);
+            app.map.addLayer(layer.layer);  
+            //selectFeatureControl = app.map.getControlsByClass("OpenLayers.Control.SelectFeature")[0];
+            if (layer.attributes.length) {
+                app.map.vectorList.unshift(layer.layer);
+                app.map.selectFeatureControl.setLayer(app.map.vectorList);
+            }
+        }
+        else if (layer.type === 'ArcRest') {
+            var identifyUrl = layer.url.replace('export', layer.arcgislayers + '/query');
+            var esriQueryFields = [];
+            for(var i = 0; i < layer.attributes.length; i++)
+            {
+              esriQueryFields.push(layer.attributes[i].display);
+            }
+            layer.identifyControl = new OpenLayers.Control.ArcGisRestIdentify(
+              {
+                eventListeners: {
+                  arcfeaturequery : function()
+                  {
+                    //Show the identify tab.
+                    $('#identifyTab').tab('show');
+                    //Remove the previous attributes.
+                    app.viewModel.attributeTitle(false);
+                    app.viewModel.attributeData(false);
+                    app.viewModel.featureRequested(true);                    
+                  },
+                  //THis is the handler for the return click data.
+                  resultarrived : function(responseText, xy)
+                  {
+                    app.viewModel.featureRequested(false);
+                    var jsonFormat = new OpenLayers.Format.JSON();
+                    var returnJSON = jsonFormat.read(responseText.text);
+                    //Activate the Identify tab.
+                    $('#identifyTab').tab('show');                    
+                    app.viewModel.attributeTitle(layer.name);
+                    if('features' in returnJSON)
+                    {
+                      var attributeObjs = []
+                      $.each(returnJSON['features'], function(index, feature)
+                      {
+                        if(index == 0)
+                        {
+                          var attributeList = feature['attributes'];
+                          if('fields' in returnJSON)
+                          {
+                            $.each(returnJSON['fields'], function(fieldNdx, field)
+                            {
+                              attributeObjs.push({'display' : field.name,
+                                                  'data' : attributeList[field.name]});
+                            });
+                          }
+                          return;
+                        }
+                      });
+                    }
+                    app.viewModel.attributeData(attributeObjs);
+                  }
+                },
+                url : identifyUrl,
+                layerid : layer.arcgislayers,
+                sr : 102113,
+                clickTolerance: 3,
+                outFields : esriQueryFields.length ? esriQueryFields.join(',') : '*'
+              });
             layer.layer = new OpenLayers.Layer.ArcGIS93Rest(
                 layer.name, 
                 layer.url,
                 {
                     layers: "show:"+layer.arcgislayers,
-                    srs: 'EPSG:3857',
+                    srs: 'EPSG:102113',
                     transparent: true
                 },
                 {
                     isBaseLayer: false
                 }
             );
-            app.map.addLayer(layer.layer);  
+            //2013-02-20 DWR
+            layer.layer.setVisibility(isVisible);
+            app.map.addLayer(layer.layer);
+            //2013-02-20 DWR
+            //ADd the identify control.
+            app.map.addControl(layer.identifyControl);
+            
         } else if (layer.type === 'WMS') {
             layer.layer = new OpenLayers.Layer.WMS(
                 layer.name, 
@@ -412,6 +491,8 @@ app.addLayerToMap = function(layer) {
                     'layers': 'basic'
                 }
             );
+            //2013-02-20 DWR
+            layer.setVisibility(isVisible);
             app.map.addLayer(layer.layer);  
         } else { //if XYZ with no utfgrid
             // adding layer to the map for the first time		
@@ -425,6 +506,8 @@ app.addLayerToMap = function(layer) {
                     }
                 )
             );
+            //2013-02-20 DWR
+            layer.layer.setVisibility(isVisible);
             app.map.addLayer(layer.layer);  
         }
     } else if ( layer.utfurl ) { //re-adding utfcontrol for existing utf layers (they are destroyed in layer.deactivateLayer)

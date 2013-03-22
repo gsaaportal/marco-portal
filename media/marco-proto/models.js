@@ -3,7 +3,15 @@ function layerModel(options, parent) {
         $descriptionTemp;
 
     // properties
-    self.id = options.id || null;
+    if(options.id >= 0)
+    {
+      self.id = options.id;
+    }
+    else
+    {
+      self.id = null;
+    }
+    
     self.name = options.name || null;
     self.url = options.url || null;
     self.arcgislayers = options.arcgis_layers || 0;
@@ -13,9 +21,12 @@ function layerModel(options, parent) {
     self.learn_link = options.learn_link || null;
     self.legendVisibility = ko.observable(false);
     self.legendTitle = options.legend_title || false;
+    self.legendType = null;
     self.legendSubTitle = options.legend_subtitle || false;
+    self.legendTable = ko.observable(false);
+    self.topics = ko.observableArray();
     self.themes = ko.observableArray();
-    //self.attributeTitle = options.attributes ? options.attributes.title : self.name;
+    self.attributeTitle = options.attributes ? options.attributes.title : self.name;
     self.attributes = options.attributes ? options.attributes.attributes : [];
     self.compress_attributes = options.attributes ? options.attributes.compress_attributes : false;
     self.attributeEvent = options.attributes ? options.attributes.event : [];
@@ -26,7 +37,14 @@ function layerModel(options, parent) {
     self.defaultOpacity = options.opacity || 0.5;
     self.opacity = ko.observable(self.defaultOpacity);
     self.graphic = options.graphic || null;
-
+    self.restLegend = [];
+    
+    if(self.type === 'ArcRest')
+    {
+      self.identifyControl = null;
+    }
+    
+    
     // set target blank for all links
     if (options.description) {
         $descriptionTemp = $("<div/>", {
@@ -35,23 +53,18 @@ function layerModel(options, parent) {
         $descriptionTemp.find('a').each(function() {
             $(this).attr('target', '_blank');
         });
-        self.description = $descriptionTemp.html();
+        self.description = $descriptionTemp.text();
     } else {
         self.description = null;
     }
-    
-    // set overview text for Learn More option
-    if (options.overview) {
-        self.overview = options.overview;
-    } else if (parent && parent.overview) {
-        self.overview = parent.overview;
-    } else if (self.description) {
-        self.overview = self.description;
-    } else if (parent && parent.description) {
-        self.overview = parent.description;
-    } else {
-        self.overview = null;
-    }
+    self.getHTMLLegend = function(legendURL)
+    {
+      self.legendTable('Loading: ' + legendURL);
+      $.get(legendURL, function(data)
+      {
+        self.legendTable(data);
+      });
+    };
     
     // set data source and data notes text 
     self.data_source = options.data_source || null;
@@ -68,8 +81,18 @@ function layerModel(options, parent) {
     self.data_download = options.data_download || null;
     self.metadata = options.metadata || null;
     self.source = options.source || null;
-
-    // opacity
+    if(self.legend.length)
+    {
+      var parseUrl = document.createElement('a');
+      parseUrl.href = self.legend;
+      self.legendType = 'json';
+      if(parseUrl.search.length)
+      {
+        self.legendType = 'json';
+        //self.getJSONLegend('/proxy/get_legend_json?url=' + self.legend);
+      }
+      
+    }    // opacity
     self.opacity.subscribe(function(newOpacity) {
         if (self.layer.CLASS_NAME === "OpenLayers.Layer.Vector") {
             self.layer.styleMap.styles['default'].defaultStyle.strokeOpacity = newOpacity;
@@ -153,6 +176,11 @@ function layerModel(options, parent) {
             //app.map.removeControl(
             app.map.removeLayer(this.utfgrid);
         }
+        if (app.viewModel.attributeTitle() === layer.name) {
+            app.viewModel.attributeTitle(false);
+            app.viewModel.attributeData(false);
+        }
+
         
         //remove the key/value pair from aggregatedAttributes
         //debugger;
@@ -207,16 +235,23 @@ function layerModel(options, parent) {
         if ($.inArray(layer.layer, app.map.layers) !== -1) {
             app.map.removeLayer(layer.layer);
         }
+        if("identifyControl" in layer)
+        {            
+          layer.identifyControl.deactivate();
+        }
+        
         layer.layer = null;
 
     };
 
-    self.activateLayer = function() {
+    self.activateLayer = function(layerVisible) {
+        //2013-02-20 DWR
+        //Added so we can use the topic button to add the layers into the Active tab, but not make them visible.
+        var isVisible = typeof(layerVisible) === "undefined" ? true : layerVisible;
         var layer = this;
 
         if (!layer.active() && layer.type !== 'placeholder') {
-        
-            app.addLayerToMap(layer);
+            app.addLayerToMap(layer, isVisible);
 
             //changed the following so that 
             //if the layer is an attributed vector layer, it will be added to the top of activeLayers
@@ -242,7 +277,8 @@ function layerModel(options, parent) {
 
             // set the active flag
             layer.active(true);
-            layer.visible(true);
+            //layer.visible(true);
+            layer.visible(isVisible);
 
             // save reference in parent layer
             if (layer.parent) {
@@ -252,10 +288,23 @@ function layerModel(options, parent) {
                 }
                 layer.parent.active(true);
                 layer.parent.activeSublayer(layer);
-                layer.parent.visible(true);
-                layer.parent.visibleSublayer(layer);
+                //layer.parent.visible(true);
+                layer.parent.visible(isVisible);
+                if(layerVisible)
+                {
+                  layer.parent.visibleSublayer(layer);
+                }
             }
-
+            if(self.legendTable() === false)
+            {
+              self.getHTMLLegend(self.legend);
+            }
+            /*
+            if(self.restLegend.length === 0)
+            {
+              self.getJSONLegend('/proxy/get_legend_json?url=' + self.legend)
+            }
+            */
             //add utfgrid if applicable
             if (layer.utfgrid) {
                 app.map.UTFControl.layers.unshift(layer.utfgrid);
@@ -288,7 +337,7 @@ function layerModel(options, parent) {
         if (layer.utfgrid) {
             app.map.UTFControl.layers.splice($.inArray(this, app.viewModel.activeLayers()), 0, layer.utfgrid);
         }
-    }
+    };
     
     self.setInvisible = function() {
         var layer = this;
@@ -318,7 +367,7 @@ function layerModel(options, parent) {
             //the following removes this layers utfgrid from the utfcontrol and prevents continued utf attribution on this layer
             app.map.UTFControl.layers.splice($.inArray(this.utfgrid, app.map.UTFControl.layers), 1);
         }
-    }
+    };
 
     self.showSublayers = ko.observable(false);
 
@@ -409,8 +458,10 @@ function layerModel(options, parent) {
     self.toggleSublayerDescription = function(layer) {
         if ( ! self.infoActive() ) {
             self.showSublayerDescription(self);
-        } else if (layer === app.viewModel.activeInfoSublayer()) {
-        } else {
+        }
+        else if (layer === app.viewModel.activeInfoSublayer()) {
+        }
+        else {
             self.showDescription(self);
         }
     };
@@ -428,10 +479,15 @@ function layerModel(options, parent) {
     
     // display descriptive text below the map
     self.toggleDescription = function(layer) {
-        if ( ! layer.infoActive() ) {
-            self.showDescription(layer);
+        //Turn off the topicInfo.
+        app.viewModel.showTopicDescription(false);
+        if ( layer.infoActive() ) {
+            app.viewModel.showDescription(false);
         } else {
-            self.hideDescription(layer);
+            app.viewModel.showDescription(false);
+            app.viewModel.activeInfoLayer(layer);
+            self.infoActive(true);
+            app.viewModel.showDescription(true);
         }
     };
     
@@ -488,6 +544,110 @@ function layerModel(options, parent) {
 
     return self;
 } // end layerModel
+
+
+function topicModel(options) {
+  var self = this;
+
+  // array of layers associated with the topic.
+  //self.layers = ko.observableArray();
+  self.themes = [];
+  self.layers =[];
+  self.display_name = options.display_name;
+  self.id = options.id;
+  self.description = options.description;
+  self.learn_link = options.learn_link;
+  
+  self.topicActive = ko.observable(false);
+  
+  self.activateTopic = function()
+  {
+    self.topicActive(true);
+    for(var i = 0; i < self.layers.length; i++)
+    {
+      var layerObj = self.layers[i];
+      //Check to see if the layer has sublayers.
+      if(layerObj.subLayers.length)
+      {
+        $.each(layerObj.subLayers, function(i, sublayer)
+        {
+          sublayer.activateLayer(false);
+        });        
+      }
+      else
+      {
+        layerObj.activateLayer(false);
+      }
+    }      
+  };
+  self.deactivateTopic = function()
+  {
+    self.topicActive(false);
+    for(var i = 0; i < self.layers.length; i++)
+    {
+      var layerObj = self.layers[i];
+      //Check to see if the layer has sublayers.
+      if(layerObj.subLayers.length)
+      {
+        $.each(layerObj.subLayers, function(i, sublayer)
+        {
+          sublayer.deactivateLayer();
+        });
+      }
+      else
+      {            
+        layerObj.deactivateLayer();
+      }
+    }      
+  };
+  /*
+  //Make the selected topic active/inactive depending on its current state. 
+  self.toggleTopicActive = function(topic)
+  {
+    if(self.topicActive() === false)
+    {          
+      self.activateTopic()
+    }
+    //Topic is active, user is attempting to deactivate it.
+    else
+    {
+      self.deactivateTopic()
+    }
+    app.viewModel.topicChange(topic);
+  }*/
+  
+  //Event handler for the topic info window.
+  self.topicDescriptionActive = ko.observable(false);
+    
+  app.viewModel.showTopicDescription.subscribe( function()
+  {
+    if( app.viewModel.showTopicDescription() === false )
+    {
+      self.topicDescriptionActive(false);
+    }
+  });
+  
+  self.toggleTopicDescription = function(topic)
+  {
+    app.viewModel.showDescription(false);
+    
+    //If the topic description window is already open, close it.
+    if ( topic.topicDescriptionActive() )
+    {
+      app.viewModel.showTopicDescription(false);
+    }
+    else
+    {
+      app.viewModel.showTopicDescription(false);
+      app.viewModel.activeTopicInfo(topic);
+      self.topicDescriptionActive(true);
+      app.viewModel.showTopicDescription(true);
+    }
+  };
+
+
+  return(self);
+}
 
 function themeModel(options) {
     var self = this;
@@ -638,7 +798,7 @@ function bookmarkModel($popover) {
 
     self.prepareEmail = function(bookmark) {
         app.viewModel.bookmarkEmail(self.getUrl(bookmark));
-    }
+    };
 
     self.getEmailHref = function(bookmark) {
         return "mailto:?subject=MARCO Bookmark&body=<a href='" + self.getUrl(bookmark).replace(/&/g, '%26') + "'>bookmark</a>";
@@ -679,7 +839,7 @@ function bookmarkModel($popover) {
                         var bookmark = {
                             state: $.deparam(bookmarks[i].hash),
                             name: bookmarks[i].name
-                        }
+                        };
                         blist.push(bookmark);
                     }
                     if (blist.length > 0) {
@@ -785,7 +945,76 @@ function viewModel() {
 
     // last clicked layer for editing, etc
     self.activeLayer = ko.observable();
+  
+    //2013-03-01  DWR
+    // determines visibility of topic description overlay
+    self.showTopicDescription = ko.observable();
+    self.activeTopicInfo = ko.observable(false);
+    self.activeTopic = ko.observable(false);
+    self.topics = ko.observableArray();
+    self.topicIndex = {};
+    //Topic change handler.
+    self.topicChange = function(currentTopic)
+    {
+      if(self.activeTopic())
+      {
+        self.activeTopic().deactivateTopic();
+        //Are we changing topics?
+        if(currentTopic.display_name != self.activeTopic().display_name)
+        {
+          self.activeTopic().deactivateTopic();
+          self.activeTopic(currentTopic);
+          self.activeTopic().activateTopic();
+        }
+        //Topic just clicked is the one we had, this means it is getting deactivated, so let's reset our active topic to be nothing.
+        else
+        {
+          self.activeTopic().deactivateTopic();
+          self.activeTopic(false);  
+        }
+      }
+      else
+      {
+        self.activeTopic(currentTopic);        
+        self.activeTopic().activateTopic();
+      }
+    };
+    self.featureRequested = ko.observable(false);
+    //Layer Feature Identify
+    self.identifyFeatureActive = ko.observable(false);
+    //Button handler for the identify feature function.
+    self.identifyFeature = function(self, event)
+    {
+      //Toggle the state.
+      if(self.identifyFeatureActive() === false)
+      {
+        self.identifyFeatureActive(true);
+        //Activate the Identify tab.
+        $('#identifyTab').tab('show');
+      }
+      else
+      {
+        self.identifyFeatureActive(false);
+      }
 
+      var layers = self.visibleLayers();
+      $.each(layers, function(index, layer) {
+        if("identifyControl" in layer)
+        {
+          //var layerNdx = app.viewModel.activeLayers.indexOf(layer);                    
+          if(self.identifyFeatureActive() &&
+             (index === 0))
+          {
+            layer.identifyControl.activate();
+          }
+          else
+          {
+            layer.identifyControl.deactivate();            
+          }
+        }
+      });
+      
+    };
     // determines visibility of description overlay
     self.showDescription = ko.observable();
     // determines visibility of expanded description overlay
@@ -814,6 +1043,8 @@ function viewModel() {
     self.activeInfoSublayer = ko.observable(false);
 
     // attribute data
+    self.attributeTitle = ko.observable(false);
+    self.attributeData = ko.observable(false);
     self.aggregatedAttributes = ko.observable(false);
     self.aggregatedAttributesWidth = ko.observable('280px');
     self.aggregatedAttributes.subscribe( function() {
@@ -824,7 +1055,8 @@ function viewModel() {
         //if there are no more attributes left to display, then remove the overlay altogether
         if ($.isEmptyObject(self.aggregatedAttributes())) {
             self.closeAttribution();
-        } else {
+        }
+        else {
             //because the subscription on aggregatedAttributes is not triggered by this delete process
             self.updateAggregatedAttributesOverlayWidthAndScrollbar();
             //self.updateCustomScrollbar('#aggregated-attribute-content');
@@ -908,11 +1140,11 @@ function viewModel() {
     // zoom with box
     self.zoomBoxIn = function (self, event) {
         var $button = $(event.target).closest('.btn');
-        self.zoomBox($button)
+        self.zoomBox($button);
     };
     self.zoomBoxOut = function (self, event) {
         var $button = $(event.target).closest('.btn');
-        self.zoomBox($button, true)
+        self.zoomBox($button, true);
     };
     self.zoomBox = function  ($button, out) {
         // out is a boolean to specify whether we are zooming in or out
@@ -1061,6 +1293,10 @@ function viewModel() {
         if ( ! app.pageguide.tourIsActive ) {
             app.viewModel.showMapAttribution();
         }
+    };
+    // close topic description
+    self.closeTopicDescription = function(self, event) {
+        self.showTopicDescription(false);
     };
     
     self.activateOverviewDropdown = function(model, event) {
@@ -1250,9 +1486,21 @@ function viewModel() {
             // are above those that are at the end
             // also save the layer state
             app.setLayerZIndex(layer, index);
+            //2013-03-01
+            //If the layer has an identify control object and the user has enabled the identify tool, lets make sure the layer at the
+            //top of the active list is the one we query.
+            
+            if(("identifyControl" in layer) &&                        //Layer has identifyControl
+               (app.viewModel.identifyFeatureActive()))               //User has clicked the Identify button
+              
+            {
+              //If the layer is at the top of the Z order, activate it for feature identify.
+              index === 300 ? layer.identifyControl.activate() : layer.identifyControl.deactivate();
+            }
+            
             index--;
         });
-
+      
         // re-ordering map layers by z value
         app.map.layers.sort(function(a, b) {
             return a.getZIndex() - b.getZIndex();
@@ -1266,6 +1514,27 @@ function viewModel() {
         app.updateUrl();
 
     });
+    self.visibleLayers.subscribe(function()
+      {
+        var firstVisLayer = self.visibleLayers()[0];
+        //Disable the identify controls
+        $.each(self.activeLayers(), function(i, layer) {
+          if("identifyControl" in layer)               //User has clicked the Identify button
+            
+          {
+            //If the layer is the first visible layer, enable the identify control.
+            if((app.viewModel.identifyFeatureActive()) &&
+               (layer === firstVisLayer))
+            {
+              layer.identifyControl.activate();
+            }
+            else
+            {
+              layer.identifyControl.deactivate();
+            }
+          }          
+        });
+      });
     
     self.deactivateAllLayers = function() {
         //$.each(self.activeLayers(), function (index, layer) {
@@ -1360,7 +1629,7 @@ function viewModel() {
     
     self.stepTwoOfBasicTour = function() {
         $('.pageguide-fwd')[0].click();
-    }
+    };
     
     self.startDataTour = function() {
         //ensure the pageguide is closed 
@@ -1441,16 +1710,16 @@ function viewModel() {
                 $.pageguide('showStep', $.pageguide().guide().steps.length-1);
             }
         }
-    }
+    };
     
     self.showMapAttribution = function() {
         $('.olControlScaleBar').show();
         $('.olControlAttribution').show();
-    }
+    };
     self.hideMapAttribution = function() {
         $('.olControlScaleBar').hide();
         $('.olControlAttribution').hide();
-    }
+    };
     
     /* REGISTRATION */
     self.username = ko.observable();
@@ -1568,7 +1837,7 @@ function viewModel() {
     self.turnOffUsernameError = function() {
         self.usernameError(false);
     };
-    
+    /*
     self.getSeaTurtleAttributes = function (title, data) {
         attrs = [];
         if ('ST_LK_NUM' in data && data['ST_LK_NUM']) {
@@ -1603,8 +1872,8 @@ function viewModel() {
             }
         }
         return attrs;
-    };
-    
+    };*/
+    /*
     self.getToothedMammalAttributes = function (title, data) {
         attrs = [];
         if ('TOO_LK_NUM' in data && data['TOO_LK_NUM']) {
@@ -1637,8 +1906,8 @@ function viewModel() {
             }
         }
         return attrs;
-    };
-    
+    };*/
+    /*
     self.getWindSpeedAttributes = function (title, data) {
         attrs = [];
         if ('SPEED_90' in data) {
@@ -1647,8 +1916,8 @@ function viewModel() {
             attrs.push({'display': 'Estimated Avg Wind Speed', 'data': min_speed + ' to ' + max_speed + ' m/s'});
         } 
         return attrs;
-    };
-    
+    };*/
+    /*    
     self.getOCSAttributes = function (title, data) {
         attrs = [];
         if ('BLOCK_LAB' in data) {
@@ -1663,12 +1932,6 @@ function viewModel() {
                     max_speed = data['WINDREV_MA'].toFixed(3),
                     min_range = (parseFloat(min_speed)-.125).toPrecision(3),
                     max_range = (parseFloat(max_speed)+.125).toPrecision(3);
-                /*if ( min_speed === max_speed ) {
-                    attrs.push({'display': 'Estimated Avg Wind Speed (m/s)', 'data': speed});
-                } else {
-                    var speed = (min_speed-.125) + ' to ' + (max_speed+.125);
-                    attrs.push({'display': 'Estimated Avg Wind Speed (m/s)', 'data': speed});
-                }*/
                 attrs.push({'display': 'Estimated Avg Wind Speed', 'data': min_range + ' to ' + max_range + ' m/s'});
             } else {
                 attrs.push({'display': 'Estimated Avg Wind Speed', 'data': 'no data'});
@@ -1707,9 +1970,9 @@ function viewModel() {
             }
         }
         return attrs;
-    };
+    };*/
             
     return self;
-} //end viewModel
+  } //end viewModel
 
 app.viewModel = new viewModel();

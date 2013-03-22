@@ -49,6 +49,25 @@ app.viewModel.loadLayers = function(data) {
         
 		self.themes.push(theme);
 	});
+        
+        $.each(data.topics, function(i, topicConfig)
+        {
+          var topic = new topicModel(topicConfig);
+          $.each(topicConfig.layers, function(j, layer_id) {
+            // create a layerModel and add it to the list of layers
+            var layer = self.layerIndex[layer_id];
+            layer.topics.push(topic);            
+            topic.layers.push(layer);
+          });
+          //sort by name
+          topic.layers.sort( function(a,b) { return a.name.toUpperCase().localeCompare(b.name.toUpperCase()); } );
+          
+          app.viewModel.topicIndex[topicConfig.display_name] = topic;
+          self.topics.push(topic);
+        });
+          
+          
+        
 	app.typeAheadSource = (function () {
             var keys = [];
             for (var searchTerm in app.viewModel.layerSearchIndex) {

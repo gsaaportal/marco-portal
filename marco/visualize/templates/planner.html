@@ -172,7 +172,9 @@
                                     </span>
                                 </a>
                             </li>
-                            
+                            <li class="identify">
+                                <a href="#identify-feature" data-toggle="tab" id="identifyTab">Identify</a>
+                            </li>                            
                         </ul>
                         <!-- tab body -->
                         <div id="myTabContent" class="tab-content">
@@ -314,12 +316,71 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- END ACTIVE TAB -->
+                            <!-- /active-tab -->
+                            <!-- /Identify-tab-->
+                            <div class="tab-pane fade" id="identify-feature">
+                              <div class="row-fluid">
+                                <div class="span12">
+                                  <div id="data-accordion">                                              
+                                    <div data-bind="visible: attributeData() === false">
+                                        <div style="padding: 10px;">
+                                          <p>
+                                              No features identified.
+                                          </p>
+                                          <p>
+                                              Click the Identify button in the right hand menu bar.
+                                          </p>
+                                          <p>
+                                              Then click on a feature on the map. The top most layer in the Active Tab will be queried and the results presented here.
+                                          </p>
+                                        </div>
+                                        <div data-bind="visible: featureRequested">
+                                          <div id="feature-loading"></div>
+                                        </div>
+                                    </div>
+                                                                          
+                                    <div data-bind="visible: attributeData" style="display: none">
+                                      <strong><span data-bind="text: attributeTitle()"></span></strong>
+                                      <dl data-bind="foreach: attributeData()">
+                                        <!--<dt data-bind="text: display"></dt>-->
+                                        <!--<dd data-bind="text: data"></dd>-->
+                                        <dt>
+                                          <span data-bind="text: display"></span><span data-bind="visible: display">:</span>
+                                          <span style="font-weight: normal" data-bind="text: data"></span>
+                                        </dt>
+                                      </dl>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>                            
+                            <!-- /Identify-tab-->
+                            
                         </div>
                     </div>
                 </div>
                 <!-- /Data Panel -->
-                
+                <div id="topics-frame" class="frame span8">
+                  <div class="topics">
+                    <ul data-bind="foreach: topics ">
+                      <li>
+                        <div class="btn-group topic-btn-group">
+                          <a class="btn btn-info-sign" data-bind="click: toggleTopicDescription, css: { 'active': topicDescriptionActive() }">
+                              <i class="icon-info-sign icon-large"></i>
+                          </a>
+                          <a class="btn btn-topic" data-bind="click: $parent.topicChange, css: { 'active': topicActive(), 'not-active': ! topicActive() }">
+                              <div style="font-weight: normal">
+                                <span data-bind="text: display_name"></span>
+                              </div>
+                          </a>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <!--
+                <div class="topicsClearer"></div>
+                -->                
                 <!-- Map Panel (center panel) -->
                 <div id="map-panel" data-bind="css: { 'fullscreen-map': isFullScreen() && !showLayers() && !showLegend(), 'fullscreen-with-layers': isFullScreen() && showLayers() && !showLegend(), 'fullscreen-with-legend': isFullScreen() && !showLayers() && showLegend(), 'fullscreen-with-legend-and-layers': isFullScreen() && showLayers() && showLegend(), 'shift-left': ! showLayers(), span12: !showLayers() && !showLegend(), span9: !showLayers() && showLegend(), span8: showLayers() && !showLegend(), span5: showLayers() && showLegend() }">       
                     <div class="row-fluid" data-bind="visible: showMapPanel">
@@ -360,10 +421,16 @@
                                           </a>
                                           <!-- Print Button -->
 
-                                            <a class="btn" id="btn-print" data-bind="click: printing.showPrintDialog, visible: printing.enabled">
-                                                <i class="icon-print icon-large"></i>
-                                                <span>Print/Export</span>
-                                            </a>
+                                          <a class="btn" id="btn-print" data-bind="click: printing.showPrintDialog, visible: printing.enabled">
+                                              <i class="icon-print icon-large"></i>
+                                              <span>Print/Export</span>
+                                          </a>
+                                          <!--Identify Button-->
+                                          <a class="btn" id="btn-identify" data-bind="click: identifyFeature">
+                                              <i class="icon-info-sign icon-large"></i>
+                                              <span>Identify</span>
+                                          </a>
+                                            
                                         </div>
                                     </div>
                                     <div id="map-buttons">
@@ -440,6 +507,19 @@
                                             <a href="#" style="margin-left: 10px; opacity: .6;" class="btn btn-mini pull-right close" data-bind="click: closeDescription"> x </a> 
                                         </div>
                                     </div> 
+                                  <!-- Topic Description Overlay  style="display:none"-->
+                                    <div id ="topic-description-overlay" class="row-fluid" style="display: none" data-bind="visible: showTopicDescription()" >
+                                        <div class="span11">
+                                            <span class="title" data-bind="text: activeTopicInfo().display_name"></span> -- 
+                                            <span class="text" data-bind="text: activeTopicInfo().description"></span>
+                                            <span class="text">
+                                                <a class="btn btn-mini" data-bind="attr: { href: activeTopicInfo().learn_link }" target="_blank">Learn More...</a>
+                                            </span>  
+                                        </div>
+                                        <div class="span1">
+                                            <a href="#" style="margin-left: 10px; opacity: .6;" class="btn btn-mini pull-right close" data-bind="click: closeTopicDescription"> x </a> 
+                                        </div>
+                                    </div>
                                     
                                     <div id="overview-overlay" class="row-fluid" style="display: none" data-bind="visible: showOverview()" >
                                         <div id="overview-overlay-content" class="span12">
@@ -543,9 +623,22 @@
                                 <span class="pagination-centered legend-title" data-bind="html: legendTitle ? legendTitle : name"></span>
                                 <p style="margin: 0px -5px 3px; text-align: left;font-size: 12px;" data-bind="visible: legendSubTitle, html: legendSubTitle"></p>
                                 <span data-bind="if: legend">
+                                                    <!-- ko if: legendType === "img" -->
+                                                      <div data-bind="css: { 'in': legendVisibility }" style="padding-top: 5px;">
+                                                          <img data-bind="attr: { src: legend }" />
+                                                      </div>
+                                                    <!-- /ko -->
+                                                    <!-- ko if: legendType === "json" -->
+                                                      <div data-bind="css: { 'in': legendVisibility }" style="padding-top: 5px;">
+                                                        <div data-bind="html: legendTable">
+                                                        </div>
+                                                      </div>
+                                                    <!-- /ko -->
+								<!--
                                     <div data-bind="css: { 'in': legendVisibility }" style="padding-top: 5px;">
                                         <img data-bind="attr: { src: legend }" />
                                     </div>
+								-->
                                 </span>
                             </div>
                           </div>
@@ -692,7 +785,7 @@
         <script src="{{MEDIA_URL}}/marco/js/jquery.jscrollpane.min.js"></script>
         <script src="{{MEDIA_URL}}/marco/js/date.js"></script>
 
-        <script src="{{SOCKET_URL}}/socket.io/socket.io.js"></script>
+        <script src="{{SOCKET_URL}}/socket.io/lib/socket.io.js"></script>
         <!--<script src="http://www.transportparadise.co.uk/layerswitcher/simplelayerswitcher.js"></script>-->
         <script>
             var app = {
@@ -712,7 +805,7 @@
         <script src="{{MEDIA_URL}}/marco-proto/printing.js"></script>
         <script src="{{MEDIA_URL}}/marco-proto/app.js"></script>
         <script src="{{MEDIA_URL}}/marco-proto/pageguide.js"></script>
-
+        <script src="{{MEDIA_URL}}/marco-proto/arcgisrestidentify.js"></script>
         <!--[if gt IE 8]><!-->
         <script src="{{MEDIA_URL}}/marco-proto/assets/js/jquery.mousewheel.min.js"></script>
         <!--<![endif]-->
