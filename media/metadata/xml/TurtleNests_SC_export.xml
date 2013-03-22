@@ -1,0 +1,300 @@
+﻿<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>South Carolina Department of Natural Resources; Wildlife and Freshwater Fisheries Division</origin>
+        <pubdate>20130101</pubdate>
+        <title>TurtleNests_SC</title>
+        <geoform>vector digital data</geoform>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>The South Carolina Department of Natural Resources (SCDNR) has been monitoring sea turtle nests since the 1970's and authorizes and trains participants to survey the beach to locate sea turtle nests. They also relocate nests when necessary, protect nests with predator-proof screening, monitor nests during incubation, and inventory nests after they emerge to determine hatch success. Nest protection project participants include individuals that belong to beach front communities, conservation organizations, federal, state, or local agencies and universities. All nests are verified by the presence of eggs or hatching activity. Standardized ground surveys are conducted daily starting in May. Participants are required to collect data on all nests including the species of turtle that laid the nest, date laid, and other management information. Additional information can be found at http://www.seaturtle.org/nestdb/index.shtml?view=2 . All nests reported for this dataset were laid by loggerheads between 2006 and 2011. This dataset does not include information for all turtle nesting areas on the coast. Turtles nest on all SC beaches, but only beaches with at least one year of surveys were mapped and used to calculate mean annual nest densities. Nesting data is reported as mean annual density (nest count/km.) for each beach and spans the years 2006 to 2011. If there were two or more years, the coefficient of variance of the mean was also provided.</abstract>
+      <purpose>This GIS data set was created for the purpose of describing the relative densities of loggerhead (Caretta caretta) sea turtle nests on beaches surveyed from 2006-2011 along the southeastern coastline so that these biological resources can be considered for any planned energy development or other coastal use activities.</purpose>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <rngdates>
+          <begdate>20060101</begdate>
+          <enddate>20110101</enddate>
+        </rngdates>
+      </timeinfo>
+      <current>ground condition</current>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+      <update>As needed</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>-80.876888</westbc>
+        <eastbc>-78.554212</eastbc>
+        <northbc>33.873010</northbc>
+        <southbc>32.059078</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>nesting</themekey>
+        <themekey>sea turtle</themekey>
+        <themekey>loggerhead</themekey>
+        <themekey>caretta</themekey>
+        <themekey>nest density</themekey>
+      </theme>
+      <place>
+        <placekt>None</placekt>
+        <placekey>South Carolina</placekey>
+      </place>
+    </keywords>
+    <accconst>None</accconst>
+    <useconst>Neither the State of South Carolina, the Department of Natural Resources, nor any of its employees, is responsible for any improper or incorrect use of the information described and/or contained herein, and assume no responsibility for the use of the information. The South Carolina Department of Natural Resources should be acknowledged as the data source in products derived from these data. Use and interpretation of the data should be reviewed with the SCDNR sea turtle program coordinator.</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>SCDNR, Wildlife and Freshwater Fisheries Division</cntorg>
+          <cntper>DuBose B. Griffin</cntper>
+        </cntorgp>
+        <cntpos>SC Sea Turtle Coordinator</cntpos>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address>PO Box 12559</address>
+          <city>Charleston</city>
+          <state>SC</state>
+          <postal>29466</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>843-953-9016</cntvoice>
+        <cntemail>griffind@dnr.sc.gov</cntemail>
+      </cntinfo>
+    </ptcontac>
+    <native> Version 6.2 (Build 9200) ; Esri ArcGIS 10.1.0.3035</native>
+  </idinfo>
+  <dataqual>
+    <attracc>
+      <attraccr>All nests were verified by the presence of eggs or signs of emergenece at the end of incubation. Each year, it is estimated that approximately 7% of nests are undetected.</attraccr>
+    </attracc>
+    <complete>Years Surveyed: Of the 35 surveyed beaches identified in this dataset, 11 were not surveyed for the entire time period between 2006-2011. These include Waties, North Myrtle Beach, Garden City, North, Sand, Bull, Capers, Otter, Pritchards, St. Phillips, and Bay Point. Of the 46 beaches/barrier islands in SC where loggerhead sea turtles nest, standardized surveys were completed on 35 of these beaches for at least one year between 2006 and 2011. These 35 beaches are included in this dataset. The remaining 11 beaches/barrier islands are not included in this dataset.</complete>
+    <posacc>
+      <horizpa>
+        <horizpar>The approximate location and extent of each beach survey was drawn using 2012 USDA NAIP photography. The boundaries were drawn using information from the various survey teams as reference. The extent of each surveyed beach was marked using either landmarks or a GPS if it did not cover the entire beach. The length of the beach drawn represents the approximate longest extent of the survey based on beach size in the 2012 imagery.</horizpar>
+      </horizpa>
+    </posacc>
+    <lineage>
+      <procstep>
+        <procdesc>Nest Counts: Nest count data were collected during ground surveys by trained and permitted volunteers, paid staff from conservation organizations, federal, state, or local agencies and universities. Most surveys were performed at sunrise when field signs are clearest. The extents of the surveys were noted by various methods (GPS, landmarks, odometers, etc). All nests were verified by the presence of eggs or signs of emergence at the end of incubation. Data from 2009, 2010, and 2011 were entered into an online database management system (http://www.seaturtle.org/nestdb/?view=2).</procdesc>
+        <proccont>
+          <cntinfo>
+            <cntorgp>
+              <cntorg>SCDNR, Wildlife and Freshwater Fisheries Division</cntorg>
+              <cntper>DuBose Griffin</cntper>
+            </cntorgp>
+            <cntpos>SC Sea Turtle Coordinator</cntpos>
+            <cntaddr>
+              <addrtype>mailing</addrtype>
+              <address>PO Box 12559</address>
+              <city>Charleston</city>
+              <state>SC</state>
+              <postal>29422</postal>
+              <country>US</country>
+            </cntaddr>
+            <cntvoice>843-953-9016</cntvoice>
+            <cntemail>griffind@dnr.sc.gov</cntemail>
+          </cntinfo>
+        </proccont>
+      </procstep>
+      <procstep>
+        <procdesc>Shoreline Digitization: The linear extent of the survey was digitized using the 2012 USDA NAIP photography of South Carolina as a basemap. It was digitized at a scale of approximately 1:25000. The derived line approximates the greatest extent of the surveys completed between 2006 and 2011, and is based on information provided by the survey teams. Where visible on the imagery, the line follows the high tide line.</procdesc>
+        <procdate>20130101</procdate>
+        <proccont>
+          <cntinfo>
+            <cntorgp>
+              <cntorg>SCDNR, Marine Resources Division, MRRI</cntorg>
+              <cntper>Jessica Boynton</cntper>
+            </cntorgp>
+            <cntpos>GIS Manager I</cntpos>
+            <cntaddr>
+              <addrtype>mailing</addrtype>
+              <address>P.O. Box 12559</address>
+              <city>Charleston</city>
+              <state>SC</state>
+              <postal>29422</postal>
+              <country>US</country>
+            </cntaddr>
+            <cntvoice>843-953-9163</cntvoice>
+            <cntfax>843-953-9820</cntfax>
+            <cntemail>boyntonj@dnr.sc.gov</cntemail>
+          </cntinfo>
+        </proccont>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <direct>Vector</direct>
+    <ptvctinf>
+      <sdtsterm>
+        <sdtstype>String</sdtstype>
+        <ptvctcnt>35</ptvctcnt>
+      </sdtsterm>
+    </ptvctinf>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <planar>
+        <mapproj>
+          <mapprojn>Transverse Mercator</mapprojn>
+          <transmer>
+            <sfctrmer>0.9996</sfctrmer>
+            <longcm>-81.0</longcm>
+            <latprjo>0.0</latprjo>
+            <feast>500000.0</feast>
+            <fnorth>0.0</fnorth>
+          </transmer>
+        </mapproj>
+        <planci>
+          <plance>coordinate pair</plance>
+          <coordrep>
+            <absres>0.0001</absres>
+            <ordres>0.0001</ordres>
+          </coordrep>
+          <plandu />
+        </planci>
+      </planar>
+      <geodetic>
+        <horizdn>D North American 1983</horizdn>
+        <ellips>GRS 1980</ellips>
+        <semiaxis>6378137.0</semiaxis>
+        <denflat>298.257222101</denflat>
+      </geodetic>
+    </horizsys>
+  </spref>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>TurtleNests_SC</enttypl>
+        <enttypd>Linear extent of sea turtle nest surveys on regularly monitored SC beaches (2006-2011).</enttypd>
+        <enttypds>SCDNR</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Internal feature number.</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Sequential unique whole numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape</attrlabl>
+        <attrdef>Feature geometry.</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Coordinates defining the features.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>LocID</attrlabl>
+        <attrdef>ID number given based on location on the coast (the lowest ID is the northernmost beach)</attrdef>
+        <attrdefs>SCDNR</attrdefs>
+        <begdatea>2006</begdatea>
+        <enddatea>2011</enddatea>
+      </attr>
+      <attr>
+        <attrlabl>Location</attrlabl>
+        <attrdef>Name of South Carolina beach surveyed</attrdef>
+        <attrdefs>SCDNR</attrdefs>
+        <begdatea>2006</begdatea>
+        <enddatea>2011</enddatea>
+      </attr>
+      <attr>
+        <attrlabl>Mean_NestD</attrlabl>
+        <attrdef>Mean nest density for each beach was calculated by dividing the sum of the annual nest densities by the total number of survey years. The annual nest density (nests per kilometer) for each beach was calculated by dividing the total nest count by the daily survey length in kilometers. Nest counts are provided for beaches that met the following standardized criteria: (1) nest surveys were initiated in May, (2) surveys were conducted daily through the nesting season although 1-3 days may have been missed due to logistical difficulties, and (3) the survey area was standardized throughout the length of the study although we allowed for small changes in beach length (± 0.5 km).</attrdef>
+        <attrdefs>SCDNR</attrdefs>
+        <begdatea>2006</begdatea>
+        <enddatea>2011</enddatea>
+        <attrvai>
+          <attrvae>Beach length accuracy is variable and dependent on the method used to measure the survey extent or beach length (GPS, odometer, etc)</attrvae>
+        </attrvai>
+      </attr>
+      <attr>
+        <attrlabl>N_YearsSur</attrlabl>
+        <attrdef>The number of years from 2006-2011 that a beach was surveyed and included in the Mean_NestD calculation</attrdef>
+        <attrdefs>SCDNR</attrdefs>
+        <begdatea>2006</begdatea>
+        <enddatea>2011</enddatea>
+      </attr>
+      <attr>
+        <attrlabl>CV</attrlabl>
+        <attrdef>Coefficient of Variance for Mean_NestD</attrdef>
+        <begdatea>2006</begdatea>
+        <enddatea>2011</enddatea>
+      </attr>
+      <attr>
+        <attrlabl>Shape_Length</attrlabl>
+        <attrdef>Length of feature in internal units.</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Positive real numbers that are automatically generated.</udom>
+        </attrdomv>
+        <begdatea>2006</begdatea>
+        <enddatea>2011</enddatea>
+      </attr>
+    </detailed>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>South Carolina Department of Natural Resources</cntorg>
+        </cntorgp>
+        <cntpos>Spatial Data Manager</cntpos>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address>P.O. Box 167</address>
+          <address>Rembert C. Dennis Building</address>
+          <city>Columbia</city>
+          <state>SC</state>
+          <postal>29202</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>803-734-9100</cntvoice>
+        <cntfax>803-734-7001</cntfax>
+        <cntemail>gisman@dnr.sc.gov</cntemail>
+      </cntinfo>
+    </distrib>
+    <distliab>See access and use constraints information.</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>File Geodatabase Feature Class</formname>
+        </digtinfo>
+        <digtopt />
+      </digform>
+    </stdorder>
+  </distinfo>
+  <metainfo>
+    <metd>20130218</metd>
+    <metc>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>SCDNR, Marine Resources Division, MRRI</cntorg>
+          <cntper>Jessica Boynton</cntper>
+        </cntorgp>
+        <cntpos>GIS Manager I</cntpos>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <address>217 Fort Johnson Rd.</address>
+          <city>Charleston</city>
+          <state>SC</state>
+          <postal>29412</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>843-953-9163</cntvoice>
+        <cntfax>843-953-9820</cntfax>
+        <cntemail>boyntonj@dnr.sc.gov</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+    <mettc>local time</mettc>
+  </metainfo>
+</metadata>

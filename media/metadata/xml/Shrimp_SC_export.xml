@@ -1,0 +1,320 @@
+﻿<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>SCDNR, Marine Resources Division, Office of Fisheries Management</origin>
+        <pubdate>20130101</pubdate>
+        <title>Shrimp_SC</title>
+        <geoform>vector digital data</geoform>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>The majority of commercially harvested shrimp in South Carolina is caught by off-shore trawling. Commercial harvests are reported to the South Carolina Department of Natural Resources (SCDNR) Office of Fisheries Management for 10 trawling areas within the general trawling zone of South Carolina (see the process steps in this document more more information about these areas). The reported weights (lbs) of the commercial trawling harvest for whole (heads-on) brown (Farfantepenaeus aztecus) and white shrimp (Litopenaeus setiferus) have been averaged for each area from 2005-2009 and included in this dataset. The average value of the harvest for each area has also been included. The brown shrimp season generally runs from June to August, and the white shrimp season generally runs from August to December. For more information visit: http://www.dnr.sc.gov/marine/pub/seascience/shrimp.html</abstract>
+      <purpose>This GIS dataset was created for purpose of describing shrimp landings for the state of South Carolina so that these data can be considered with respect to other data on coastal resources and activities.</purpose>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <rngdates>
+          <begdate>20050101</begdate>
+          <enddate>20090101</enddate>
+        </rngdates>
+      </timeinfo>
+      <current>publication date</current>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+      <update>None planned</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>-80.910343</westbc>
+        <eastbc>-78.364792</eastbc>
+        <northbc>33.875989</northbc>
+        <southbc>32.012941</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>commercial harvest</themekey>
+        <themekey>shrimp</themekey>
+        <themekey>Farfantepenaeus aztecus</themekey>
+        <themekey>trawl</themekey>
+        <themekey>Litopenaeus setiferus</themekey>
+      </theme>
+      <place>
+        <placekt>None</placekt>
+        <placekey>South Carolina</placekey>
+      </place>
+    </keywords>
+    <accconst>None</accconst>
+    <useconst>Neither the State of South Carolina, the Department of Natural Resources, nor any of its employees, is responsible for any improper or incorrect use of the information described and/or contained herein, and assume no responsibility for the use of the information. The South Carolina Department of Natural Resources should be acknowledged as the data source in products derived from these data.</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>SCDNR, Marine Resources Division, Office of Fisheries Management</cntorg>
+          <cntper>George Steele</cntper>
+        </cntorgp>
+        <cntpos>Data Manager for Commercial Fisheries</cntpos>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address>P.O. Box 12559</address>
+          <city>Charleston</city>
+          <state>SC</state>
+          <postal>29422</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>843-953-9366</cntvoice>
+        <cntfax>843-953-9820</cntfax>
+        <cntemail>steeleg@dnr.sc.gov</cntemail>
+      </cntinfo>
+    </ptcontac>
+    <native> Version 6.2 (Build 9200) ; Esri ArcGIS 10.1.0.3035</native>
+  </idinfo>
+  <dataqual>
+    <lineage>
+      <procstep>
+        <procdesc>Creation of shoreline boundary for General Trawling Zones: The boundary was created using information from SECTION 50-5-705 of the South Carolina Code of Laws 2010 ( http://www.scstatehouse.gov/code/t50c005.htm ). Coordinates listed in this document were available as a shapefile from SCDNR. The boundary was created by drawing a line connecting these points and following the shorelines as indicated in the law. The SC law references using National Ocean Service (NOS) charts as shoreline reference. For this dataset, however, more current editions of the NOS charts were used. Beginning at the Savannah River through Daufuskie Is, chart 11512, 62nd ed. Feb. 2010 was used. Chart 11516, 31st ed. Aug. 2006 was used for Hilton Head to a point midway on Pritchards Island. Chart 11513, 22nd ed. July 1997 was used for the remainder of Pritchards through Hunting Island. Chart 11521, 22nd ed. Dec 2010 was used for Otter Island through Bull Island. Chart 11531 22nd ed. Apr. 2006 was used for Sandy Point through Murphy Island. Chart 11532 21st ed. July 2006 was used for Cedar Is. through Debidue Island. Chart 11535 12th, Jan. 2002 was used for Pawley's Island to the South Carolina/North Carolina border. The shoreline was digitized at a scale of about 1:12000.</procdesc>
+        <proccont>
+          <cntinfo>
+            <cntorgp>
+              <cntorg>SCDNR, Marine Resources Division, MRRI</cntorg>
+              <cntper>Kristin Schulte</cntper>
+            </cntorgp>
+            <cntpos>Wildlife Biologist II</cntpos>
+            <cntaddr>
+              <addrtype>mailing</addrtype>
+              <address>P.O. Box 12559</address>
+              <city>Charleston</city>
+              <state>SC</state>
+              <postal>29422</postal>
+              <country>US</country>
+            </cntaddr>
+            <cntvoice>843-953-5977</cntvoice>
+            <cntfax>843-953-9820</cntfax>
+            <cntemail>schultek@dnr.sc.gov</cntemail>
+          </cntinfo>
+        </proccont>
+      </procstep>
+      <procstep>
+        <procdesc>Creation of Trawling Zone Areas: By tracing a combination of the shoreline boundary from the SC General Trawling Zones Code, the approximate location of the trawling waterbody area dividing lines, and the state's 3 mi. offshore line (source: NOAA), polygons were created to indicate the areas used primarily by commercial fisherman for shrimp trawling.</procdesc>
+        <proccont>
+          <cntinfo>
+            <cntorgp>
+              <cntorg>SCDNR, Marine Resources Division, MRRI</cntorg>
+              <cntper>Kristin Schulte</cntper>
+            </cntorgp>
+            <cntpos>Wildlife Biologist II</cntpos>
+          </cntinfo>
+        </proccont>
+      </procstep>
+      <procstep>
+        <procdesc>Creation of dividing lines between SC Trawling Waterbody Areas: There is no official list of coordinates for the lines that divide South Carolina's General Trawling Zone into the Trawling Waterbody Areas as reported by the Office of Fisheries Management, SCDNR. Dividing lines were placed approximately in the middle of a channel if a waterway was listed as the divide. If a locality was referenced, such as a jetty or a point, that was used as the divide.</procdesc>
+        <proccont>
+          <cntinfo>
+            <cntorgp>
+              <cntorg>SCDNR, Marine Resources Division, MRRI</cntorg>
+              <cntper>Kristin Schulte</cntper>
+            </cntorgp>
+            <cntpos>Wildlife Biologist II</cntpos>
+          </cntinfo>
+        </proccont>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <direct>Vector</direct>
+    <ptvctinf>
+      <sdtsterm>
+        <sdtstype>GT-polygon composed of chains</sdtstype>
+        <ptvctcnt>10</ptvctcnt>
+      </sdtsterm>
+    </ptvctinf>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <planar>
+        <mapproj>
+          <mapprojn>Transverse Mercator</mapprojn>
+          <transmer>
+            <sfctrmer>0.9996</sfctrmer>
+            <longcm>-81.0</longcm>
+            <latprjo>0.0</latprjo>
+            <feast>500000.0</feast>
+            <fnorth>0.0</fnorth>
+          </transmer>
+        </mapproj>
+        <planci>
+          <plance>coordinate pair</plance>
+          <coordrep>
+            <absres>0.0001</absres>
+            <ordres>0.0001</ordres>
+          </coordrep>
+          <plandu />
+        </planci>
+      </planar>
+      <geodetic>
+        <horizdn>D North American 1983</horizdn>
+        <ellips>GRS 1980</ellips>
+        <semiaxis>6378137.0</semiaxis>
+        <denflat>298.257222101</denflat>
+      </geodetic>
+    </horizsys>
+  </spref>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>Shrimp_SC</enttypl>
+        <enttypd>Commercial shrimp harvest values for each of the SC trawling waterbody areas.</enttypd>
+        <enttypds>SCDNR</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID_1</attrlabl>
+        <attrdef>Internal feature number.</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Sequential unique whole numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape</attrlabl>
+        <attrdef>Feature geometry.</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Coordinates defining the features.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+      </attr>
+      <attr>
+        <attrlabl>AreaCode</attrlabl>
+        <attrdef>Code given to trawling area</attrdef>
+        <attrdefs>Office of Fisheries Management, SCDNR</attrdefs>
+      </attr>
+      <attr>
+        <attrlabl>Area_Descr</attrlabl>
+        <attrdef>Locational boundaries of each trawling area</attrdef>
+        <attrdefs>Office of Fisheries Management, SCDNR</attrdefs>
+      </attr>
+      <attr>
+        <attrlabl>Num_Yrs</attrlabl>
+        <attrdef>Number of years of data</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>AvgWHlbs</attrlabl>
+        <attrdef>Average weight (lbs.) of white shrimp (heads-on) commercially harversted by trawling between 2005 and 2009.</attrdef>
+        <attrdefs>Office of Fisheries Management, SCDNR</attrdefs>
+        <begdatea>August 2005</begdatea>
+        <enddatea>December 2009</enddatea>
+      </attr>
+      <attr>
+        <attrlabl>CV_WH</attrlabl>
+        <attrdef>Coeffiecient of Variation for AvgWHlbs</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>AvgBRlbs</attrlabl>
+        <attrdef>Average weight (lbs.) of brown shrimp (heads-on) commercially harversted by trawling between 2005 and 2009.</attrdef>
+        <attrdefs>Office of Fisheries Management, SCDNR</attrdefs>
+        <begdatea>June 2005</begdatea>
+        <enddatea>August 2009</enddatea>
+      </attr>
+      <attr>
+        <attrlabl>CV_BR</attrlabl>
+        <attrdef>Coeffiecient of Variation for AvgBRlbs</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>AvgAllLbs</attrlabl>
+        <attrdef>Average weight (lbs.) of brown and white shrimp (heads-on) commercially harvested by trawling between 2005 and 2009.</attrdef>
+        <attrdefs>Office of Fisheries Management, SCDNR</attrdefs>
+        <begdatea>June 2005</begdatea>
+        <enddatea>December 2009</enddatea>
+      </attr>
+      <attr>
+        <attrlabl>CV_All</attrlabl>
+        <attrdef>Coeffiecient of Variation for AvgAllLbs</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>AvgValue</attrlabl>
+        <attrdef>Average market value of brown and white shrimp (heads on) commercially harversted by trawling between 2005 and 2009.</attrdef>
+        <attrdefs>Office of Fisheries Management, SCDNR</attrdefs>
+      </attr>
+      <attr>
+        <attrlabl>StdDevValu</attrlabl>
+        <attrdef>Standard Deviation of AvgValue</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Shape_Length</attrlabl>
+        <attrdef>Length of feature in internal units.</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Positive real numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape_Area</attrlabl>
+        <attrdef>Area of feature in internal units squared.</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Positive real numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+    </detailed>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>South Carolina Department of Natural Resources</cntorg>
+        </cntorgp>
+        <cntpos>Spatial Data Manager</cntpos>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <address>1000 Assembly St.</address>
+          <city>Columbia</city>
+          <state>SC</state>
+          <postal>29201</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>803-734-9100</cntvoice>
+        <cntfax>803-734-7001</cntfax>
+        <cntemail>gisman@dnr.sc.gov</cntemail>
+      </cntinfo>
+    </distrib>
+    <distliab>See access and use constraints information.</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>File Geodatabase Feature Class</formname>
+        </digtinfo>
+        <digtopt />
+      </digform>
+    </stdorder>
+  </distinfo>
+  <metainfo>
+    <metd>20130218</metd>
+    <metc>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>SCDNR, Marine Resources Division, MRRI</cntorg>
+          <cntper>Jessica Boynton</cntper>
+        </cntorgp>
+        <cntpos>GIS Manager I</cntpos>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address>P.O. Box 12559</address>
+          <city>Charleston</city>
+          <state>SC</state>
+          <postal>29422</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>843-953-9163</cntvoice>
+        <cntfax>843-953-9820</cntfax>
+        <cntemail>boyntonj@dnr.sc.gov</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+    <mettc>local time</mettc>
+  </metainfo>
+</metadata>

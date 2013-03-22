@@ -1,0 +1,281 @@
+﻿<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>NOAA Office of Law Enforcement</origin>
+        <title>Shrimp_VMS</title>
+        <geoform>vector digital data</geoform>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>The NOAA Office of Law Enforcement (NOAA OLE) is responsible for ensuring compliance with a multitude of fisheries regulations across multiple ocean basins and geographic regions. Given this enormous task, and finite resources to accomplish it, the NOAA OLE relies heavily on sophisticated technologies to identify and target areas of concern. One of the most beneficial technologies for law enforcement was the creation of a satellite-based vessel monitoring system (VMS). The VMS was initiated in 1998 with 1,000 foreign-flagged fishing vessels operating in the U.S. Exclusive Economic Zone (EEZ) which spans from 12 to 200 miles from shore. Since then, the VMS has been expanded to include domestic fisheries, and as of 2007, more than 5,000 VMS units were operational. Not all fishing vessels are required to participate in the VMS, but VMS coverage includes all areas where U.S. fishing interests occur. In the Southeast U.S., vessels that fish for highly migratory species in pelagic habitats, or target Atlantic rock shrimp in neritic habitats, have been required to participate in the VMS since fall 2003.</abstract>
+      <purpose>This GIS data set was created for the purpose of describing the distribution and relative density of vessel monitoring system (VMS) data obtained from vessels fishing for South Atlantic rock shrimp and other shrimp species.</purpose>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <rngdates>
+          <begdate>20060101</begdate>
+          <enddate>20100101</enddate>
+        </rngdates>
+      </timeinfo>
+      <current>ground condition</current>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+      <update>As needed</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>-81.927087</westbc>
+        <eastbc>-74.723964</eastbc>
+        <northbc>36.708338</northbc>
+        <southbc>24.251079</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>vessel monitoring system</themekey>
+        <themekey>VMS</themekey>
+      </theme>
+      <place>
+        <placekt>None</placekt>
+        <placekey>Georgia</placekey>
+        <placekey>South Carolina</placekey>
+        <placekey>Atlantic</placekey>
+        <placekey>Florida</placekey>
+        <placekey>North Carolina</placekey>
+      </place>
+    </keywords>
+    <accconst>As noted on the NOAA OLE website (http://www.nmfs.noaa.gov/ole/vms.html), “VMS allows the OLE to monitor and survey vessels over vast expanses of open-water while maintaining the confidentiality of fishing positions.” As such, these data are sensitive and proprietary. To protect the identity of the vessels using VMS tracking, only the latitude, longitude, and date and time of each point was requested from NOAA for the five year period extending from 2006-2010. The data were further distilled as described below to provide only summary information on general locations (1x1 minute of degree latitude and longitude) over the five year period in the data layer provided.</accconst>
+    <useconst>Neither the State of South Carolina, the Department of Natural Resources, nor any of its employees, is responsible for any improper or incorrect use of the information described and/or contained herein, and assume no responsibility for the use of the information. The National Marine Fisheries Service should be recognized as the original data source and the South Carolina Department of Natural Resources should be acknowledged as the data source of the data GIS products derived from these data.</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>NOAA Office of Law Enforcement</cntorg>
+          <cntper>Kelly Spalding and Niveditha Gottam</cntper>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>unknown</addrtype>
+          <address>8484 Georgia Avenue</address>
+          <city>Silver Spring</city>
+          <state>MD</state>
+          <postal>20866</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>301-427-2300 (Spalding)</cntvoice>
+        <cntemail>niveditha.gottam@noaa.gov</cntemail>
+        <cntemail>kelly.spalding@noaa.gov</cntemail>
+      </cntinfo>
+    </ptcontac>
+    <native> Version 6.2 (Build 9200) ; Esri ArcGIS 10.1.0.3035</native>
+  </idinfo>
+  <dataqual>
+    <posacc>
+      <horizpa>
+        <horizpar>The accuracy of recorded geographic locations primarily reflects the quality of the radio-wave transmission between the VMS transponder on the fishing vessel and the orbiting satellite overhead. It is also possible that subtle variations in performance exist between VMS transponder units produced by various manufacturers. In the South Atlantic rock shrimp fishery, five VMS transponder units are authorized by the NOAA OLE: (1) Boatracs FMCT/G; (2) CLS America Thorium VMS TST – 100; (3) Faria WatchDog 750VMS (with Messaging Terminal); (4) GMPCS – Thrane &amp; Thrane Sailor TT-3026D VMS Gold; and (5) SkyMate – Stellar ST2500G (with closed Dell Laptop).</horizpar>
+      </horizpa>
+    </posacc>
+    <lineage>
+      <procstep>
+        <procdesc>GIS processing: 1.) One point feature class was created where each point was the mid-point of a 1 x 1 minute grid cell. 2.) A 1 x 1 min. grid of the whole offshore study area was used from the SEAMAP bottom mapping project. 3.) A spatial selection was performed to select those 1 x 1 min. grid cells that contained VMS summary data that was tied to the grid cell mid-points. A new layer was created with just the selected grid cells. 4.) The mid-points from the species layer were spatially joined to the 1 x 1 min. grid layer to create a final grid layer.</procdesc>
+        <proccont>
+          <cntinfo>
+            <cntorgp>
+              <cntorg>SCDNR</cntorg>
+              <cntper>Jessica Boynton</cntper>
+            </cntorgp>
+            <cntpos>GIS Manager</cntpos>
+            <cntaddr>
+              <addrtype>physical</addrtype>
+              <address>217 Fort Johnson Rd.</address>
+              <city>Charleston</city>
+              <state>SC</state>
+              <postal>29412</postal>
+              <country>US</country>
+            </cntaddr>
+            <cntvoice>843-953-9163</cntvoice>
+            <cntfax>843-953-9820</cntfax>
+            <cntemail>boyntonj@dnr.sc.gov</cntemail>
+          </cntinfo>
+        </proccont>
+      </procstep>
+      <procstep>
+        <procdesc>The NOAA OLE provided a CD with VMS data for the South Atlantic rock shrimp fishery. However, it should be noted that vessels equipped with VMS, as required for this fishery, are also required to have the VMS operational during all sea expeditions and many of these vessels target other fisheries, such as penaeid shrimp species. Thus, this data layer should be used to indicate the general location of all shrimping activities conducted by vessels required to have VMS in the southeast region, regardless of the species targeted by those vessels. Furthermore, the VMS data summary provided includes records that include vessels transiting an area, drifting, anchored, and marking bottom. Since the rock shrimp and royal red shrimp fisheries are prosecuted in deeper waters &gt; 100 ft, those grid cells (blocks) with records in nearshore waters are most probably associated with fishing for penaeid shrimp. Furthermore, since the rock shimp fishery has been primarily conducted by Florida based shrimp boats during the 2006-2010 period reviewed, VMS vessel activity in the nearshore waters off FL, GA, SC, and NC only represent a fraction of the penaeid shrimping activity being conducted off those states since vessels that are only shrimping for penaeid shrimp are not required to use VMS. Data received from NOAA were first partitioned among five MS Excel files, each containing 12 monthly data sets representing each year from 2006 through 2010. Data consisted of date, time, latitude, longitude, and a label confirming the fishery type (see caveat above). The data provided comprised 2,882,145 records, which were consolidated in a relational data base (MS Access) for filtering. In the first stage of filtering, records were excluded if the latitude was north of 36.5667°N or south of 24.33333°N, or if longitude was east of -74.70000°W or west of -81.85000°W since these records were outside the project area of interest. After the first stage of filtering, 57% (1,643,310) of records were retained. These geographic locations were then plotted in a geodatabase for the second stage of filtering, which clipped the data relative to land boundaries. After the second stage of filtering, 729,009 records, or 25% of the originally provided data set, were retained. Stage two filtered data were imported to MS Excel for assignment of an 8-character SEAMAP (Southeastern Area Monitoring and Assessment Program) block identification, corresponding to the southeast corner of each 1 min. latitude x 1 min. longitude grid in the study area. Block identification was assigned as follows: characters 1&amp;2 = latitude degrees; characters 3&amp;4 = integer value of latitude minutes; characters 5&amp;6 = longitude degrees without western hemisphere designation; characters 7&amp;8 = value of longitude minutes. Stage two filtered data were assigned to one of 23,756 SEAMAP grid cells (blocks). All data points observed in a grid cell over the five year period were then assigned to the mid-point of that grid cell with respect to latitude and longitude. The number of filtered locations per SEAMAP grid cell (block) was skewed from a normal distribution (i.e., kurtosis = -0.64). Thirty-four percent (8107) of SEAMAP grid cells contained just one location, and a maximum of 4,953 locations were contained within a single SEAMAP block. Ninety-five percent of SEAMAP grid cells contained fewer than 132 locations. The above data distillation process may include grid cells showing VMS activity within areas that prohibit such activity, such as the Deepwater Coral Habitats of Particular Concern (CHAPC). This does not indicate illegal activity, but rather is a function of records present in these areas that represent transit or the fact that activity within a grid cell could occur within the portion of that cell that is open to the fishery. NOTE: FOR THE LAYER FILE (.lyr): Initial examination of the grid cells with fewer than 6 locations indicated that the majority of these records were likely to represent transit activities rather than fishing activities. Those grid cells were excluded for the purposes of the .lyr file. All of these records are retained in the feature class in the geodatabase.</procdesc>
+        <proccont>
+          <cntinfo>
+            <cntorgp>
+              <cntorg>SCDNR</cntorg>
+              <cntper>Mike Arendt</cntper>
+            </cntorgp>
+            <cntpos>Biologist III</cntpos>
+            <cntaddr>
+              <addrtype>physical</addrtype>
+              <address>217 Fort Johnson</address>
+              <city>Charleston</city>
+              <state>SC</state>
+              <postal>29412</postal>
+              <country>US</country>
+            </cntaddr>
+            <cntvoice>843-953-9097</cntvoice>
+            <cntfax>843-953-9820</cntfax>
+            <cntemail>arendtm@dnr.sc.gov</cntemail>
+          </cntinfo>
+        </proccont>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <direct>Vector</direct>
+    <ptvctinf>
+      <sdtsterm>
+        <sdtstype>GT-polygon composed of chains</sdtstype>
+        <ptvctcnt>23611</ptvctcnt>
+      </sdtsterm>
+    </ptvctinf>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <planar>
+        <mapproj>
+          <mapprojn>Transverse Mercator</mapprojn>
+          <transmer>
+            <sfctrmer>0.9996</sfctrmer>
+            <longcm>-81.0</longcm>
+            <latprjo>0.0</latprjo>
+            <feast>500000.0</feast>
+            <fnorth>0.0</fnorth>
+          </transmer>
+        </mapproj>
+        <planci>
+          <plance>coordinate pair</plance>
+          <coordrep>
+            <absres>0.000000002220024164500956</absres>
+            <ordres>0.000000002220024164500956</ordres>
+          </coordrep>
+          <plandu />
+        </planci>
+      </planar>
+      <geodetic>
+        <horizdn>D North American 1983</horizdn>
+        <ellips>GRS 1980</ellips>
+        <semiaxis>6378137.0</semiaxis>
+        <denflat>298.257222101</denflat>
+      </geodetic>
+    </horizsys>
+  </spref>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>Shrimp_VMS</enttypl>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID_1</attrlabl>
+        <attrdef>Internal feature number.</attrdef>
+        <attrdefs>Esri</attrdefs>
+        <attrdomv>
+          <udom>Sequential unique whole numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+      </attr>
+      <attr>
+        <attrlabl>Shape</attrlabl>
+        <attrdef>Feature geometry.</attrdef>
+        <attrdefs>Esri</attrdefs>
+        <attrdomv>
+          <udom>Coordinates defining the features.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape_Length</attrlabl>
+        <attrdef>Length of feature in internal units.</attrdef>
+        <attrdefs>Esri</attrdefs>
+        <attrdomv>
+          <udom>Positive real numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape_Area</attrlabl>
+        <attrdef>Area of feature in internal units squared.</attrdef>
+        <attrdefs>Esri</attrdefs>
+        <attrdomv>
+          <udom>Positive real numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>N_Pts</attrlabl>
+        <attrdef>Total number of stage 2 filtered VMS locations in the SEAMAP block during 2006-2010</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Mid_Lat</attrlabl>
+        <attrdef>The latitude for the center point for each 1 x 1 min grid cell</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Mid_Long</attrlabl>
+        <attrdef>Longitude for the center point for each 1 x 1 min grid cell</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>BLOCK</attrlabl>
+        <attrdef>The BLOCK number is the lat and long (lat degree lat min long degree long min) for the lower right corner of each 1 x 1 min grid cell.</attrdef>
+      </attr>
+    </detailed>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>South Carolina Department of Natural Resources</cntorg>
+        </cntorgp>
+        <cntpos>Spatial Data Manager</cntpos>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <address>1000 Assembly St.</address>
+          <city>Columbia</city>
+          <state>SC</state>
+          <postal>29201</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>803-734-9100</cntvoice>
+        <cntfax>803-734-7001</cntfax>
+        <cntemail>gisman@dnr.sc.gov</cntemail>
+      </cntinfo>
+    </distrib>
+    <distliab>See access and use constraints information.</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>File Geodatabase Feature Class</formname>
+        </digtinfo>
+        <digtopt />
+      </digform>
+    </stdorder>
+  </distinfo>
+  <metainfo>
+    <metd>20130218</metd>
+    <metc>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>South Carolina Department of Natural Resources, MRRI</cntorg>
+          <cntper>Jessica Boynton</cntper>
+        </cntorgp>
+        <cntpos>GIS Manager</cntpos>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <address>217 Fort Johnson Rd.</address>
+          <city>Charleston</city>
+          <state>SC</state>
+          <postal>29412</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>843-953-9163</cntvoice>
+        <cntfax>843-953-9820</cntfax>
+        <cntemail>boyntonj@dnr.sc.gov</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+    <mettc>local time</mettc>
+  </metainfo>
+</metadata>

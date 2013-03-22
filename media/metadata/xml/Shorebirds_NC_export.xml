@@ -1,0 +1,373 @@
+﻿<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <title>Shorebirds_NC</title>
+        <geoform>vector digital data</geoform>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>This dataset shows colonial nesting waterbirds in coastal North Carolina. It is a subset from North Carolina's online colonial-nesting waterbird database (http://ncpaws.org/). The data included years 2006-2010, all available species, and was spatially selected to include nests within 5 miles of the coast</abstract>
+      <purpose>This GIS dataset was created for the purpose of describing the location and types of colonial waterbirds that nest along the North Carolina coastline so that these nesting activities can be considered for any planned energy development or other coastal use activities.</purpose>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <rngdates>
+          <begdate>20060101</begdate>
+          <enddate>20100101</enddate>
+        </rngdates>
+      </timeinfo>
+      <current>Unknown</current>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+      <update>None planned</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>-78.518087</westbc>
+        <eastbc>-75.424823</eastbc>
+        <northbc>36.491753</northbc>
+        <southbc>33.781700</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>Green heron</themekey>
+        <themekey>Yellow-crowned night heron</themekey>
+        <themekey>Common tern</themekey>
+        <themekey>Double crested cormorant</themekey>
+        <themekey>Gull-billed tern</themekey>
+        <themekey>Cattle egret</themekey>
+        <themekey>Great black-backed gull</themekey>
+        <themekey>White Ibis</themekey>
+        <themekey>Anhinga</themekey>
+        <themekey>Woodstork</themekey>
+        <themekey>Black-crowned night heron</themekey>
+        <themekey>Great blue heron</themekey>
+        <themekey>Black skimmer</themekey>
+        <themekey>Forster's tern</themekey>
+        <themekey>Colonial Waterbird Nesting</themekey>
+        <themekey>Least bittern</themekey>
+        <themekey>Little blue heron</themekey>
+        <themekey>Herring gull</themekey>
+        <themekey>Snowy egret</themekey>
+        <themekey>Caspian tern</themekey>
+        <themekey>Glossy Ibis</themekey>
+        <themekey>White ibis</themekey>
+        <themekey>Black crowned night heron</themekey>
+        <themekey>Sandwich tern</themekey>
+        <themekey>Brown Pelican</themekey>
+        <themekey>Laughing Gull</themekey>
+        <themekey>Tricolored heron</themekey>
+      </theme>
+      <place>
+        <placekt>None</placekt>
+        <placekey>North Carolina</placekey>
+        <placekey>coastal</placekey>
+      </place>
+    </keywords>
+    <accconst>None</accconst>
+    <useconst>Neither the State of South Carolina, the Department of Natural Resources, nor any of its employees, is responsible for any improper or incorrect use of the information described and/or contained herein, and assume no responsibility for the use of the information. The North Carolina Wildlife Resources Commission should be acknowledged as the original data source in products derived from these data. The South Carolina Department of Natural Resources should also be acknowledged as the source of the GIS data files derived from the NC database.</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>NC Wildlife Resources Commission</cntorg>
+          <cntper>Sara Schweitzer</cntper>
+        </cntorgp>
+        <cntpos>Coastal Waterbird Biologist</cntpos>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <address>106 Ferret Run Lane</address>
+          <city>New Bern</city>
+          <state>NC</state>
+          <postal>28562</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>252-639-8435</cntvoice>
+        <cntemail>sara.schweitzer@ncwildlife.org</cntemail>
+      </cntinfo>
+    </ptcontac>
+    <native> Version 6.2 (Build 9200) ; Esri ArcGIS 10.1.0.3035</native>
+  </idinfo>
+  <dataqual>
+    <lineage>
+      <procstep>
+        <procdesc>1.) Database export: All counties, years 2006-2010, all species, and all sites were selected. 2.) Spatial selection: The data was clipped to a 5 mile inland buffer of the NC coast. All data further inland were excluded. 4.) All metrics were computed in MS Access from source data provided. 5.)The number of unique surveys at a given site were computed using two sequential queries. In the first query, the number of unique visit dates was computed with respect to each location (group by) by calculating the number of different species seen (count) on a given visit date (group by). In the second query, the number of different survey dates (count) for each location (group by) was computed. 6.)Using a Cross Table Query with the following input information (row = location; column = species; cell value = sum), the total number of nests for each species (over the entire study period) was computed. 7.)The number of different species seen nesting at a given location over the entire study period was computed as the count of all nest counts &gt;0 for a given location; thus, if a location reported one nesting species, all column values would be zero except the one species with nests. 8.) Exported out of Access and brought into ArcGIS as a point feature class.</procdesc>
+        <proccont>
+          <cntinfo>
+            <cntorgp>
+              <cntorg>SCDNR, MRRI</cntorg>
+              <cntper>Jessica Boynton and Mike Arendt</cntper>
+            </cntorgp>
+            <cntpos>Boynton (GIS Manager I); Arendt (Wildlife Biologist III)</cntpos>
+            <cntaddr>
+              <addrtype>physical</addrtype>
+              <address>217 Fort Johnson Rd.</address>
+              <city>Charleston</city>
+              <state>SC</state>
+              <postal>29412</postal>
+              <country>US</country>
+            </cntaddr>
+            <cntvoice>843-953-9163 (Boynton)</cntvoice>
+            <cntvoice>843-953-9097 (Arendt)</cntvoice>
+            <cntfax>843-953-9820</cntfax>
+            <cntemail>boyntonj@dnr.sc.gov</cntemail>
+            <cntemail>arendtm@dnr.sc.gov</cntemail>
+          </cntinfo>
+        </proccont>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <direct>Vector</direct>
+    <ptvctinf>
+      <sdtsterm>
+        <sdtstype>Entity point</sdtstype>
+        <ptvctcnt>101</ptvctcnt>
+      </sdtsterm>
+    </ptvctinf>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <planar>
+        <mapproj>
+          <mapprojn>Transverse Mercator</mapprojn>
+          <transmer>
+            <sfctrmer>0.9996</sfctrmer>
+            <longcm>-81.0</longcm>
+            <latprjo>0.0</latprjo>
+            <feast>500000.0</feast>
+            <fnorth>0.0</fnorth>
+          </transmer>
+        </mapproj>
+        <planci>
+          <plance>coordinate pair</plance>
+          <coordrep>
+            <absres>0.0001</absres>
+            <ordres>0.0001</ordres>
+          </coordrep>
+          <plandu />
+        </planci>
+      </planar>
+      <geodetic>
+        <horizdn>D North American 1983</horizdn>
+        <ellips>GRS 1980</ellips>
+        <semiaxis>6378137.0</semiaxis>
+        <denflat>298.257222101</denflat>
+      </geodetic>
+    </horizsys>
+  </spref>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>Shorebirds_NC</enttypl>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Internal feature number.</attrdef>
+        <attrdefs>Esri</attrdefs>
+        <attrdomv>
+          <udom>Sequential unique whole numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape</attrlabl>
+        <attrdef>Feature geometry.</attrdef>
+        <attrdefs>Esri</attrdefs>
+        <attrdomv>
+          <udom>Coordinates defining the features.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Site_Numbe</attrlabl>
+        <attrdef>Unique identifier for each site</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Site_Name</attrlabl>
+        <attrdef>Name of each site</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Lat</attrlabl>
+        <attrdef>Latitude of each site</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Lon</attrlabl>
+        <attrdef>Longitude of each site</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>N_surveys</attrlabl>
+        <attrdef>Number of surveys at a site between 2006-2010</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>N_species</attrlabl>
+        <attrdef>Number of species at a given site between 2006-2010</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Anhinga</attrlabl>
+        <attrdef>Total number of Anhinga nests at a given site between 2006 - 2010.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Black_Skim</attrlabl>
+        <attrdef>Total number of Black skimmer nests at a given site between 2006 - 2010.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Black_crow</attrlabl>
+        <attrdef>Total number of Black-crowned night heron nests at a given site between 2006 - 2010.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Brown_Peli</attrlabl>
+        <attrdef>Total number of Brown pelican nests at a given site between 2006 - 2010.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Caspian_Te</attrlabl>
+        <attrdef>Total number of Caspian tern nests at a given site between 2006 - 2010.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Cattle_Egr</attrlabl>
+        <attrdef>Total number of Cattle egret nests at a given site between 2006 - 2010.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Common_Ter</attrlabl>
+        <attrdef>Total number of Common tern nests at a given site between 2006 - 2010.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Double_cre</attrlabl>
+        <attrdef>Total number of Double-crested cormorant nests at a given site between 2006 - 2010.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Forster_s</attrlabl>
+        <attrdef>Total number of Forster's tern nests at a given site between 2006 - 2010.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Glossy_Ibi</attrlabl>
+        <attrdef>Total number of Glossy ibis nests at a given site between 2006 - 2010.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Great_Blac</attrlabl>
+        <attrdef>Total number of Great black backed heron nests at a given site between 2006 - 2010.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Great_Blue</attrlabl>
+        <attrdef>Total number of Great blue heron nests at a given site between 2006 - 2010.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Great_Egre</attrlabl>
+        <attrdef>Total number of Great egret nests at a given site between 2006 - 2010.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Green_Hero</attrlabl>
+        <attrdef>Total number of Green heron nests at a given site between 2006 - 2010.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Gull_bille</attrlabl>
+        <attrdef>Total number of Gull billed tern nests at a given site between 2006 - 2010.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Herring_Gu</attrlabl>
+        <attrdef>Total number of Herring gull nests at a given site between 2006 - 2010.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Laughing_G</attrlabl>
+        <attrdef>Total number of Laughing gull nests at a given site between 2006 - 2010.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Least_Bitt</attrlabl>
+        <attrdef>Total number of Least bittern nests at a given site between 2006 - 2010.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Least_Tern</attrlabl>
+        <attrdef>Total number of Least tern nests at a given site between 2006 - 2010.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Little_Blu</attrlabl>
+        <attrdef>Total number of Little blue heron nests at a given site between 2006 - 2010.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Royal_Tern</attrlabl>
+        <attrdef>Total number of Royal tern nests at a given site between 2006 - 2010.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Sandwich_T</attrlabl>
+        <attrdef>Total number of Sandwich tern nests at a given site between 2006 - 2010.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Snowy_Egre</attrlabl>
+        <attrdef>Total number of Snowy egret nests at a given site between 2006 - 2010.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Tricolored</attrlabl>
+        <attrdef>Total number of Tricolored heron nests at a given site between 2006 - 2010.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>White_Ibis</attrlabl>
+        <attrdef>Total number of White ibis nests at a given site between 2006 - 2010.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Wood_Stork</attrlabl>
+        <attrdef>Total number of Woodstork nests at a given site between 2006 - 2010.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Yellow_cro</attrlabl>
+        <attrdef>Total number of Yellow crowned night heron nests at a given site between 2006 - 2010.</attrdef>
+      </attr>
+    </detailed>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>South Carolina Department of Natural Resources</cntorg>
+        </cntorgp>
+        <cntpos>Spatial Data Manager</cntpos>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <address>Rembert C. Dennis Building P.O. Box 167</address>
+          <city>Columbia</city>
+          <state>SC</state>
+          <postal>29202</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>803-734-9100</cntvoice>
+        <cntfax>803-734-7001</cntfax>
+        <cntemail>gisman@dnr.sc.gov</cntemail>
+      </cntinfo>
+    </distrib>
+    <distliab>See access and use constraints information.</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>File Geodatabase Feature Class</formname>
+        </digtinfo>
+        <digtopt />
+      </digform>
+    </stdorder>
+  </distinfo>
+  <metainfo>
+    <metd>20130218</metd>
+    <metc>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>SCDNR; MRRI</cntorg>
+          <cntper>Jessica Boynton</cntper>
+        </cntorgp>
+        <cntpos>GIS Manager I</cntpos>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <address>217 Fort Johnson Rd.</address>
+          <city>Charleston</city>
+          <state>SC</state>
+          <postal>29412</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>843-953-9163</cntvoice>
+        <cntfax>843-953-9820</cntfax>
+        <cntemail>boyntonj@dnr.sc.gov</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+    <mettc>local time</mettc>
+  </metainfo>
+</metadata>

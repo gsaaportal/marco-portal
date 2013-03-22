@@ -1,0 +1,233 @@
+﻿<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>Florida Fish and Wildlife Conservation Commission; Division of Maine Fisheries Management; Artificial Reef Program</origin>
+        <title>ArtReefs_FL</title>
+        <geoform>vector digital data</geoform>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>This shows the artifiical reefs off the coast of Florida. The artificial program in Florida has six main goals: "1.) Assure that long-term social, economic and quality of life values of artificial reefs benefit the local and regional economies of Florida. 2.) Utilize artificial reefs in scientific research to obtain a mechanistic and predictive understanding of how artificial reefs function ecologically and physically across spatial and temporal scales. 3.) Use artificial reefs as a component of fisheries management. 4.) Identify, procure and maximize new and existing sources of funding for artificial reefs. 5.) Improve intergovernmental coordination and public/private cooperation in artificial reef development. 6.) Foster public and private sector marine ecosystem stewardship and accurate understanding of artificial reef issues." More information about the Florida artificial reef program is available on the website: http://myfwc.com/conservation/saltwater/artificial-reefs/ar-program/</abstract>
+      <purpose>This GIS dataset was created for purpose of describing artificial reef zones for the state of Florida so that these data can be considered with respect to other data on coastal resources and activities.</purpose>
+    </descript>
+    <status>
+      <progress>Complete</progress>
+      <update>None planned</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>-81.815848</westbc>
+        <eastbc>-79.942567</eastbc>
+        <northbc>30.706983</northbc>
+        <southbc>24.426494</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>artificial reef zones</themekey>
+      </theme>
+      <place>
+        <placekt>None</placekt>
+        <placekey>Florida</placekey>
+      </place>
+    </keywords>
+    <accconst>None</accconst>
+    <useconst>If these data are being used to avoid potential disturbance or destruction of artificial reefs, please contact Florida Fish and Wildlife Conservation Commission to obtain the latest information. Neither the State of South Carolina, the Department of Natural Resources, nor any of its employees, is responsible for any improper or incorrect use of the information described and/or contained herein, and assume no responsibility for the use of the information. The Florida Fish and Wildlife Conservation Commission should be acknowledged as the data source in products derived from these data.The South Carolina Department of Natural Resources should be acknowledged as the GIS data source in products derived from these data.</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>Florida Fish and Wildlife Conservation Commission; Division of Marine Fisheries Management; Artificial Reef Program</cntorg>
+          <cntper>Jon Dodrill</cntper>
+        </cntorgp>
+        <cntpos>Environmental Adminstrator</cntpos>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <address>620 S. Meridian St., MS 4B2</address>
+          <city>Tallahassee</city>
+          <state>FL</state>
+          <postal>32399</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>(850) 487-0554</cntvoice>
+        <cntemail>jon.dodrill@myfwc.com</cntemail>
+      </cntinfo>
+    </ptcontac>
+    <native> Version 6.2 (Build 9200) ; Esri ArcGIS 10.1.0.3035</native>
+  </idinfo>
+  <dataqual>
+    <lineage>
+      <procstep>
+        <procdesc>Artificial reefs were downloaded from the FWC website: http://myfwc.com/conservation/saltwater/artificial-reefs/ar-program/</procdesc>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <direct>Vector</direct>
+    <ptvctinf>
+      <sdtsterm>
+        <sdtstype>Entity point</sdtstype>
+        <ptvctcnt>829</ptvctcnt>
+      </sdtsterm>
+    </ptvctinf>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <planar>
+        <mapproj>
+          <mapprojn>Transverse Mercator</mapprojn>
+          <transmer>
+            <sfctrmer>0.9996</sfctrmer>
+            <longcm>-81.0</longcm>
+            <latprjo>0.0</latprjo>
+            <feast>500000.0</feast>
+            <fnorth>0.0</fnorth>
+          </transmer>
+        </mapproj>
+        <planci>
+          <plance>coordinate pair</plance>
+          <coordrep>
+            <absres>0.000000002220024164500956</absres>
+            <ordres>0.000000002220024164500956</ordres>
+          </coordrep>
+          <plandu />
+        </planci>
+      </planar>
+      <geodetic>
+        <horizdn>D North American 1983</horizdn>
+        <ellips>GRS 1980</ellips>
+        <semiaxis>6378137.0</semiaxis>
+        <denflat>298.257222101</denflat>
+      </geodetic>
+    </horizsys>
+  </spref>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>ArtReefs_FL</enttypl>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Internal feature number.</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Sequential unique whole numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape</attrlabl>
+        <attrdef>Feature geometry.</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Coordinates defining the features.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>County</attrlabl>
+      </attr>
+      <attr>
+        <attrlabl>GPS</attrlabl>
+      </attr>
+      <attr>
+        <attrlabl>Relief</attrlabl>
+      </attr>
+      <attr>
+        <attrlabl>Depth</attrlabl>
+        <attrdef>The depth of the artificial reef.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Descriptio</attrlabl>
+        <attrdef>The description of the artificial reef.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Longitude</attrlabl>
+        <attrdef>Longitude of the artificial reef.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Latitude</attrlabl>
+        <attrdef>Latitude of the artificial reef.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Tons</attrlabl>
+        <attrdef>The tons of each artificial reef.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Material</attrlabl>
+        <attrdef>The material of the artificial reef.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Name</attrlabl>
+        <attrdef>The name of the artificial reef.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Deployed</attrlabl>
+        <attrdef>Deployment date.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>LatDecDeg</attrlabl>
+        <attrdef>Latitude in decimal degrees.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>LongDecDeg</attrlabl>
+        <attrdef>Longitude in decimal degrees.</attrdef>
+      </attr>
+    </detailed>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>South Carolina Department of Natural Resources</cntorg>
+        </cntorgp>
+        <cntpos>Spatial Data Manager</cntpos>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address>Rembert C. Dennis Building P.O. Box 167</address>
+          <city>Columbia</city>
+          <state>SC</state>
+          <postal>29202</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>803-734-9100</cntvoice>
+        <cntfax>803-734-7001</cntfax>
+        <cntemail>gisman@dnr.sc.gov</cntemail>
+      </cntinfo>
+    </distrib>
+    <distliab>See access and use constraints information.</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>File Geodatabase Feature Class</formname>
+        </digtinfo>
+        <digtopt />
+      </digform>
+    </stdorder>
+  </distinfo>
+  <metainfo>
+    <metd>20130218</metd>
+    <metc>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>SCDNR, Marine Resources Division, MRRI</cntorg>
+          <cntper>Jessica Boynton</cntper>
+        </cntorgp>
+        <cntpos>GIS Manager I</cntpos>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address>P.O. Box 12559</address>
+          <city>Charleston</city>
+          <state>SC</state>
+          <postal>29422</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>843-953-9163</cntvoice>
+        <cntfax>843-953-9820</cntfax>
+        <cntemail>boyntonj@dnr.sc.gov</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+    <mettc>local time</mettc>
+  </metainfo>
+</metadata>

@@ -1,0 +1,290 @@
+﻿<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>SCDNR; MARMAP program</origin>
+        <pubdate>20130101</pubdate>
+        <title>Trap_WhiteGrunt</title>
+        <geoform>vector digital data</geoform>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>Marine Spatial Data: This dataset came from the Marine Resources Monitoring, Assessment and Prediction (MARMAP) program which has conducted fisheries-independent research for the last 35+ years off the southeastern United States. This dataset was based a recent five year time frame (2006-2010) and included data off the coasts of North Carolina, South Carolina, Georgia, and Florida. The data were summarized into 1 x 1 minute latitude/longitude grids which provide the number of collections, percent occurrence, mean catch per unit effort (CPUE), and the coefficient of variance for the CPUE. General MARMAP overview: Annual MARMAP cruises to assess relative abundance of reef fishes in the sponge-coral and shelf edge (live bottom) habitats of the South Atlantic Bight (SAB) have been conducted since 1978. MARMAP currently samples natural live bottom habitat from Cape Lookout, NC to the Ft. Pierce area, FL. The current main MARMAP objectives are to: 1.) sample reef fishes in the snapper-grouper complex using a variety of gears in live bottom, rocky outcrop, high relief, and mud bottom habitats, 2.) collect detailed data for time series description of species for annual composition and relative abundance, 3.) obtain population characteristics on fish species of interest through life history information analysis, including age and growth, sex ratio, size and age of sexual maturation and transition, spawning season, fecundity, and diet. Priorities are dictated by the SEDAR schedule and other management considerations, 4.) collect hydrographic data (e.g. depth, temperature, salinity, etc.) for comparison to fish abundance and composition indices, 5.) collect DNA samples from selected fish species for stock identification, 6.) expand sampling area in North Carolina and south Florida as well as reconnoiter new live bottom areas with underwater video (UWTV) to add to the MARMAP site database. For more than thirty-five years, the Marine Resources Research Institute (MRRI) at the South Carolina Department of Natural Resources (SCDNR), through the Marine Resources Monitoring, Assessment and Prediction (MARMAP) program, has conducted fisheries-independent research on groundfish, reef fish, ichthyoplankton, and coastal pelagic fishes within the region between Cape Lookout, North Carolina, and Ft Pierce, Florida. The overall mission of the program has been to determine distribution, relative abundance, and critical habitat of economically and ecologically important fishes of the South Atlantic Bight (SAB), and to relate these features to environmental factors and exploitation activities. Research toward fulfilling these goals has included trawl surveys (from 6-350 m depth); ichthyoplankton surveys; location and mapping of reef habitat; sampling of reefs throughout the SAB; life history and population studies of priority species; tagging studies of commercially important species and special studies directed at specific management problems in the region. Survey work has also provided a monitoring program that has allowed the standardized sampling of fish populations over time and development of an historical base for future comparisons of long-term trends. MARMAP has developed a long-term database for reef fish that has proven valuable in interpreting fisheries landings data and developing regulations for protecting reef fish resources. Restrictions on minimum sizes of most commercially important species make it difficult to monitor life history parameters and abundance data from samples collected from the fishery landings. Through 2010, MARMAP had the only existing long-term program off the Atlantic coast of the southeastern United States that monitors reef fish composition, length frequency, abundance, and life history based on fishery-independent data. A new program conducted by NOAA, the Southeast Fishery-Independent Survey (SEFIS), was recently established to expand on the MARMAP program. These data provide critical input for the assessments of stock status conducted by NOAA Fisheries, and greatly assist stock assessment scientists and the Council in the management of snapper/grouper complex of the South Atlantic Bight. The abundance and biomass of fish species collected during the day from 2006 to 2010 off the coast of the southeastern United States (Cape Fear, NC to Cape Canaveral, FL) were collected using chevron traps. Chevron traps were set on live-bottom reef areas on the continental shelf and upper slope. Chevron traps were arrowhead shaped (maximum dimensions of 1.5 m x 1.7 m x 0.6 m.; 0.91 m3 volume) and constructed of 35 mm x 35 mm square mesh plastic-coated wire. Chevron traps had one entrance funnel ("horseneck"), and one release panel to remove the catch. Each trap was soaked between 90 and 120 minutes. Sampling during this time frame included the collection of over 60,000 individuals consisting of 70 different taxas. Sampling was between 27° 16.0' N and 34° 35.7' N and 76° 23.6' W and 80° 53.8' W at depths between 14 and 94 m.</abstract>
+      <purpose>This GIS data set was created for the purpose of describing the distribution and relative abundance of the numerically dominant and economically important deep-water finfish species in southeastern coastal waters so that these biological resources can be considered for any planned energy development or other coastal use activities.</purpose>
+    </descript>
+    <status>
+      <progress>Complete</progress>
+      <update>None planned</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>-80.903969</westbc>
+        <eastbc>-76.364223</eastbc>
+        <northbc>34.667808</northbc>
+        <southbc>27.204167</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>Chevron traps</themekey>
+        <themekey>Snapper-grouper complex</themekey>
+        <themekey>MARMAP</themekey>
+        <themekey>White grunt</themekey>
+        <themekey>Fisheries</themekey>
+        <themekey>Fishery-independent</themekey>
+        <themekey>SCDNR</themekey>
+        <themekey>Haemulon plumieri</themekey>
+      </theme>
+      <place>
+        <placekt>None</placekt>
+        <placekey>North Carolina</placekey>
+        <placekey>South Carolina</placekey>
+        <placekey>Florida</placekey>
+        <placekey>Georgia</placekey>
+        <placekey>South Atlantic Bight</placekey>
+      </place>
+    </keywords>
+    <accconst>None</accconst>
+    <useconst>1.) The use of the summary data provided in this database for any analysis or report must acknowledge the MARMAP program as the original data source. For information purposes, email the full citation of any publication made (printed or electronic) that cites this data source or any constituent part. Acknowledge the use of specific records from contributing MARMAP databases and recognize the limitations of data. 2.) Neither the State of South Carolina, the Department of Natural Resources, nor any of its employees, is responsible for any improper or incorrect use of the information described and/or contained herein, and assume no responsibility for the use of the information. The South Carolina Department of Natural Resources should be acknowledged as the data source in products derived from these data.</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>SCDNR</cntorg>
+          <cntper>Dr. Marcel Reichert</cntper>
+        </cntorgp>
+        <cntpos>Associate Fishery Scientist; Coastal Finfish Section Manager</cntpos>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <address>217 Fort Johnson Rd.</address>
+          <city>Charleston</city>
+          <state>SC</state>
+          <postal>29412</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>843-953-5778</cntvoice>
+        <cntfax>843-953-9820</cntfax>
+        <cntemail>reichertm@dnr.sc.gov</cntemail>
+      </cntinfo>
+    </ptcontac>
+    <native> Version 6.2 (Build 9200) ; Esri ArcGIS 10.1.0.3035</native>
+  </idinfo>
+  <dataqual>
+    <lineage>
+      <procstep>
+        <procdesc>Field Data Collection: At sea sampling utilized a chevron trap. The chevron trap is an arrowhead-shaped trap (maximum dimensions of 1.5 m x 1.7 m x 0.6 m.; 0.91 m3 volume) constructed of 35 mm x 35 mm square mesh plastic-coated wire, with one funnel entrance and one release panel. Each trap is baited with a combination of whole or cut herrings (Brevoortia, family Clupeidae). Bait is suspended on 4 stringers (approximately 4 fish per string) within the trap, with 6-8 loosely placed fish in the in the trap. The traps are tethered individually using 8-mm (5/16 inch) polypropylene line to a polyball buoy and a Hi-Flyer buoy attached to a 10-m trailer line. Chevron traps are deployed during daytime hours at stations randomly selected by computer from a database of approximately 2,500 live bottom and shelf edge locations and soaked for approximately 90 minutes. Up to six traps, separated by a minimum distance of 200 m, are fished at the same time. Chevron traps have been used since 1988 and the majority of trap sampling has occurred between 16 to 91 m. All individuals in each catch (trap) are sorted and identified to species level. All individuals of each species are weighed together, while length is individually measured for all fish. All Individuals of selected species are kept for life history work-up, but abundant species such as black sea bass, vermilion snapper, and red porgy are randomly subsampled. All other fish are returned to the ocean. Species selected for life history work-up are: all groupers and snappers, red porgy, white grunt, gray triggerfish, black sea bass, and occasionally other species of interest. For any given species, a catch per unit effort (CPUE) is calculated for any 1 x 1 minute grid cell that was sampled by the MARMAP program within the 5 year time frame (2006-2010). All catches used in the calculations were from traps that were soaked between 45 and 150 minutes. CPUE was calculated as the number of a selected species present per trap per hour of soak time. The number of traps, the percent occurrence (the number of positive traps divided by the number of available traps), and coefficient of variance for CPUE was calculated for each 1 x 1 minute grid cell.</procdesc>
+        <srcused>\\Mrdnas\GIS\Boynton\GISProjects\2011\Other\Research\SCWindProject\Metadata\MetadataTemplate</srcused>
+        <procdate>20110615</procdate>
+        <proctime>102721</proctime>
+        <proccont>
+          <cntinfo>
+            <cntorgp>
+              <cntorg>MARMAP, SCDNR</cntorg>
+              <cntper>Marcel Reichert</cntper>
+            </cntorgp>
+            <cntpos>Associate Fishery Scientist</cntpos>
+            <cntaddr>
+              <addrtype>physical</addrtype>
+              <address>217 Fort Johnson Rd.</address>
+              <city>Charleston</city>
+              <state>SC</state>
+              <postal>29412</postal>
+              <country>US</country>
+            </cntaddr>
+            <cntvoice>843-953-6778</cntvoice>
+            <cntfax>843-953-9820</cntfax>
+            <cntemail>reichertm@dnr.sc.gov</cntemail>
+          </cntinfo>
+        </proccont>
+      </procstep>
+      <procstep>
+        <procdesc>GIS processing: 1.) One point layer per species was created where each point was the mid-point of a 1 x 1 minute grid cell where there were MARMAP sampled MARMAP sites (rather than SEFIS sampled MARMAP sites) between 2006-2010. 2.) A 1 x 1 min. grid of the whole offshore study area was created. 3.) A spatial selection was performed to select those 1 x 1 min. grid cells that contained MARMAP mid-points. A new layer was created with just the selected grid cells. 4.) The mid-points from the species layer were spatially joined to the 1 x 1 min. grid layer to create a final grid layer per species (e.g. bankseabassgrid).</procdesc>
+        <srcused>\\MRDNAS\Shellmap\Work\Wind\Metadata\MetadataTemplate_fgdcxml.xml</srcused>
+        <procdate>20110620</procdate>
+        <proctime>135629</proctime>
+        <proccont>
+          <cntinfo>
+            <cntorgp>
+              <cntorg>SCDNR</cntorg>
+              <cntper>Jessica Boynton</cntper>
+            </cntorgp>
+            <cntpos>GIS Manager</cntpos>
+            <cntaddr>
+              <addrtype>physical</addrtype>
+              <address>217 Fort Johnson Rd.</address>
+              <city>Charleston</city>
+              <state>SC</state>
+              <postal>29412</postal>
+              <country>US</country>
+            </cntaddr>
+            <cntvoice>843-953-9163</cntvoice>
+            <cntfax>843-954-9820</cntfax>
+            <cntemail>boyntonj@dnr.sc.gov</cntemail>
+          </cntinfo>
+        </proccont>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <direct>Vector</direct>
+    <ptvctinf>
+      <sdtsterm>
+        <sdtstype>GT-polygon composed of chains</sdtstype>
+        <ptvctcnt>217</ptvctcnt>
+      </sdtsterm>
+    </ptvctinf>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <planar>
+        <mapproj>
+          <mapprojn>Transverse Mercator</mapprojn>
+          <transmer>
+            <sfctrmer>0.9996</sfctrmer>
+            <longcm>-81.0</longcm>
+            <latprjo>0.0</latprjo>
+            <feast>500000.0</feast>
+            <fnorth>0.0</fnorth>
+          </transmer>
+        </mapproj>
+        <planci>
+          <plance>coordinate pair</plance>
+          <coordrep>
+            <absres>0.0001</absres>
+            <ordres>0.0001</ordres>
+          </coordrep>
+          <plandu />
+        </planci>
+      </planar>
+      <geodetic>
+        <horizdn>D North American 1983</horizdn>
+        <ellips>GRS 1980</ellips>
+        <semiaxis>6378137.0</semiaxis>
+        <denflat>298.257222101</denflat>
+      </geodetic>
+    </horizsys>
+  </spref>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>Trap_WhiteGrunt</enttypl>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Internal feature number.</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Sequential unique whole numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape</attrlabl>
+        <attrdef>Feature geometry.</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Coordinates defining the features.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>N_Coll</attrlabl>
+        <attrdef>The total number of traps set within a 1 x 1 minute grid cell.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Pct_Occ</attrlabl>
+        <attrdef>The percent occurrence of a species in traps within a 1 x 1 minute grid cell was determined by calculating the number of traps with a positive occurrence divided by the total number of traps and converted to a percentage by multiplying by 100.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>MeanCPUE</attrlabl>
+        <attrdef>Mean catch per unit effort within a 1 x 1 minute grid cell was determined by calculating the number of fish of a specific species caught per trap hour, divided by the total number of traps deployed.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>CV_CPUE</attrlabl>
+        <attrdef>Coefficient of variance for the mean catch per unit effort (MeanCPUE) was determined by dividing the standard deviation of the mean catch per unit effort by the total catch per unit effort.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Mid_Lat</attrlabl>
+        <attrdef>This is the latitude for the center point for each 1 x 1 min. grid cell.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Mid_Lon</attrlabl>
+        <attrdef>This is the longitude for the center point for each 1 x 1 min. grid cell.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>BLOCK</attrlabl>
+        <attrdef>The BLOCK number is the lat and long (lat degree lat min long degree long min) for the lower right corner of each 1 x 1 min. grid cell.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Shape_Length</attrlabl>
+        <attrdef>Perimeter of the feature in meters.</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Positive real numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape_Area</attrlabl>
+        <attrdef>Area of the feature in meters squared.</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Positive real numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+    </detailed>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>South Carolina Department of Natural Resources</cntorg>
+        </cntorgp>
+        <cntpos>Spatial Data Manager</cntpos>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <address>1000 Assembly St.</address>
+          <city>Columbia</city>
+          <state>SC</state>
+          <postal>29201</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>803-734-9100</cntvoice>
+        <cntfax>803-734-7001</cntfax>
+        <cntemail>gisman@dnr.sc.gov</cntemail>
+      </cntinfo>
+    </distrib>
+    <distliab>See access and use constraints information.</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>File Geodatabase Feature Class</formname>
+        </digtinfo>
+        <digtopt />
+      </digform>
+    </stdorder>
+  </distinfo>
+  <metainfo>
+    <metd>20130218</metd>
+    <metc>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>SCDNR, Marine Resources Division, MRRI</cntorg>
+          <cntper>Jessica Boynton</cntper>
+        </cntorgp>
+        <cntpos>GIS Manager I</cntpos>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address>P.O. Box 12559</address>
+          <city>Charleston</city>
+          <state>SC</state>
+          <postal>29422</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>843-953-9163</cntvoice>
+        <cntfax>843-953-9820</cntfax>
+        <cntemail>boyntonj@dnr.sc.gov</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+    <mettc>local time</mettc>
+  </metainfo>
+</metadata>

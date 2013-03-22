@@ -1,0 +1,288 @@
+﻿<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>Atlantic Coastal Cooperative Statistics Program</origin>
+        <title>FishLandBlock</title>
+        <geoform>vector digital data</geoform>
+        <othercit>Data requested from the ACCSP Data Warehouse, Arlington, VA: Available at http://www.accsp.org</othercit>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>The Atlantic Coastal Cooperative Statistics Program (ACCSP) is a cooperative state-federal program to design, implement and conduct marine fisheries statistics data collection programs and to integrate those data into a single data management system that will meet the needs of fishery managers, scientists and fishermen. Landings data are collected for each fishery based on where the species was captured with blocks of the Atlantic Ocean representing 1x1 degree latitude and longitude. The average total pounds landed per year of finfish species representing 80% of the total commercial catch during a five year period (2007-2011) is provided. In addition to the error checking and quality control and assurance done by the ACCSP Data Team, the data are checked at the state and federal partner level.</abstract>
+      <purpose>This GIS dataset was created for the purpose of describing finfish landings data for different regions of the southeastern United States so that these data can be considered with respect to other data on coastal resources and activities.</purpose>
+    </descript>
+    <status>
+      <progress>Complete</progress>
+      <update>None planned</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>-81.496948</westbc>
+        <eastbc>-74.846596</eastbc>
+        <northbc>37.152038</northbc>
+        <southbc>23.905718</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>smooth dogfish</themekey>
+        <themekey>Spanish mackerel</themekey>
+        <themekey>striped bass</themekey>
+        <themekey>king whiting</themekey>
+        <themekey>black sea bass</themekey>
+        <themekey>bluefish</themekey>
+        <themekey>ACCSP</themekey>
+        <themekey>finfish</themekey>
+        <themekey>vermilion snapper</themekey>
+        <themekey>dolphin</themekey>
+        <themekey>yellowfin tuna</themekey>
+        <themekey>flounder</themekey>
+        <themekey>landings</themekey>
+        <themekey>ballyhoo</themekey>
+        <themekey>little tunny</themekey>
+        <themekey>swordfish</themekey>
+        <themekey>triggerfishes</themekey>
+        <themekey>big eye tuna</themekey>
+        <themekey>greater amberjack</themekey>
+        <themekey>Atlantic croaker</themekey>
+        <themekey>menhadens</themekey>
+        <themekey>king mackerel</themekey>
+        <themekey>forktail catfishes</themekey>
+        <themekey>gag grouper</themekey>
+        <themekey>spiny dogfish</themekey>
+        <themekey>striped mullet</themekey>
+        <themekey>spot</themekey>
+        <themekey>American shad</themekey>
+      </theme>
+      <place>
+        <placekt>None</placekt>
+        <placekey>Georgia</placekey>
+        <placekey>North Carolina</placekey>
+        <placekey>South Carolina</placekey>
+        <placekey>southeast USA</placekey>
+        <placekey>Florida</placekey>
+      </place>
+    </keywords>
+    <accconst>None</accconst>
+    <useconst>Neither the State of South Carolina, the Department of Natural Resources, nor any of its employees, is responsible for any improper or incorrect use of the information described and/or contained herein, and assume no responsibility for the use of the information. The ACCSP should be acknowledged as the data source and the SCDNR should be acknowledged as the source of the GIS feature class and layer files in products derived from these data. Although this database does not include any data that does not meet ACCSP confidentiality rules, it is the sole responsibility of the person extracting confidential data from ACCSP to ensure that confidential data are not disclosed via presentation, publication, or other distribution. Users will be held accountable for any violations by the partner granting access. ACCSP acts as the stewards of the data owned by the program partners. Therefore the confidentiality laws, rules, and regulations of the Partner that originally collected the data apply and shall prevail. Additional disclaimers, caveats and other useful information can be found here http://www.accsp.org/datacaveats.html.</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>ACCSP</cntorg>
+          <cntper>Ed Martino</cntper>
+        </cntorgp>
+        <cntpos>Ph.D. ACCSP Data Team</cntpos>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <address>1050 Highland St. Suitee 200A-N</address>
+          <city>Arlington</city>
+          <state>VA</state>
+          <postal>22201</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>703-842-0786</cntvoice>
+        <cntfax>703-842-0779</cntfax>
+        <cntemail>ed.martino@accsp.org</cntemail>
+      </cntinfo>
+    </ptcontac>
+    <native> Version 6.2 (Build 9200) ; Esri ArcGIS 10.1.0.3035</native>
+  </idinfo>
+  <dataqual>
+    <lineage>
+      <procstep>
+        <procdesc>Finfish landings data were requested for the southeastern U.S. coast from the Atlantic Coastal Cooperative Statistics Program (ACCSP) for the area ranging from 24 to 37 degrees north latitude for a recent five year period (2007-2011). This dataset provides information on the average aggregate landings (aggregated across species) by area code (representing 1x1 degree of latitude and longitude) for finfish species ranked in the top 80% of all landings for the region. The data provided included average pounds per trip, average total pounds per area code, along with the number of years represented. Data are only provided for area codes that had at least 4 years of landing data and met non-confidential criteria established by the ACCSP. Species that represented the top 80% of all finfish landings included American shad, Atlantic croaker, ballyhoo, big eye tuna, black sea bass, bluefish, dolphin, flounder, forktail catfishes, gag grouper, greater amberjack, king mackerel, king whiting, little tuny, menhadens, smooth dogfish, Spanish mackerel, spiny dogfish, spot, striped bass, striped mullet, swordfish, trigger fishes, vermillion snapper, and yellowfin tuna.</procdesc>
+        <proccont>
+          <cntinfo>
+            <cntorgp>
+              <cntorg>ACCSP</cntorg>
+              <cntper>Ed Martino</cntper>
+            </cntorgp>
+            <cntpos>Ph.D Data Team</cntpos>
+            <cntaddr>
+              <addrtype>physical</addrtype>
+              <address>1050 Highland St. Suitee 200A-N</address>
+              <city>Arlington</city>
+              <state>VA</state>
+              <postal>22201</postal>
+              <country>US</country>
+            </cntaddr>
+            <cntvoice>703-842-0786</cntvoice>
+            <cntfax>703-842-0779</cntfax>
+            <cntemail>Ed.Martino@accsp.org</cntemail>
+          </cntinfo>
+        </proccont>
+      </procstep>
+      <procstep>
+        <procdesc>GIS Processing: A 1 x 1 degree grid was created using the Fishnet tool. The grids were visually matched to the appropriate area codes, which were added as an attribute. Only the grids with available landing data ( total average pounds) were included. Although the original data included other data, only average total pounds per area code, average pounds per trip, and number of years represented were included in the final GIS dataset.</procdesc>
+        <proccont>
+          <cntinfo>
+            <cntorgp>
+              <cntorg>SCDNR</cntorg>
+              <cntper>Jessica Boynton</cntper>
+            </cntorgp>
+            <cntpos>GIS Manager I</cntpos>
+            <cntaddr>
+              <addrtype>physical</addrtype>
+              <address>217 Fort Johnson Rd.</address>
+              <city>Charleston</city>
+              <state>SC</state>
+              <postal>29412</postal>
+              <country>US</country>
+            </cntaddr>
+            <cntvoice>843-953-9163</cntvoice>
+            <cntfax>843-953-9820</cntfax>
+            <cntemail>boyntonj@dnr.sc.gov</cntemail>
+          </cntinfo>
+        </proccont>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <direct>Vector</direct>
+    <ptvctinf>
+      <sdtsterm>
+        <sdtstype>GT-polygon composed of chains</sdtstype>
+        <ptvctcnt>20</ptvctcnt>
+      </sdtsterm>
+    </ptvctinf>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <planar>
+        <mapproj>
+          <mapprojn>Transverse Mercator</mapprojn>
+          <transmer>
+            <sfctrmer>0.9996</sfctrmer>
+            <longcm>-81.0</longcm>
+            <latprjo>0.0</latprjo>
+            <feast>500000.0</feast>
+            <fnorth>0.0</fnorth>
+          </transmer>
+        </mapproj>
+        <planci>
+          <plance>coordinate pair</plance>
+          <coordrep>
+            <absres>0.0001</absres>
+            <ordres>0.0001</ordres>
+          </coordrep>
+          <plandu />
+        </planci>
+      </planar>
+      <geodetic>
+        <horizdn>D North American 1983</horizdn>
+        <ellips>GRS 1980</ellips>
+        <semiaxis>6378137.0</semiaxis>
+        <denflat>298.257222101</denflat>
+      </geodetic>
+    </horizsys>
+  </spref>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>FishLandBlock</enttypl>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Internal feature number.</attrdef>
+        <attrdefs>Esri</attrdefs>
+        <attrdomv>
+          <udom>Sequential unique whole numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape</attrlabl>
+        <attrdef>Feature geometry.</attrdef>
+        <attrdefs>Esri</attrdefs>
+        <attrdomv>
+          <udom>Coordinates defining the features.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>AreaCode</attrlabl>
+        <attrdef>An area of the Atlantic Ocean representing 1x1 degree of latitude and longitude.  Code designation developed by the ACCSP.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>AvgTotalLb</attrlabl>
+        <attrdef>The average total pounds landed per year of finfish representing all species comprising the top 80% of finfish landings from latitudes 24-36 degrees north collected during the five year period from 2007-2011</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Shape_Length</attrlabl>
+        <attrdef>Length of feature in internal units.</attrdef>
+        <attrdefs>Esri</attrdefs>
+        <attrdomv>
+          <udom>Positive real numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape_Area</attrlabl>
+        <attrdef>Area of feature in internal units squared.</attrdef>
+        <attrdefs>Esri</attrdefs>
+        <attrdomv>
+          <udom>Positive real numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>AvgTripLbs</attrlabl>
+        <attrdef>The average number of pounds landed per fisher trip of finfish representing all species comprising the top 80% of finfish landings from latitudes 24-36 degrees north collected during the period from 2007-2011.  A fisher trip for the most part is a single trip, but sometimes a report represents several trips if a fisher aggregates a few fishing days before reporting the catch.</attrdef>
+      </attr>
+    </detailed>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>South Carolina Department of Natural Resources</cntorg>
+        </cntorgp>
+        <cntpos>Spatial Data Manager</cntpos>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address>Rembert C. Dennis Building P.O. Box 167</address>
+          <city>Columbia</city>
+          <state>SC</state>
+          <postal>29202</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>803-734-9100</cntvoice>
+        <cntfax>803-734-7001</cntfax>
+        <cntemail>gisman@dnr.sc.gov</cntemail>
+      </cntinfo>
+    </distrib>
+    <distliab>See access and use constraints information.</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>File Geodatabase Feature Class</formname>
+        </digtinfo>
+        <digtopt />
+      </digform>
+    </stdorder>
+  </distinfo>
+  <metainfo>
+    <metd>20130218</metd>
+    <metc>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>ACCSP</cntorg>
+          <cntper>Ed Martino</cntper>
+        </cntorgp>
+        <cntpos>Ph.D. Data Team</cntpos>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <address>1050 Highland St. Suitee 200A-N</address>
+          <city>Arlington</city>
+          <state>VA</state>
+          <postal>22201</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>703-842-0786</cntvoice>
+        <cntfax>703-842-0779</cntfax>
+        <cntemail>Ed.Martino@accsp.org</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+    <mettc>local time</mettc>
+  </metainfo>
+</metadata>

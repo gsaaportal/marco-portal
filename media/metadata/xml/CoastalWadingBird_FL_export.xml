@@ -1,0 +1,441 @@
+﻿<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>Florida Fish and Wildlife Conservation Commission-Fish and Wildlife Research Institute</origin>
+        <pubdate>unpublished material</pubdate>
+        <title>CoastalWadingBird_FL</title>
+        <edition>2005</edition>
+        <geoform>vector digital data</geoform>
+        <onlink>http://research.myfwc.com/</onlink>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>This shapefile includes information on the distribution and estimated percent composition of wading bird colonies located in 1999 by the Florida Fish and Wildlife Conservation Commission. The Florida Fish and Wildlife Conservation Commission conducted a statewide aerial survey during 26 January-25 June 1999 to locate waterbird (herons, egrets, ibises, spoonbills, storks, anhingas, cormorants, and pelicans) breeding colonies and estimate colony size and species composition. Fixed-wing aircraft were used to fly statewide East-West survey transects at 5-km intervals. Survey routes deviated at times to allow inventory of previously known colonies from earlier surveys. Of the 1,065 sites visited in 1999, 371 (34.8%) were active colonies supporting one or more species of waterbirds, while 694 (65.2%) were inactive sites. The largest number of active colonies (n=158, 42.6%) were located in central Florida between 27º-29ºN latitude; only 72 (19.4%) of the colonies were located in northern Florida above 29ºN; the remaining colonies (n=141, 38.0%) were found in the southern part of the state below 27ºN. Of the 371 active colonies located in 1999, 72.5% (n=269) contained 2 or more nesting species, while only 12.1% (n=45) exhibited 5 or more nesting species. The colonies in the central region tended to contain more species per colony than both the northern and southern regions of the state. Fewer colonies were found in 1999 (n=371) compared to previous statewide surveys during 1976-1978 (n=378) and 1986-1989 (n=635). Except for the brown pelican and cattle egret, most species continued a trend of nesting in smaller numbers and in fewer colonies during 1999 compared to previous surveys. Of the active colonies located in 1999, 51.2% (n=190) were previously undocumented colonies, 43.9% (n=163) were active during 1986-1989, and 21.0% (n=78) were active during 1976-1978. Only 60 (16.2%) 1999 colonies were active during the 1976-1978, 1986-1989, and 1999 surveys. This database contains records for all known and verified colonies in the state of Florida that were surveyed by the FWC during the period 1999 nesting season. Nests discovered more recently than this are not included in the database. Each year, a number of new colony sites are found. For this reason, users of this database are cautioned that the absence of a colony record for a given property does not necessarily mean wading birds are not present. This colony locator service is not meant to replace a specific on-the-ground survey. Disturbance to the colony may occur if a visit is made, and many of the colonies are located on private land. Providing these locations does not confer any permission by FWC to access private property.</abstract>
+      <purpose>These data are available for all people interested in wading bird colonies in the state of Florida</purpose>
+      <supplinf>"Wading Bird Colony Species Presence by Era Florida" and "Wading Bird Colonies Florida 1999" are related data sets. "Wading Bird Colonies Florida 1999" includes estimates of percent composition of colony by species from the 1999 survey. "Wading Bird Colony Species Presence by Era Florida" indicates presence/absence of species as well as indicating if the presence/absence was not determined, if the colony was inactive, or if information was not collected for a species.</supplinf>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <sngdate>
+          <caldate>20050101</caldate>
+        </sngdate>
+      </timeinfo>
+      <current>ground condition</current>
+    </timeperd>
+    <status>
+      <update>As needed</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>-81.939245</westbc>
+        <eastbc>-80.013016</eastbc>
+        <northbc>30.689401</northbc>
+        <southbc>24.559727</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>Florida</themekey>
+        <themekey>FWC</themekey>
+      </theme>
+    </keywords>
+    <accconst>Available without restriction. All data must be verified by Principal Investigator or Group Database Analyst prior to release. It is strongly recommended that this data is directly acquired from FWC and not indirectly through other sources which may have changed the data in some way. FWC makes no claims as to the data's suitability for other purposes.</accconst>
+    <useconst>Numeric results should be used with caution as aerial estimates are variable and some species are difficult to detect (i.e., small, dark species nesting under the tree canopy). Some colonies were also visited by ground surveys. If the ground survey numbers indicated a better count, the results from the ground survey were used. Acknowledgement of the FWC-FWRI (Florida Fish and Wildlife Conservation Commission-Fish and Wildlife Research Institute) as the data source would be appreciated in any products developed from these data, and such acknowledgment as is standard for citation and legal practices for data source is expected by users of this data. Please cite the original metadata when using portions of the record to create a similar record of slightly altered data, such as reprojection. If any data are modified or adjusted, please share the edited information with FWC. Users should be aware that comparison with other data sets for the same area from other time periods may be inaccurate due to inconsistencies resulting from changes in mapping conventions, data collection, and computer processes over time. FWC shall not be liable for improper or incorrect use of this data. These data are not legal documents and are not to be used as such. This is not a survey data set and should not be utilized as such. These data are not to be used for navigation.</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>Florida Fish and Wildlife Conservation Commission</cntorg>
+        </cntorgp>
+        <cntpos>GIS Specialist</cntpos>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address>Florida Fish and Wildlife Conservation Commission</address>
+          <address>Wildlife Technology Services Section</address>
+          <address>620 South Meridian St</address>
+          <city>Tallahassee</city>
+          <state>FL</state>
+          <postal>32399-1600</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>(850) 488-0588</cntvoice>
+        <cntfax>(850) 410-5269</cntfax>
+        <cntemail>gisrequests@myfwc.com</cntemail>
+        <hours>Monday - Friday 8 am -5 pm</hours>
+      </cntinfo>
+    </ptcontac>
+    <datacred>Created by: Florida Fish and Wildlife Conservation Commission 620 South Meridian St. Tallahassee, FL 32344</datacred>
+    <native> Version 6.2 (Build 9200) ; Esri ArcGIS 10.1.0.3035</native>
+  </idinfo>
+  <dataqual>
+    <attracc>
+      <attraccr>Numeric results should be used with caution as aerial estimates are variable and some species are difficult to detect (i.e., small, dark species nesting under the tree canopy). The great blue heron counts for Monroe county in 80s include great white heron.</attraccr>
+    </attracc>
+    <logic>Logically consistent. All attribute values fall within defined values</logic>
+    <complete>Visually inspected for completeness to ensure all values fell within specified ranges.</complete>
+    <lineage>
+      <srcinfo>
+        <typesrc>None</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>20020101</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>ground condition</srccurr>
+        </srctime>
+      </srcinfo>
+      <procstep>
+        <procdesc>The data was clipped to a five mile buffer from the coast inland for the purposes of inclusion in the NOAA funded Govenor's Southeast Atlantic Alliance coastal mapping project. This project was published in the spring of 2013.</procdesc>
+        <proccont>
+          <cntinfo>
+            <cntorgp>
+              <cntorg>SCDNR, MRRI</cntorg>
+              <cntper>Jessica Boynton</cntper>
+            </cntorgp>
+            <cntpos>GIS Manager I</cntpos>
+            <cntaddr>
+              <addrtype>physical</addrtype>
+              <address>217 Fort Johnson Rd.</address>
+              <city>Charleston</city>
+              <state>SC</state>
+              <postal>29412</postal>
+              <country>US</country>
+            </cntaddr>
+            <cntvoice>843-953-9163</cntvoice>
+            <cntfax>843-953-9820</cntfax>
+            <cntemail>boyntonj@dnr.sc.gov</cntemail>
+          </cntinfo>
+        </proccont>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <direct>Vector</direct>
+    <ptvctinf>
+      <sdtsterm>
+        <sdtstype>Entity point</sdtstype>
+        <ptvctcnt>126</ptvctcnt>
+      </sdtsterm>
+    </ptvctinf>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <planar>
+        <mapproj>
+          <mapprojn>Transverse Mercator</mapprojn>
+          <transmer>
+            <sfctrmer>0.9996</sfctrmer>
+            <longcm>-81.0</longcm>
+            <latprjo>0.0</latprjo>
+            <feast>500000.0</feast>
+            <fnorth>0.0</fnorth>
+          </transmer>
+        </mapproj>
+        <planci>
+          <plance>coordinate pair</plance>
+          <coordrep>
+            <absres>0.0001</absres>
+            <ordres>0.0001</ordres>
+          </coordrep>
+          <plandu />
+        </planci>
+      </planar>
+      <geodetic>
+        <horizdn>D North American 1983</horizdn>
+        <ellips>GRS 1980</ellips>
+        <semiaxis>6378137.0</semiaxis>
+        <denflat>298.257222101</denflat>
+      </geodetic>
+    </horizsys>
+  </spref>
+  <eainfo xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:xdt="http://www.w3.org/2005/xpath-datatypes">
+    <detailed>
+      <enttyp>
+        <enttypl>CoastalWadingBird_FL</enttypl>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Internal feature number.</attrdef>
+        <attrdefs>Esri</attrdefs>
+        <attrdomv>
+          <udom>Sequential unique whole numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape</attrlabl>
+        <attrdef>Feature geometry.</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Coordinates defining the features.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>ATLASNUM</attrlabl>
+        <attrdef>Breeding colony atlas identification number</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>DATE_</attrlabl>
+        <attrdef>Date the colony was visited (DBF date-field version)</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>DATECH</attrlabl>
+        <attrdef>Date the colony was visited (character string version)</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>OBSERVER</attrlabl>
+        <attrdef>Observer's initials</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>OBSMODE</attrlabl>
+        <attrdef>Observation mode (aerial or ground visit)</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>COUNTY</attrlabl>
+        <attrdef>County name</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>CONUM</attrlabl>
+        <attrdef>County number (alphabetic sequence number as a 2-digit character string)</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>LONGDM</attrlabl>
+        <attrdef>Longitude in degrees, minutes.hundredth minutes</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>LATDM</attrlabl>
+        <attrdef>Latitude in degrees, minutes.hundredth minutes</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>TOWNSHIP</attrlabl>
+        <attrdef>Township</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>RANGE</attrlabl>
+        <attrdef>Range</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>SECTION</attrlabl>
+        <attrdef>Section</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>GAZPAGE</attrlabl>
+        <attrdef>Page number of Florida Gazetteer map that contains the colony location</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>ERA</attrlabl>
+        <attrdef>Survey era when colony was first observed as active (70's, 80's, or 90's)</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>NEW90</attrlabl>
+        <attrdef>New active colony in the 90's era? (yes/no)</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>STATUS90</attrlabl>
+        <attrdef>Colony status in the 90's survey. A 0 value in the percent composition fields can be interpreted based on the STATUS90 field: if status is 'active' then 0 means active, just not present for that species; if status90 is 'inactive' then 0 is 'inactive'; if status90 is 'Not checked' then 0 would be 'unknown'.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>STATUS80</attrlabl>
+        <attrdef>Colony status in the 80's survey</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>STATUS70</attrlabl>
+        <attrdef>Colony status in the 70's survey</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>SUBSTRAT</attrlabl>
+        <attrdef>Colony substrate (tree/shrub/herbaceous)</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>CANOPY</attrlabl>
+        <attrdef>Was the colony in closed or open canopy?</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>LOCATION</attrlabl>
+        <attrdef>Was the colony coastal or inland?</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>SIZE_</attrlabl>
+        <attrdef>Was the colony on an island? (yes/no)</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>ISLAND</attrlabl>
+        <attrdef>Estimated number of breeding colony nesting pairs</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>SIZECONF</attrlabl>
+        <attrdef>Confidence level of colony size estimate</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>SPECCONF</attrlabl>
+        <attrdef>Confidence level of colony species composition</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>BRPE</attrlabl>
+        <attrdef>Percent composition of colony by brown pelicans</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>DCCO</attrlabl>
+        <attrdef>Percent composition of colony by double-crested cormorants</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>ANHI</attrlabl>
+        <attrdef>Percent composition of colony by anhingas</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>GBHE</attrlabl>
+        <attrdef>Percent composition of colony by great blue herons</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>GWHE</attrlabl>
+        <attrdef>Percent composition of colony by great white herons</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>GREG</attrlabl>
+        <attrdef>Percent composition of colony by great egrets</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>SNEG</attrlabl>
+        <attrdef>Percent composition of colony by snowy egrets</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>LBHE</attrlabl>
+        <attrdef>Percent composition of colony by little blue herons</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>TCHE</attrlabl>
+        <attrdef>Percent composition of colony by tricolored herons</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>REEG</attrlabl>
+        <attrdef>Percent composition of colony by reddish egrets</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>CAEG</attrlabl>
+        <attrdef>Percent composition of colony by cattle egrets</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>GRHE</attrlabl>
+        <attrdef>Percent composition of colony by green herons</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>BCNH</attrlabl>
+        <attrdef>Percent composition of colony by black-crowned night herons</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>YCNH</attrlabl>
+        <attrdef>Percent composition of colony by white-crowned night herons</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>WHIB</attrlabl>
+        <attrdef>Percent composition of colony by white ibis</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>GLIB</attrlabl>
+        <attrdef>Percent composition of colony by glossy ibis</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>ROSP</attrlabl>
+        <attrdef>Percent composition of colony by roseate spoonbills</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>WOST</attrlabl>
+        <attrdef>Percent composition of colony by wood storks</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>SMWT</attrlabl>
+        <attrdef>Percent composition of colony by small white species</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>LGWT</attrlabl>
+        <attrdef>Percent composition of colony by large white species</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>SMDK</attrlabl>
+        <attrdef>Percent composition of colony by small dark species</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>LGDK</attrlabl>
+        <attrdef>Percent composition of colony by large dark species</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>LONGDEC</attrlabl>
+        <attrdef>Longitude in decimal degrees</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>LATDEC</attrlabl>
+        <attrdef>Latitude in decimal degrees</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>LONGALB</attrlabl>
+        <attrdef>Longitude in custom statewide albers projection</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>LATALB</attrlabl>
+        <attrdef>Latitude in custom statewide albers projection</attrdef>
+      </attr>
+    </detailed>
+    <overview />
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>Florida Fish and Wildlife Conservation Commission</cntorg>
+        </cntorgp>
+        <cntvoice>(850) 488-0588</cntvoice>
+        <cntfax>(850) 922-5679</cntfax>
+        <cntemail>gisrequests@fwc.state.fl.us</cntemail>
+        <hours>8-5, Monday - Friday</hours>
+      </cntinfo>
+    </distrib>
+    <resdesc>Available from the FWC</resdesc>
+    <distliab>This data set is in the public domain, and the recipient may not assert any proprietary rights thereto nor represent it to anyone as other than a FWC-FWRI produced data set; it is provided "as-is" without warranty of any kind, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose. The user assumes all responsibility for the accuracy and suitability of this data set for a specific application. In no event will the staff of the Fish and Wildlife Research Institute be liable for any damages, including lost profits, lost savings, or other incidental or consequential damages arising from the use of or the inability to use this data set.</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>File Geodatabase Feature Class</formname>
+          <transize>0.262</transize>
+        </digtinfo>
+        <digtopt>
+          <onlinopt>
+            <computer>
+              <networka>
+                <networkr>http://research.myfwc.com</networkr>
+              </networka>
+            </computer>
+          </onlinopt>
+        </digtopt>
+      </digform>
+      <fees>None</fees>
+    </stdorder>
+  </distinfo>
+  <metainfo>
+    <metd>20130218</metd>
+    <metc>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>Florida Fish and Wildlife Conservation Commission</cntorg>
+        </cntorgp>
+        <cntpos>GIS Specialist</cntpos>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>620 S. Meridian St.</address>
+          <address>Florida Fish and Wildlife Conservation Commission</address>
+          <city>Tallahassee</city>
+          <state>FL</state>
+          <postal>32399-1600</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>(850) 488-0588</cntvoice>
+        <cntfax>(850) 410-5269</cntfax>
+        <cntemail>gisrequests@myfwc.com</cntemail>
+        <hours>8-5, Monday - Friday</hours>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+    <mettc>local time</mettc>
+  </metainfo>
+</metadata>

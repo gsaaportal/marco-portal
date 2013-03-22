@@ -1,0 +1,411 @@
+﻿<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>Florida Fish and Wildlife Conservation Commission</origin>
+        <title>Shorebirds_FL</title>
+        <geoform>vector digital data</geoform>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>The Florida Shorebirds Database (FSD) enables online entry and viewing of data on Florida’s shorebirds and sea birds (https://public.myfwc.com/crossdoi/shorebirds). Created in 2010, the current product represents an improvement over the original database which became operational in 2005. Although the database and its quality are managed by the Florida Fish and Wildlife Conservation Commission (FWC), the success of this platform is highly dependent on the contributions of a network of ever-expanding participants. There is no cost to become involved in the FSD; however, for organizational purposes, data are submitted through regional hubs of the Florida Seabird Alliance (FSA). According to the “data dictionary” associated with the FSD, there are 123 data fields. These data fields include both survey metadata, such as when, where, who, and how the data were collected, as well as what was observed. The majority of the 123 data fields are ‘what’ fields and represent very specific categorical information such as types of chicks, possible types of disturbances that could have interfered with survey results, etc. Data (rows) in the FSD are provided with respect to a single species at a given location, where multiple locations occur along prescribed survey routes.</abstract>
+      <purpose>This GIS dataset was created for the purpose of describing the location and types of shorebirds that nest along the Florida coastline so that these nesting activities can be considered for any planned energy development or other coastal use activities. General FDS: “Data from the FSD are used in many ways. At the local and regional level, partners regularly rely on the data to plan and assess management activities for particular shorebird and seabird sites in their area. In addition, different agencies use the data to review permits for proposed projects near important shorebird and seabird sites. At the statewide level, biologists plan to use these data to determine distribution, status, and trends for various species of shorebird and seabird in Florida. They will inform important conservation planning efforts such as setting conservation priorities, identifying critical habitat, and assessing species for state listing. Recently, the database played a pivotal role in determining priorities and preparations for the Deepwater Horizon Oil Spill.” - https://public.myfwc.com/crossdoi/shorebirds/about</purpose>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <rngdates>
+          <begdate>20110101</begdate>
+          <enddate>20120101</enddate>
+        </rngdates>
+      </timeinfo>
+      <current>Unknown</current>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+      <update>None planned</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>-81.478931</westbc>
+        <eastbc>-80.096390</eastbc>
+        <northbc>30.706517</northbc>
+        <southbc>27.090300</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>Florida Shorebird Database</themekey>
+        <themekey>Sandwich tern</themekey>
+        <themekey>Florida Fish and Wildlife Conservation Commission</themekey>
+        <themekey>Brown pelican</themekey>
+        <themekey>American oystercatcher</themekey>
+        <themekey>Least tern</themekey>
+        <themekey>Willet</themekey>
+        <themekey>Killdeer</themekey>
+        <themekey>Black skimmer</themekey>
+        <themekey>Royal tern</themekey>
+        <themekey>Laughing gull</themekey>
+        <themekey>Gull-billed tern</themekey>
+        <themekey>nesting</themekey>
+      </theme>
+      <place>
+        <placekt>None</placekt>
+        <placekey>Florida</placekey>
+        <placekey>southeast</placekey>
+      </place>
+    </keywords>
+    <accconst>None</accconst>
+    <useconst>Neither the State of South Carolina, the Department of Natural Resources, nor any of its employees, is responsible for any improper or incorrect use of the information described and/or contained herein, and assume no responsibility for the use of the information. The Florida Fish and Wildlife Conservation Commission should be acknowledged as the data source in products derived from these data.The South Carolina Department of Natural Resources should be acknowledged as the source of this GIS product.</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>Florida Fish and Wildlife Conservation Commission</cntorg>
+          <cntper>Naomi Avissar</cntper>
+        </cntorgp>
+        <cntpos>Shorebird Partnership Coordinator</cntpos>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <address>3900 Drane Field Rd.</address>
+          <city>Lakeland</city>
+          <state>FL</state>
+          <postal>33811</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>(863) 370-6305</cntvoice>
+        <cntemail>Naomi.Avissar@MyFWC.com</cntemail>
+      </cntinfo>
+    </ptcontac>
+    <native> Version 6.2 (Build 9200) ; Esri ArcGIS 10.1.0.3035</native>
+  </idinfo>
+  <dataqual>
+    <lineage>
+      <procstep>
+        <procdesc>GIS Processing: Digitized the routes from the route start and end lat/longs. Digitized on USDA NAIP Florida imagery. Used 'Make Query Table' Tool to combine the table to the routes using the LocationID as the common field. Exported the results to feature class.</procdesc>
+        <proccont>
+          <cntinfo>
+            <cntorgp>
+              <cntorg>SCDNR, MRRI</cntorg>
+              <cntper>Jessica Boynton</cntper>
+            </cntorgp>
+            <cntpos>GIS Manager I</cntpos>
+            <cntaddr>
+              <addrtype>physical</addrtype>
+              <address>217 Fort Johnson Rd.</address>
+              <city>Charleston</city>
+              <state>SC</state>
+              <postal>29412</postal>
+              <country>US</country>
+            </cntaddr>
+            <cntvoice>843-953-9163</cntvoice>
+            <cntfax>843-953-9820</cntfax>
+            <cntemail>boyntonj@dnr.sc.gov</cntemail>
+          </cntinfo>
+        </proccont>
+      </procstep>
+      <procstep>
+        <procdesc>Data (11,835 records) for 2011 and 2012 were uploaded from the FSD website. Following consultation with the FWC, only approved data (10,764 records) at the route level (7,807 records) listed as “active” (3,373 records; 29% of original) were herein considered. Because of the spatial interest of the GSAA, the data set described above was further restricted to counties located on the east coast of Florida. Two county fields (route, location) appeared in the FSD data set, and we used the route county for filtering due to complete data provision. Following restriction of data to Nassau, Duval, Saint Johns, Flagler, Volusia, Brevard, Indian River, Saint Lucie, Martin, and Palm Beach counties, only 777 data records (7% of original data) remained. Start latitude and longitude of these retained data and the county-excluded data were plotted to confirm that all geographically-relevant data were included, which also confirmed that no data were provided for the two southernmost east coast counties (Broward, Miami-Dade). Forty-three additional data records were excluded due to incomplete survey route coverage, and 68 additional data records associated with “colony” observations were excluded due to “null” nest count values. As such, a total of 666 data records (6% of original uploaded data set) were analyzed for nest counts (solitary) or the number of surveys at a given route in which colonies were recorded; mean and coefficient of variation (CV) were also computed for colonies. Analytical summaries were provided for each route and count type (rows) with respect to species and data metrics (columns). A total of 26 routes were included in this summary table, with route transect distances as well as start and end latitude and longitude provided by the FSA. Mean and CV metrics were only computed (in MS Access) for colony data. Mean nest count was computed as the total number of nests recorded divided by the number of surveys in which the species was seen; thus, multiplying the mean by the number of surveys in which the species was seen calculates the total number of nests for that species at the route. CV was computed as the standard deviation (not shown) among the nest counts for a given species (for each route) divided by the mean.</procdesc>
+        <proccont>
+          <cntinfo>
+            <cntorgp>
+              <cntorg>SCDNR</cntorg>
+              <cntper>Mike Arendt</cntper>
+            </cntorgp>
+            <cntpos>Wildlife Biologist III</cntpos>
+            <cntaddr>
+              <addrtype>physical</addrtype>
+              <address>217 Fort Johnson Rd.</address>
+              <city>Charleston</city>
+              <state>SC</state>
+              <postal>29412</postal>
+              <country>US</country>
+            </cntaddr>
+            <cntvoice>843-953-9097</cntvoice>
+            <cntfax>843-953-9820</cntfax>
+            <cntemail>arendtm@dnr.sc.gov</cntemail>
+          </cntinfo>
+        </proccont>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <direct>Vector</direct>
+    <ptvctinf>
+      <sdtsterm>
+        <sdtstype>String</sdtstype>
+        <ptvctcnt>34</ptvctcnt>
+      </sdtsterm>
+    </ptvctinf>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <planar>
+        <mapproj>
+          <mapprojn>Transverse Mercator</mapprojn>
+          <transmer>
+            <sfctrmer>0.9996</sfctrmer>
+            <longcm>-81.0</longcm>
+            <latprjo>0.0</latprjo>
+            <feast>500000.0</feast>
+            <fnorth>0.0</fnorth>
+          </transmer>
+        </mapproj>
+        <planci>
+          <plance>coordinate pair</plance>
+          <coordrep>
+            <absres>0.0001</absres>
+            <ordres>0.0001</ordres>
+          </coordrep>
+          <plandu />
+        </planci>
+      </planar>
+      <geodetic>
+        <horizdn>D North American 1983</horizdn>
+        <ellips>GRS 1980</ellips>
+        <semiaxis>6378137.0</semiaxis>
+        <denflat>298.257222101</denflat>
+      </geodetic>
+    </horizsys>
+  </spref>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>Shorebirds_FL</enttypl>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Internal feature number.</attrdef>
+        <attrdefs>Esri</attrdefs>
+        <attrdomv>
+          <udom>Sequential unique whole numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>LocationID</attrlabl>
+        <attrdef>FSD route ID</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>DataType</attrlabl>
+        <attrdef>FSD active nest data type (solitary nest or colony).</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>FWSDist_mi</attrlabl>
+        <attrdef>FSD provided route distance in miles</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>AmOy_count</attrlabl>
+        <attrdef>Number of American oystercatcher (AmOy) nests at a given route.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>AmOy_mean</attrlabl>
+        <attrdef>Mean of all American oystercatcher (AmOy) nest counts at a given route; no value is provided because this species was only ever recorded as having solitary nests.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>AmOy_CV</attrlabl>
+        <attrdef>Coefficient of variation (CV) of all American oystercatcher (AmOy) nest counts at a given route; no value is provided because this species was only ever recorded as having solitary nests.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>BlSk_count</attrlabl>
+        <attrdef>Number of surveys in which Black Skimmer (BlSk) nests were observed at a given route.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>BlSk_mean</attrlabl>
+        <attrdef>Mean of all Black Skimmer (BlSk) nests counts at a given route.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>BlSk_CV</attrlabl>
+        <attrdef>Coefficient of variation (CV) of Black Skimmer (BlSk) nest counts at a given route.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>BrPe_count</attrlabl>
+        <attrdef>Number of surveys in which Brown Pelican (BrPe) nests were observed at a given route.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>BrPe_mean</attrlabl>
+        <attrdef>Mean of all Brown Pelican (BrPe) nest counts at a given route.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>BrPe_CV</attrlabl>
+        <attrdef>Coefficient of variation (CV) of all Brown Pelican (BrPe) nest counts at a given route.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>GuTe_count</attrlabl>
+        <attrdef>Number of surveys in which Gull-billed Tern (GuTe) nests were observed at a given route.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>GuTe_mean</attrlabl>
+        <attrdef>Mean of all Gull-billed Tern (GuTe) nest counts at a given route.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>GuTe_CV</attrlabl>
+        <attrdef>Coefficient of variation (CV) of all Gull-billed Tern (GuTe) nest counts at a given route.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>KiDe_count</attrlabl>
+        <attrdef>Number of Killdeer (KiDe) nests at a given route.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>KiDe_mean</attrlabl>
+        <attrdef>Mean of all Killdeer (KiDe) nest counts at a given route; no value is provided because this species was only ever recorded as having solitary nests.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>KiDe_CV</attrlabl>
+        <attrdef>Coefficient of variation (CV) of all Killdeer (KiDe) nest counts at a given route; no value is provided because this species was only ever recorded as having solitary nests.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>LaGu_count</attrlabl>
+        <attrdef>Number of surveys in which Laughing Gull (LaGu) nests were observed at a given route.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>LaGu_mean</attrlabl>
+        <attrdef>Mean of all Laughing Gull (LaGu) nest counts at a given route.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>LaGu_CV</attrlabl>
+        <attrdef>of variation (CV) of all Laughing Gull (LaGu) nest counts at a given route.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>LeTe_count</attrlabl>
+        <attrdef>Number of surveys in which Least Tern (LeTe) nets were observed at a given route.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>LeTe_mean</attrlabl>
+        <attrdef>Mean of all Least Tern (LeTe) nest counts at a given route.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>LeTe_CV</attrlabl>
+        <attrdef>Coefficient of variation (CV) of all Least Tern (LeTe) nest counts at a given route. </attrdef>
+      </attr>
+      <attr>
+        <attrlabl>RoTe_count</attrlabl>
+        <attrdef>Number of surveys in which Royal Tern (RoTe) nests were observed at a given route.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>RoTe_mean</attrlabl>
+        <attrdef>Mean of all Royal Tern (RoTe) nest counts at a given route.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>RoTe_CV</attrlabl>
+        <attrdef>Coefficient of variation (CV) of all Royal Tern (RoTe) nest counts at a given route.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>SaTe_count</attrlabl>
+        <attrdef>Number of surveys in which Sandwich Tern (SaTe) nests were observed at a given route.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>SaTe_mean</attrlabl>
+        <attrdef>Mean of all Sandwich Tern (SaTe) nest counts at a given route.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>SaTe_CV</attrlabl>
+        <attrdef>Coefficient of variation (CV) of all Sandwich Tern (SaTe) nest counts at a given route.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Will_count</attrlabl>
+        <attrdef>Number of Willet (Will) nests observed at a given route.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Will_mean</attrlabl>
+        <attrdef>Mean of all Willet (Will) nest counts at a given route; no value is provided because this species was only ever recorded as having solitary nests.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Will_CV</attrlabl>
+        <attrdef>Coefficient of variation (CV) of all Willet (Will) nest counts at a given route; no value is provided because this species was only ever recorded as having solitary nests.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>WiPl_count</attrlabl>
+        <attrdef>Number of Wilson’s Plover (WiPl) nests observed at a given route.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>WiPl_mean</attrlabl>
+        <attrdef>Mean of all Wilson’s Plover (WiPl) nest counts at a given route; no value is provided because this species was only ever recorded as having solitary nests.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>WiPl_CV</attrlabl>
+        <attrdef>Coefficient of variation (CV) of all Wilson’s Plover (WiPl) nest counts at a given route; no value is provided because this species was only ever recorded as having solitary nests.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Shape</attrlabl>
+        <attrdef>Feature geometry.</attrdef>
+        <attrdefs>Esri</attrdefs>
+        <attrdomv>
+          <udom>Coordinates defining the features.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>SurveyLoca</attrlabl>
+        <attrdef>Description of route</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Dist_mi</attrlabl>
+      </attr>
+      <attr>
+        <attrlabl>Shape_Leng</attrlabl>
+      </attr>
+      <attr>
+        <attrlabl>Shape_Length</attrlabl>
+        <attrdef>Length of feature in internal units.</attrdef>
+        <attrdefs>Esri</attrdefs>
+        <attrdomv>
+          <udom>Positive real numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+    </detailed>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>South Carolina Department of Natural Resources</cntorg>
+        </cntorgp>
+        <cntpos>Spatial Data Manager</cntpos>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <address>Rembert C. Dennis Building P.O. Box 167</address>
+          <city>Columbia</city>
+          <state>SC</state>
+          <postal>29202</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>803-734-9100</cntvoice>
+        <cntfax>803-734-7001</cntfax>
+        <cntemail>gisman@dnr.sc.gov</cntemail>
+      </cntinfo>
+    </distrib>
+    <distliab>See access and use constraints information.</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>File Geodatabase Feature Class</formname>
+        </digtinfo>
+        <digtopt />
+      </digform>
+    </stdorder>
+  </distinfo>
+  <metainfo>
+    <metd>20130218</metd>
+    <metc>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>SCDNR</cntorg>
+          <cntper>Mike Arendt</cntper>
+        </cntorgp>
+        <cntpos>Wildlife Biologist III</cntpos>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <address>217 Fort Johnson Rd.</address>
+          <city>Charleston</city>
+          <state>SC</state>
+          <postal>29412</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>843-953-9097</cntvoice>
+        <cntfax>843-953-9820</cntfax>
+        <cntemail>arendtm@dnr.sc.gov</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+    <mettc>local time</mettc>
+  </metainfo>
+</metadata>

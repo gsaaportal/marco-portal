@@ -1,0 +1,215 @@
+﻿<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>U.S. Environmental Protection Agency</origin>
+        <title>ODMDS_FL</title>
+        <geoform>vector digital data</geoform>
+        <othercit>Ocean Dredged Material Disposal Sites (ODMDS) in the Southeast: &lt;http://www.epa.gov/region04/water/oceans/sites.html&gt; Ocean Dumping In The Southeast: &lt;http://www.epa.gov/region4/water/oceans/&gt;</othercit>
+        <onlink>&lt;http://www.epa.gov/region04/water/oceans/sites.html&gt;</onlink>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>This dataset represents Ocean Dredged Material Disposal Sites (ODMDS) areas designated by EPA for dredged material disposal under section 102 of the Marine Protection, Research, and Sanctuaries Act (MPRSA). EPA designated sites are to be used for ocean disposal to the extent feasible.</abstract>
+      <purpose>This GIS dataset was created for purpose of describing the locations of ocean disposal sites (ODMDS) for the state of Florida so that these data can be considered with respect to other data on coastal resources and activities.</purpose>
+      <supplinf>Most of the dredged material disposed in the ocean is disposed at ocean dumping sites specifically designated by EPA for dredged material disposal under section 102 of the Marine Protection, Research, and Sanctuaries Act (MPRSA). EPA designated sites are to be used for ocean disposal to the extent feasible. All ocean dumping sites are required to have a site management and monitoring plan (SMMP) which can be found for each individual site at: &lt;http://www.epa.gov/region04/water/oceans/sites.html&gt;. Appropriate management of ocean dumping sites is aimed at assuring that disposal activities will not unreasonably degrade or endanger human health, welfare, the marine environment or economic potentialities. Management of ocean dredged material disposal sites involves: 1. Regulating the times, the quantity, and the physical/chemical characteristics of dredged material that is dumped at the site; 2. Establishing disposal controls, conditions, and requirements to avoid and minimize potential impacts to the marine environment; and 3. Monitoring the site environs to verify that unanticipated or significant adverse effects are not occurring from past or continued use of the disposal site and that permit terms are met.</supplinf>
+    </descript>
+    <status>
+      <progress>Complete</progress>
+      <update>As needed</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>-81.318998</westbc>
+        <eastbc>-79.895023</eastbc>
+        <northbc>30.550390</northbc>
+        <southbc>26.107678</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>ocean disposal</themekey>
+        <themekey>Dredge</themekey>
+        <themekey>ODMDS</themekey>
+      </theme>
+      <place>
+        <placekt>None</placekt>
+        <placekey>Florida</placekey>
+      </place>
+    </keywords>
+    <accconst>None</accconst>
+    <useconst>1.) EPA: None 2.) Neither the State of South Carolina, the Department of Natural Resources, nor any of its employees, is responsible for any improper or incorrect use of the information described and/or contained herein, and assume no responsibility for the use of the information.The South Carolina Department of Natural Resources should be acknowledged as the GIS data source in products derived from these data.</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>U.S. EPA</cntorg>
+          <cntper>Christopher J. McArthur</cntper>
+        </cntorgp>
+        <cntpos>Ocean Dumping Program Coodinator</cntpos>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>61 Forsyth Street, SW</address>
+          <city>Atlanta</city>
+          <state>GA</state>
+          <postal>30303</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>(404) 562-9391</cntvoice>
+        <cntfax>(404) 562-9343</cntfax>
+        <cntemail>mcarthur.christopher@epa.gov</cntemail>
+      </cntinfo>
+    </ptcontac>
+    <native> Version 6.2 (Build 9200) ; Esri ArcGIS 10.1.0.3035</native>
+  </idinfo>
+  <dataqual>
+    <lineage>
+      <procstep>
+        <procdesc>The corner coordinates for each disposal area were retrieved from the EPA website: http://www.epa.gov/region04/water/oceans/sites.html. These corners were used to create the FL ODMDS polygon disposal areas.</procdesc>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <direct>Vector</direct>
+    <ptvctinf>
+      <sdtsterm>
+        <sdtstype>GT-polygon composed of chains</sdtstype>
+        <ptvctcnt>6</ptvctcnt>
+      </sdtsterm>
+    </ptvctinf>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <planar>
+        <mapproj>
+          <mapprojn>Transverse Mercator</mapprojn>
+          <transmer>
+            <sfctrmer>0.9996</sfctrmer>
+            <longcm>-81.0</longcm>
+            <latprjo>0.0</latprjo>
+            <feast>500000.0</feast>
+            <fnorth>0.0</fnorth>
+          </transmer>
+        </mapproj>
+        <planci>
+          <plance>coordinate pair</plance>
+          <coordrep>
+            <absres>0.0000000023454588503650595</absres>
+            <ordres>0.0000000023454588503650595</ordres>
+          </coordrep>
+          <plandu />
+        </planci>
+      </planar>
+      <geodetic>
+        <horizdn>D North American 1983</horizdn>
+        <ellips>GRS 1980</ellips>
+        <semiaxis>6378137.0</semiaxis>
+        <denflat>298.257222101</denflat>
+      </geodetic>
+    </horizsys>
+  </spref>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>ODMDS_FL</enttypl>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Internal feature number.</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Sequential unique whole numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape</attrlabl>
+        <attrdef>Feature geometry.</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Coordinates defining the features.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>SiteLabel</attrlabl>
+        <attrdef>Site name of disposal area.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>STATE</attrlabl>
+        <attrdef>State</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Shape_Length</attrlabl>
+        <attrdef>Length of feature in internal units.</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Positive real numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape_Area</attrlabl>
+        <attrdef>Area of feature in internal units squared.</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Positive real numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+    </detailed>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>South Carolina Department of Natural Resources</cntorg>
+        </cntorgp>
+        <cntpos>Spatial Data Manager</cntpos>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>Rembert C. Dennis Building P.O. Box 167</address>
+          <city>Columbia</city>
+          <state>SC</state>
+          <postal>29202</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>803-734-9100</cntvoice>
+        <cntfax>803-734-7001</cntfax>
+        <cntemail>gisman@dnr.sc.gov</cntemail>
+      </cntinfo>
+    </distrib>
+    <distliab>See access and use constraints information.</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>File Geodatabase Feature Class</formname>
+        </digtinfo>
+        <digtopt />
+      </digform>
+    </stdorder>
+  </distinfo>
+  <metainfo>
+    <metd>20130218</metd>
+    <metc>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>SCDNR</cntorg>
+          <cntper>Jessica Boynton</cntper>
+        </cntorgp>
+        <cntpos>GIS Manager I</cntpos>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <address>217 Fort Johnson Rd.</address>
+          <city>Charleston</city>
+          <state>SC</state>
+          <postal>29412</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>843-953-9163</cntvoice>
+        <cntfax>843-953-9820</cntfax>
+        <cntemail>boyntonj@dnr.sc.gov</cntemail>
+        <cntinst>This metadata was modified from EPA published metadata located here: http://www.fgdl.org/metadata/fgdc_html/epadrdg_jun08.fgdc.htm</cntinst>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+    <mettc>local time</mettc>
+  </metainfo>
+</metadata>

@@ -1,0 +1,153 @@
+﻿<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <title>ArtReefs_SC</title>
+        <geoform>vector digital data</geoform>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>Locations Artificial reef development in South Carolina's coastal and offshore waters is managed through the South Carolina Department of Natural Resources, Marine Resources Division (MRD). The state's Marine Artificial Reef Program, first established in 1973, is a part of the MRD's Office of Fisheries Management (OFM).</abstract>
+      <purpose>To enhance recreational fishing and sport diving opportunities in coastal waters, and to increase the amount of productive hard-bottom habitat available overall, man can participate (with significant help from nature) in the creation of additional man-made, or "artificial" reefs. This is accomplished by placing suitable long-lived, stable and environmentally safe materials (usually steel or concrete) on a selected area of ocean bottom. Once the material is in place it acts in the same way that naturally occurring rock outcroppings do in providing hard substrate necessary in the basic formation of a live-bottom reef community.</purpose>
+    </descript>
+    <spdom>
+      <bounding>
+        <westbc>-80.751949</westbc>
+        <eastbc>-78.410688</eastbc>
+        <northbc>33.842122</northbc>
+        <southbc>31.970869</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>ISO 19115 Topic Categories</themekt>
+        <themekey>location</themekey>
+        <themekey>oceans</themekey>
+        <themekey>society</themekey>
+      </theme>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>Reefs</themekey>
+        <themekey>United States</themekey>
+        <themekey>Southeast</themekey>
+        <themekey>Saltwater Diving</themekey>
+        <themekey>South Carolina</themekey>
+        <themekey>SC Coast</themekey>
+        <themekey>Recreational Water</themekey>
+        <themekey>Ocean</themekey>
+        <themekey>Southeast</themekey>
+        <themekey>Artificial Reefs</themekey>
+        <themekey>Saltwater Recreational Fishing</themekey>
+        <themekey>2012</themekey>
+      </theme>
+    </keywords>
+    <accconst>None</accconst>
+    <useconst>Neither the State of South Carolina, the Department of Natural Resources, nor any of its employees, is responsible for any improper or incorrect use of the information described and/or contained herein, and assume no responsibility for the use of the information.</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>Marine Resources Division, SC Deprt. of Natural Resources</cntorg>
+          <cntper>Rober M. Martore</cntper>
+        </cntorgp>
+        <cntpos>Artificial Reef Coordinator, Office of Fisheries Management</cntpos>
+      </cntinfo>
+    </ptcontac>
+    <datacred>Acknowledgment of the South Carolina Department of Natural Resources would be appreciated for products derived from these data.</datacred>
+    <native> Version 6.2 (Build 9200) ; Esri ArcGIS 10.1.0.3035</native>
+  </idinfo>
+  <spdoinfo>
+    <direct>Vector</direct>
+    <ptvctinf>
+      <sdtsterm>
+        <sdtstype>Entity point</sdtstype>
+        <ptvctcnt>562</ptvctcnt>
+      </sdtsterm>
+    </ptvctinf>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <planar>
+        <mapproj>
+          <mapprojn>Transverse Mercator</mapprojn>
+          <transmer>
+            <sfctrmer>0.9996</sfctrmer>
+            <longcm>-81.0</longcm>
+            <latprjo>0.0</latprjo>
+            <feast>500000.0</feast>
+            <fnorth>0.0</fnorth>
+          </transmer>
+        </mapproj>
+        <planci>
+          <plance>coordinate pair</plance>
+          <coordrep>
+            <absres>0.000000002220024164500956</absres>
+            <ordres>0.000000002220024164500956</ordres>
+          </coordrep>
+          <plandu />
+        </planci>
+      </planar>
+      <geodetic>
+        <horizdn>D North American 1983</horizdn>
+        <ellips>GRS 1980</ellips>
+        <semiaxis>6378137.0</semiaxis>
+        <denflat>298.257222101</denflat>
+      </geodetic>
+    </horizsys>
+  </spref>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>ArtReefs_SC</enttypl>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Internal feature number.</attrdef>
+        <attrdefs>Esri</attrdefs>
+        <attrdomv>
+          <udom>Sequential unique whole numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape</attrlabl>
+        <attrdef>Feature geometry.</attrdef>
+        <attrdefs>Esri</attrdefs>
+        <attrdomv>
+          <udom>Coordinates defining the features.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Waypoint</attrlabl>
+      </attr>
+      <attr>
+        <attrlabl>Symbol</attrlabl>
+      </attr>
+      <attr>
+        <attrlabl>Descriptio</attrlabl>
+      </attr>
+      <attr>
+        <attrlabl>Comment</attrlabl>
+      </attr>
+      <attr>
+        <attrlabl>Latitude</attrlabl>
+      </attr>
+      <attr>
+        <attrlabl>Longitude</attrlabl>
+      </attr>
+    </detailed>
+  </eainfo>
+  <metainfo>
+    <metd>20130218</metd>
+    <metc>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>Technology Development Program, SCDNR</cntorg>
+          <cntper>Jim Scurry</cntper>
+        </cntorgp>
+        <cntpos>Technology Development Program Director</cntpos>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+    <mettc>local time</mettc>
+  </metainfo>
+</metadata>

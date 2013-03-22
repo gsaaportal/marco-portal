@@ -1,0 +1,245 @@
+﻿<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>Georgia Department of Natural Resources</origin>
+        <title>ArtReefs_GA</title>
+        <geoform>vector digital data</geoform>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>This shows the artificial reefs off the coast of Georgia. The goals of the Georgia artificial reef program are: 1.) The development of long-term fisheries habitat 2.) The creation of additional and more accessible recreational fishing opportunities 3.) The enhancement and support of local and regional fisheries management efforts. More information about the Georgia artificial reef program are available here: http://coastalgadnr.org/fb/ar.</abstract>
+      <purpose>This GIS dataset was created for purpose of describing artificial reef zones for the state of Georgia so that these data can be considered with respect to other data on coastal resources and activities.</purpose>
+    </descript>
+    <status>
+      <progress>Complete</progress>
+      <update>None planned</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>-81.493712</westbc>
+        <eastbc>-79.832583</eastbc>
+        <northbc>31.963193</northbc>
+        <southbc>30.763283</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>artificial reef zones</themekey>
+      </theme>
+      <place>
+        <placekt>None</placekt>
+        <placekey>Georgia</placekey>
+      </place>
+    </keywords>
+    <accconst>None</accconst>
+    <useconst>If these data are being used to avoid potential disturbance or destruction of artificial reefs, please contact GADNR to obtain the latest information. Neither the State of South Carolina, the Department of Natural Resources, nor any of its employees, is responsible for any improper or incorrect use of the information described and/or contained herein, and assume no responsibility for the use of the information. The Georgia Department of Natural Resources should be acknowledged as the data source in products derived from these data.The South Carolina Department of Natural Resources should be acknowledged as the GIS data source in products derived from these data.</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>Georgia Department of Natural Resource - Marine Fisheries</cntorg>
+          <cntper>Patrick Geer</cntper>
+        </cntorgp>
+        <cntpos>Chief of Marine Fisheries</cntpos>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <address>2 One Conservation Way, Suite 300</address>
+          <city>Brunswick</city>
+          <state>GA</state>
+          <postal>31523</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>912/264-7218</cntvoice>
+        <cntfax>912/262-2318</cntfax>
+        <cntemail>Pat_Geer@dnr.state.ga.us</cntemail>
+      </cntinfo>
+    </ptcontac>
+    <native> Version 6.2 (Build 9200) ; Esri ArcGIS 10.1.0.3035</native>
+  </idinfo>
+  <spdoinfo>
+    <direct>Vector</direct>
+    <ptvctinf>
+      <sdtsterm>
+        <sdtstype>Entity point</sdtstype>
+        <ptvctcnt>300</ptvctcnt>
+      </sdtsterm>
+    </ptvctinf>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <planar>
+        <mapproj>
+          <mapprojn>Transverse Mercator</mapprojn>
+          <transmer>
+            <sfctrmer>0.9996</sfctrmer>
+            <longcm>-81.0</longcm>
+            <latprjo>0.0</latprjo>
+            <feast>500000.0</feast>
+            <fnorth>0.0</fnorth>
+          </transmer>
+        </mapproj>
+        <planci>
+          <plance>coordinate pair</plance>
+          <coordrep>
+            <absres>0.000000002220024164500956</absres>
+            <ordres>0.000000002220024164500956</ordres>
+          </coordrep>
+          <plandu />
+        </planci>
+      </planar>
+      <geodetic>
+        <horizdn>D North American 1983</horizdn>
+        <ellips>GRS 1980</ellips>
+        <semiaxis>6378137.0</semiaxis>
+        <denflat>298.257222101</denflat>
+      </geodetic>
+    </horizsys>
+  </spref>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>ArtReefs_GA</enttypl>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Internal feature number.</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Sequential unique whole numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape</attrlabl>
+        <attrdef>Feature geometry.</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Coordinates defining the features.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>REEF_NAME</attrlabl>
+        <attrdef>The name of the artificial reef.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>REEFCODE</attrlabl>
+      </attr>
+      <attr>
+        <attrlabl>STRNUM</attrlabl>
+      </attr>
+      <attr>
+        <attrlabl>STRCODE</attrlabl>
+      </attr>
+      <attr>
+        <attrlabl>BUOYED</attrlabl>
+      </attr>
+      <attr>
+        <attrlabl>DESCRIPTIO</attrlabl>
+        <attrdef>The description of reef location.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>STRUCTURE</attrlabl>
+        <attrdef>The type of structure used to make the reef.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>HEADING_DI</attrlabl>
+        <attrdef>Heading and Distance from Reef Buoy.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>LATDD</attrlabl>
+        <attrdef>Latitude degrees.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>LATMMMMM</attrlabl>
+        <attrdef>Latitude decimal minutes.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>LATITUDE</attrlabl>
+        <attrdef>Latitude in decimal degrees.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>LONDD</attrlabl>
+        <attrdef>Longitude degrees.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>LONMMMMM</attrlabl>
+        <attrdef>Longitude decimal minutes.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>LONGITUDE</attrlabl>
+        <attrdef>Longitude decimal degrees.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>PERMITTED_</attrlabl>
+      </attr>
+      <attr>
+        <attrlabl>STR_TYPE</attrlabl>
+        <attrdef>Type of structure used to build the reef.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>PHOTO_LOC</attrlabl>
+        <attrdef>Location of photos of the artificial reef.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>PHOTO_NAME</attrlabl>
+        <attrdef>Photo name of the artificial reef.</attrdef>
+      </attr>
+    </detailed>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>South Carolina Department of Natural Resources</cntorg>
+        </cntorgp>
+        <cntpos>Spatial Data Manager</cntpos>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address>Rembert C. Dennis Building P.O. Box 167</address>
+          <city>Columbia</city>
+          <state>SC</state>
+          <postal>29202</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>803-734-9100</cntvoice>
+        <cntfax>803-734-7001</cntfax>
+        <cntemail>gisman@dnr.sc.gov</cntemail>
+      </cntinfo>
+    </distrib>
+    <distliab>See access and use constraints information.</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>File Geodatabase Feature Class</formname>
+        </digtinfo>
+        <digtopt />
+      </digform>
+    </stdorder>
+  </distinfo>
+  <metainfo>
+    <metd>20130218</metd>
+    <metc>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>SCDNR, Marine Resources Division, MRRI</cntorg>
+          <cntper>Jessica Boynton</cntper>
+        </cntorgp>
+        <cntpos>GIS Manager I</cntpos>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address>P.O. Box 12559</address>
+          <city>Charleston</city>
+          <state>SC</state>
+          <postal>29422</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>843-953-9163</cntvoice>
+        <cntfax>843-953-9820</cntfax>
+        <cntemail>boyntonj@dnr.sc.gov</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+    <mettc>local time</mettc>
+  </metainfo>
+</metadata>

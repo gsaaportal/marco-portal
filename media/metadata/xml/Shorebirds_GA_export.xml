@@ -1,0 +1,344 @@
+﻿<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>GADNR</origin>
+        <title>Shorebirds_GA</title>
+        <geoform>vector digital data</geoform>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>a. This dataset is based on the summaries of observed nesting activities along the Georgia coastline between 2010 and 2012. Nest counts were done at 18 locations, for 7 species, including brown pelican, laughing gull, royal tern, sandwich tern, least tern, gull-billed tern, and black skimmer. Colonies are visited several times (at least) throughout the nesting season to estimate a maximum number of nests, as well as determine whether the colony was productive or failed. These visits start as soon as a colony is active – usually late April to early May primary initiation, and continue until colony fails or fledging young. Data is collected in various methods (ground and aerial), depending on species and site accessibility. b. This data is derived from a number of partners on the Georgia Coast, all members of the Georgia Shorebird Alliance, as well as graduate students working on certain species. Partners include staff from Little St Simons Island, St Catherines Island, Little Cumberland Island, Cumberland Island National Park, and US Fish and Wildlife Service. The Nongame Conservation Section of Georgia DNR coordinates these efforts and maintains a single database</abstract>
+      <purpose>a. This GIS data set was created for the purpose of describing the location and species of seabird nesting along the Georgia coastline so that these nesting activities can be considered for any planned energy development or other coastal use activities.</purpose>
+    </descript>
+    <status>
+      <progress>Complete</progress>
+      <update>None planned</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>-81.644227</westbc>
+        <eastbc>-80.900769</eastbc>
+        <northbc>32.013871</northbc>
+        <southbc>30.748284</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>Seabirds</themekey>
+        <themekey>Black skimmer</themekey>
+        <themekey>Gull-billed tern</themekey>
+        <themekey>Royal tern</themekey>
+        <themekey>Shorebirds</themekey>
+        <themekey>Nesting</themekey>
+        <themekey>Sandwich tern</themekey>
+        <themekey>Brown pelican</themekey>
+        <themekey>Least tern</themekey>
+        <themekey>Laughing gull</themekey>
+      </theme>
+      <place>
+        <placekt>None</placekt>
+        <placekey>Georgia</placekey>
+        <placekey>southeast</placekey>
+      </place>
+    </keywords>
+    <accconst>None</accconst>
+    <useconst>Neither the State of South Carolina, the Department of Natural Resources, nor any of its employees, is responsible for any improper or incorrect use of the information described and/or contained herein, and assume no responsibility for the use of the information. The Georgia Department of Natural Resources should be acknowledged as the data source in products derived from these data. If you have additional constraints, this is the section to use. Neither the State of Georgia, the Department of Natural Resources, nor any of its employees, is responsible for any improper or incorrect use of the information described and/or contained herein, and assume no responsibility for the use of the information.</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>Nongame Conservation Section; Wildlife Resources Division, Georgia DNR</cntorg>
+          <cntper>Tim Keyes</cntper>
+        </cntorgp>
+        <cntpos>Wildlife Biologist</cntpos>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <address>One Conservation Way</address>
+          <city>Brunswick</city>
+          <state>GA</state>
+          <postal>31520</postal>
+        </cntaddr>
+        <cntvoice>910-262-3191</cntvoice>
+        <cntemail>tim.keyes@gadnr.org</cntemail>
+      </cntinfo>
+    </ptcontac>
+    <native> Version 6.2 (Build 9200) ; Esri ArcGIS 10.1.0.3035</native>
+  </idinfo>
+  <dataqual>
+    <attracc>
+      <attraccr>Coordinates taken in Field with hand-held GPSmap 60CSx Garmin units. Coordinates also collected from Google Earth.</attraccr>
+    </attracc>
+    <lineage>
+      <procstep>
+        <procdesc>c. GIS Processing: The GIS point feature class was created from lat/longs for each location.</procdesc>
+        <proccont>
+          <cntinfo>
+            <cntorgp>
+              <cntorg>SCDNR, MRRI</cntorg>
+              <cntper>Jessica Boynton</cntper>
+            </cntorgp>
+            <cntpos>GIS Manager I</cntpos>
+            <cntaddr>
+              <addrtype>physical</addrtype>
+              <address>217 Fort Johnson Rd.</address>
+              <city>Charleston</city>
+              <state>SC</state>
+              <postal>29412</postal>
+              <country>US</country>
+            </cntaddr>
+            <cntvoice>843-953-9163</cntvoice>
+            <cntfax>843-953-9820</cntfax>
+            <cntemail>boyntonj@dnr.sc.gov</cntemail>
+          </cntinfo>
+        </proccont>
+      </procstep>
+      <procstep>
+        <procdesc>b. Data processing: The nests were summed by species over a maximum of three years by species. An average and a coefficient of variance were computed. The following locations and species had less than three years: Little Tybee, Least Tern, 2 years; Burnt Pot Island, all species, 1 year; Wilmington Island Publix, Least Tern, 2 years; Little Egg Island Bar, Laughing Gull, 2 years; Cumberland Island, Least Tern, 2 years; Kingsland Publix, Least Tern, 2 years; Kings Bay Hanger, all species, 2 years, Pompey Island Rake, all species, 2 years, Wolf Island NWR, all species, 2 years, Little Cumberland Island, all species, 2 years; Bock's Board Packaging, all species, 1 year.</procdesc>
+        <proccont>
+          <cntinfo>
+            <cntorgp>
+              <cntorg>SCDNR, MRRI</cntorg>
+              <cntper>Jessica Boynton</cntper>
+            </cntorgp>
+            <cntpos>GIS Manager I</cntpos>
+            <cntaddr>
+              <addrtype>physical</addrtype>
+              <address>217 Fort Johnson Rd.</address>
+              <city>Charleston</city>
+              <state>SC</state>
+              <postal>29412</postal>
+              <country>US</country>
+            </cntaddr>
+            <cntvoice>843-953-9163</cntvoice>
+            <cntfax>843-953-9820</cntfax>
+            <cntemail>boyntonj@dnr.sc.gov</cntemail>
+          </cntinfo>
+        </proccont>
+      </procstep>
+      <procstep>
+        <procdesc>Seabird colony data are collected in several ways depending on the species and location. An attempt is made to survey each colony every 2 weeks, though there is variability in colony visitation. For example, during the 2011-2012 period a graduate student was working with Least Tern and so those colonies were visited several times a week. Most counts were done from the ground at the edge of a colony so birds were not disturbed, though the Least Tern colonies were counted with walk through surveys finding and marking every nest. The Brunswick Dredge Island colony was surveyed by aerial surveys where nests were counted from photographs, as well as a single walk through nest count during the peak of nesting season. Our aerial photographs are detailed enough to separate tern species such as Royal Tern and Sandwich Tern. Little Egg Island Bar Brown Pelican colony is typically counted from aerial photographs. The type of count is recorded in the Seabird Database.</procdesc>
+        <proccont>
+          <cntinfo>
+            <cntorgp>
+              <cntorg>GADNR</cntorg>
+              <cntper>Tim Keyes</cntper>
+            </cntorgp>
+            <cntpos>Wildlife Biologist</cntpos>
+            <cntaddr>
+              <addrtype>physical</addrtype>
+              <address>One Conservation Way</address>
+              <city>Brunswick</city>
+              <state>GA</state>
+              <postal>31520</postal>
+            </cntaddr>
+            <cntvoice>910-262-3191</cntvoice>
+            <cntemail>tim.keyes@gadnr.org</cntemail>
+          </cntinfo>
+        </proccont>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <direct>Vector</direct>
+    <ptvctinf>
+      <sdtsterm>
+        <sdtstype>Entity point</sdtstype>
+        <ptvctcnt>18</ptvctcnt>
+      </sdtsterm>
+    </ptvctinf>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <planar>
+        <mapproj>
+          <mapprojn>Transverse Mercator</mapprojn>
+          <transmer>
+            <sfctrmer>0.9996</sfctrmer>
+            <longcm>-81.0</longcm>
+            <latprjo>0.0</latprjo>
+            <feast>500000.0</feast>
+            <fnorth>0.0</fnorth>
+          </transmer>
+        </mapproj>
+        <planci>
+          <plance>coordinate pair</plance>
+          <coordrep>
+            <absres>0.0001</absres>
+            <ordres>0.0001</ordres>
+          </coordrep>
+          <plandu />
+        </planci>
+      </planar>
+      <geodetic>
+        <horizdn>D North American 1983</horizdn>
+        <ellips>GRS 1980</ellips>
+        <semiaxis>6378137.0</semiaxis>
+        <denflat>298.257222101</denflat>
+      </geodetic>
+    </horizsys>
+  </spref>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>Shorebirds_GA</enttypl>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Internal feature number.</attrdef>
+        <attrdefs>Esri</attrdefs>
+        <attrdomv>
+          <udom>Sequential unique whole numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape</attrlabl>
+        <attrdef>Feature geometry.</attrdef>
+        <attrdefs>Esri</attrdefs>
+        <attrdomv>
+          <udom>Coordinates defining the features.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>SiteID</attrlabl>
+        <attrdef>This is an automatically assigned ID as a site is entered into our Seabird database</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>SiteName</attrlabl>
+        <attrdef>This is the general location description.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>SiteCode</attrlabl>
+        <attrdef>This is the code associated with each location.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>County</attrlabl>
+        <attrdef>The county associated with each location.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Latitude</attrlabl>
+        <attrdef>General latitude associated with the location.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Longitude</attrlabl>
+        <attrdef>General longitude associated with the location.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>HabitatTyp</attrlabl>
+        <attrdef>Describes whether colony is a rooftop, barrier island beach, or sand bar/spit.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>BrnPelicn_</attrlabl>
+        <attrdef>Brown Pelican Average Nests: Average nests between 2010-2012</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>BrnPelicn1</attrlabl>
+        <attrdef>Brown Pelican CV: CV of average nests</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>LaughingGu</attrlabl>
+        <attrdef>Laughing Gull Average Nests: Average nests between 2010-2012</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Laughing_1</attrlabl>
+        <attrdef>Laughing Gull CV: CV of average nests</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>RoyalTern_</attrlabl>
+        <attrdef>Royal Tern Average Nests: Average nests between 2010-2012</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>RoyalTernC</attrlabl>
+        <attrdef>Royal Tern CV: CV of average nests</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>SandwichTe</attrlabl>
+        <attrdef>Sandwich Tern Average Nests: Average nests between 2010-2012</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Sandwich_1</attrlabl>
+        <attrdef>Sandwich Tern CV: CV of average nests</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>LeastTern_</attrlabl>
+        <attrdef>Least Tern Average Nests: Average nests between 2010-2012</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>LeastTern1</attrlabl>
+        <attrdef>Least Tern CV: CV of average nests</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Gullbilled</attrlabl>
+        <attrdef>GullBilled Tern Average Nests: Average nests between 2010-2012</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Gullbill_1</attrlabl>
+        <attrdef>GullBilled Tern CV: CV of average nests</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>BlackSkimm</attrlabl>
+        <attrdef>Black Skimmer Average Nests: Average nests between 2010-2012</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>BlackSki_1</attrlabl>
+        <attrdef>Black Skimmer CV: CV of average nests</attrdef>
+      </attr>
+    </detailed>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>South Carolina Department of Natural Resources</cntorg>
+        </cntorgp>
+        <cntpos>Spatial Data Manager</cntpos>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <address>1000 Assembly St.</address>
+          <city>Columbia</city>
+          <state>SC</state>
+          <postal>29201</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>803-734-9100</cntvoice>
+        <cntfax>803-734-7001</cntfax>
+        <cntemail>gisman@dnr.sc.gov</cntemail>
+      </cntinfo>
+    </distrib>
+    <distliab>See access and use constraints information.</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>File Geodatabase Feature Class</formname>
+        </digtinfo>
+        <digtopt />
+      </digform>
+    </stdorder>
+  </distinfo>
+  <metainfo>
+    <metd>20130218</metd>
+    <metc>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>SCDNR</cntorg>
+          <cntper>Jessica Boynton</cntper>
+        </cntorgp>
+        <cntpos>GIS Manager I</cntpos>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <address>217 Fort Johnson Rd.</address>
+          <city>Charleston</city>
+          <state>SC</state>
+          <postal>29412</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>843-953-9163</cntvoice>
+        <cntfax>843-953-9820</cntfax>
+        <cntemail>boyntonj@dnr.sc.gov</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+    <mettc>local time</mettc>
+  </metainfo>
+</metadata>

@@ -1,0 +1,283 @@
+﻿<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <title>StationUniverse</title>
+        <geoform>vector digital data</geoform>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>Marine Spatial Data: This dataset came from the Marine Resources Monitoring, Assessment and Prediction (MARMAP), Southeast Area Monitoring and Assessment: South Atlantic (SEAMAP-SA) Reef Fish Survey and the Southeast Fishery-Independent Survey (SEFIS) programs. The dataset is comprised of all established stations available for sampling by MARMAP, SEAMAP-SA and SEFIS. Each year, a number of stations are randomly selected from the station universe and targeted for that year; therefore every station within the station universe is not sampled every year. The station universe also may contain stations not presented in the species data collected for the GSAA project due to the random nature of station selection. The data were summarized into 1 x 1 minute latitude/longitude grids which provide the number of stations available within each grid. General overview: For forty years, the Marine Resources Research Institute (MRRI) at the South Carolina Department of Natural Resources (SCDNR), through the Marine Resources Monitoring, Assessment and Prediction (MARMAP) program, has conducted fisheries-independent research on groundfish, reef fish, ichthyoplankton, and coastal pelagic fishes within the region between Cape Lookout, North Carolina, and Ft Pierce, Florida. The overall mission of the program has been to determine distribution, relative abundance, and critical habitat of economically and ecologically important fishes of the South Atlantic Bight (SAB), and to relate these features to environmental factors and exploitation activities. Research toward fulfilling these goals has included trawl surveys (from 6-350 m depth); ichthyoplankton surveys; location and mapping of reef habitat; sampling of reefs throughout the SAB; life history and population studies of priority species; tagging studies of commercially important species and special studies directed at specific management problems in the region. Survey work has also provided a monitoring program that has allowed the standardized sampling of fish populations over time and development of an historical base for future comparisons of long-term trends. MARMAP has developed a long-term database for reef fish that has proven valuable in interpreting fisheries landings data and developing regulations for protecting reef fish resources. Restrictions on minimum sizes of most commercially important species make it difficult to monitor life history parameters and abundance data from samples collected from the fishery landings. MARMAP has been the only long-term program off the Atlantic coast of the southeastern United States that monitors reef fish composition, length frequency, abundance, and life history based on fishery-independent data in existence until recently. These data provide critical input for the assessments of stock status conducted by NOAA Fisheries, and greatly assist stock assessment scientists and the Council in the management of snapper/grouper complex of the South Atlantic Bight. To expand efforts in the SAB two additional monitoring programs were established; SEAMAP-SA Reef Fish (initiated in 2009) and SEFIS (initiated in 2010). Each program adopted sampling methodologies identical to those established by MARMAP when they joined the SAB Reef Fish Survey. MARMAP, SEAMAP-SA Reef Fish and SEFIS currently sample natural live bottom habitat from Cape Lookout, NC to the Ft. Pierce, FL area. The current main objectives for the survey are to: 1.) sample reef fishes in the snapper-grouper complex using a variety of gears in live bottom, rocky outcrop, high relief, and mud bottom habitats, 2.) collect detailed data for time series description of species’ annual composition and relative abundance, 3.) obtain population characteristics on fish species of interest through life history analysis, including age and growth, sex ratio, size and age of sexual maturation and transition, spawning season, fecundity, and diet, 4.) collect hydrographic data (e.g. depth, temperature, salinity, etc.) for comparison to fish abundance and composition indices, 5.) collect DNA samples from selected fish species for stock identification, and 6.) expand sampling effort in North Carolina and south Florida as well as reconnoiter new live bottom areas with underwater video to add to the existing long-term database housed at SCDNR/MARMAP. Priorities are dictated by the SouthEast Data, Assessment and Review (SEDAR) schedule and other management considerations.</abstract>
+      <purpose>This GIS dataset was created for the purpose of describing the distribution and relative abundance of the numerically dominant and economically important deep-water finfish species in southeastern coastal waters so that these biological resources can be considered for any planned energy development or other coastal use activities.</purpose>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <rngdates>
+          <begdate>19730101</begdate>
+          <enddate>20120101</enddate>
+        </rngdates>
+      </timeinfo>
+      <current>Unknown</current>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+      <update>None planned</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>-81.246405</westbc>
+        <eastbc>-75.048786</eastbc>
+        <northbc>35.329874</northbc>
+        <southbc>27.129755</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>Fisheries</themekey>
+        <themekey>Snapper-grouper complex</themekey>
+        <themekey>MARMAP</themekey>
+        <themekey>SEFIS</themekey>
+        <themekey>SCDNR</themekey>
+        <themekey>Fishery-independent</themekey>
+        <themekey>SEAMAP-SA Reef Fish Survey</themekey>
+      </theme>
+      <place>
+        <placekt>None</placekt>
+        <placekey>Florida</placekey>
+        <placekey>southeast</placekey>
+        <placekey>Georgia</placekey>
+        <placekey>North Carolina</placekey>
+        <placekey>South Atlantic Bight</placekey>
+        <placekey>South Carolina</placekey>
+      </place>
+    </keywords>
+    <accconst>None</accconst>
+    <useconst>1.) The use of the summary data provided in this database for any analysis or report must acknowledge the MARMAP and/or SEFIS program as the original data source. For information purposes, email the full citation of any publication made (printed or electronic) that cites this data source or any constituent part. Acknowledge the use of specific records from contributing MARMAP databases and recognize the limitations of data. 2.) Neither the State of South Carolina, the Department of Natural Resources, nor any of its employees, is responsible for any improper or incorrect use of the information described and/or contained herein, and assume no responsibility for the use of the information. The South Carolina Department of Natural Resources should be acknowledged as the data source in products derived from these data.</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>MARMAP, SCDNR</cntorg>
+          <cntper>Dr. Marcel Reichert</cntper>
+        </cntorgp>
+        <cntpos>Associate Scientist; Coastal Finfish Section Manager</cntpos>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <address>217 Fort Johnson Rd.</address>
+          <city>Charleston</city>
+          <state>SC</state>
+          <postal>29405</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>843-953-5778</cntvoice>
+        <cntfax>843-953-9820</cntfax>
+        <cntemail>reichertm@dnr.sc.gov</cntemail>
+      </cntinfo>
+    </ptcontac>
+    <native> Version 6.2 (Build 9200) ; Esri ArcGIS 10.1.0.3035</native>
+  </idinfo>
+  <dataqual>
+    <lineage>
+      <procstep>
+        <procdesc>GIS processing: 1.) One point layer was created where each point was the mid-point of a 1 x 1 minute grid cell where there was a MARMAP or SEFIS sampling station. 2.) A 1 x 1 min. grid of the whole offshore study area was created. 3.) A spatial selection was performed to select those 1 x 1 min. grid cells that contained MARMAP/SEFIS sampling stations. A new layer was created with just the selected grid cells. 4.) The mid-points from the species layer were spatially joined to the 1 x 1 min. grid layer to create a final grid layer.</procdesc>
+        <proccont>
+          <cntinfo>
+            <cntorgp>
+              <cntorg>SCDNR</cntorg>
+              <cntper>Jessica Boynton</cntper>
+            </cntorgp>
+            <cntpos>GIS Manager I</cntpos>
+            <cntaddr>
+              <addrtype>physical</addrtype>
+              <address>217 Fort Johnson Rd.</address>
+              <city>Charleston</city>
+              <state>SC</state>
+              <postal>29412</postal>
+              <country>US</country>
+            </cntaddr>
+            <cntvoice>843-953-9163</cntvoice>
+            <cntfax>843-953-9820</cntfax>
+            <cntemail>boyntonj@dnr.sc.gov</cntemail>
+          </cntinfo>
+        </proccont>
+      </procstep>
+      <procstep>
+        <procdesc>The number of stations were determined for each 1 x 1 min grid cell.</procdesc>
+        <proccont>
+          <cntinfo>
+            <cntorgp>
+              <cntorg>SCDNR, MARMAP</cntorg>
+              <cntper>Michelle Pate</cntper>
+            </cntorgp>
+            <cntpos>Wildlife Biologist I</cntpos>
+            <cntaddr>
+              <addrtype>physical</addrtype>
+              <address>217 Fort Johnson Rd.</address>
+              <city>Charleston</city>
+              <state>SC</state>
+              <postal>29412</postal>
+              <country>US</country>
+            </cntaddr>
+            <cntvoice>843-953-9052</cntvoice>
+            <cntfax>843-953-9820</cntfax>
+            <cntemail>patem@dnr.sc.gov</cntemail>
+          </cntinfo>
+        </proccont>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <direct>Vector</direct>
+    <ptvctinf>
+      <sdtsterm>
+        <sdtstype>GT-polygon composed of chains</sdtstype>
+        <ptvctcnt>536</ptvctcnt>
+      </sdtsterm>
+    </ptvctinf>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <planar>
+        <mapproj>
+          <mapprojn>Transverse Mercator</mapprojn>
+          <transmer>
+            <sfctrmer>0.9996</sfctrmer>
+            <longcm>-81.0</longcm>
+            <latprjo>0.0</latprjo>
+            <feast>500000.0</feast>
+            <fnorth>0.0</fnorth>
+          </transmer>
+        </mapproj>
+        <planci>
+          <plance>coordinate pair</plance>
+          <coordrep>
+            <absres>0.0001</absres>
+            <ordres>0.0001</ordres>
+          </coordrep>
+          <plandu />
+        </planci>
+      </planar>
+      <geodetic>
+        <horizdn>D North American 1983</horizdn>
+        <ellips>GRS 1980</ellips>
+        <semiaxis>6378137.0</semiaxis>
+        <denflat>298.257222101</denflat>
+      </geodetic>
+    </horizsys>
+  </spref>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>StationUniverse</enttypl>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Internal feature number.</attrdef>
+        <attrdefs>Esri</attrdefs>
+        <attrdomv>
+          <udom>Sequential unique whole numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape</attrlabl>
+        <attrdef>Feature geometry.</attrdef>
+        <attrdefs>Esri</attrdefs>
+        <attrdomv>
+          <udom>Coordinates defining the features.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>NumStation</attrlabl>
+        <attrdef>The total number of stations set within a 1 x 1 minute grid cell.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Estab_By</attrlabl>
+        <attrdef>The program who established the monitoring station(s) within a 1 x 1 minute grid cell.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Mid_Lat</attrlabl>
+        <attrdef>This is the latitude for the center point for each 1 x 1 min. grid cell.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Mid_Long</attrlabl>
+        <attrdef>This is the longitude for the center point for each 1 x 1 min. grid cell.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>BLOCK</attrlabl>
+        <attrdef>The BLOCK number is the lat and long (lat degree lat min long degree long min) for the lower right corner of each 1 x 1 min. grid cell.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Shape_Length</attrlabl>
+        <attrdef>Length of feature in internal units.</attrdef>
+        <attrdefs>Esri</attrdefs>
+        <attrdomv>
+          <udom>Positive real numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape_Area</attrlabl>
+        <attrdef>Area of feature in internal units squared.</attrdef>
+        <attrdefs>Esri</attrdefs>
+        <attrdomv>
+          <udom>Positive real numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+    </detailed>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>South Carolina Department of Natural Resources</cntorg>
+        </cntorgp>
+        <cntpos>Spatial Data Manager</cntpos>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <address>1000 Assembly St.</address>
+          <city>Columbia</city>
+          <state>SC</state>
+          <postal>29201</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>803-734-9100</cntvoice>
+        <cntfax>803-734-7001</cntfax>
+        <cntemail>gisman@dnr.sc.gov</cntemail>
+      </cntinfo>
+    </distrib>
+    <distliab>See access and use constraints information.</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>File Geodatabase Feature Class</formname>
+        </digtinfo>
+        <digtopt />
+      </digform>
+    </stdorder>
+  </distinfo>
+  <metainfo>
+    <metd>20130218</metd>
+    <metc>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>SCDNR, MRRI</cntorg>
+          <cntper>Jessica Boynton</cntper>
+        </cntorgp>
+        <cntpos>GIS Manager I</cntpos>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <address>217 Fort Johnson Rd.</address>
+          <city>Charleston</city>
+          <state>SC</state>
+          <postal>29405</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>843-953-9163</cntvoice>
+        <cntfax>843-953-9820</cntfax>
+        <cntemail>boyntonj@dnr.sc.gov</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+    <mettc>local time</mettc>
+  </metainfo>
+</metadata>

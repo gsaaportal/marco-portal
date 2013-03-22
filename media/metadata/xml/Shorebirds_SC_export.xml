@@ -1,0 +1,361 @@
+﻿<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>Felicia Sanders, SCDNR</origin>
+        <title>Shorebirds_SC</title>
+        <geoform>vector digital data</geoform>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>This data set is based on summaries of observed nesting activities and presence of all bird species monitored by the SCDNR from 2006 through 2010 at several transient washover islands that are critical habitat used by these seabirds for nesting in South Carolina. Numbers are from nest counts or from estimates made from counting adults that appear to be incubating or brooding young. Nests counts were conducted by walking through the colony and counting nests with eggs or chicks. The number of wading bird nests at these sites is also included. Wading bird counts were primarily estimates from counting adults that were assumed to be nesting. Each site was only counted once, thus these numbers may not represent peak numbers of nests at the site. This data does not include all species that nest on a site. For example, laughing gulls, shorebirds, and uncommon species are not included. This data set does not include all sites in SC that have nesting seabirds, thus totaling all nests for a species during one year, may not be the total number of nests in SC for that species.</abstract>
+      <purpose>This GIS data set was created for the purpose of describing the location and types of seabird colonies that nest along the South Carolina coastline so that these nesting activities can be considered for any planned energy development or other coastal use activities.</purpose>
+    </descript>
+    <status>
+      <progress>Complete</progress>
+      <update>None planned</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>-80.868373</westbc>
+        <eastbc>-79.406281</eastbc>
+        <northbc>33.027592</northbc>
+        <southbc>32.049742</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>Seabird Colonies</themekey>
+        <themekey>Royal tern</themekey>
+        <themekey>Gull-billed tern</themekey>
+        <themekey>Snowy egret</themekey>
+        <themekey>Eastern brown pelican</themekey>
+        <themekey>Black skimmer</themekey>
+        <themekey>Common tern</themekey>
+        <themekey>Sandwich tern</themekey>
+        <themekey>Least tern</themekey>
+        <themekey>Tricolored heron</themekey>
+        <themekey>Glossy Ibis</themekey>
+        <themekey>Black-crowned night heron</themekey>
+        <themekey>Cattle egret</themekey>
+        <themekey>Great egret</themekey>
+      </theme>
+      <place>
+        <placekt>None</placekt>
+        <placekey>Castle Pinckney</placekey>
+        <placekey>South Carolina</placekey>
+        <placekey>Deveaux Bank</placekey>
+        <placekey>Marsh Island</placekey>
+        <placekey>Bird Key</placekey>
+        <placekey>Tomkins Island</placekey>
+        <placekey>Crab Bank</placekey>
+        <placekey>Lighthouse Island (south end)</placekey>
+        <placekey>White Banks</placekey>
+      </place>
+    </keywords>
+    <accconst>None</accconst>
+    <useconst>Neither the State of South Carolina, the Department of Natural Resources, nor any of its employees, is responsible for any improper or incorrect use of the information described and/or contained herein, and assume no responsibility for the use of the information. The South Carolina Department of Natural Resources should be acknowledged as the data source in products derived from these data.</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>South Carolina Department of Natural Resources</cntorg>
+          <cntper>Felicia Sanders</cntper>
+        </cntorgp>
+        <cntpos>Wildlife Biologist</cntpos>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address>Santee Coastal Reserve</address>
+          <address>P.O.Box 37</address>
+          <city>McClellanville</city>
+          <state>SC</state>
+          <postal>29458</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>843-520-0961</cntvoice>
+        <cntemail>sandersf@dnr.sc.gov</cntemail>
+      </cntinfo>
+    </ptcontac>
+    <native> Version 6.2 (Build 9200) ; Esri ArcGIS 10.1.0.3035</native>
+  </idinfo>
+  <dataqual>
+    <lineage>
+      <procstep>
+        <procdesc>Due to the transient and constantly changing nature of these island, a single point was used to represent the island. The point was placed on the island in a location that was present on all of the following 1 meter imagery: 2009 NAIP, 2006 DOQQ, 1999 DOQQ, and 1994 DOQQs. Numbers are from nest counts or from estimates made from counting adults that appear to be incubating or brooding young. Nests counts were conducted by walking through the colony and counting nests with eggs or chicks. The number of wading bird nests at these sites is also included. Wading bird counts were primarily estimates from counting adults that were assumed to be nesting. Each site was only counted once, thus these numbers may not represent peak numbers of nests at the site. This data does not include all species that nest on a site. For example, Laughing gulls, shorebirds, and uncommon species are not included. This data set does not include all sites in SC that have nesting seabirds, thus totaling all nests for a species during one year, may not be the total number of nests in SC for that species.</procdesc>
+        <srcused>\\Mrdnas\GIS\Boynton\GISProjects\2011\Other\Research\SCWindProject\Metadata\MetadataTemplate</srcused>
+        <procdate>20110615</procdate>
+        <proctime>102721</proctime>
+        <proccont>
+          <cntinfo>
+            <cntorgp>
+              <cntorg>SCDNR</cntorg>
+              <cntper>Jessica Boynton</cntper>
+            </cntorgp>
+            <cntpos>GIS Manager</cntpos>
+            <cntaddr>
+              <addrtype>physical</addrtype>
+              <address>217 Fort Johnson Rd.</address>
+              <city>Charleston</city>
+              <state>SC</state>
+              <postal>29412</postal>
+              <country>US</country>
+            </cntaddr>
+            <cntvoice>843-953-9163</cntvoice>
+            <cntfax>843-953-9820</cntfax>
+            <cntemail>boyntonj@dnr.sc.gov</cntemail>
+          </cntinfo>
+        </proccont>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <direct>Vector</direct>
+    <ptvctinf>
+      <sdtsterm>
+        <sdtstype>Entity point</sdtstype>
+        <ptvctcnt>8</ptvctcnt>
+      </sdtsterm>
+    </ptvctinf>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <planar>
+        <mapproj>
+          <mapprojn>Transverse Mercator</mapprojn>
+          <transmer>
+            <sfctrmer>0.9996</sfctrmer>
+            <longcm>-81.0</longcm>
+            <latprjo>0.0</latprjo>
+            <feast>500000.0</feast>
+            <fnorth>0.0</fnorth>
+          </transmer>
+        </mapproj>
+        <planci>
+          <plance>coordinate pair</plance>
+          <coordrep>
+            <absres>0.0001</absres>
+            <ordres>0.0001</ordres>
+          </coordrep>
+          <plandu />
+        </planci>
+      </planar>
+      <geodetic>
+        <horizdn>D North American 1983</horizdn>
+        <ellips>GRS 1980</ellips>
+        <semiaxis>6378137.0</semiaxis>
+        <denflat>298.257222101</denflat>
+      </geodetic>
+    </horizsys>
+  </spref>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>Shorebirds_SC</enttypl>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Internal feature number.</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Sequential unique whole numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape</attrlabl>
+        <attrdef>Feature geometry.</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Coordinates defining the features.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Site</attrlabl>
+        <attrdef>The name of the island.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Lat</attrlabl>
+        <attrdef>The latitude of the island.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>Long</attrlabl>
+        <attrdef>The longitude of the island.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>BrnPelAvg</attrlabl>
+        <attrdef>The average nests over five years (2006-2010) for Eastern Brown Pelicans.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>BrnPelCV</attrlabl>
+        <attrdef>Coefficient of variance.  Calculated by divided the standard deviation (for the five years 2006-2010) by the average number of nests for the same five year period for Eastern brown pelican.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>BlCrnNHAvg</attrlabl>
+        <attrdef>The average nests over five years (2006-2010) for Black-crowned night heron.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>BlCrnNHCV</attrlabl>
+        <attrdef>Coefficient of variance.  Calculated by divided the standard deviation (for the five years 2006-2010) by the average number of nests for the same five year period for Black-crowned night heron.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>GrtEgrtAvg</attrlabl>
+        <attrdef>The average nests over five years (2006-2010) for Great egret.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>GrtEgrtCV</attrlabl>
+        <attrdef>Coefficient of variance.  Calculated by divided the standard deviation (for the five years 2006-2010) by the average number of nests for the same five year period for Great egret.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>SnwEgrtAvg</attrlabl>
+        <attrdef>The average nests over five years (2006-2010) for Snowy egret.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>SnwEgrtCV</attrlabl>
+        <attrdef>Coefficient of variance.  Calculated by divided the standard deviation (for the five years 2006-2010) by the average number of nests for the same five year period for Snowy egret.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>TrCldHnAvg</attrlabl>
+        <attrdef>The average nests over five years (2006-2010) for Tricolored heron.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>TrCldHnCV</attrlabl>
+        <attrdef>Coefficient of variance.  Calculated by divided the standard deviation (for the five years 2006-2010) by the average number of nests for the same five year period for Tricolored heron.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>BlkSkmAvg</attrlabl>
+        <attrdef>The average nests over five years (2006-2010) for Black skimmer.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>BlkSkmCV</attrlabl>
+        <attrdef>Coefficient of variance.  Calculated by divided the standard deviation (for the five years 2006-2010) by the average number of nests for the same five year period for Black skimmer.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>CtlEgrtAvg</attrlabl>
+        <attrdef>The average nests over five years (2006-2010) for Cattle egret.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>CtlEgrtCV</attrlabl>
+        <attrdef>Coefficient of variance.  Calculated by divided the standard deviation (for the five years 2006-2010) by the average number of nests for the same five year period for Cattle egret.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>GlBldTnAvg</attrlabl>
+        <attrdef>The average nests over five years (2006-2010) for Gull-billed tern.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>GlBldTnCV</attrlabl>
+        <attrdef>Coefficient of variance.  Calculated by divided the standard deviation (for the five years 2006-2010) by the average number of nests for the same five year period for Gull-billed tern.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>WhtIbisAvg</attrlabl>
+        <attrdef>The average nests over five years (2006-2010) for White ibis.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>WhtIbisCV</attrlabl>
+        <attrdef>Coefficient of variance.  Calculated by divided the standard deviation (for the five years 2006-2010) by the average number of nests for the same five year period for White ibis.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>RylTrnAvg</attrlabl>
+        <attrdef>The average nests over five years (2006-2010) for Royal tern.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>RylTrnCV</attrlabl>
+        <attrdef>Coefficient of variance.  Calculated by divided the standard deviation (for the five years 2006-2010) by the average number of nests for the same five year period for Royal tern .</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>SdwchTnAvg</attrlabl>
+        <attrdef>The average nests over five years (2006-2010) for Sandwich tern.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>SdwchTnCV</attrlabl>
+        <attrdef>Coefficient of variance.  Calculated by divided the standard deviation (for the five years 2006-2010) by the average number of nests for the same five year period for Sandwich tern.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>GlsyIbsAvg</attrlabl>
+        <attrdef>The average nests over five years (2006-2010) for Glossy ibis.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>GlsyIbsCV</attrlabl>
+        <attrdef>Coefficient of variance.  Calculated by divided the standard deviation (for the five years 2006-2010) by the average number of nests for the same five year period for Glossy ibis.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>LstTrnAvg</attrlabl>
+        <attrdef>The average nests over five years (2006-2010) for Least tern.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>LstTrnCV</attrlabl>
+        <attrdef>Coefficient of variance.  Calculated by divided the standard deviation (for the five years 2006-2010) by the average number of nests for the same five year period for Least tern.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>CmmnTrnAvg</attrlabl>
+        <attrdef>The average nests over five years (2006-2010) for Common tern.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>CmmnTrnCV</attrlabl>
+        <attrdef>Coefficient of variance.  Calculated by divided the standard deviation (for the five years 2006-2010) by the average number of nests for the same five year period for Common tern.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>FrstrTnAvg</attrlabl>
+        <attrdef>The average nests over five years (2006-2010) for Forster's tern.</attrdef>
+      </attr>
+      <attr>
+        <attrlabl>FrstrTnCV</attrlabl>
+        <attrdef>Coefficient of variance.  Calculated by divided the standard deviation (for the five years 2006-2010) by the average number of nests for the same five year period for Forster's tern.</attrdef>
+      </attr>
+    </detailed>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>South Carolina Department of Natural Resources</cntorg>
+        </cntorgp>
+        <cntpos>Spatial Data Manager</cntpos>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address>Rembert C. Dennis Building P.O. Box 167</address>
+          <city>Columbia</city>
+          <state>SC</state>
+          <postal>29202</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>803-734-9100</cntvoice>
+        <cntfax>803-734-7001</cntfax>
+        <cntemail>gisman@dnr.sc.gov</cntemail>
+      </cntinfo>
+    </distrib>
+    <distliab>See access and use constraints information.</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>File Geodatabase Feature Class</formname>
+        </digtinfo>
+        <digtopt />
+      </digform>
+    </stdorder>
+  </distinfo>
+  <metainfo>
+    <metd>20130218</metd>
+    <metc>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>SCDNR, Marine Resources Division, MRRI</cntorg>
+          <cntper>Jessica Boynton</cntper>
+        </cntorgp>
+        <cntpos>GIS Manager I</cntpos>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address>P.O. Box 12559</address>
+          <city>Charleston</city>
+          <state>SC</state>
+          <postal>29422</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>843-953-9163</cntvoice>
+        <cntfax>843-953-9820</cntfax>
+        <cntemail>boyntonj@dnr.sc.gov</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+    <mettc>local time</mettc>
+  </metainfo>
+</metadata>
