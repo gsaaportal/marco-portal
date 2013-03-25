@@ -1,0 +1,21 @@
+<table>
+  {% if LegendGroups.MapServerLegendGroup.Heading %}
+    <thead>
+      <tr>
+        {{LegendGroups.MapServerLegendGroup.Heading}}
+      </tr>
+    </thead>
+  {% endif %}
+  <tbody>
+    {% for legendObj in LegendGroups.MapServerLegendGroup.LegendClasses.MapServerLegendClass %}
+      <tr>
+        <td><img border='0', src="data:image/png;base64,{{ legendObj.SymbolImage.ImageData }}", style='opacity:1'></img></td>
+        {% if legendObj.Label %}
+          <td>{{legendObj.Label}}</td>
+        {% else %}
+          <td></td>
+        {% endif %}
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

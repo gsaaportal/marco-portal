@@ -1,0 +1,15 @@
+<table>
+  <thead>
+    <tr>
+      {{units}}
+    </tr>
+  </thead>
+  <tbody>
+    {% for legendObj in legend %}
+      <tr>
+        <td><img border='0', src="data:{{ legendObj.contentType }};base64,{{ legendObj.imageData }}", style='opacity:1'></img></td>
+        <td>{{legendObj.label}}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
