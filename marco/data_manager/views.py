@@ -13,6 +13,7 @@ def get_json(request):
         "state": { "activeLayers": [] },
         "layers": [layer.toDict for layer in Layer.objects.filter(is_sublayer=False).exclude(layer_type='placeholder').order_by('name')],
         "themes": [theme.toDict for theme in Theme.objects.all().order_by('display_name')],
+        "topics": [topic.toDict for topic in Topic.objects.all().order_by('display_name')],          
         "success": True
     }
     return HttpResponse(simplejson.dumps(json))

@@ -3,6 +3,46 @@ from utils import get_domain
 from django.template.defaultfilters import slugify
 #from sorl.thumbnail import ImageField
 
+class Topic(models.Model):
+    display_name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
+    header_image = models.CharField(max_length=255, blank=True, null=True)
+    header_attrib = models.CharField(max_length=255, blank=True, null=True)
+    overview = models.TextField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    thumbnail = models.URLField(max_length=255, blank=True, null=True)
+
+    factsheet_thumb = models.CharField(max_length=255, blank=True, null=True)
+    factsheet_link = models.CharField(max_length=255, blank=True, null=True)
+
+    # not really using these atm    
+    feature_image = models.CharField(max_length=255, blank=True, null=True)
+    feature_excerpt = models.TextField(blank=True, null=True)
+    feature_link = models.CharField(max_length=255, blank=True, null=True)
+
+
+
+    def __unicode__(self):
+        return unicode('%s' % (self.name))
+
+    @property
+    def learn_link(self):
+        domain = get_domain(8000)
+        return '%s/learn/%s' %(domain, self.name)
+        
+    @property
+    def toDict(self):
+        layers = [layer.id for layer in self.layer_set.filter(is_sublayer=False).exclude(layer_type='placeholder')]
+        topics_dict = {
+            'id': self.id,
+            'display_name': self.display_name,
+            'learn_link': self.learn_link,
+            'layers': layers,
+            'description': self.description
+        }
+        return topics_dict
+
+
 class Theme(models.Model):
     display_name = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
@@ -58,6 +98,7 @@ class Layer(models.Model):
     arcgis_layers = models.CharField(max_length=255, blank=True, null=True)
     sublayers = models.ManyToManyField('self', blank=True, null=True)
     themes = models.ManyToManyField("Theme", blank=True, null=True)
+    topics = models.ManyToManyField("Topic", blank=True, null=True)
     is_sublayer = models.BooleanField(default=False)
     legend = models.CharField(max_length=255, blank=True, null=True)
     legend_title = models.CharField(max_length=255, blank=True, null=True)
@@ -250,7 +291,8 @@ class Layer(models.Model):
             'legend': self.legend,
             'legend_title': self.legend_title,
             'legend_subtitle': self.legend_subtitle,
-            'description': self.description,
+            #'description': self.description,
+            'description': self.data_overview,
             'overview': self.data_overview,
             'data_source': self.data_source,
             'data_notes': self.data_notes,
