@@ -1025,6 +1025,9 @@ function viewModel() {
     self.activeInfoSublayer = ko.observable(false);
 
     // attribute data
+    self.attributeTitle = ko.observable(false);
+    self.attributeData = ko.observable(false);
+    
     self.aggregatedAttributes = ko.observable(false);
     self.aggregatedAttributesWidth = ko.observable('280px');
     self.aggregatedAttributes.subscribe( function() {
