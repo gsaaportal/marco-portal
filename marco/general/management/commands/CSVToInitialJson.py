@@ -188,7 +188,8 @@ class Layer(object):
     self.legend_title = "" 
     self.sublayers = []
     self.restName = ""
-  
+    self.slug_name = ""
+    
   def buildLegendFile(self, legendDirectory, templateFilename, serverVersion):
     legendFilename = None    
     if(self.legend and len(self.legend)):      
@@ -236,6 +237,8 @@ class Layer(object):
     self.themes.append(themeObj.pk)
     if(len(self.name) == 0):
       self.name = restLayerInfo.__getattr__('name')
+    
+    self.slug_name = self.name.lower().replace(' ', '-')
     
     if(len(hoverDescription)):
       self.description = hoverDescription
@@ -539,7 +542,7 @@ class Command(BaseCommand):
                     if(field['name'] not in ignoreList):
                       names.append(field['name'])
                       aliases.append(field['alias'])
-                  queryFile.write("Layer: %s,\"%s\",\"%s\"" % (layerObj.name,",".join(names),",".join(aliases)))  
+                  queryFile.write("\"%s\",\"%s\",\"%s\"" % (layerObj.name,",".join(names),",".join(aliases)))  
                   queryFile.write("\n")
                 else:
                   queryFile.write("Layer: %s\n" % (layerObj.name))
