@@ -192,7 +192,13 @@ function layerModel(options, parent) {
         //remove sublayer
         if (layer.activeSublayer()) {
             self.deactivateSublayer();
-        } 
+        }
+        //DWR
+        //Deactivate the identifyControl on the layer if it has one.
+        if("identifyControl" in layer)
+        {            
+          layer.identifyControl.deactivate();
+        }
         
         layer.layer = null;
 
@@ -864,6 +870,27 @@ function viewModel() {
     
     self.visibleLayers.subscribe( function() {
         self.updateAttributeLayers();
+        //DWR
+        //Disable the identifyControl on layers that have it when they are no longer visible.
+        var firstVisLayer = self.visibleLayers()[0];
+        //Disable the identify controls
+        $.each(self.activeLayers(), function(i, layer) {
+          if("identifyControl" in layer)               //User has clicked the Identify button
+            
+          {
+            //If the layer is the first visible layer, enable the identify control.
+            if((app.viewModel.identifyFeatureActive()) &&
+               (layer === firstVisLayer))
+            {
+              layer.identifyControl.activate();
+            }
+            else
+            {
+              layer.identifyControl.deactivate();
+            }
+          }          
+        });
+        
     });
     
     self.attributeLayers = ko.observable();
@@ -1552,27 +1579,6 @@ function viewModel() {
         app.updateUrl();
 
     });
-    self.visibleLayers.subscribe(function()
-      {
-        var firstVisLayer = self.visibleLayers()[0];
-        //Disable the identify controls
-        $.each(self.activeLayers(), function(i, layer) {
-          if("identifyControl" in layer)               //User has clicked the Identify button
-            
-          {
-            //If the layer is the first visible layer, enable the identify control.
-            if((app.viewModel.identifyFeatureActive()) &&
-               (layer === firstVisLayer))
-            {
-              layer.identifyControl.activate();
-            }
-            else
-            {
-              layer.identifyControl.deactivate();
-            }
-          }          
-        });
-      });
     
     self.deactivateAllLayers = function() {
         //$.each(self.activeLayers(), function (index, layer) {
