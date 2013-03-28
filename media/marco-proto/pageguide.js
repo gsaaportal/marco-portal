@@ -26,6 +26,18 @@ var defaultGuide = {
       arrow: {offsetX: 65, offsetY: 10}
     },
     {
+      target: '#identifyTab',
+      content: $('#help-text-identifyTab').html(),
+      direction: 'top',
+      arrow: {offsetX: 65, offsetY: 10}
+    },    
+    {
+      target: '#topics-frame',
+      content: $('#help-text-topicsButtons').html(),
+      direction: 'top',
+      arrow: {offsetX: 5, offsetY: 10}
+    },    
+    {
       target: '.olControlZoom',
       content: $('#help-text-olControlZoom').html(),
       direction: 'right',
@@ -104,7 +116,15 @@ var defaultGuideOverrides = {
         } else if ($(this).data('idx') === 2) {
             app.viewModel.showLayers(true);
             $('#activeTab').tab('show');
-        } else {
+        }
+        //DWR
+        //The right toolbar.
+        else if ($(this).data('idx') === 6)
+        {
+          $('#pageGuideMessage').height(165);          
+        }
+
+        else {
             //app.viewModel.showLayers(true);
             //$('#dataTab').tab('show');
             //$('#basemaps').addClass('open');
