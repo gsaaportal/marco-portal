@@ -80,10 +80,11 @@ app.viewModel.loadLayersFromServer().done(function() {
 
 // initialize the map
 app.init();
-// Google.v3 uses EPSG:900913 as projection, so we have to
-// transform our coordinates
-app.map.setCenter(new OpenLayers.LonLat(-73.24, 38.93).transform(
-new OpenLayers.Projection("EPSG:4326"), new OpenLayers.Projection("EPSG:900913")), 7);
+//DWR
+app.map.setCenter(new OpenLayers.LonLat(-73.852, 31.933).transform(
+  new OpenLayers.Projection("EPSG:4326"),
+  new OpenLayers.Projection("EPSG:102113")), 6);
+
 
 $(document).ready(function() {
   app.onResize();
