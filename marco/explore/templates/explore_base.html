@@ -83,7 +83,7 @@
                                     <div class="row-fluid">
                                         <div class="span4">
                                             <a href="/portal">
-                                                <img src="/portal/wp-content/themes/marco/img/marco-logo.gif"/>
+                                                <img src="{{MEDIA_URL}}marco/img/gsaa-logo.jpg"/>
                                             </a>
                                         </div>
                                         <div class="span8">
@@ -96,13 +96,13 @@
                                             <div class="pull-right nav-collapse">
                                                 <ul class="nav">
                                                     <li>
-                                                        <a a href="/portal/news">News</a>
+                                                        <a a href="http://129.252.139.124/webtest/gsaa/news.html">News</a>
                                                     </li>
                                                     <li class="">
-                                                        <a href="/portal/about">About the&nbsp;Portal</a>
+                                                        <a href="http://129.252.139.124/webtest/gsaa/about.html">About the&nbsp;Portal</a>
                                                     </li>
                                                     <li>
-                                                        <a href="http://www.midatlanticocean.org/">Visit MARCO</a>
+                                                        <a href="http://www.southatlanticalliance.org/">Visit GSAA</a>
                                                     </li>
                                                 </ul>
                                                 <form class="form-search pull-right" action="/portal/" method="get">
@@ -165,29 +165,14 @@
                                         <div id="sidebar-nav">
                                             <div>
                                                 <h3>
-                                                    <a href="{{domain8010}}/portal/learn">Learn</a>
+                                                    <a href="/learn">Learn</a>
                                                 </h3>
                                                 <ul>
-                                                    <li {% if theme.name == 'administrative' %}class="active"{% endif %}>
-                                                        <a href="{{domain}}/learn/administrative">Administrative</a>
+                                                    <li {% if topic.name == 'habitat' %}class="active"{% endif %}>
+                                                        <a href="/topic">Habitat</a>
                                                     </li>
-                                                    <li {% if theme.name == 'fishing' %}class="active"{% endif %}>
-                                                        <a href="{{domain}}/learn/fishing">Fishing</a>
-                                                    </li>
-                                                    <li {% if theme.name == 'conservation' %}class="active"{% endif %}>
-                                                        <a href="{{domain}}/learn/conservation">Marine Life</a>
-                                                    </li>
-                                                    <li {% if theme.name == 'maritime-industries' %}class="active"{% endif %}>
-                                                        <a href="{{domain}}/learn/maritime-industries">Maritime</a>
-                                                    </li>
-                                                    <li {% if theme.name == 'recreation' %}class="active"{% endif %}>
-                                                        <a href="{{domain}}/learn/recreation">Recreation</a>
-                                                    </li>
-                                                    <li {% if theme.name == 'energy' %}class="active"{% endif %}>
-                                                        <a href="{{domain}}/learn/energy">Renewable Energy</a>
-                                                    </li>
-                                                    <li {% if theme.name == 'security' %}class="active"{% endif %}>
-                                                        <a href="{{domain}}/learn/security">Security</a>
+                                                    <li {% if topic.name == 'sediment' %}class="active"{% endif %}>
+                                                        <a href="/topic">Sediment</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -199,7 +184,6 @@
                                                 <ul>
                                                     {% load flatblock_tags %}
                                                     <li {% if request.path == '/explore/catalog' %}class="active"{% endif %}><a href="{{domain}}/explore/catalog">{% flatblock "data_catalog_title" %}</a></li>
-                                                    <li {% if request.path == '/explore/needs' %}class="active"{% endif %}><a href="{{domain}}/explore/needs">{% flatblock "data_needs_title" %}</a></li>
                                                 </ul>
                                             </div>
                                             <div id="recent-posts-3" class="widget widget_recent_entries">
@@ -208,9 +192,6 @@
                                                 </h3>
                                                 <ul>
                                                     <li><a href="/visualize" target="_blank">Marine Planner</a></li>
-                                                    <li><a href="{{domain8010}}/portal/visualize#cartography">Cartography</a></li>
-                                                    <li><a href="{{domain8010}}/portal/visualize#collaboration">Collaboration</a></li>
-                                                    <li><a href="{{domain8010}}/portal/visualize#interactivity">Interactivity</a></li>
                                                 </ul>
                                             </div>
                                             {% block sidebar %}
@@ -225,19 +206,22 @@
                                   <div class="row">
                                     <div class="span7 social">
                                       <h5>Contact Us</h5>
-                                        <a href="" data-toggle="modal" data-target="#feedback-modal">info@midatlanticocean.org</a><br>
-                                        732-263-5392
+                                        <a href="" data-toggle="modal" data-target="#feedback-modal"></a><br>
+                                        555-555-5555
                                       <p></p>
                                     </div>
                                     <div class="span3 social">
                                         <div class="pull-right">
+                                          <!--
                                             <h5>connect with us</h5>              
                                             <p class="pull-right">
                                                 <a href="/portal/feed/"><i class="icon-rss icon-large"></i></a>
                                                 <a href="https://twitter.com/PortalMARCO"><i class="icon-twitter icon-large"></i></a>
                                             </p>
+                                          -->
                                             <!-- <a href=""><i class="icon-linkedin icon-large"></i></a>
                                             <a href=""><i class="icon-google-plus icon-large"></i></a> -->
+                                            
                                         </div>
                                     </div>
                                     <div class="span2">
