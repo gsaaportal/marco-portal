@@ -70,8 +70,8 @@
         <script type="text/javascript">
 
           var _gaq = _gaq || [];
-          _gaq.push(['_setAccount', 'UA-35841423-1']);
-          _gaq.push(['_trackPageview']);
+          //_gaq.push(['_setAccount', 'UA-35841423-1']);
+          //_gaq.push(['_trackPageview']);
 
           (function() {
             var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
@@ -97,7 +97,9 @@
         <!-- END TOURS -->
         
         <!-- REGISTRATION MODALS -->
+        
         {% include "account-modals.html" %}
+        
         <!-- SIGN IN MODAL -->
                 
         <!-- END REGISTRATION MODALS -->
@@ -119,7 +121,7 @@
                                     <!--<li class=""><a href="">Help</a></li>-->
                                     <span class="user-btn">
                                         <a id="help-button" class="btn" href="#help-modal" data-toggle="modal">Help</a>
-                                      
+                                        <!--
                                         {% if user.is_authenticated %}
                                         <span class="btn-group">
                                           <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -137,6 +139,7 @@
                                         {% else %}
                                         <a id="#sign-in-button" class="btn" href="#sign-in-modal" data-toggle="modal">Sign In / Register</a>                            
                                         {% endif %}
+                                        -->
                                     </span>
                                 </div>
                             </div><!--/.nav-collapse -->
@@ -359,27 +362,6 @@
                     </div>
                 </div>
                 <!-- /Data Panel -->
-                <div id="topics-frame" class="frame span8">
-                  <div class="topics">
-                    <ul data-bind="foreach: topics ">
-                      <li>
-                        <div class="btn-group topic-btn-group">
-                          <a class="btn btn-info-sign" data-bind="click: toggleTopicDescription, css: { 'active': topicDescriptionActive() }">
-                              <i class="icon-info-sign icon-large"></i>
-                          </a>
-                          <a class="btn btn-topic" data-bind="click: $parent.topicChange, css: { 'active': topicActive(), 'not-active': ! topicActive() }">
-                              <div style="font-weight: normal">
-                                <span data-bind="text: display_name"></span>
-                              </div>
-                          </a>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <!--
-                <div class="topicsClearer"></div>
-                -->                
                 <!-- Map Panel (center panel) -->
                 {% if user.is_authenticated and user|in_group:"Designers" %}
                 <div id="map-panel" data-bind="css: { 'fullscreen-map': isFullScreen() && !showLayers() && !showLegend(), 'fullscreen-with-layers-authenticated': isFullScreen() && showLayers() && !showLegend(), 'fullscreen-with-legend': isFullScreen() && !showLayers() && showLegend(), 'fullscreen-with-legend-and-layers': isFullScreen() && showLayers() && showLegend(), 'shift-left': ! showLayers(), span12: !showLayers() && !showLegend(), span9: !showLayers() && showLegend(), span7: showLayers() && !showLegend(), span4: showLayers() && showLegend() }">       
@@ -531,19 +513,6 @@
                                             <a href="#" style="margin-left: 10px; opacity: .6;" class="btn btn-mini pull-right close" data-bind="click: closeDescription"> x </a> 
                                         </div>
                                     </div> 
-                                  <!-- Topic Description Overlay  style="display:none"-->
-                                    <div id ="topic-description-overlay" class="row-fluid" style="display: none" data-bind="visible: showTopicDescription()" >
-                                        <div class="span11">
-                                            <span class="title" data-bind="text: activeTopicInfo().display_name"></span> -- 
-                                            <span class="text" data-bind="text: activeTopicInfo().description"></span>
-                                            <span class="text">
-                                                <a class="btn btn-mini" data-bind="attr: { href: activeTopicInfo().learn_link }" target="_blank">Learn More...</a>
-                                            </span>  
-                                        </div>
-                                        <div class="span1">
-                                            <a href="#" style="margin-left: 10px; opacity: .6;" class="btn btn-mini pull-right close" data-bind="click: closeTopicDescription"> x </a> 
-                                        </div>
-                                    </div>
                                     
                                     <div id="overview-overlay" class="row-fluid" style="display: none" data-bind="visible: showOverview()" >
                                         <div id="overview-overlay-content" class="span12">
