@@ -14,6 +14,10 @@ from django.core.management.base import BaseCommand, CommandError
 from data_manager.models import *
 from esriRest import *
 
+def UnicodeDictReader(utf8_data, fieldNames, **kwargs):    
+    csv_reader = csv.DictReader(utf8_data, **kwargs)
+    for row in csv_reader:
+      yield dict([(key, unicode(value, 'utf-8')) for key, value in row.iteritems()])
 
 fieldNames = [
               "REST LAYER",
@@ -398,8 +402,10 @@ class Command(BaseCommand):
     topicDict = {}
     attributeList = []
     try:
-      inputFile = codecs.open(inputCSVFile, mode='rU', encoding="utf-8")
-      dataFile = csv.DictReader(inputFile, fieldNames)
+      #inputFile = codecs.open(inputCSVFile, mode='rU', encoding="utf-8")
+      #dataFile = csv.DictReader(inputFile, fieldNames)
+      inputFile = open(inputCSVFile, 'rU')
+      dataFile = UnicodeDictReader(inputFile, fieldNames)      
       outFile = codecs.open(outputJSONFile, mode='w', encoding="utf-8")
       queryFile = None
       if(queryFieldsOutDir):
@@ -456,6 +462,7 @@ class Command(BaseCommand):
           layerList.append(layerObj)          
           
           layerObj.pk = layerid 
+          layerid += 1
           if(len(line['DATA LAYER'])):
             layerObj.name = line['DATA LAYER']
           layerObj.data_notes = line["Comments"]
@@ -530,7 +537,7 @@ class Command(BaseCommand):
                   parentLayer.sublayers.append(layerObj.pk)
                   layerObj.sublayers.append(parentLayer.pk)
                   layerObj.is_sublayer = True
-              layerid += 1
+              #layerid += 1
               
               if(queryFieldsOutDir):
                 queryFields = esriRestEndpoint.__getattr__('fields')
