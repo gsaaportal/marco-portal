@@ -2,199 +2,232 @@
 {% block main %}
 {% load flatblock_tags %}
 
-<h2>{% flatblock "data_catalog_title" %}</h2>
-{% flatblock "data_catalog_intro" %}
 
-<div class="row-fluid search-row">
-    <div class="span12" style="margin: 15px 0;">
-        <h3>Data Layer Search</h3>
-        <form class="form-search layer-search">
-            <input type="text" class="search-box" data-provide="typeahead" data-bind="value: searchTerm, event: { keyup: keySearch }">
-            <a class="btn">
-                <i class="icon-remove icon-large"></i> 
-            </a>
-        </form>
+<div class="row-fluid">
+    <div class="span4 pull-right">
+        <b>The Data Catalog</b>
+        gathers available data and recruits new data about ocean resources and human use information such as fishing grounds, recreational areas, shipping lanes, habitat areas, and energy sites. Data falls into one of seven themes listed below. You can explore the data available under each theme, and you can also see the MARCO Portal’s key new data needs under Data Priorities.
+
+        <div class="search-row">
+            <div style="margin: 15px 0;">
+                <form class="form-search layer-search">
+                    <input type="text" class="search-box" data-provide="typeahead" value="Search the Catalog" data-bind="value: searchTerm, event: { keyup: keySearch }">
+                    <a class="btn">
+                        <i class="icon-remove icon-large"></i> 
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="span8 theme catalog-page accordion" id="theme-list">
+        {% for theme_dict in themes %}
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle theme-title theme-color-up" data-toggle="collapse" data-parent="theme-list" href="#{{ theme_dict.theme.name }}">
+                    <h3>
+                        {{ theme_dict.theme.display_name }} / {{ theme_dict.layers|length }} 
+                    </h3>
+                </a>
+            </div>
+            <div id="{{ theme_dict.theme.name }}" class="accordion-body collapse"> 
+                <div class="accordion-inner">
+                    {% if not theme_dict.layers %}
+                    <p>coming soon...</p>
+                    {% else %}
+                    <div class="accordion" id="{{theme_dict.theme.name}}-layer-list">
+                        <!-- foreach layer -->
+                        {% for layer in theme_dict.layers %}
+                            <div class="accordion-group">
+                                {% if layer.is_sublayer %}
+                                {% else %} 
+                                    {% if layer.is_parent %}   
+                                    <div class="accordion-heading">
+                                        <a class="accordion-toggle layer-name layer-color-up" data-toggle="collapse" data-parent="{{theme_dict.theme.name}}-layer-list" href="#{{layer.slug}}-links">
+                                        {{ layer.name }} / {{ layer.sublayer_list|length }}
+                                        </a>
+                                    </div>
+                                    <div id="{{layer.slug}}-links" class="accordion-body collapse">
+                                        <div class="accordion-inner">
+                                            <div class="accordion" id="{{layer.slug}}-sublayer-list">
+                                                <div class="accordion-group">
+                                                    {% for sublayer in layer.sublayer_list %}
+                                                        <div class="accordion-heading">
+                                                            <a class="accordion-toggle sublayer-name sublayer-color-up" data-toggle="collapse" data-parent="{{layer.slug}}-sublayer-list" href="#{{sublayer.slug}}-links">
+                                                            {{ sublayer.name }}
+                                                            </a>
+                                                        </div>
+                                                                            
+                                                        <div id="{{sublayer.slug}}-links" class="accordion-body collapse">
+                                                            <div class="accordion-inner">
+                                                                <ul class="unstyled">
+                                                                    <li>
+                                                                        {% if sublayer.bookmark_link %}
+                                                                        <a href="{{sublayer.bookmark_link}}" target="_blank">VIEW</a>
+                                                                        {% else %}
+                                                                        <span class="link-not-available">VIEW</span>
+                                                                        {% endif %}
+                                                                    </li>
+                                                                    <li>
+                                                                        {% if sublayer.kml %}
+                                                                        <a href="{{sublayer.kml}}" target="_blank">KML</a>
+                                                                        {% else %}
+                                                                        <span class="link-not-available">KML</span>
+                                                                        {% endif %}
+                                                                    </li>
+                                                                    <li>
+                                                                        {% if sublayer.data_download_link %}
+                                                                        <a href="{{sublayer.data_download_link}}" target="_blank">DATA</a>
+                                                                        {% else %}
+                                                                        <span class="link-not-available">DATA</span>
+                                                                        {% endif %}
+                                                                    </li>
+                                                                    <li>
+                                                                       {% if sublayer.metadata_link %}
+                                                                        <a href="{{sublayer.metadata_link}}" target="_blank">METADATA</a>
+                                                                        {% else %}
+                                                                        <span class="link-not-available">METADATA</span>
+                                                                        {% endif %}
+                                                                    </li>
+                                                                    <li>
+                                                                        {% if sublayer.source_link %}
+                                                                        <a href="{{sublayer.source_link}}" target="_blank">SOURCE</a>
+                                                                        {% else %}
+                                                                        <span class="link-not-available">SOURCE</span>
+                                                                        {% endif %}
+                                                                    </li>
+                                                                </ul>
+                                                                <div>
+                                                                    {{ sublayer.description }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% else %}   
+                                    <div class="accordion-heading">
+                                        <a class="accordion-toggle layer-name layer-color-up" data-toggle="collapse" data-parent="{{theme_dict.theme.name}}-layer-list" href="#{{layer.slug}}-links">
+                                        {{layer.name}}
+                                        </a>
+                                    </div>
+                                    <div id="{{layer.slug}}-links" class="accordion-body collapse">
+                                        <div class="accordion-inner">
+                                            <ul class="unstyled">
+                                                <li>
+                                                    {% if layer.bookmark_link %}
+                                                    <a href="{{layer.bookmark_link}}" target="_blank">VIEW</a>
+                                                    {% else %}
+                                                    <span class="link-not-available">VIEW</span>
+                                                    {% endif %}
+                                                </li>
+                                                <li>
+                                                    {% if layer.kml %}
+                                                    <a href="{{layer.kml}}" target="_blank">KML</a>
+                                                    {% else %}
+                                                    <span class="link-not-available">KML</span>
+                                                    {% endif %}
+                                                </li>
+                                                <li>
+                                                    {% if layer.data_download_link %}
+                                                    <a href="{{layer.data_download_link}}" target="_blank">DATA</a>
+                                                    {% else %}
+                                                    <span class="link-not-available">DATA</span>
+                                                    {% endif %}
+                                                </li>
+                                                <li>
+                                                   {% if layer.metadata_link %}
+                                                    <a href="{{layer.metadata_link}}" target="_blank">METADATA</a>
+                                                    {% else %}
+                                                    <span class="link-not-available">METADATA</span>
+                                                    {% endif %}
+                                                </li>
+                                                <li>
+                                                    {% if layer.source_link %}
+                                                    <a href="{{layer.source_link}}" target="_blank">SOURCE</a>
+                                                    {% else %}
+                                                    <span class="link-not-available">SOURCE</span>
+                                                    {% endif %}
+                                                </li>
+                                            </ul>
+                                            <div>
+                                                {{ layer.description }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif%}
+                                {% endif %}
+                            </div>
+                        {% endfor layers %}
+                    </div>
+                    {% endif %}
+                    <!-- end foreach layer -->
+                </div>
+            </div>
+        </div>
+        {% endfor themes%}
     </div>
 </div>
 
-{% for theme_dict in themes %}
-<div class="theme catalog-page">
-	<div class="theme-context">
-        <div class="row-fluid">
-            <div class="span6">
-                <a id="{{ theme_dict.theme.name }}"> </a>
-                <h3>
-                    {{ theme_dict.theme.display_name }}
-                </h3>
-                <p>
-                    {{ theme_dict.theme.description }} 
-                    <span class="pull-right"><a href="{{theme_dict.learn_link}}">Learn More... </a></span>
-                </p>  
-            </div>
-            <div class="span6">
-                <a href="{{theme_dict.learn_link}}">
-                    <div class="image">
-                        <img src="{{MEDIA_URL}}marco/img/themes/{{theme_dict.theme.name}}.jpg" alt="">
-                        <div class="caption">
-                          {{ theme_dict.theme.display_name }}
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-	</div>
-	<div>
-	    <div>
-            <h4>
-                <span class="theme-name" data-name="{{theme_dict.theme.name}}" data-thumbnail=" {{theme_dict.theme.thumbnail}} ">
-                    {{ theme_dict.theme.display_name }} Data Layers
-                </span>
-            </h4>
-	        <div>
-	            <div>
-	                <table class="table table-striped table-condensed">
-	                	<tbody>
-	                		<!-- foreach layer -->
-                            {% if not theme_dict.layers %}
-                                <p>coming soon...</p>
-                            {% else %}
-                            {% for layer in theme_dict.layers %}
-                                {% if layer.is_parent %}
-                                {% else %}
-                                <tr>
-                                    <td>
-                                        <div id="{{layer.slug}}" style="position:relative; top:-200px;"></div>
-                                        <span class="layer-name catalog-tooltip" rel="popover" 
-                                            data-name="{{layer.name}}" 
-                                            data-thumbnail="{{layer.thumbnail}}"
-                                            data-content="{% if layer.tooltip %} {{layer.tooltip}} {% endif %}">{{layer.name}}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <ul class="unstyled">
-                                            <li>
-                                                {% if layer.bookmark_link %}
-                                                <a href="{{layer.bookmark_link}}" target="_blank">
-                                                    <span rel="tooltip" title="{% flatblock "data_catalog_view_link_tooltip" %}">
-                                                        {% flatblock "data_catalog_view_link" %}
-                                                    </span>
-                                                </a>
-                                                {% else %}
-                                                <span class="link-not-available">
-                                                    {% flatblock "data_catalog_view_link" %}
-                                                </span>
-                                                {% endif %}
-                                            </li>
-                                            <!--
-                                            <li>
-                                                {% if layer.map_tiles %}
-                                                <a href="{{layer.map_tiles}}" target="_blank">
-                                                    <span rel="tooltip" title="{% flatblock "data_catalog_maptiles_link_tooltip" %}">
-                                                        {% flatblock "data_catalog_maptiles_link" %}
-                                                    </span>
-                                                </a>
-                                                {% else %}
-                                                <span class="link-not-available">
-                                                    {% flatblock "data_catalog_maptiles_link" %}
-                                                </span>
-                                                {% endif %}
-                                            </li>
-                                            -->
-                                            <li>
-                                                {% if layer.kml %}
-                                                <a href="{{layer.kml}}" target="_blank">
-                                                    <span rel="tooltip" title="{% flatblock "data_catalog_kml_link_tooltip" %}">
-                                                        {% flatblock "data_catalog_kml_link" %}
-                                                    </span>
-                                                </a>
-                                                {% else %}
-                                                <span class="link-not-available">
-                                                    {% flatblock "data_catalog_kml_link" %}
-                                                </span>
-                                                {% endif %}
-                                            </li>
-                                            <li>
-                                                {% if layer.data_download_link %}
-                                                <a href="{{layer.data_download_link}}" target="_blank">
-                                                    <span rel="tooltip" title="{% flatblock "data_catalog_data_link_tooltip" %}">
-                                                        {% flatblock "data_catalog_data_link" %}
-                                                    </span>
-                                                </a>
-                                                {% else %}
-                                                <span class="link-not-available">
-                                                    {% flatblock "data_catalog_data_link" %}
-                                                </span>
-                                                {% endif %}
-                                            </li>
-                                            <li>
-                                                {% if layer.description_link %}
-                                                <a href="{{layer.description_link}}">
-                                                    <span rel="tooltip" title="{% flatblock "data_catalog_factsheet_link_tooltip" %}">
-                                                        {% flatblock "data_catalog_factsheet_link" %}
-                                                    </span>
-                                                </a>
-                                                {% else %}
-                                                <span class="link-not-available">
-                                                    {% flatblock "data_catalog_factsheet_link" %}
-                                                </span>
-                                                {% endif %}
-                                            </li>
-                                            <li>
-                                               {% if layer.metadata_link %}
-                                                <a href="{{layer.metadata_link}}" target="_blank">
-                                                    <span rel="tooltip" title="{% flatblock "data_catalog_metadata_link_tooltip" %}">
-                                                        {% flatblock "data_catalog_metadata_link" %}
-                                                    </span>
-                                                </a>
-                                                {% else %}
-                                                <span class="link-not-available">
-                                                    {% flatblock "data_catalog_metadata_link" %}
-                                                </span>
-                                                {% endif %}
-                                            </li>
-                                            <li>
-                                                {% if layer.source_link %}
-                                                <a href="{{layer.source_link}}" target="_blank">
-                                                    <span rel="tooltip" title="{% flatblock "data_catalog_source_link_tooltip" %}">
-                                                        {% flatblock "data_catalog_source_link" %}
-                                                    </span>
-                                                </a>
-                                                {% else %}
-                                                <span class="link-not-available">
-                                                    {% flatblock "data_catalog_source_link" %}
-                                                </span>
-                                                {% endif %}
-                                            </li>
-                                            <li>
-                                                {% if layer.tiles_link %}
-                                                <a href="{{layer.tiles_link}}">
-                                                    <span rel="tooltip" title="{% flatblock "data_catalog_tiles_link_tooltip" %}">
-                                                        {% flatblock "data_catalog_tiles_link" %}
-                                                    </span>
-                                                </a>
-                                                {% else %}
-                                                <span class="link-not-available">
-                                                    {% flatblock "data_catalog_tiles_link" %}
-                                                </span>
-                                                {% endif %}
-                                            </li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                                {% endif %}
-                            {% endfor layers %}
-                            {% endif %}
-	                		<!-- end foreach layer -->
-	                	</tbody>
-	                </table>
-	           	</div>
-	        </div>
-	    </div>
-	</div>
-</div>
-{% endfor themes%}
-<!-- endforeach theme -->
+<style type="text/css">
+
+#theme-list .accordion-group {
+    border: 0px;
+}
+
+#theme-list .accordion-heading {
+    display: table;
+}
+
+#theme-list .accordion-toggle {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0px 15px;
+    height: 41px;
+}
+
+#theme-list .accordion-inner li {
+    padding-left: 0px;
+    padding-right: 10px;
+}
+
+#theme-list h3 {
+    margin: 0px;
+}
+
+#theme-list a {
+    text-decoration: none;
+}
+
+#theme-list .theme-color-up h3 {
+    color: rgba(45,137,152, 1);
+}
+
+#theme-list .theme-color-down h3 {
+    color: rgba(45,137,152, .5);
+}
+
+#theme-list .layer-color-up {
+    color: rgba(45,137,152, 1);
+}
+#theme-list .layer-color-down {
+    color: rgba(45,137,152, .5);
+}
+
+#theme-list .sublayer-color-up {
+    color: rgba(45,137,152, 1);
+}
+#theme-list .sublayer-color-down {
+    color: rgba(45,137,152, .5);
+}
+
+</style>
+
 {% endblock %}
+
 
 {% block javascript %}
 <script>
@@ -273,6 +306,41 @@
         $('.layer-name').popover({
             template: '<div class="popover layer-popover"><div class="arrow"></div><div class="popover-inner layer-tooltip"><div class="popover-content"><p></p></div></div></div>'
         });
+        
+        // MODIFIED DATA CATALOG
+        $('.theme-title').hover(function(e) { //trigger the mouseover event
+            $('.theme-title').removeClass('theme-color-up');
+            $('.theme-title').addClass('theme-color-down');
+            $(e.currentTarget).removeClass('theme-color-down');
+            $(e.currentTarget).addClass('theme-color-up');
+        }, function(e) { //trigger the mouseout event
+            $('.theme-title').removeClass('theme-color-down');
+            $('.theme-title').removeClass('theme-color-up');
+            $('.theme-title').addClass('theme-color-up');
+        });
+        
+        $('.layer-name').hover(function(e) { //trigger the mouseover event
+            $('.layer-namee').removeClass('layer-color-up');
+            $('.layer-name').addClass('layer-color-down');
+            $(e.currentTarget).removeClass('layer-color-down');
+            $(e.currentTarget).addClass('layer-color-up');
+        }, function(e) { //trigger the mouseout event
+            $('.layer-name').removeClass('layer-color-down');
+            $('.layer-name').removeClass('layer-color-up');
+            $('.layer-name').addClass('layer-color-up');
+        });
+        
+        $('.sublayer-name').hover(function(e) { //trigger the mouseover event
+            $('.sublayer-namee').removeClass('sublayer-color-up');
+            $('.sublayer-name').addClass('sublayer-color-down');
+            $(e.currentTarget).removeClass('sublayer-color-down');
+            $(e.currentTarget).addClass('sublayer-color-up');
+        }, function(e) { //trigger the mouseout event
+            $('.sublayer-name').removeClass('sublayer-color-down');
+            $('.sublayer-name').removeClass('sublayer-color-up');
+            $('.sublayer-name').addClass('sublayer-color-up');
+        });
+        
         
     });
 </script>
