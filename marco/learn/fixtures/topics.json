@@ -4,9 +4,8 @@
         "model": "learn.topic",
         "fields": {
             "layers": [
-                7,
-                92,
-                84
+                1
+
             ],
             "display_name": "Habitat Conservation",
             "name": "habitat_conservation",
@@ -18,8 +17,8 @@
         "model": "learn.topic",
         "fields": {
             "layers": [
-                89,
-                94
+                2
+
             ],
             "display_name": "Sediment Management",
             "name": "sediment_management",
