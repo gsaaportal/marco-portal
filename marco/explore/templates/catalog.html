@@ -11,7 +11,7 @@
         <div class="search-row">
             <div style="margin: 15px 0;">
                 <form class="form-search layer-search">
-                    <input type="text" class="search-box" data-provide="typeahead" value="Search the Catalog" data-bind="value: searchTerm, event: { keyup: keySearch }">
+                    <input type="text" class="search-box" data-provide="typeahead" placeholder="Search the Catalog" data-bind="value: searchTerm, event: { keyup: keySearch }">
                     <a class="btn">
                         <i class="icon-remove icon-large"></i> 
                     </a>
@@ -23,11 +23,11 @@
     
     <div class="span8 theme catalog-page accordion" id="theme-list">
         {% for theme_dict in themes %}
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                <a class="accordion-toggle theme-title theme-color-up" data-toggle="collapse" data-parent="theme-list" href="#{{ theme_dict.theme.name }}">
+        <div class="accordion-group theme-group">
+            <div class="accordion-heading theme-heading">
+                <a class="accordion-toggle theme-title color-up" data-toggle="collapse" data-parent="theme-list" href="#{{ theme_dict.theme.name }}">
                     <h3>
-                        {{ theme_dict.theme.display_name }} / {{ theme_dict.layers|length }} 
+                        <span class="theme-search-name">{{ theme_dict.theme.display_name }}</span> / {{ theme_dict.layers|length }} 
                     </h3>
                 </a>
             </div>
@@ -39,23 +39,23 @@
                     <div class="accordion" id="{{theme_dict.theme.name}}-layer-list">
                         <!-- foreach layer -->
                         {% for layer in theme_dict.layers %}
-                            <div class="accordion-group">
+                            <div class="accordion-group layer-group">
                                 {% if layer.is_sublayer %}
                                 {% else %} 
                                     {% if layer.is_parent %}   
-                                    <div class="accordion-heading">
-                                        <a class="accordion-toggle layer-name layer-color-up" data-toggle="collapse" data-parent="{{theme_dict.theme.name}}-layer-list" href="#{{layer.slug}}-links">
-                                        {{ layer.name }} / {{ layer.sublayer_list|length }}
+                                    <div class="accordion-heading layer-heading">
+                                        <a class="accordion-toggle layer-name color-up" data-toggle="collapse" data-parent="{{theme_dict.theme.name}}-layer-list" href="#{{layer.slug}}-links">
+                                            <span class="layer-search-name">{{ layer.name|upper }}</span> / {{ layer.sublayer_list|length }}
                                         </a>
                                     </div>
                                     <div id="{{layer.slug}}-links" class="accordion-body collapse">
                                         <div class="accordion-inner">
                                             <div class="accordion" id="{{layer.slug}}-sublayer-list">
-                                                <div class="accordion-group">
-                                                    {% for sublayer in layer.sublayer_list %}
-                                                        <div class="accordion-heading">
-                                                            <a class="accordion-toggle sublayer-name sublayer-color-up" data-toggle="collapse" data-parent="{{layer.slug}}-sublayer-list" href="#{{sublayer.slug}}-links">
-                                                            {{ sublayer.name }} 
+                                                {% for sublayer in layer.sublayer_list %}
+                                                    <div class="accordion-group sublayer-group">
+                                                        <div class="accordion-heading sublayer-heading">
+                                                            <a class="accordion-toggle sublayer-name color-up" data-toggle="collapse" data-parent="{{layer.slug}}-sublayer-list" href="#{{sublayer.slug}}-links">
+                                                            <span class="layer-search-name">{{ sublayer.name }}</span>
                                                             </a>
                                                         </div>
                                                                             
@@ -103,15 +103,15 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    {% endfor %}
-                                                </div>
+                                                    </div>
+                                                {% endfor %}
                                             </div>
                                         </div>
                                     </div>
                                     {% else %}   
-                                    <div class="accordion-heading">
-                                        <a class="accordion-toggle layer-name layer-color-up" data-toggle="collapse" data-parent="{{theme_dict.theme.name}}-layer-list" href="#{{layer.slug}}-links">
-                                        {{layer.name}}
+                                    <div class="accordion-heading layer-heading">
+                                        <a class="accordion-toggle layer-name color-up" data-toggle="collapse" data-parent="{{theme_dict.theme.name}}-layer-list" href="#{{layer.slug}}-links">
+                                            <span class="layer-search-name">{{ layer.name|upper }}</span>
                                         </a>
                                     </div>
                                     <div id="{{layer.slug}}-links" class="accordion-body collapse">
@@ -202,26 +202,35 @@
     text-decoration: none;
 }
 
-#theme-list .theme-color-up h3 {
+#theme-list .theme-heading .color-up h3 {
     color: rgba(45,137,152, 1);
 }
 
-#theme-list .theme-color-down h3 {
+#theme-list .theme-heading .color-down h3 {
     color: rgba(45,137,152, .5);
 }
 
-#theme-list .layer-color-up {
+#theme-list .layer-heading .color-up {
     color: rgba(45,137,152, 1);
 }
-#theme-list .layer-color-down {
+#theme-list .layer-heading .color-down {
     color: rgba(45,137,152, .5);
 }
 
-#theme-list .sublayer-color-up {
+#theme-list .sublayer-heading .color-up {
     color: rgba(45,137,152, 1);
 }
-#theme-list .sublayer-color-down {
+#theme-list .sublayer-heading .color-down {
     color: rgba(45,137,152, .5);
+}
+
+.blog .typeahead {
+    width: 28%;
+}
+
+.blog .typeahead li a {
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 </style>
@@ -236,8 +245,20 @@
             layer_index = {},
             search =  function(val) {
                 var layer = layer_index[val];
-                layer.layer.closest('tr').effect("pulsate", {times:2 }, 500);
-                setTimeout(function() {$(window).scrollTop(layer.layer.closest('tr').offset().top-200)}, 200);
+                //layer.layer.closest('tr').effect("pulsate", {times:2 }, 500);
+                if ( ! $(layer.layer).closest('.theme-group').find('.accordion-body').first().hasClass('in') ) {
+                    $(layer.layer).closest('.theme-group').find('.accordion-body').first().collapse('show');
+                }
+                if ( ! $(layer.layer).closest('.layer-group').find('.accordion-body').first().hasClass('in') ) {
+                    $(layer.layer).closest('.layer-group').find('.accordion-body').first().collapse('show');
+                }
+                if ( $(layer.layer).closest('.sublayer-group').find('.accordion-body').first().length ) {
+                    $(layer.layer).closest('.sublayer-group').find('.accordion-body').first().collapse('show');
+                    $(layer.layer).closest('.sublayer-group').find('.layer-search-name').effect("pulsate", {times:2}, 500);
+                } else {                    
+                    $(layer.layer).closest('.layer-group').find('.layer-search-name').first().effect("pulsate", {times:2}, 500);
+                }
+                setTimeout(function() {$(window).scrollTop(layer.layer.closest('.layer-group').offset().top-300)}, 200);
             };
 
         if (window.location.hash) {
@@ -246,9 +267,9 @@
 
         }
 
-        $('.theme').each( function(index, theme) {
-            var theme_name = $(theme).find('.theme-name').text();
-            $(theme).find('.layer-name').each( function(index, layer) {
+        $('.theme-group').each( function(index, theme) {
+            var theme_name = $(theme).find('.theme-search-name').text();
+            $(theme).find('.layer-search-name').each( function(index, layer) {
                 var name = $.trim($(layer).text()) + ' (' + $.trim(theme_name) + ')';
                 layers.push(name);
                 layer_index[name] = { 
@@ -256,15 +277,15 @@
                 };
             });
         });
+        
         $('.layer-search').find('input').typeahead( {
             source: layers.sort()
         });
+        
         $('.layer-search').submit(function (event) {
             event.preventDefault();
             search($(this).find('input').val());
         });
-        
-        
         
 
         $('.layer-search').on('keyup', 'input', function (event) {
@@ -273,8 +294,6 @@
                 search($(this).val());
             }
         });
-
-
 
         $('ul.typeahead').on('click', 'li', function () {
             search($(this).text());
@@ -308,37 +327,43 @@
         });
         
         // MODIFIED DATA CATALOG
-        $('.theme-title').hover(function(e) { //trigger the mouseover event
-            $('.theme-title').removeClass('theme-color-up');
-            $('.theme-title').addClass('theme-color-down');
-            $(e.currentTarget).removeClass('theme-color-down');
-            $(e.currentTarget).addClass('theme-color-up');
+        $('.theme-group').hover(function(e) { //trigger the mouseover event
+            $('.theme-title').removeClass('color-up');
+            $('.theme-title').addClass('color-down');
+            $(e.currentTarget).find('.theme-title').removeClass('color-down');
+            $(e.currentTarget).find('.theme-title').addClass('color-up');
+            $('#theme-list .in').siblings('.theme-heading').find('.theme-title').removeClass('color-down');
+            $('#theme-list .in').siblings('.theme-heading').find('.theme-title').addClass('color-up');
         }, function(e) { //trigger the mouseout event
-            $('.theme-title').removeClass('theme-color-down');
-            $('.theme-title').removeClass('theme-color-up');
-            $('.theme-title').addClass('theme-color-up');
+            $('.theme-title').removeClass('color-down');
+            $('.theme-title').removeClass('color-up');
+            $('.theme-title').addClass('color-up');
         });
         
-        $('.layer-name').hover(function(e) { //trigger the mouseover event
-            $('.layer-namee').removeClass('layer-color-up');
-            $('.layer-name').addClass('layer-color-down');
-            $(e.currentTarget).removeClass('layer-color-down');
-            $(e.currentTarget).addClass('layer-color-up');
+        $('.layer-group').hover(function(e) { //trigger the mouseover event
+            $('.layer-namee').removeClass('color-up');
+            $('.layer-name').addClass('color-down');
+            $(e.currentTarget).find('.layer-name').removeClass('color-down');
+            $(e.currentTarget).find('.layer-name').addClass('color-up');
+            $('#theme-list .in').siblings('.layer-heading').find('.layer-name').removeClass('color-down');
+            $('#theme-list .in').siblings('.layer-heading').find('.layer-name').addClass('color-up');
         }, function(e) { //trigger the mouseout event
-            $('.layer-name').removeClass('layer-color-down');
-            $('.layer-name').removeClass('layer-color-up');
-            $('.layer-name').addClass('layer-color-up');
+            $('.layer-name').removeClass('color-down');
+            $('.layer-name').removeClass('color-up');
+            $('.layer-name').addClass('color-up');
         });
         
         $('.sublayer-name').hover(function(e) { //trigger the mouseover event
-            $('.sublayer-namee').removeClass('sublayer-color-up');
-            $('.sublayer-name').addClass('sublayer-color-down');
-            $(e.currentTarget).removeClass('sublayer-color-down');
-            $(e.currentTarget).addClass('sublayer-color-up');
+            $('.sublayer-namee').removeClass('color-up');
+            $('.sublayer-name').addClass('color-down');
+            $(e.currentTarget).removeClass('color-down');
+            $(e.currentTarget).addClass('color-up');
+            $('#theme-list .in').siblings('.sublayer-heading').find('.sublayer-name').removeClass('color-down');
+            $('#theme-list .in').siblings('.sublayer-heading').find('.sublayer-name').addClass('color-up');
         }, function(e) { //trigger the mouseout event
-            $('.sublayer-name').removeClass('sublayer-color-down');
-            $('.sublayer-name').removeClass('sublayer-color-up');
-            $('.sublayer-name').addClass('sublayer-color-up');
+            $('.sublayer-name').removeClass('color-down');
+            $('.sublayer-name').removeClass('color-up');
+            $('.sublayer-name').addClass('color-up');
         });
         
         
