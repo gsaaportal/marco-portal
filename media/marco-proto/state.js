@@ -14,6 +14,7 @@ app.getState = function () {
         x: center.lon.toFixed(2),
         y: center.lat.toFixed(2), 
         z: app.map.getZoom(),
+        logo: app.viewModel.showLogo(),
         dls: layers.reverse(),
         basemap: app.map.baseLayer.name,
         themes: {ids: app.viewModel.getOpenThemeIDs()},
@@ -62,10 +63,12 @@ app.loadCompressedState = function(state) {
     });
     // turn on the layers that should be active
     if (state.dls) {
+        var unloadedDesigns = [];
         for (x=0; x < state.dls.length; x=x+3) {
             var id = state.dls[x+2],
                 opacity = state.dls[x+1],
                 isVisible = state.dls[x];
+                
             if (app.viewModel.layerIndex[id]) {
                 app.viewModel.layerIndex[id].activateLayer();
                 app.viewModel.layerIndex[id].opacity(opacity);
@@ -75,8 +78,18 @@ app.loadCompressedState = function(state) {
                         app.viewModel.layerIndex[id].toggleVisible();
                     }
                 }
+            } else {
+                unloadedDesigns.push({id: id, opacity: opacity, isVisible: isVisible});
             }
        }
+       if ( unloadedDesigns.length ) {
+            app.viewModel.unloadedDesigns = unloadedDesigns;
+            $('#designsTab').tab('show'); //to activate the loading of designs
+       }
+    }
+    
+    if (state.logo === 'false') {
+        app.viewModel.hideLogo();
     }
     
     if (state.print === 'true') {
@@ -109,6 +122,12 @@ app.loadCompressedState = function(state) {
             });
         } 
     }
+    
+    //if (app.embeddedMap) {
+    if ( $(window).width() < 768 || app.embeddedMap ) {
+        state.tab = "data";
+    }
+    
     // active tab -- the following prevents theme and data layers from loading in either tab (not sure why...disbling for now)
     // it appears the dataTab show in state.themes above was causing the problem...?
     // timeout worked, but then realized that removing datatab show from above worked as well...
@@ -118,8 +137,6 @@ app.loadCompressedState = function(state) {
         setTimeout( function() { $('#activeTab').tab('show'); }, 200 );
     } else if (state.tab && state.tab === "designs") {
         setTimeout( function() { $('#designsTab').tab('show'); }, 200 );
-    } else if (state.tab && state.tab === "reports") {
-        setTimeout( function() { $('#reportsTab').tab('show'); }, 200 );
     } else {
         setTimeout( function() { $('#dataTab').tab('show'); }, 200 );
     }
@@ -171,7 +188,7 @@ app.printMode = function () {
 // also hide logo and rules
 app.borderLess = function () {
     $('body').addClass('borderless');
-}
+};
 
 // load state from fixture or server
 

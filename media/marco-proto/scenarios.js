@@ -2,6 +2,8 @@
 var madrona = { 
     onShow: function(callback) { callback(); },
     setupForm: function($form) {
+        //var submitted = false;
+    
         $form.find('.btn-submit').hide();
 
         $form.find('label').each(function (i, label) {
@@ -17,13 +19,35 @@ var madrona = {
 
         $form.closest('.panel').on('click', '.submit_button', function(e) {
             e.preventDefault();
-            var $form = $(this).closest('.panel').find('form'),
-                url = $form.attr('action'),
+            var name = $('#id_name').val();
+            if ($.trim(name) === "") {  
+                $('#invalid-name-message').show();
+                return false;
+            } 
+            //submitted = true;
+            submitForm($form);
+        }); 
+        
+        //no longer needed...? (if it was going here it meant there was a problem)
+        /*
+        $form.submit( function() {
+            var name = $('#id_name').val();
+            if ($.trim(name) === "") {  
+                $('#invalid-name-message').show();
+                return false;
+            } 
+            if (!submitted) {
+                submitForm($form);
+            }
+        });
+        */
+        submitForm = function($form) {
+            //var $form = $(this).closest('.panel').find('form'),
+            var url = $form.attr('action'),
                 $bar = $form.closest('.tab-pane').find('.bar'),
-                
                 data = {},
                 barTimer;
-
+                
             //progress bar
             barTimer = setInterval(function () {
                 var width = parseInt($bar.css('width').replace('px', ''), 10) + 5,
@@ -53,9 +77,8 @@ var madrona = {
 
 
             app.viewModel.scenarios.scenarioForm(false);
-            app.viewModel.scenarios.loadingMessage("Creating Scenario");
-
-
+            app.viewModel.scenarios.loadingMessage("Creating Design");
+            
             $.ajax( {
                 url: url,
                 data: data,
@@ -77,14 +100,16 @@ var madrona = {
                     }
                 }
             });
-        }); 
+        };
+        
     }
 }; // end madrona init
 
 function scenarioFormModel(options) {
     var self = this;
     
-    self.leaseblocksLeft = ko.observable(app.viewModel.scenarios.leaseblockList.length);
+    var initial_leaseblocks_left = app.viewModel.scenarios.leaseblockList.length || 3426;
+    self.leaseblocksLeft = ko.observable(initial_leaseblocks_left);
     self.showLeaseblockSpinner = ko.observable(false);
     
     self.isLeaseblockLayerVisible = ko.observable(false);
@@ -119,9 +144,11 @@ function scenarioFormModel(options) {
     self.windSpeedParameter = ko.observable(false);
     self.distanceToShoreParameter = ko.observable(false);
     self.depthRangeParameter = ko.observable(false);
+    self.distanceToSubstationParameter = ko.observable(false);
     self.distanceToAWCParameter = ko.observable(false);
     self.distanceToShippingParameter = ko.observable(false);
     self.shipTrafficDensityParameter = ko.observable(false);
+    self.uxoParameter = ko.observable(false);
     
     self.toggleWindSpeedWidget = function() {
         if ( self.windSpeedParameter() ) {
@@ -180,6 +207,24 @@ function scenarioFormModel(options) {
         self.updateRemainingBlocks();
     };
     
+    self.toggleSubstationWidget = function() {
+        if ( self.distanceToSubstationParameter() ) {
+            $('#id_input_parameter_distance_to_substation').removeAttr('checked');
+            self.distanceToSubstationParameter(false);
+            $('#distance_to_substation_widget').css('display', 'none');
+        } else {
+            var value = $('#id_input_distance_to_substation')[0].value;
+            $('#id_input_parameter_distance_to_substation').attr('checked', 'checked');
+            self.distanceToSubstationParameter(true);
+            $('#distance_to_substation_widget').css('display', 'block');
+        }
+        //update scrollbar
+        self.updateDesignScrollBar();
+        //Update Remaining Leaseblocks 
+        self.updateFiltersAndLeaseBlocks();
+        self.updateRemainingBlocks();
+    };
+    
     self.toggleAWCWidget = function() {
         if ( self.distanceToAWCParameter() ) {
             $('#id_input_parameter_distance_to_awc').removeAttr('checked');
@@ -224,6 +269,21 @@ function scenarioFormModel(options) {
             var value = 1;
             self.shipTrafficDensityParameter(true);
             $('#id_input_filter_ais_density').attr('checked', 'checked');
+        }
+        //update scrollbar
+        self.updateDesignScrollBar();
+        //Update Remaining Leaseblocks 
+        self.updateFiltersAndLeaseBlocks();
+        self.updateRemainingBlocks();
+    };
+    
+    self.toggleUXOWidget = function() {
+        if ( self.uxoParameter() ) {
+            self.uxoParameter(false);
+            $('#id_input_filter_uxo').removeAttr('checked');
+        } else {
+            self.uxoParameter(true);
+            $('#id_input_filter_uxo').attr('checked', 'checked');
         }
         //update scrollbar
         self.updateDesignScrollBar();
@@ -314,6 +374,11 @@ function scenarioFormModel(options) {
             self.removeFilter('min_distance');
             self.removeFilter('max_distance');
         }
+        if ( self.distanceToSubstationParameter() ) {
+            self.updateFilters({'key': 'substation', 'value': $('#id_input_distance_to_substation')[0].value});
+        } else {
+            self.removeFilter('substation');
+        }
         if ( self.distanceToAWCParameter() ) {
             self.updateFilters({'key': 'awc', 'value': $('#id_input_distance_to_awc')[0].value});
         } else {
@@ -328,6 +393,11 @@ function scenarioFormModel(options) {
             self.updateFilters({'key': 'ais', 'value': 1});
         } else {
             self.removeFilter('ais');
+        }
+        if ( self.uxoParameter() ) {
+            self.updateFilters({'key': 'uxo', 'value': 1});
+        } else {
+            self.removeFilter('uxo');
         }
         self.updateLeaseblocksLeft();
     
@@ -351,6 +421,10 @@ function scenarioFormModel(options) {
                 self.filters['min_depth'] && list[i].avg_depth < self.filters['min_depth'] ) {
                 addOne = false;
             } 
+            if (self.filters['substation'] && 
+                (list[i].substation_min_distance > self.filters['substation'] || list[i].substation_min_distance === null) ) {
+                addOne = false;
+            } 
             if (self.filters['awc'] && list[i].awc_min_distance > self.filters['awc'] || 
                 list[i].awc_min_distance === null ) {
                 addOne = false;
@@ -359,6 +433,9 @@ function scenarioFormModel(options) {
                 addOne = false;
             }
             if (self.filters['ais'] && list[i].ais_mean_density > 1 ) {
+                addOne = false;
+            } 
+            if (self.filters['uxo'] && list[i].uxo !== 0 ) {
                 addOne = false;
             } 
             if (addOne) {
@@ -430,6 +507,20 @@ function scenarioFormModel(options) {
                     })
                 );
             }
+            if ( self.distanceToSubstationParameter() ) {
+                filter.filters.push(
+                    new OpenLayers.Filter.Comparison({ // if SUBSTAMIN <= self.filters['substation']
+                        type: OpenLayers.Filter.Comparison.LESS_THAN_OR_EQUAL_TO,
+                        property: "SUBSTAMIN", 
+                        value: self.filters['substation']
+                    }),
+                    new OpenLayers.Filter.Comparison({ // if SUBSTAMIN <= self.filters['substation']
+                        type: OpenLayers.Filter.Comparison.NOT_EQUAL_TO,
+                        property: "SUBSTAMIN", 
+                        value: 0
+                    })
+                );
+            }
             if ( self.distanceToAWCParameter() ) {
                 filter.filters.push(
                     new OpenLayers.Filter.Comparison({ // if AWCMI_MIN <= self.filters['awc']
@@ -454,6 +545,15 @@ function scenarioFormModel(options) {
                         type: OpenLayers.Filter.Comparison.LESS_THAN_OR_EQUAL_TO,
                         property: "AIS7_MEAN", 
                         value: 1
+                    })
+                );
+            }
+            if ( self.uxoParameter() ) {
+                filter.filters.push(
+                    new OpenLayers.Filter.Comparison({ // if UXO == 0
+                        type: OpenLayers.Filter.Comparison.EQUAL_TO,
+                        property: "UXO", 
+                        value: 0
                     })
                 );
             }
@@ -577,7 +677,7 @@ function selectionModel(options) {
                 //app.viewModel.scenarios.scenarioFormModel.updateFiltersAndLeaseBlocks();
             },
             error: function (result) { 
-                debugger; 
+                //debugger; 
             }
         });
     }; 
@@ -589,16 +689,22 @@ function selectionModel(options) {
         $.ajax({
             url: '/scenario/copy_design/' + selection.uid + '/',
             type: 'POST',
+            dataType: 'json',
             success: function(data) {
-                app.viewModel.scenarios.loadSelectionsFromServer();
+                //app.viewModel.scenarios.loadSelectionsFromServer();
+                app.viewModel.scenarios.addScenarioToMap(null, {uid: data[0].uid});
             },
             error: function (result) {
-                debugger;
+                //debugger;
             }
         })
-    }
+    };
+            
     self.deleteSelection = function() {
         var selection = this;
+        
+        //first deactivate the layer 
+        selection.deactivateLayer();
         
         //remove from activeLayers
         app.viewModel.activeLayers.remove(selection);
@@ -608,13 +714,15 @@ function selectionModel(options) {
         }
         //remove from selectionList
         app.viewModel.scenarios.selectionList.remove(selection);
+        //update scrollbar
+        app.viewModel.scenarios.updateDesignsScrollBar();
         
         //remove from server-side db (this should provide error message to the user on fail)
         $.ajax({
             url: '/scenario/delete_design/' + selection.uid + '/',
             type: 'POST',
             error: function (result) {
-                debugger;
+                //debugger;
             }
         })
     };
@@ -785,7 +893,7 @@ function IESelectionFormModel(options) {
                 app.map.addLayer(self.selectedLeaseBlocksLayer);
             },
             error: function (result) {
-                debugger;
+                //debugger;
             }
         })
     });
@@ -840,6 +948,7 @@ function scenarioModel(options) {
     self.id = options.uid || null;
     self.uid = options.uid || null;
     self.name = options.name;
+    self.featureAttributionName = self.name + ' -- DRAFT Report';
     self.description = options.description;
     self.shared = ko.observable();
     self.sharedByName = options.sharedByName || null;
@@ -918,6 +1027,12 @@ function scenarioModel(options) {
     
     self.toggleActive = function(self, event) {
         var scenario = this;
+        
+        // start saving restore state again and remove restore state message from map view
+        app.saveStateMode = true;
+        app.viewModel.error(null);
+        //app.viewModel.unloadedDesigns = [];
+        
         //app.viewModel.activeLayer(layer);
         if (scenario.active()) { // if layer is active, then deactivate
             scenario.deactivateLayer();
@@ -930,7 +1045,15 @@ function scenarioModel(options) {
     self.activateLayer = function() {
         var scenario = this;
         app.viewModel.scenarios.addScenarioToMap(scenario);
-        if ( scenario.isSelectionModel ) {
+        if (scenario.isDrawingModel ) {
+            
+        } else if ( scenario.isSelectionModel ) {
+            for (var i=0; i < app.viewModel.scenarios.activeSelections().length; i=i+1) {
+                if(app.viewModel.scenarios.activeSelections()[i].id === scenario.id) { 
+                    app.viewModel.scenarios.activeSelections().splice(i,1);
+                    i = i-1;
+                }
+            }
             app.viewModel.scenarios.activeSelections().push(scenario);
         }
     };
@@ -944,19 +1067,22 @@ function scenarioModel(options) {
         if ( scenario.isSelectionModel ) {
             var index = app.viewModel.scenarios.activeSelections().indexOf(scenario);
             app.viewModel.scenarios.activeSelections().splice(index, 1);
+            app.viewModel.scenarios.reports.updateChart();
         }
         
         scenario.opacity(scenario.defaultOpacity);
         app.setLayerVisibility(scenario, false);
         app.viewModel.activeLayers.remove(scenario);
         
+        app.viewModel.removeFromAggregatedAttributes(scenario.name);
+        /*    
         //remove the key/value pair from aggregatedAttributes
         delete app.viewModel.aggregatedAttributes()[scenario.name];
         //if there are no more attributes left to display, then remove the overlay altogether
         if ($.isEmptyObject(app.viewModel.aggregatedAttributes())) {
             app.viewModel.aggregatedAttributes(false);
         }
-    
+        */
     };
     
     self.editScenario = function() {
@@ -979,6 +1105,9 @@ function scenarioModel(options) {
                 if ($('#id_input_parameter_distance_to_shore').is(':checked')) {
                     app.viewModel.scenarios.scenarioFormModel.distanceToShoreParameter(true);
                 } 
+                if ($('#id_input_parameter_distance_to_substation').is(':checked')) {
+                    app.viewModel.scenarios.scenarioFormModel.distanceToSubstationParameter(true);
+                } 
                 if ($('#id_input_parameter_distance_to_awc').is(':checked')) {
                     app.viewModel.scenarios.scenarioFormModel.distanceToAWCParameter(true);
                 } 
@@ -988,10 +1117,13 @@ function scenarioModel(options) {
                 if ($('#id_input_filter_ais_density').is(':checked')) {
                     app.viewModel.scenarios.scenarioFormModel.shipTrafficDensityParameter(true);
                 } 
+                if ($('#id_input_filter_uxo').is(':checked')) {
+                    app.viewModel.scenarios.scenarioFormModel.uxoParameter(true);
+                } 
                 app.viewModel.scenarios.scenarioFormModel.updateFiltersAndLeaseBlocks();
             },
             error: function (result) { 
-                debugger; 
+                //debugger; 
             }
         });
     }; 
@@ -1003,17 +1135,22 @@ function scenarioModel(options) {
         $.ajax({
             url: '/scenario/copy_design/' + scenario.uid + '/',
             type: 'POST',
+            dataType: 'json',
             success: function(data) {
-                app.viewModel.scenarios.loadScenariosFromServer();
+                //app.viewModel.scenarios.loadSelectionsFromServer();
+                app.viewModel.scenarios.addScenarioToMap(null, {uid: data[0].uid});
             },
             error: function (result) {
-                debugger;
+                //debugger;
             }
         })
     };
-                
+        
     self.deleteScenario = function() {
         var scenario = this;
+        
+        //first deactivate the layer 
+        scenario.deactivateLayer();
         
         //remove from activeLayers
         app.viewModel.activeLayers.remove(scenario);
@@ -1023,13 +1160,15 @@ function scenarioModel(options) {
         }
         //remove from scenarioList
         app.viewModel.scenarios.scenarioList.remove(scenario);
+        //update scrollbar
+        app.viewModel.scenarios.updateDesignsScrollBar();
         
         //remove from server-side db (this should provide error message to the user on fail)
         $.ajax({
             url: '/scenario/delete_design/' + scenario.uid + '/',
             type: 'POST',
             error: function (result) {
-                debugger;
+                //debugger;
             }
         })
     };
@@ -1041,8 +1180,11 @@ function scenarioModel(options) {
         var scenario = this;
         
         if (scenario.visible()) { //make invisible
-            scenario.visible(false)
-            app.setLayerVisibility(scenario, false)
+            scenario.visible(false);
+            app.setLayerVisibility(scenario, false);
+            
+            app.viewModel.removeFromAggregatedAttributes(scenario.name);
+            
         } else { //make visible
             scenario.visible(true);
             app.setLayerVisibility(scenario, true);
@@ -1093,7 +1235,13 @@ function scenariosModel(options) {
     self.scenarioList = ko.observableArray();    
     self.scenarioForm = ko.observable(false);
     
+    self.activeSelections = ko.observableArray();
     self.selectionList = ko.observableArray(); 
+    self.selectionForm = ko.observable(false);
+    
+    self.drawingList = ko.observableArray();
+    self.drawingForm = ko.observable(false);
+    
     self.getSelectionById = function(id) {
         var selections = self.selectionList();
         for (var i=0; i<selections.length; i++) {
@@ -1104,9 +1252,6 @@ function scenariosModel(options) {
         return false;
     };
     
-    self.activeSelections = ko.observableArray();
-    
-    self.selectionForm = ko.observable(false);
         
     self.reportsVisible = ko.observable(false);
     self.showComparisonReports = function() {
@@ -1132,6 +1277,7 @@ function scenariosModel(options) {
         setTimeout(function() {
             app.viewModel.scenarios.reportsVisible(false);
             $('#designs-slide').show('slide', {direction: 'left'}, 300);
+            self.updateDesignsScrollBar();
         }, 420);
     };
     
@@ -1154,8 +1300,7 @@ function scenariosModel(options) {
     self.sharingLayer = ko.observable();
     self.showSharingModal = function(scenario) {
         self.sharingLayer(scenario);
-        self.sharingLayer().temporarilySelectedGroups.removeAll();
-        self.sharingLayer().temporarilySelectedGroups(self.sharingLayer().selectedGroups());
+        self.sharingLayer().temporarilySelectedGroups(self.sharingLayer().selectedGroups().slice(0));
         $('#share-modal').modal('show');
     };
     
@@ -1176,7 +1321,6 @@ function scenariosModel(options) {
     self.toggleGroup = function(obj) {
         var groupName = obj.group_name,
             indexOf = self.sharingLayer().temporarilySelectedGroups.indexOf(groupName);
-    
         if ( indexOf === -1 ) {  //add group to list
             self.sharingLayer().temporarilySelectedGroups.push(groupName);
         } else { //remove group from list
@@ -1228,6 +1372,25 @@ function scenariosModel(options) {
         return false;
     };
     
+    self.zoomToScenario = function(scenario) {
+        if (scenario.layer) {
+            var layer = scenario.layer;
+            if (!scenario.active()) {
+                scenario.activateLayer();
+            }
+            app.map.zoomToExtent(layer.getDataExtent());
+            if (scenario.uid.indexOf('leaseblockselection') !== -1) {
+                app.map.zoomOut();
+                app.map.zoomOut();
+            } else if (scenario.uid.indexOf('drawing') !== -1) {
+                app.map.zoomOut();
+                app.map.zoomOut();
+            } 
+        } else {
+            self.addScenarioToMap(scenario, {zoomTo: true});
+        }
+    }
+    
     self.updateSharingScrollBar = function(groupID) {
         var sharingScrollpane = $('#sharing-groups').data('jsp');
         if (sharingScrollpane === undefined) {
@@ -1254,29 +1417,59 @@ function scenariosModel(options) {
     self.selectionsLoaded = false;
     
     self.isScenariosOpen = ko.observable(false);
-    self.toggleScenariosOpen = function() {
+    self.toggleScenariosOpen = function(force) {
         // ensure designs tab is activated
         $('#designsTab').tab('show');
         
-        if ( self.isScenariosOpen() ) {
+        if (force === 'open') {
+            self.isScenariosOpen(true);
+        } else if (force === 'close') {
             self.isScenariosOpen(false);
         } else {
-            self.isScenariosOpen(true);
+            if ( self.isScenariosOpen() ) {
+                self.isScenariosOpen(false);
+            } else {
+                self.isScenariosOpen(true);
+            }
         }
         self.updateDesignsScrollBar();
     }        
     self.isCollectionsOpen = ko.observable(false);
-    self.toggleCollectionsOpen = function() {
+    self.toggleCollectionsOpen = function(force) {
         // ensure designs tab is activated
         $('#designsTab').tab('show');
         
-        if ( self.isCollectionsOpen() ) {
+        if (force === 'open') {
+            self.isCollectionsOpen(true);
+        } else if (force === 'close') {
             self.isCollectionsOpen(false);
         } else {
-            self.isCollectionsOpen(true);
+            if ( self.isCollectionsOpen() ) {
+                self.isCollectionsOpen(false);
+            } else {
+                self.isCollectionsOpen(true);
+            }
         }
         self.updateDesignsScrollBar();
-    }       
+    }           
+    self.isDrawingsOpen = ko.observable(false);
+    self.toggleDrawingsOpen = function(force) {
+        // ensure designs tab is activated
+        $('#designsTab').tab('show');
+        
+        if (force === 'open') {
+            self.isDrawingsOpen(true);
+        } else if (force === 'close') {
+            self.isDrawingsOpen(false);
+        } else {
+            if ( self.isDrawingsOpen() ) {
+                self.isDrawingsOpen(false);
+            } else {
+                self.isDrawingsOpen(true);
+            }
+        }
+        self.updateDesignsScrollBar();
+    }      
     
     self.updateDesignsScrollBar = function() {
         var designsScrollpane = $('#designs-accordion').data('jsp');
@@ -1302,11 +1495,25 @@ function scenariosModel(options) {
             self.removeSelectionForm();
         }
         
+        //clean up drawing form
+        if (self.drawingForm() || self.drawingFormModel) {
+            self.removeDrawingForm();
+        }
+        
         //remove the key/value pair from aggregatedAttributes
         app.viewModel.removeFromAggregatedAttributes(self.leaseblockLayer().name);
         app.viewModel.updateAttributeLayers();
         
         self.updateDesignsScrollBar();
+    };
+        
+    self.removeDrawingForm = function() {    
+        self.drawingFormModel.cleanUp();
+        self.drawingForm(false);
+        var drawingForm = document.getElementById('drawing-form');
+        $(drawingForm).empty();
+        ko.cleanNode(drawingForm);
+        delete self.drawingFormModel;
     };
     
     self.removeSelectionForm = function() {
@@ -1337,7 +1544,7 @@ function scenariosModel(options) {
             app.map.removeLayer(self.leaseblockLayer()); 
         }
     };
-
+    
     self.createWindScenario = function() {
         //hide designs tab by sliding left
         return $.ajax({
@@ -1352,7 +1559,9 @@ function scenariosModel(options) {
                     self.loadLeaseblockLayer();
                 }
             },
-            error: function (result) { debugger; }
+            error: function (result) { 
+                //debugger; 
+            }
         });
     };    
 
@@ -1372,9 +1581,31 @@ function scenariosModel(options) {
                 self.selectionFormModel = new IESelectionFormModel(); //new selectionFormModel();
                 ko.applyBindings(self.selectionFormModel, document.getElementById('selection-form'));
             },
-            error: function (result) { debugger; }
+            error: function (result) { 
+                //debugger; 
+            }
         });
-    };        
+    };   
+
+    self.createPolygonDesign = function() {
+        return $.ajax({
+            url: '/features/aoi/form/',
+            success: function(data) {
+                app.viewModel.scenarios.drawingForm(true);
+                $('#drawing-form').html(data);
+                app.viewModel.scenarios.drawingFormModel = new polygonFormModel();
+                ko.applyBindings(app.viewModel.scenarios.drawingFormModel, document.getElementById('drawing-form'));
+                //self.polygonFormModel.updateDesignScrollBar();
+            },
+            error: function (result) { 
+                //debugger; 
+            }
+        });
+    }; 
+
+    self.createLineDesign = function() {};
+
+    self.createPointDesign = function() {};    
     
     //
     self.addScenarioToMap = function(scenario, options) {
@@ -1382,7 +1613,9 @@ function scenariosModel(options) {
             opacity = .8,
             stroke = 1,
             fillColor = "#2F6A6C",
-            strokeColor = "#1F4A4C";
+            strokeColor = "#1F4A4C",
+            zoomTo = (options && options.zoomTo) || false;
+        
         if ( scenario ) {
             scenarioId = scenario.uid;
             scenario.active(true);
@@ -1390,10 +1623,17 @@ function scenariosModel(options) {
         } else {
             scenarioId = options.uid;
         }
-        if (scenarioId.indexOf('leaseblockselection') !== -1) {
-            var isSelectionModel = true;
+        
+        var isDrawingModel = false,
+            isSelectionModel = false,
+            isScenarioModel = false;
+        if (scenarioId.indexOf('drawing') !== -1) {
+            isDrawingModel = true;
+        }
+        else if (scenarioId.indexOf('leaseblockselection') !== -1) {
+            isSelectionModel = true;
         } else {
-            var isSelectionModel = false;
+            isScenarioModel = true;
         }
         if (self.scenarioFormModel) {
             self.scenarioFormModel.isLeaseblockLayerVisible(false);
@@ -1409,7 +1649,12 @@ function scenariosModel(options) {
                     opacity = scenario.opacity();
                     stroke = scenario.opacity();
                 } 
-                if ( isSelectionModel ) {
+                if ( isDrawingModel ) {
+                    fillColor = "#C9BE62";
+                    strokeColor = "#A99E42";
+                    //fillColor = "#EBE486";
+                    //strokeColor = "#CBC466";
+                } else if ( isSelectionModel ) {
                     fillColor = "#00467F";
                     strokeColor = "#00265F";
                 } 
@@ -1438,7 +1683,17 @@ function scenariosModel(options) {
                 } else { //create new scenario
                     //only do the following if creating a scenario
                     var properties = feature.features[0].properties;
-                    if (isSelectionModel) {
+                    if (isDrawingModel) {
+                        scenario = new drawingModel({
+                            id: properties.uid,
+                            uid: properties.uid,
+                            name: properties.name, 
+                            description: properties.description,
+                            features: layer.features
+                        });
+                        self.toggleDrawingsOpen('open');
+                        self.zoomToScenario(scenario);
+                    } else if (isSelectionModel) {
                         scenario = new selectionModel({
                             id: properties.uid,
                             uid: properties.uid,
@@ -1446,6 +1701,8 @@ function scenariosModel(options) {
                             description: properties.description,
                             features: layer.features
                         });
+                        self.toggleCollectionsOpen('open');
+                        self.zoomToScenario(scenario);
                     } else {
                         scenario = new scenarioModel({
                             id: properties.uid,
@@ -1454,6 +1711,8 @@ function scenariosModel(options) {
                             description: properties.description,
                             features: layer.features
                         });
+                        self.toggleScenariosOpen('open');
+                        self.zoomToScenario(scenario);
                     }
                     scenario.layer = layer;
                     scenario.layer.scenarioModel = scenario;
@@ -1472,7 +1731,7 @@ function scenariosModel(options) {
                             }
                         },
                         error: function (result) {
-                            debugger;
+                            //debugger;
                         }
                     
                     });
@@ -1480,7 +1739,16 @@ function scenariosModel(options) {
                     //in case of edit, removes previously stored scenario
                     //self.scenarioList.remove(function(item) { return item.uid === scenario.uid } );
                     
-                    if ( isSelectionModel ) {
+                    if ( isDrawingModel ) {
+                        var previousDrawing = ko.utils.arrayFirst(self.drawingList(), function(oldDrawing) {
+                            return oldDrawing.uid === scenario.uid;
+                        });
+                        if ( previousDrawing ) {
+                            self.drawingList.replace( previousDrawing, scenario );
+                        } else {
+                            self.drawingList.push(scenario);
+                        }
+                    } else if ( isSelectionModel ) {
                         var previousSelection = ko.utils.arrayFirst(self.selectionList(), function(oldSelection) {
                             return oldSelection.uid === scenario.uid;
                         });
@@ -1489,6 +1757,7 @@ function scenariosModel(options) {
                         } else {
                             self.selectionList.push(scenario);
                         }
+                        self.activeSelections().push(scenario);
                     } else {
                         var previousScenario = ko.utils.arrayFirst(self.scenarioList(), function(oldScenario) {
                             return oldScenario.uid === scenario.uid;
@@ -1499,7 +1768,6 @@ function scenariosModel(options) {
                             self.scenarioList.push(scenario);
                         }
                     }
-                    app.viewModel.scenarios.activeSelections().push(scenario)
                     
                     //self.scenarioForm(false);
                     self.reset();
@@ -1518,12 +1786,52 @@ function scenariosModel(options) {
                 app.viewModel.activeLayers.remove(function(item) { return item.uid === scenario.uid } );
                 app.viewModel.activeLayers.unshift(scenario);
                 
+                if (zoomTo) {
+                    self.zoomToScenario(scenario);
+                }
+                
             },
             error: function(result) {
-                debugger;
+                //debugger;
                 app.viewModel.scenarios.errorMessage(result.responseText.split('\n\n')[0]);
             }
         });
+    };
+    
+    // activate any lingering designs not shown during loadCompressedState
+    self.showUnloadedDesigns = function() {
+        var designs = app.viewModel.unloadedDesigns;
+        
+        if (designs && designs.length) {
+            for (var x=0; x < designs.length; x=x+1) {
+                var id = designs[x].id,
+                    opacity = designs[x].opacity,
+                    isVisible = designs[x].isVisible;
+                //debugger;    
+                if (app.viewModel.layerIndex[id]) {
+                    app.viewModel.layerIndex[id].opacity(opacity);
+                    //the following delay might help solve what appears to be a race condition 
+                    //that prevents the design in the layer list from displaying the checked box icon after loading
+                    setTimeout( function() {app.viewModel.layerIndex[id].activateLayer();}, 100);
+                    //must not be understanding something about js, but at the least the following seems to work now...
+                    //if (isVisible || !isVisible) {
+                        //if (isVisible !== 'true' && isVisible !== true) {
+                            //app.viewModel.layerIndex[id].toggleVisible();
+                        //}
+                    //}
+                    
+                    //replacing the following $.each with a for loop in an attempt to fix an occasional (non-lethal) error
+                    //in which the splice seemed to get ahead of the loop
+                    //$.each(app.viewModel.unloadedDesigns, function(i){
+                    for (var i=0; i < app.viewModel.unloadedDesigns.length; i=i+1) {
+                        if(app.viewModel.unloadedDesigns[i].id === id) { 
+                            app.viewModel.unloadedDesigns.splice(i,1);
+                            i = i-1;
+                        }
+                    }
+                }
+            }
+        }
     };
     
     self.loadScenariosFromServer = function() {
@@ -1534,9 +1842,10 @@ function scenariosModel(options) {
             success: function (scenarios) {
                 self.loadScenarios(scenarios);
                 self.scenariosLoaded = true;
+                self.showUnloadedDesigns();
             },
             error: function (result) {
-                debugger;
+                //debugger;
             }
         });
     };
@@ -1567,15 +1876,16 @@ function scenariosModel(options) {
             type: 'GET',
             dataType: 'json',
             success: function (selections) {
-                app.viewModel.scenarios.loadSelections(selections);
-                app.viewModel.scenarios.selectionsLoaded = true;
+                self.loadSelections(selections);
+                self.selectionsLoaded = true;
+                self.showUnloadedDesigns();
             },
             error: function (result) {
-                debugger;
+                //debugger;
             }
         });
     };
-    //populates selectionList..?
+    //populates selectionList
     self.loadSelections = function (selections) {
         self.selectionList.removeAll();
         $.each(selections, function (i, selection) {
@@ -1595,6 +1905,41 @@ function scenariosModel(options) {
         });
     };
     
+    self.loadDrawingsFromServer = function() {
+        $.ajax({
+            url: '/drawing/get_drawings',
+            type: 'GET',
+            dataType: 'json',
+            success: function (drawings) {
+                self.loadDrawings(drawings);
+                self.drawingsLoaded = true;
+                self.showUnloadedDesigns();
+            },
+            error: function (result) {
+                //debugger;
+            }
+        });
+    };
+    //populates selectionList
+    self.loadDrawings = function (drawings) {
+        self.drawingList.removeAll();
+        $.each(drawings, function (i, drawing) {
+            var drawingViewModel = new drawingModel({
+                id: drawing.uid,
+                uid: drawing.uid,
+                name: drawing.name,
+                description: drawing.description,
+                attributes: drawing.attributes,
+                shared: drawing.shared,
+                sharedByUsername: drawing.shared_by_username,
+                sharedByName: drawing.shared_by_name,
+                sharingGroups: drawing.sharing_groups
+            });
+            self.drawingList.push(drawingViewModel);
+            app.viewModel.layerIndex[drawing.uid] = drawingViewModel;
+        });
+    };
+    
     self.loadLeaseblockLayer = function() {
         //console.log('loading lease block layer');
         var leaseBlockLayer = new OpenLayers.Layer.Vector(
@@ -1604,7 +1949,8 @@ function scenariosModel(options) {
                 displayInLayerSwitcher: false,
                 strategies: [new OpenLayers.Strategy.Fixed()],
                 protocol: new OpenLayers.Protocol.HTTP({
-                    url: '/media/data_manager/geojson/LeaseBlockWindSpeedOnlySimplifiedNoDecimal.json',
+                    //url: '/media/data_manager/geojson/LeaseBlockWindSpeedOnlySimplifiedNoDecimal.json',
+                    url: '/media/data_manager/geojson/OCSBlocks20130319.json',
                     format: new OpenLayers.Format.GeoJSON()
                 }),
                 //styleMap: new OpenLayers.StyleMap( { 
@@ -1631,9 +1977,13 @@ function scenariosModel(options) {
         self.leaseblockList = ocsblocks;
     };  
     
+    self.cancelShare = function() {
+        self.sharingLayer().temporarilySelectedGroups.removeAll();
+    };
+    
     //SHARING DESIGNS
     self.submitShare = function() {
-        self.sharingLayer().selectedGroups(self.sharingLayer().temporarilySelectedGroups());
+        self.sharingLayer().selectedGroups(self.sharingLayer().temporarilySelectedGroups().slice(0));
         var data = { 'scenario': self.sharingLayer().uid, 'groups': self.sharingLayer().selectedGroups() };
         $.ajax( {
             url: '/scenario/share_design',
@@ -1641,7 +1991,7 @@ function scenariosModel(options) {
             type: 'POST',
             dataType: 'json',
             error: function(result) {
-                debugger;
+                //debugger;
             }
         });
     };
@@ -1663,6 +2013,9 @@ $('#designsTab').on('show', function (e) {
         // load the selections
         app.viewModel.scenarios.loadSelectionsFromServer();
 
+        // load the drawing
+        app.viewModel.scenarios.loadDrawingsFromServer();
+        
         // load the leaseblocks
         $.ajax({
             url: '/scenario/get_leaseblocks',
@@ -1672,7 +2025,7 @@ $('#designsTab').on('show', function (e) {
                 app.viewModel.scenarios.loadLeaseblocks(ocsblocks);
             },
             error: function (result) {
-                debugger;
+                //debugger;
             }
         });
         
@@ -1684,7 +2037,7 @@ $('#designsTab').on('show', function (e) {
                 app.viewModel.scenarios.sharingGroups(groups);
             },
             error: function (result) {
-                debugger;
+                //debugger;
             }
         });
     }

@@ -4,7 +4,7 @@ Template Name: News
 */
 ?>
 
-<?php get_header(); ?>	
+<?php get_header(); ?>
 			<div id="content" class="row-fluid">
 				<div id="main" class="span10 news" role="main">
 						<div class="theme image">
@@ -21,7 +21,7 @@ Template Name: News
 
 							  <div class="span4">
 							  <?php
-							  $args = sprintf('category_slug=%s&numberposts=1', "Data-Updates");
+							  $args = sprintf('category_name=%s&numberposts=1', "data-updates");
 							  $lastposts = get_posts($args);
 							  foreach($lastposts as $post) : setup_postdata($post); ?>
 							  	<div class="wrapper">
@@ -31,7 +31,7 @@ Template Name: News
 								  			<h2>Data Updates</h2>
 								  		</div>
 							  		</a>
-							  		<h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>	
+							  		<h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 							  		<?php the_excerpt(); ?>
 							 	</div>
 							  </div>
@@ -48,10 +48,10 @@ Template Name: News
 							  	  			<h2>Events</h2>
 							  	  		</div>
 							    		</a>
-							    		<h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>	
+							    		<h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 							    		<?php the_excerpt(); ?>
 							   	</div>
-							    </div>	
+							    </div>
 							    <?php endforeach; ?>
 							      <div class="span4">
 							      <?php
@@ -65,12 +65,12 @@ Template Name: News
 							    	  			<h2>News</h2>
 							    	  		</div>
 							      		</a>
-							      		<h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>	
+							      		<h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 							      		<?php the_excerpt(); ?>
 							     	</div>
-							      </div>	
+							      </div>
 							      <?php endforeach; ?>
-						
+
 					</div>
 				</div> <!-- end #main -->
 			    <?php get_sidebar(); // sidebar 1 ?>
