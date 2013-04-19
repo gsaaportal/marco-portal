@@ -4,21 +4,24 @@ app.hash = window.location.hash;
 app.onResize = function(percent) {
 
   var height = $(window).height() * (percent || 0.855);
+  var width = $(window).width();
   // when fullscreen be odd?
   if (height) {
-    $("#map").height(height);
-    $("#map-wrapper").height(height);
-    $(".tabs").height(height);
-    $("#legend-wrapper").height(height - 20);
-    $("#data-accordion").height(height - (($.browser.msie && $.browser.version < 9)? 130: 96));
-    $("#designs-accordion").height(height - 20 - (($.browser.msie && $.browser.version < 9)? 130: 96));
-    $("#active").height(height + 20 - (($.browser.msie && $.browser.version < 9)? 130: 96));
+    //if (!app.embeddedMap) {
+    if ( width > 767 && !app.embeddedMap ) {
+        $("#map").height(height);
+        $("#map-wrapper").height(height);
+        $(".tabs").height(height);
+        $("#legend-wrapper").height(height - 20);
+        $("#data-accordion").height(height - (($.browser.msie && $.browser.version < 9)? 130: 96));
+        $("#designs-accordion").height(height - 20 - (($.browser.msie && $.browser.version < 9)? 130: 96));
+        $("#active").height(height + 20 - (($.browser.msie && $.browser.version < 9)? 130: 96));
+    } 
     app.map.render('map');
   }
   
   app.viewModel.updateAllScrollBars();
   
-  var width = $(window).width();
   if (width < 946) {
     app.viewModel.hideTours(true);
   } else {
@@ -39,7 +42,7 @@ if (!Array.prototype.indexOf) {
              if (this[i] === obj) { return i; }
          }
          return -1;
-    }
+    };
  }
 
 
@@ -72,8 +75,9 @@ app.viewModel.loadLayersFromServer().done(function() {
     source: app.typeAheadSource
   });
 
-  // if (! ($.browser.msie && $.browser.version < 9)) {
+  if ( ! ($.browser.msie && $.browser.version < 9) && ! app.embeddedMap ) {
     $("#data-accordion").jScrollPane();
+  }
     //$("#legend-wrapper").jScrollPane();
   // }
 });
@@ -192,7 +196,7 @@ $(document).ready(function() {
     }
     app.viewModel.isFullScreen(true);
     // make map fullscreen
-    setTimeout( app.onResize(.99), 500);
+    setTimeout( app.onResize(0.99), 500);
   };
 
   BigScreen.onexit = function() {

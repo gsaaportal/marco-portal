@@ -46,7 +46,9 @@ li a {
 	margin-right: auto;
 	background:url(../img/ajax-loader.gif) no-repeat center center;
 }
-
+.jspHorizontalBar { 
+    display: none !important; 
+}
 .jspVerticalBar {
 	width: 10px !important;
 }
@@ -86,7 +88,7 @@ li a {
 
 .navbar .dropdown-menu {
     min-width: 50px;
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
 .navbar .nav > li > a {
@@ -666,6 +668,20 @@ img + h3 {
 	padding: 10px 0px 10px 0px;
 }
 
+#design-list .btn-layer > div {
+	display: inline-block;
+	line-height: 1;
+	padding-left: 3px;
+	margin-top: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+    width: auto;
+	max-width: 72%;
+	/*height: inherit;*/
+    height: 16px;
+    vertical-align: middle;
+}
+
 #active ul li {
 	margin-bottom: 10px;
 }
@@ -685,7 +701,6 @@ img + h3 {
 
 }
 
-
 #active .btn-layer > div {
 	display: inline-block;
 	line-height: 1;
@@ -693,8 +708,11 @@ img + h3 {
 	margin-top: 0;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	width: 72%;
-	height: inherit;
+	width: auto;
+    max-width: 72%;
+	/*height: inherit;*/
+    height: 16px;
+    vertical-align: middle;
 }
 
 #data-accordion li.layer {
@@ -1091,12 +1109,26 @@ body.borderless #map-wrapper {
 	border: 0px;
 }
 
+.split-column {
+    -moz-column-count: 2; /* Firefox */
+    -webkit-column-count: 2; /* Safari and Chrome */
+    column-count: 2;
+}
 
 
 @media (max-width: 767px) {
 	.navbar .nav > li > a {
 		width: 70px;
 	}
+    .navbar-fixed-top {
+        position: fixed;
+    }
+    .navbar-inner {
+        padding: 0px 20px !important;
+    }
+    .btn-navbar {
+        margin-top: -40px !important;
+    }
 	.nav-collapse form {
 		width: 100%;
 	}
@@ -1107,9 +1139,12 @@ body.borderless #map-wrapper {
 	body {
 		margin-top: 0px;
 	}
+    #content {
+        margin-top: 120px;
+    }
 	#sidebar-nav {
 		position: relative;
-		top: 0px;
+		top: 10px;
 	}
 	.nav-collapse {
 		width: 100%;
@@ -1133,6 +1168,11 @@ body.borderless #map-wrapper {
 	  width: 72%;
 	  font-size: 12px;
 	}
+    .split-column {
+        -moz-column-count: 1; /* Firefox */
+        -webkit-column-count: 1; /* Safari and Chrome */
+        column-count: 1;
+    }
 
 }
 
@@ -1141,6 +1181,14 @@ body.borderless #map-wrapper {
 	body {
 		margin-top: 0px;
 	}
+
+    .blog .navbar-fixed-top {
+        position: fixed;
+    }
+    
+    .navbar-inner {
+        padding: 0px 20px !important;
+    }
 
 	.nav-collapse {
 		width: 100%;
