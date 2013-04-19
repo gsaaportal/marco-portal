@@ -98,7 +98,7 @@
                                                                         {% endif %}
                                                                     </li>
                                                                 </ul>
-                                                                <div>
+                                                                <div class="descriptive-text">
                                                                     {{ sublayer.description }}
                                                                 </div>
                                                             </div>
@@ -153,7 +153,7 @@
                                                     {% endif %}
                                                 </li>
                                             </ul>
-                                            <div>
+                                            <div class="descriptive-text">
                                                 {{ layer.description }}
                                             </div>
                                         </div>
@@ -270,16 +270,24 @@
         $('.theme-group').each( function(index, theme) {
             var theme_name = $(theme).find('.theme-search-name').text();
             $(theme).find('.layer-search-name').each( function(index, layer) {
-                var name = $.trim($(layer).text()) + ' (' + $.trim(theme_name) + ')';
+                var name = $.trim($(layer).text()) + ' (' + $.trim(theme_name) + ')',
+                    description = $(layer).closest('.accordion-group').find('.descriptive-text'),
+                    kitchenSink = $.trim($(layer).text()) + ' ' + $.trim(theme_name) + ' ' + $.trim($(description).text());
                 layers.push(name);
                 layer_index[name] = { 
-                    layer: $(layer)
-                };
+                    layer: $(layer),
+                    fullSearch: kitchenSink
+                };                
             });
         });
         
         $('.layer-search').find('input').typeahead( {
-            source: layers.sort()
+            source: layers.sort(),
+            matcher: function(item) {
+                if (layer_index[item].fullSearch.toLowerCase().indexOf(this.query.toLowerCase()) !== -1) { 
+                    return true;
+                }
+            }
         });
         
         $('.layer-search').submit(function (event) {
