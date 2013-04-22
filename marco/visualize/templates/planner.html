@@ -124,7 +124,7 @@
                                 </a>
                                 <h3 class="pull-right" data-bind="visible: mapTitle, text: mapTitle"></h3>
                             </div>
-                            <div class="span7">
+                            <div class="span7" style="line-height: 45px;">
                                 <div class="pull-right">
                                     <!--<li class=""><a href="/portal">Return to Portal</a></li>-->
                                     <!--<li class=""><a href="">Help</a></li>-->
@@ -312,7 +312,9 @@
                                         <ul class="unstyled list" data-bind="sortable: { data: activeLayers, options: {  } }">
                                             <li>
                                                 <div class="btn-group">
-                                                    <button class="btn btn-info-sign" data-bind="click: toggleDescription, css: { 'active': infoActive()}"><i class="icon-info-sign icon-large"></i></button>
+                                                    <a class="btn btn-info-sign icon-button" data-bind="click: toggleDescription, css: { 'active': infoActive()}">
+                                                        <i class="icon-info-sign icon-large"></i>
+                                                    </a>
                                                     <a class="btn btn-layer" data-bind="css: { 'active': visible() }, click: toggleVisible">
                                                         <div data-bind="text: name"></div>
                                                         <span rel="tooltip" data-bind="attr: {title: sharedBy}">
@@ -320,11 +322,13 @@
                                                         </span>
                                                         <span ><i class="icon-large check" data-bind="css: { 'icon-check': visible(), 'icon-check-empty': ! visible() }"></i></span>
                                                     </a>
-                                                    <a class="btn opacity-button" data-bind="click: $parent.showOpacity"><i class="icon-adjust icon-large"></i></a>
-                                                    <button class="btn" data-bind="click: toggleActive">
+                                                    <a class="btn opacity-button icon-button" data-bind="click: $parent.showOpacity">
+                                                        <i class="icon-adjust icon-large"></i>
+                                                    </a>
+                                                    <a class="btn icon-button" data-bind="click: toggleActive">
                                                         <i class="icon-remove">
                                                         </i>
-                                                    </button>
+                                                    </a>
                                                 </div>
                                             </li>
                                         </ul>
