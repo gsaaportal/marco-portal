@@ -556,6 +556,10 @@ a.disabled-link:hover {
   margin-bottom: 10px;
 }
 
+.popover {
+    width: 236px;
+}
+
 #map-info {
   margin-top: 10px !important;
 }
@@ -607,7 +611,10 @@ a.disabled-link:hover {
 }
 
 #data-accordion .icon-info-sign {
-  margin-left: -15px;
+}
+
+#data-accordion .btn-info-sign {
+    padding: 4px 10px;
 }
 
 #data-accordion .dropdown-menu {
@@ -807,7 +814,7 @@ a.disabled-link:hover {
 
 #bookmark-popover {
   left: 550px;
-  width: 400px;
+  min-width: 400px;
   z-index: 1030;
 }
 
@@ -817,6 +824,10 @@ a.disabled-link:hover {
 
 .modal-backdrop {
   z-index: 1050;
+}
+
+.modal {
+  z-index: 1055;
 }
 
 .modal-body .sharing-header {

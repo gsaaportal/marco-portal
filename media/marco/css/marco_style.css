@@ -700,6 +700,16 @@ img + h3 {
 	width: 70%;
 
 }
+#active .btn-group .icon-button {
+    padding: 4px 8px;
+    line-height: 20px;
+    vertical-align: middle;
+}
+
+#active .btn-group .check {
+    margin-top: 2px;
+    right: 5px;
+}
 
 #active .btn-layer > div {
 	display: inline-block;
@@ -735,6 +745,10 @@ img + h3 {
 
 .layer .overview {
 	margin-bottom: 10px;
+}
+
+#data-accordion .layer .btn-group-layer {
+    width: 100%;
 }
 
 .link-not-available {
