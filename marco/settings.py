@@ -9,7 +9,7 @@ LOGIN_REDIRECT_URL = '/visualize'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'marco',
+        'NAME': 'gsaa',
         'USER': 'vagrant',
     }
 }
