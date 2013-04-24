@@ -48,3 +48,13 @@ $(document).ready(function () {
         }
     });
 });
+
+/**
+ * Navigation highlighting.
+ */
+$(document).ready(function () {
+    // highlight active top level
+    $('.sidebar-nav-section > h3 > a[href*="' + location.pathname.split("/")[1] + '"][class!="noselect"]').each(function () {
+        $(this).parents('.sidebar-nav-section').addClass('active');
+    }); 
+});
