@@ -156,6 +156,13 @@ class Layer(models.Model):
             return self.sublayers.all()[0]
         return self
     
+    @property 
+    def sublayer_list(self):
+        if self.is_parent:
+            return self.sublayers.all().order_by('name')
+        else:
+            return None
+    
     @property
     def slug(self):
         return slugify(self.name)

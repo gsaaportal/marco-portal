@@ -21,7 +21,9 @@ function reportsModel(options) {
         for (var i=0; i<selections.length; i++) {
             //if ( selections[i].active() ) {
                 var vals = selections[i].scenarioReportValues[key];
-                data.push({'low': vals.min, 'high': vals.max, 'avg': vals.avg, 'id': vals.selection_id});
+                if (vals) {
+                    data.push({'low': vals.min, 'high': vals.max, 'avg': vals.avg, 'id': vals.selection_id});
+                }
             //}
         }
         return data;
@@ -54,7 +56,7 @@ function reportsModel(options) {
     
     self.hideReport = function() {
         self.showingReport(false);
-    }
+    };
         
     self.showWindReport = function() {
         var windReportOptions = {
@@ -85,6 +87,37 @@ function reportsModel(options) {
         //self.createChart(options);
         self.reportOptions = windReportOptions;
         self.createChart(windReportOptions);
+    };
+    
+    self.showSubstationReport = function() {
+        var awcReportOptions = {
+            'title': { 
+                text: 'Distance to Coastal Substations' 
+            },
+            'yAxis': {
+                title: {
+                    text: 'Distance in miles'
+                },
+                min: 0,
+                max: 100
+            },
+            'tooltip': {
+                valueSuffix: 'miles',
+                formatter: function() {
+                    return  'Distance to Coastal Substation: ' +
+                            this.point.low + ' - ' +
+                            this.point.high + ' miles' +
+                            '<br/>Average Distance: ' + 
+                            this.point.avg + ' miles'; 
+              }
+            },
+            'seriesName': 'Distance to Coastal Substation',
+            'seriesStub': 'distance-to-substation'
+        };
+        //var options = $.extend({}, self.reportOptions, awcReportOptions);
+        //self.createChart(options);
+        self.reportOptions = awcReportOptions;
+        self.createChart(awcReportOptions);
     };
     
     self.showAWCReport = function() {
@@ -222,9 +255,11 @@ function reportsModel(options) {
             self.noActiveCollections(false);
             self.showingReport(true);
         } else {
+            $('#comparison-report-flash-instructions').effect("highlight", {}, 1000);
             self.noActiveCollections(true);
             return;
         }
+        var draftTitle = {text: options.title.text + ' -- DRAFT Report'};
         var chart = new Highcharts.Chart({
             chart: {
                 renderTo: 'reports-container',
@@ -234,7 +269,7 @@ function reportsModel(options) {
             credits: {
                 enabled: false
             },
-            title: options.title,
+            title: draftTitle,
             subtitle: options.subtitle,
             xAxis: {
                 categories: self.getCollectionNames()
@@ -286,7 +321,7 @@ function reportsModel(options) {
             }
                            
         });
-        var width = 400,
+        var width = 385,
             height = 90 + app.viewModel.scenarios.activeSelections().length * 60;
         if (height > 500) { 
             height = 500;
@@ -311,7 +346,7 @@ $('#reportsTab').on('show', function (e) {
                 app.viewModel.scenarios.scenariosLoaded = true;
             },
             error: function (result) {
-                debugger;
+                //debugger;
             }
         });
         
@@ -325,9 +360,9 @@ $('#reportsTab').on('show', function (e) {
                 app.viewModel.scenarios.selectionsLoaded = true;
             },
             error: function (result) {
-                debugger;
+                //debugger;
             }
-        })
+        });
 
         // load the leaseblocks
         $.ajax({
@@ -338,8 +373,8 @@ $('#reportsTab').on('show', function (e) {
                 app.viewModel.scenarios.loadLeaseblocks(ocsblocks);
             },
             error: function (result) {
-                debugger;
+                //debugger;
             }
-        })
+        });
     }
 });
