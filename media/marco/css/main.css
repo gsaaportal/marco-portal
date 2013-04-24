@@ -1,0 +1,253 @@
+@font-face {
+  font-family: 'Aller';
+  src: url('../fonts/Aller/Aller_Rg.eot');
+  src: url('../fonts/Aller/Aller_Rg.otf');
+  src: url('../fonts/Aller/Aller_Rg.ttf') format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Aller';
+  src: url('../fonts/Aller/Aller_Bd.eot');
+  src: url('../fonts/Aller/Aller_Bd.otf');
+  src: url('../fonts/Aller/Aller_Bd.ttf') format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Aller';
+  src: url('../fonts/Aller/Aller_It.eot');
+  src: url('../fonts/Aller/Aller_It.otf');
+  src: url('../fonts/Aller/Aller_It.ttf') format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+
+/* limiting width unless we have time to address responsivness for phone sizes. */
+body{
+   min-width:770px;
+   width: auto !important;  /* Firefox will set width as auto */
+   width:770px;             /* As IE ignores !important it will set width as 770px; */
+}
+body {
+  font-family: "Aller";
+  background-color: #F0FAFE;
+  color: #000;
+}
+.secondary-copy { color: #666; }
+.dividing-lines { color: #ccc; }
+
+
+
+/**
+ * Links
+ */
+a, a:visited {
+  color: #030BD4;
+}
+a.subtle, a.subtle:visited {
+  color: #000;
+}
+/* hover/active state */
+a.active,
+a:hover,
+a:focus,
+.navbar .nav>li:focus,
+.navbar .nav>li>a:hover,
+.navbar .nav>li>a:focus, 
+.navbar .nav > .active > a,
+.navbar .nav > .active > a:hover,
+.navbar .nav > .active > a:focus {
+  color:#34C4F2;
+  text-decoration: none;
+}
+.navbar .nav > .active > a,
+.navbar .nav > .active > a:hover,
+.navbar .nav > .active > a:focus {
+  text-decoration: none;
+  -webkit-box-shadow: inset 0 0 0 rgba(255, 0, 0, 1);
+     -moz-box-shadow: inset 0 0 0 rgba(255, 0, 0, 1);
+          box-shadow: inset 0 0 0 rgba(255, 0, 0, 1);
+}
+.navbar .nav li.dropdown.open>.dropdown-toggle,
+.navbar .nav li.dropdown.active>.dropdown-toggle, 
+.navbar .nav li.dropdown.open.active>.dropdown-toggle {
+  background-color: white;
+  color:#34C4F2;
+}
+/* external links get the Font Awesome icon-external-link */
+a[target="_blank"]:after {
+  content: "\0000a0\0000a0\f08e";
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  text-decoration: inherit;
+}
+
+
+/**
+ * Fixed header that shows a shadow when scroll position isn't at top.
+ */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  height: 155px;
+}
+header.shadow {
+  -webkit-box-shadow: rgba(0,0,0,0.3) 0px 2px 2px -1px;
+     -moz-box-shadow: rgba(0,0,0,0.3) 0px 2px 2px -1px;
+          box-shadow: rgba(0,0,0,0.3) 0px 2px 2px -1px;
+}
+
+
+
+.navbar {
+    background-color: transparent;
+    font-size: 12px;
+    margin-top: 20px;
+}
+.navbar-inner {
+  border: none;
+  border-radius: 0;
+  background-color: transparent;  
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  background-image: none;
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF, endColorstr=#00FFFFFF);
+  /* For IE 8*/
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF, endColorstr=#00FFFFFF)";
+  padding: 0;
+}
+.navbar .nav>li>a { 
+  color: #333;
+}
+
+/**
+ * Navbar search form expands left over other links when active.
+ */
+header .span12 {
+  position: relative;
+}
+.navbar {
+  position: absolute;
+  top:0;
+  right:0;
+}
+.navbar-inner {
+  position: relative;
+  width: 400px;
+}
+.navbar .gsaa-nav {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.navbar .navbar-form.search {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: white;
+}
+.navbar .navbar-form.search.active {
+  border-bottom: 2px black solid;
+}
+.navbar .navbar-form.search .btn {
+  color: black;
+  text-decoration: none;
+}
+.navbar .navbar-form.search .btn:hover {
+  color:#34C4F2;
+}
+.navbar .navbar-form.search .btn,
+.navbar .navbar-form.search.active .btn {
+  padding-left: 0;
+  margin-left: 0;
+}
+.navbar .navbar-form.search input,
+.navbar .navbar-form.search input:focus {
+  display: none;
+  border: none;
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
+  font-size: 20px;
+  width: 330px;
+}
+
+/**
+ * Dropdown in header menu - some of this is purely 
+ * stripping bootstrap styles.
+ */
+.gsaa-nav .dropdown-menu {
+  border: none;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  min-width: auto;
+  margin: 0 0 0 15px;
+  padding: 0;
+}
+.navbar .nav>li>.dropdown-menu:before {
+  content: none;
+}
+.navbar .nav>li>.dropdown-menu>li {
+  border-bottom: 1px dotted #ccc;
+}
+.navbar .nav>li>.dropdown-menu>li:last-child {
+  border-bottom: none;
+}
+.navbar .nav>li>.dropdown-menu>li>a {
+  padding: 3px 0;
+}
+
+/**
+ * Footer
+ */
+footer {
+  background-color: white;
+  padding: 30px 0;
+  font-size: 12px;
+}
+footer #section1 p {
+  font-size: 20px;
+  color: #030BD4;
+  font-weight: bold;
+  line-height: 30px;
+  margin-right: 20px; 
+}
+footer h6 {
+  margin-top: 30px;
+  margin-bottom: 25px;
+}
+
+.main-container {
+  padding-top: 30px;
+}
+
+
+/**
+ * Main nav
+ */
+.sidebar-nav li.lev1 {
+  font-size: 22px;
+  margin: 15px 0;
+}
+.sidebar-nav li.lev1 > a {
+  border-top: 1px dotted #ccc;
+  margin-top: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.sidebar-nav li.lev1:first-child > a {
+  border-top: none;
+}
+.sidebar-nav li.lev2 {
+  padding-bottom: 12px;
+}
