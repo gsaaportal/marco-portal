@@ -80,6 +80,7 @@ a:focus,
 a[target="_blank"]:after {
   content: "\0000a0\0000a0\f08e";
   font-family: FontAwesome;
+  font-size: 12px;
   font-weight: normal;
   font-style: normal;
   display: inline-block;
@@ -237,17 +238,49 @@ footer h6 {
  */
 .sidebar-nav li.lev1 {
   font-size: 22px;
-  margin: 15px 0;
+  padding: 15px 0;
 }
 .sidebar-nav li.lev1 > a {
   border-top: 1px dotted #ccc;
   margin-top: 20px;
   padding-top: 20px;
-  padding-bottom: 20px;
 }
 .sidebar-nav li.lev1:first-child > a {
   border-top: none;
 }
+.sidebar-nav li.lev1 a:hover {
+  color: #34C4F2;
+}
 .sidebar-nav li.lev2 {
-  padding-bottom: 12px;
+  padding-bottom: 8px;
+}
+.sidebar-nav li.lev2 a {
+  padding-bottom: 4px;
+}
+.sidebar-nav li.lev2 a:hover {
+  border-bottom: 2px solid #34C4F2;
+}
+
+
+
+.sidebar-nav-section {
+
+}
+.sidebar-nav-section > h3 {
+  border-bottom: 1px dotted #ccc;
+  font-weight: normal;
+  height: 48px;
+  vertical-align: middle;
+}
+.sidebar-nav-section > h3 > a,
+.sidebar-nav-section > ul > li > a {
+  color: #000;
+}
+.sidebar-nav-section > h3 > a:hover,
+.sidebar-nav-section > h3 > a.active,
+.sidebar-nav-section > ul > li:hover > a {
+  color: #34C4F2;
+}
+.sidebar-nav-section > ul > li.active > a {
+  border-bottom: 2px solid #34C4F2;
 }
