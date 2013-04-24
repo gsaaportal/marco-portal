@@ -410,7 +410,7 @@ function layerModel(options, parent) {
     self.showSublayers.subscribe(function () {
         setTimeout(function () {
             if ( app.viewModel.activeLayer().subLayers.length > 1 ) {
-                $('.layer').find('.open .layer-menu').jScrollPane();
+                //$('.layer').find('.open .layer-menu').jScrollPane();
             }
         });
     });
