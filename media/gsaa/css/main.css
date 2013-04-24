@@ -53,6 +53,7 @@ a.subtle, a.subtle:visited {
 a.active,
 a:hover,
 a:focus,
+a.subtle:hover,
 .navbar .nav>li:focus,
 .navbar .nav>li>a:hover,
 .navbar .nav>li>a:focus, 
@@ -224,7 +225,7 @@ footer #section1 p {
   margin-right: 20px; 
 }
 footer h6 {
-  margin-top: 30px;
+  margin-top: 0;
   margin-bottom: 25px;
 }
 
@@ -260,3 +261,16 @@ footer h6 {
 
 .sidebar-nav-section { border-bottom: 1px dotted #ccc; }
 .sidebar-nav-section:last-child { border-bottom: none; }
+
+
+
+
+
+@media (max-width: 768px) {
+  footer h6 {
+    margin-top: 30px;
+  }
+
+
+}
+
