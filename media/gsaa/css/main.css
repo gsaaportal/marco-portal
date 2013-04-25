@@ -1,24 +1,27 @@
 @font-face {
   font-family: 'Aller';
-  src: url('../fonts/Aller/Aller_Rg.eot');
-  src: url('../fonts/Aller/Aller_Rg.otf');
-  src: url('../fonts/Aller/Aller_Rg.ttf') format("truetype");
+  src: url('../fonts/Aller/Aller_Rg.eot?iefix') format('eot'),
+       url('../fonts/Aller/Aller_Rg.woff') format('woff'),
+       url('../fonts/Aller/Aller_Rg.ttf') format("truetype"),
+       url('../fonts/Aller/Aller_Rg.svg#svgFontName') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'Aller';
-  src: url('../fonts/Aller/Aller_Bd.eot');
-  src: url('../fonts/Aller/Aller_Bd.otf');
-  src: url('../fonts/Aller/Aller_Bd.ttf') format("truetype");
+  src: url('../fonts/Aller/Aller_Bd.eot?iefix') format('eot'),
+       url('../fonts/Aller/Aller_Bd.woff') format('woff'),
+       url('../fonts/Aller/Aller_Bd.ttf') format("truetype"),
+       url('../fonts/Aller/Aller_Bd.svg#svgFontName') format('svg');
   font-weight: bold;
   font-style: normal;
 }
 @font-face {
   font-family: 'Aller';
-  src: url('../fonts/Aller/Aller_It.eot');
-  src: url('../fonts/Aller/Aller_It.otf');
-  src: url('../fonts/Aller/Aller_It.ttf') format("truetype");
+  src: url('../fonts/Aller/Aller_It.eot?iefix') format('eot'),
+       url('../fonts/Aller/Aller_It.woff') format('woff'),
+       url('../fonts/Aller/Aller_It.ttf') format("truetype"),
+       url('../fonts/Aller/Aller_It.svg#svgFontName') format('svg');
   font-weight: normal;
   font-style: italic;
 }
@@ -177,6 +180,7 @@ header .span12 {
 .navbar .navbar-form.search input:focus {
   display: none;
   border: none;
+  outline: none;
   -webkit-box-shadow: none;
      -moz-box-shadow: none;
           box-shadow: none;
@@ -274,43 +278,44 @@ footer h6 {
 /**
  * Page blocks
  */
-.page-blocks > .row .page-block {
-  padding: 30px 30px 30px 0;
+[class*="row"] > h4 {
+  margin-top: 50px;
+  padding-bottom: 18px;  
 }
-.page-blocks > .row:first-child .page-block {
+.page-blocks > [class*="row"] .page-block {
+  padding: 30px 40px 30px 0;
+}
+.page-blocks > [class*="row"]:first-child .page-block {
   padding-top: 0
 }
 .page-block > h4 {
   margin: 20px 0;
 }
 
+/* dividing lines when blocks are stacked */
 @media (max-width: 770px) {
-  .page-blocks > .row > [class*="span"] {
+  .page-blocks > [class*="row"] > [class*="span"] {
       border-bottom: 1px dotted #ccc;
   }
-  .page-blocks > .row:last-child > [class*="span"]:last-child {
+  .page-blocks > [class*="row"]:last-child > [class*="span"]:last-child {
       border-bottom: none;
   }
 }
-/* dividing lines */
+/* dividing lines when blocks side by side */
 @media (min-width: 771px) {
-  .page-blocks > .row  > [class*="span"] {
+  .page-blocks > [class*="row"]  > [class*="span"] {
     border-top: 1px dotted #ccc;
     border-right: 1px dotted #ccc;
-    border-left: 1px dotted #ccc;
-  }
-  .page-blocks > .row:first-child > [class*="span"] {
-    border-top: none;
-  }
-  .page-blocks > .row > [class*="span"]:last-child {
-    border-right: none;
+    margin-left: 0px;
     padding-left: 20px;
   }
-  .page-blocks > .row > [class*="span"]:first-child {
-    border-left: none;    
+  .page-blocks > [class*="row"]:first-child > [class*="span"] {
+    border-top: none;
   }
-  .page-blocks > .row > [class*="span"]:last-child {
-    margin-left: 0;
+  .page-blocks > [class*="row"] > [class*="span"]:last-child {
+    border-right: none;
+    border-left: 1px dotted #ccc;
+    padding-left: 20px;
   }
 }
 
