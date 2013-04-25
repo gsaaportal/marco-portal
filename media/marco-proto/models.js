@@ -30,10 +30,10 @@ function layerModel(options, parent) {
     self.defaultOpacity = options.opacity || 0.5;
     self.opacity = ko.observable(self.defaultOpacity);
     self.graphic = options.graphic || null;
-    
+
     self.sharedBy = ko.observable(false);
     self.shared = ko.observable(false);
-    
+
     self.restLegend = [];
 
     if(self.type === 'ArcRest')
@@ -410,7 +410,7 @@ function layerModel(options, parent) {
     self.showSublayers.subscribe(function () {
         setTimeout(function () {
             if ( app.viewModel.activeLayer().subLayers.length > 1 ) {
-                $('.layer').find('.open .layer-menu').jScrollPane();
+                //$('.layer').find('.open .layer-menu').jScrollPane();
             }
         });
     });
@@ -2296,4 +2296,3 @@ function viewModel() {
 } //end viewModel
 
 app.viewModel = new viewModel();
-
