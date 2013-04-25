@@ -85,5 +85,7 @@ $(document).ready(function () {
 
     // setPageBlockSizes();
     // $(window).resize(setPageBlockSizes);
+
+    $('.carousel').carousel();
 });
 
