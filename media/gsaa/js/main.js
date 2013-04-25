@@ -4,22 +4,22 @@
  * Show shadow under header when scroll position 
  * is not at the top.
  */
-$(document).ready(function () {
+// $(document).ready(function () {
 
-    var header = $('header');
+//     var header = $('header');
 
-    $(window).scroll(function(e){
-        if(header.offset().top !== 0){
-            if(!header.hasClass('shadow')){
-                console.log('+ shadow');
-                header.addClass('shadow');
-            }
-        }else{
-            console.log('- shadow');
-            header.removeClass('shadow');
-        }
-    });
-});
+//     $(window).scroll(function(e){
+//         if(header.offset().top !== 0){
+//             if(!header.hasClass('shadow')){
+//                 console.log('+ shadow');
+//                 header.addClass('shadow');
+//             }
+//         }else{
+//             console.log('- shadow');
+//             header.removeClass('shadow');
+//         }
+//     });
+// });
 
 /**
  * Toggle search form display.
