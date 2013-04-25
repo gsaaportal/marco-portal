@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 {% load url from future %}
 <html lang="en">
-    
+
     <head>
         <meta charset="utf-8">
         <title>
@@ -35,7 +35,7 @@
                         -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=-1.836909530733566e-16, M12=-1, M21=1, M22=-1.836909530733566e-16, SizingMethod='auto expand')";
                         left: 0px;
 
-                        /* IE6 and 7 */ 
+                        /* IE6 and 7 */
                         filter: progid:DXImageTransform.Microsoft.Matrix(
                                  M11=-1.836909530733566e-16,
                                  M12=-1,
@@ -55,7 +55,7 @@
         <style>
         .navbar .nav > li:hover > a, .navbar .nav > li.active > a, .navbar .nav > li:hover > a:visited {
             height: 30px;
-           
+
         }
         .navbar .nav > li > a {
             height: 25px;
@@ -66,7 +66,7 @@
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{MEDIA_URL}}/marco-proto/assets/ico/apple-touch-icon-114-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{MEDIA_URL}}/marco-proto/assets/ico/apple-touch-icon-72-precomposed.png">
         <link rel="apple-touch-icon-precomposed" href="{{MEDIA_URL}}/marco-proto/assets/ico/apple-touch-icon-57-precomposed.png">
-        
+
         <!-- Google Analytics -->
         <script type="text/javascript">
           var _gaq = _gaq || [];
@@ -79,7 +79,7 @@
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
           })();
         </script>
-        
+
         <!-- Check for Mobile Client -->
         <script type="text/javascript">
             var width = window.innerWidth;
@@ -88,14 +88,14 @@
                 window.location.pathname = "/mobile/mobile/";
             }
         </script>
-        
-        
-        
+
+
+
     </head>
-    
+
     <body>
-    
-        
+
+
         <!-- modals -->
         {% include "modals.html" %}
         {% include "bookmark-modals.html" %}
@@ -104,15 +104,15 @@
         <!-- TOUR -->
         {% include "tour.html" %}
         <!-- END TOURS -->
-        
+
         <!-- REGISTRATION MODALS -->
-        
+
         {% include "account-modals.html" %}
-        
+
         <!-- SIGN IN MODAL -->
-                
+
         <!-- END REGISTRATION MODALS -->
-        
+
         <header role="banner">
             <div class="navbar navbar-fixed-top">
                 <div class="navbar-inner">
@@ -120,7 +120,7 @@
                         <div class="row-fluid">
                             <div class="span5">
                                 <a href="/portal">
-                                    <img src="{{MEDIA_URL}}marco/img/gsaa-logo.jpg"/>
+                                    <img src="{{MEDIA_URL}}gsaa/img/logo-gsaa.png"/>
                                 </a>
                                 <h3 class="pull-right" data-bind="visible: mapTitle, text: mapTitle"></h3>
                             </div>
@@ -134,7 +134,7 @@
                                         {% if user.is_authenticated %}
                                         <span class="btn-group">
                                           <a class="btn dropdown-toggle" style="margin-top: 10px;" data-toggle="dropdown" href="#">
-                                            <i class="icon-user"></i> 
+                                            <i class="icon-user"></i>
                                             {{user.username}}
                                             <span class="caret"></span>
                                           </a>
@@ -147,8 +147,8 @@
                                         </span>
                                         {% else %}
                                         <span class="btn-group">
-                                          <a id="#sign-in-button" style="margin-top: 10px;" class="btn" href="#sign-in-modal" data-toggle="modal">Sign In / Register</a> 
-                                        </span>                           
+                                          <a id="#sign-in-button" style="margin-top: 10px;" class="btn" href="#sign-in-modal" data-toggle="modal">Sign In / Register</a>
+                                        </span>
                                         {% endif %}
                                         -->
                                     </span>
@@ -159,13 +159,13 @@
                 </div>
             </div>
         </header> <!-- end header -->
-        
+
         <div class="container-fluid" id="primary-content">
             <div id="loading">
                 <h2>Loading...</h2>
             </div>
             <div class="row-fluid" id="fullscreen">
-                
+
                 <!-- Data Panel (left panel) -->
                 {% load in_group %}
                 {% if user.is_authenticated and user|in_group:"Designers" %}
@@ -185,7 +185,7 @@
                             </li>
                             {% endif %}
                             <li data-tab="active" >
-                                <a href="#active" data-toggle="tab" id="activeTab">Active  
+                                <a href="#active" data-toggle="tab" id="activeTab">Active
                                     <span data-bind="visible: activeLayers().length > 0">
                                         (<span  data-bind="text: activeLayers().length">0</span>)
                                     </span>
@@ -193,11 +193,11 @@
                             </li>
                             <li class="identify">
                                 <a href="#identify-feature" data-toggle="tab" id="identifyTab">Identify</a>
-                            </li>                            
+                            </li>
                         </ul>
                         <!-- tab body -->
                         <div id="myTabContent" class="tab-content">
-                        
+
                             <!-- DATA TAB -->
                             <div class="tab-pane active in fade" id="data">
                                 <div class="row-fluid">
@@ -205,9 +205,9 @@
                                         <form class="form-search" data-bind="submit: layerSearch">
                                             <div class="span12">
                                                 <input type="text" class="search-box" data-provide="typeahead" data-bind="value: searchTerm, event: { keyup: keySearch }" style="overflow: hidden; text-overflow: ellipsis;" placeholder="Search">
-                                                
+
                                                 <a class="btn">
-                                                    <i class="icon-remove icon-large"></i> 
+                                                    <i class="icon-remove icon-large"></i>
                                                 </a>
                                             </div>
                                         </form>
@@ -270,7 +270,7 @@
                                                                             <!-- /ko -->
                                                                             <!-- /ko -->
                                                                         </div>
-                                                                    </li>  
+                                                                    </li>
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -285,13 +285,13 @@
                                 <!-- /row -->
                             </div>
                             <!-- END DATA TAB -->
-                            
+
                             <!-- DESIGNS TAB -->
                             {% if user.is_authenticated and user|in_group:"Designers" %}
                               {% include "scenarios.html" %}
                             {% endif %}
                             <!-- END DESIGNS TAB -->
-                            
+
                             <!-- ACTIVE TAB -->
                             <div class="tab-pane fade" id="active">
                                 <div class="row-fluid">
@@ -299,7 +299,7 @@
                                         <div data-bind="visible: activeLayers().length === 0">
                                             <div style="padding: 10px;">
                                                 <p>
-                                                    You currently have no activated data layers. 
+                                                    You currently have no activated data layers.
                                                 </p>
                                                 <p>
                                                     Data layers that are activated in the Data panel will appear in this Active panel.
@@ -340,7 +340,7 @@
                             <div class="tab-pane fade" id="identify-feature">
                               <div class="row-fluid">
                                 <div class="span12">
-                                  <div id="data-accordion">                                              
+                                  <div id="data-accordion">
                                     <div data-bind="visible: attributeData() === false">
                                         <div style="padding: 10px;">
                                           <p>
@@ -357,7 +357,7 @@
                                           <div id="feature-loading"></div>
                                         </div>
                                     </div>
-                                                                          
+
                                     <div data-bind="visible: attributeData" style="display: none">
                                       <strong><span data-bind="text: attributeTitle()"></span></strong>
                                       <dl data-bind="foreach: attributeData()">
@@ -372,18 +372,18 @@
                                   </div>
                                 </div>
                               </div>
-                            </div>                            
+                            </div>
                             <!-- /Identify-tab-->
-                            
+
                         </div>
                     </div>
                 </div>
                 <!-- /Data Panel -->
                 <!-- Map Panel (center panel) -->
                 {% if user.is_authenticated and user|in_group:"Designers" %}
-                <div id="map-panel" data-bind="css: { 'fullscreen-map': isFullScreen() && !showLayers() && !showLegend(), 'fullscreen-with-layers-authenticated': isFullScreen() && showLayers() && !showLegend(), 'fullscreen-with-legend': isFullScreen() && !showLayers() && showLegend(), 'fullscreen-with-legend-and-layers': isFullScreen() && showLayers() && showLegend(), 'shift-left': ! showLayers(), span12: !showLayers() && !showLegend(), span9: !showLayers() && showLegend(), span7: showLayers() && !showLegend(), span4: showLayers() && showLegend() }">       
+                <div id="map-panel" data-bind="css: { 'fullscreen-map': isFullScreen() && !showLayers() && !showLegend(), 'fullscreen-with-layers-authenticated': isFullScreen() && showLayers() && !showLegend(), 'fullscreen-with-legend': isFullScreen() && !showLayers() && showLegend(), 'fullscreen-with-legend-and-layers': isFullScreen() && showLayers() && showLegend(), 'shift-left': ! showLayers(), span12: !showLayers() && !showLegend(), span9: !showLayers() && showLegend(), span7: showLayers() && !showLegend(), span4: showLayers() && showLegend() }">
                 {% else %}
-                <div id="map-panel" data-bind="css: { 'fullscreen-map': isFullScreen() && !showLayers() && !showLegend(), 'fullscreen-with-layers': isFullScreen() && showLayers() && !showLegend(), 'fullscreen-with-legend': isFullScreen() && !showLayers() && showLegend(), 'fullscreen-with-legend-and-layers': isFullScreen() && showLayers() && showLegend(), 'shift-left': ! showLayers(), span12: !showLayers() && !showLegend(), span9: !showLayers() && showLegend(), span8: showLayers() && !showLegend(), span5: showLayers() && showLegend() }">       
+                <div id="map-panel" data-bind="css: { 'fullscreen-map': isFullScreen() && !showLayers() && !showLegend(), 'fullscreen-with-layers': isFullScreen() && showLayers() && !showLegend(), 'fullscreen-with-legend': isFullScreen() && !showLayers() && showLegend(), 'fullscreen-with-legend-and-layers': isFullScreen() && showLayers() && showLegend(), 'shift-left': ! showLayers(), span12: !showLayers() && !showLegend(), span9: !showLayers() && showLegend(), span8: showLayers() && !showLegend(), span5: showLayers() && showLegend() }">
                 {% endif %}
                     <div class="row-fluid" data-bind="visible: showMapPanel">
                         <div class="span12">
@@ -399,13 +399,13 @@
                                           </a>
                                           <!--Hide/Show Legends Button-->
                                           <a class="btn" data-bind="click: toggleLegend">
-                                              <i class="icon-list-ul icon-large"></i> 
+                                              <i class="icon-list-ul icon-large"></i>
                                               <span data-bind="text: legendButtonText()"></span>
                                               <span data-bind="visible: hasActiveLegends() > 0"> (<span data-bind="text: activeLegendLayers().length"></span>) </span>
                                           </a>
                                           <!--Hide/Show Layers Button-->
                                           <a class="btn" data-bind="click: toggleLayers">
-                                              <i class="icon-layers icon-large" data-bind="css: {'icon-indent-right': showLayers(), 'icon-indent-left': ! showLayers()}"></i> 
+                                              <i class="icon-layers icon-large" data-bind="css: {'icon-indent-right': showLayers(), 'icon-indent-left': ! showLayers()}"></i>
                                               <span data-bind="text: showLayersText()"></span>
                                           </a>
                                           <!--Bookmarks Button-->
@@ -437,14 +437,14 @@
                                               <i class="icon-search icon-large"></i>
                                               <span>Identify</span>
                                           </a>
-                                            
+
                                         </div>
                                     </div>
                                     <div id="map-buttons">
-                                        <!--  
+                                        <!--
                                         <p><a class="btn pull-right">
                                           Coordinates &amp; Depth
-                                        </a></p> 
+                                        </a></p>
                                         -->
                                     </div>
                                     <!-- the following container is used to estimate width for the actual Aggregated Attribution Overlay -->
@@ -477,8 +477,8 @@
                                                                 <div class="accordion-inner">
                                                                     <dl data-bind="foreach: { data: $root.aggregatedAttributes()[name], afterAdd:$root.updateMarker }">
                                                                         <dt>
-                                                                            <!-- ko if: $data.hasOwnProperty("tab") --> 
-                                                                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
+                                                                            <!-- ko if: $data.hasOwnProperty("tab") -->
+                                                                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                                                             <!-- /ko -->
                                                                             <span data-bind="text: display"></span><span data-bind="visible: display && data ? true : data===0">:</span>
                                                                             <span style="font-weight: normal" data-bind="text: data"></span>
@@ -493,7 +493,7 @@
                                             <span id="close-attribute-overlay" class="pull-right"><a href="#" style="position: absolute; top: 10px; right: 10px; opacity: .6;" class="btn btn-mini close" data-bind="click: closeAttribution"> x </a> </span>
                                         </div>
                                     </div>
-                                  
+
                                     <!-- Bookmark Message -->
                                     <div id="error-overlay" data-bind="visible: error() === 'restoreState'" style="display:none">
                                         <div>
@@ -507,30 +507,30 @@
                                             <div class="clearfix"></div>
                                         </div>
                                     </div>
-                                  
+
                                     <!-- FullScreen Fail Message -->
                                     <div id="fullscreen-error-overlay" style="display:none">
                                         <div>
                                             <span class="pull-right">
                                                 <a href="#" style="margin-left: 10px; opacity: .6;" class="close btn btn-mini" data-bind="click: closeAlert"> x </a>
-                                                
+
                                             </span>
                                             <span>We're sorry, the Fullscreen option is not supported in all browsers at this time...If it's important, you might try Firefox or Chrome.</span>
                                         </div>
                                     </div>
-                                  
+
                                   <!-- Description Overlay  style="display:none"-->
                                     <div id ="description-overlay" class="row-fluid" style="display: none" data-bind="visible: showDescription() && !showOverview()" >
                                         <div class="span11">
-                                            <span class="title" data-bind="text: activeInfoLayer().name"></span> -- 
+                                            <span class="title" data-bind="text: activeInfoLayer().name"></span> --
                                             <span class="text" data-bind="text: activeInfoLayer().description"></span>
                                             <div class="pull-right"><a class="btn btn-mini" data-bind="click: expandDescription, text: 'Show More...'"></a></div>
                                         </div>
                                         <div class="span1">
-                                            <a href="#" style="margin-left: 10px; opacity: .6;" class="btn btn-mini pull-right close" data-bind="click: closeDescription"> x </a> 
+                                            <a href="#" style="margin-left: 10px; opacity: .6;" class="btn btn-mini pull-right close" data-bind="click: closeDescription"> x </a>
                                         </div>
-                                    </div> 
-                                    
+                                    </div>
+
                                     <div id="overview-overlay" class="row-fluid" style="display: none" data-bind="visible: showOverview()" >
                                         <div id="overview-overlay-content" class="span12">
                                             <div id="overview-overlay-header" >
@@ -552,24 +552,24 @@
                                                         </li>
                                                     </ul>
                                                 </span>
-                                                <span class="title" data-bind="text: activeInfoLayer().name, visible: activeInfoLayer() && (!activeInfoLayer().subLayers || activeInfoLayer().subLayers.length == 0)"></span> 
+                                                <span class="title" data-bind="text: activeInfoLayer().name, visible: activeInfoLayer() && (!activeInfoLayer().subLayers || activeInfoLayer().subLayers.length == 0)"></span>
                                                 <!--<span class="caret" style="display:none" data-bind="visible: activeInfoLayer().subLayers"></span>-->
                                                 <span><a href="#" style="margin-left: 10px; opacity: .8;" class="btn btn-mini pull-right close" data-bind="click: closeDescription"> x </a> </span>
                                             </div>
-                                            <div id="overview-overlay-text" style="margin-top: 5px"> 
+                                            <div id="overview-overlay-text" style="margin-top: 5px">
                                                 <span class="text" data-bind="text: getOverviewText()" style="white-space: pre-wrap"></span>
                                                 <div class="notes">
                                                     <div data-bind="visible: activeInfoSublayer() ? activeInfoSublayer().data_source : activeInfoLayer().data_source">
-                                                        Source: 
+                                                        Source:
                                                         <span data-bind="text: activeInfoSublayer() ? activeInfoSublayer().data_source : activeInfoLayer().data_source"></span>
                                                     </div>
                                                     <div style="margin-top: 5px" data-bind="visible: activeInfoSublayer() ? activeInfoSublayer().data_notes : activeInfoLayer().data_notes">
-                                                        Notes: 
+                                                        Notes:
                                                         <span data-bind="text: activeInfoSublayer() ? activeInfoSublayer().data_notes : activeInfoLayer().data_notes"></span>
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                             {% load flatblock_tags %}
                                             <div id="overview-overlay-links">
                                               <span class="span11">
@@ -615,19 +615,19 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>    
-                
+                </div>
+
                 <!-- Legends Panel (right panel) -->
                 <div data-bind="visible: showLegend(), css: {'fullscreen-legend': isFullScreen() }" class="span3" id="legend">
                     <div id="legend-wrapper">
                         <div id="legend-header">
                             <span class="pull-right">
-                                <a href="#" style="margin-left: 10px; margin-top: -2px; opacity: .6;" class="btn btn-mini close" data-bind="click: toggleLegend"> x </a> 
+                                <a href="#" style="margin-left: 10px; margin-top: -2px; opacity: .6;" class="btn btn-mini close" data-bind="click: toggleLegend"> x </a>
                             </span>
                             <span style="text-transform: uppercase;">
                                 Legends (<span data-bind="text: activeLegendLayers().length"></span>)
@@ -668,10 +668,10 @@
         </div>
 
         <!--/row-->
-          
+
         <!--/.fluid-container-->
 
-        
+
 
         <!-- transparency tool -->
         <div style="display:none" id="opacity-popover" class="popover fade bottom in">
@@ -679,11 +679,11 @@
             </div>
             <div class="popover-inner">
                 <div class="popover-content" data-bind="if: selectedLayer">
-                    <div class="slider" data-bind="jqSlider: selectedLayer().opacity, jqOptions: { min: 0, max: 1, step: .01, range: 'min' }"></div>                    
+                    <div class="slider" data-bind="jqSlider: selectedLayer().opacity, jqOptions: { min: 0, max: 1, step: .01, range: 'min' }"></div>
                 </div>
             </div>
         </div>
-        
+
         <!--<div style="display:none" id="layer-popover" class="layer-popover popover fade right in" data-bind="event: {'mouseleave': $root.hideTooltip}">
             <div class="arrow"></div>
             <div class="popover-inner layer-tooltip">
@@ -692,17 +692,17 @@
                 </div>
             </div>
         </div>-->
-        
+
         {% include "bookmarks.html" %}
-        
+
         {% include "printing.html" %}
 
-        
+
         <!-- Le javascript -->
         <!-- Placed at the end of the document so the pages load faster -->
         <!-- <script src="assets/js/bootstrap-transition.js"></script>
     <script src="assets/js/bootstrap-alert.js"></script>
-   
+
     <script src="assets/js/bootstrap-scrollspy.js"></script>
     <script src="assets/js/bootstrap-a.js"></script>
     <script src="assets/js/bootstrap-carousel.js"></script>
@@ -774,7 +774,7 @@
             }
         }(document, "script", "twitter-wjs");
         </script>
-        
+
     </body>
 
 </html>
