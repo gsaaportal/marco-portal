@@ -50,7 +50,7 @@
                                             </ul>
                                         </li>
                                         <li><a href="http://www.southatlanticalliance.org/" target="_blank">VISIT GSAA</a></li>
-                                        <li><a href="#">FEEDBACK</a></li>
+                                        <li><a href="#" data-toggle="modal" data-target="#feedback-modal">FEEDBACK</a></li>
                                     </ul>
                                     <form class="navbar-form search" method="get" accept-charset="utf-8" action="/search/" autocomplete="off">
                                         <a class="btn btn-link"><i class="icon-search icon-large"></i></a>
@@ -63,6 +63,41 @@
                 </div>
             </div>
         </header>
+        
+        <!-- FEEDBACK MODAL -->
+        <div id="feedback-modal" class="modal hide fade">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Feedback</h3>
+            </div>
+            <form class="form-horizontal" id="feedback-form">
+            <div class="modal-body">        
+                <div class="control-group">
+                  <label class="control-label" for="name">Full Name</label>
+                  <div class="controls">
+                    <input class="input-xlarge" type="text" name="name" placeholder="Full Name" required>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="email">Email Address</label>
+                  <div class="controls">
+                    <input class="input-xlarge" type="email" name="email" placeholder="Email Address" required>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="comment">Comment</label>
+                  <div class="controls">
+                      <textarea class="input-xlarge" rows="3" name="comment" required></textarea>
+                  </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button href="#" class="btn" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Send Feedback</button>
+            </div>
+          </form>
+        </div>
 
         <div class="container main-container">
             {% block  body %}{% endblock %}
@@ -107,6 +142,21 @@
             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
           })();
+          
+          $('#feedback-form').on('submit', function (event) {
+             var feedback = {}, $form = $(this);
+             event.preventDefault();
+              $(this).find('input, textarea').each(function (i, input) {
+                 var $input = $(input);
+                 feedback[$input.attr('name')] = $input.val();
+              });
+                  feedback.url = window.location.href;
+              $.post('/feedback/send', feedback, function () {
+                 $form.closest('.modal').modal('hide')
+              });
+              $form.closest('.modal').modal('hide')
+           });
+          
         </script>
         {% block javascript %}
         {% endblock %}

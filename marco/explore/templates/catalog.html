@@ -66,7 +66,7 @@
                                                                 <ul class="unstyled data-layer-links">
                                                                     <li>
                                                                         {% if sublayer.bookmark_link %}
-                                                                        <a href="{{sublayer.bookmark_link}}" class="data-layer-link color-up" target="_blank">VIEW</a>
+                                                                        <a href="{{sublayer.bookmark_link}}" class="data-layer-link color-up" target="_view">VIEW</a>
                                                                         {% else %}
                                                                         <span class="link-not-available">VIEW</span>
                                                                         {% endif %}
@@ -121,7 +121,7 @@
                                             <ul class="unstyled data-layer-links">
                                                 <li>
                                                     {% if layer.bookmark_link %}
-                                                    <a href="{{layer.bookmark_link}}" class="data-layer-link color-up" target="_blank">VIEW</a>
+                                                    <a href="{{layer.bookmark_link}}" class="data-layer-link color-up" target="_view">VIEW</a>
                                                     {% else %}
                                                     <span class="link-not-available">VIEW</span>
                                                     {% endif %}
@@ -200,7 +200,7 @@
 
 #theme-list .accordion-inner li {
     padding-left: 0px;
-    padding-right: 10px;
+    padding-right: 20px;
 }
 
 #theme-list h3 {

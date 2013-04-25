@@ -92,6 +92,15 @@ a[target="_blank"]:after {
   display: inline-block;
   text-decoration: inherit;
 }
+a[target="_view"]:after {
+  content: "\0000a0\0000a0\f041";
+  font-family: FontAwesome;
+  font-size: 12px;
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  text-decoration: inherit;
+}
 
 
 /**
