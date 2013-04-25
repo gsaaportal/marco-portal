@@ -61,38 +61,38 @@
                                                                             
                                                         <div id="{{sublayer.slug}}-links" class="accordion-body collapse">
                                                             <div class="accordion-inner">
-                                                                <ul class="unstyled">
+                                                                <ul class="unstyled data-layer-links">
                                                                     <li>
                                                                         {% if sublayer.bookmark_link %}
-                                                                        <a href="{{sublayer.bookmark_link}}" target="_blank">VIEW</a>
+                                                                        <a href="{{sublayer.bookmark_link}}" class="data-layer-link color-up" target="_blank">VIEW</a>
                                                                         {% else %}
                                                                         <span class="link-not-available">VIEW</span>
                                                                         {% endif %}
                                                                     </li>
                                                                     <li>
                                                                         {% if sublayer.kml %}
-                                                                        <a href="{{sublayer.kml}}" target="_blank">KML</a>
+                                                                        <a href="{{sublayer.kml}}" class="data-layer-link color-up" target="_download">KML</a>
                                                                         {% else %}
                                                                         <span class="link-not-available">KML</span>
                                                                         {% endif %}
                                                                     </li>
                                                                     <li>
                                                                         {% if sublayer.data_download_link %}
-                                                                        <a href="{{sublayer.data_download_link}}" target="_blank">DATA</a>
+                                                                        <a href="{{sublayer.data_download_link}}" class="data-layer-link color-up" target="_download">DATA</a>
                                                                         {% else %}
                                                                         <span class="link-not-available">DATA</span>
                                                                         {% endif %}
                                                                     </li>
                                                                     <li>
                                                                        {% if sublayer.metadata_link %}
-                                                                        <a href="{{sublayer.metadata_link}}" target="_blank">METADATA</a>
+                                                                        <a href="{{sublayer.metadata_link}}" class="data-layer-link color-up" target="_blank">METADATA</a>
                                                                         {% else %}
                                                                         <span class="link-not-available">METADATA</span>
                                                                         {% endif %}
                                                                     </li>
                                                                     <li>
                                                                         {% if sublayer.source_link %}
-                                                                        <a href="{{sublayer.source_link}}" target="_blank">SOURCE</a>
+                                                                        <a href="{{sublayer.source_link}}" class="data-layer-link color-up" target="_blank">SOURCE</a>
                                                                         {% else %}
                                                                         <span class="link-not-available">SOURCE</span>
                                                                         {% endif %}
@@ -116,38 +116,38 @@
                                     </div>
                                     <div id="{{layer.slug}}-links" class="accordion-body collapse">
                                         <div class="accordion-inner">
-                                            <ul class="unstyled">
+                                            <ul class="unstyled data-layer-links">
                                                 <li>
                                                     {% if layer.bookmark_link %}
-                                                    <a href="{{layer.bookmark_link}}" target="_blank">VIEW</a>
+                                                    <a href="{{layer.bookmark_link}}" class="data-layer-link color-up" target="_blank">VIEW</a>
                                                     {% else %}
                                                     <span class="link-not-available">VIEW</span>
                                                     {% endif %}
                                                 </li>
                                                 <li>
                                                     {% if layer.kml %}
-                                                    <a href="{{layer.kml}}" target="_blank">KML</a>
+                                                    <a href="{{layer.kml}}" class="data-layer-link color-up" target="_download">KML</a>
                                                     {% else %}
                                                     <span class="link-not-available">KML</span>
                                                     {% endif %}
                                                 </li>
                                                 <li>
                                                     {% if layer.data_download_link %}
-                                                    <a href="{{layer.data_download_link}}" target="_blank">DATA</a>
+                                                    <a href="{{layer.data_download_link}}" class="data-layer-link color-up" target="_download">DATA</a>
                                                     {% else %}
                                                     <span class="link-not-available">DATA</span>
                                                     {% endif %}
                                                 </li>
                                                 <li>
                                                    {% if layer.metadata_link %}
-                                                    <a href="{{layer.metadata_link}}" target="_blank">METADATA</a>
+                                                    <a href="{{layer.metadata_link}}" class="data-layer-link color-up" target="_blank">METADATA</a>
                                                     {% else %}
                                                     <span class="link-not-available">METADATA</span>
                                                     {% endif %}
                                                 </li>
                                                 <li>
                                                     {% if layer.source_link %}
-                                                    <a href="{{layer.source_link}}" target="_blank">SOURCE</a>
+                                                    <a href="{{layer.source_link}}" class="data-layer-link color-up" target="_blank">SOURCE</a>
                                                     {% else %}
                                                     <span class="link-not-available">SOURCE</span>
                                                     {% endif %}
@@ -176,6 +176,13 @@
 
 #theme-list .accordion-group {
     border: 0px;
+    margin-bottom: 0px;
+}
+
+#theme-list .theme-group {
+    padding-bottom: 3px;
+    border-bottom: 1px solid #e5e5e5;
+    width: 95%;
 }
 
 #theme-list .accordion-heading {
@@ -203,25 +210,37 @@
 }
 
 #theme-list .theme-heading .color-up h3 {
-    color: rgba(45,137,152, 1);
+    color: rgba(3, 11, 212, 1);
 }
 
 #theme-list .theme-heading .color-down h3 {
-    color: rgba(45,137,152, .5);
+    color: rgba(3, 11, 212, .5);
 }
 
 #theme-list .layer-heading .color-up {
-    color: rgba(45,137,152, 1);
+    color: rgba(102, 102, 102, 1);
 }
 #theme-list .layer-heading .color-down {
-    color: rgba(45,137,152, .5);
+    color: rgba(102, 102, 102, .5);
 }
 
 #theme-list .sublayer-heading .color-up {
-    color: rgba(45,137,152, 1);
+    color: rgba(102, 102, 102, 1);
 }
 #theme-list .sublayer-heading .color-down {
-    color: rgba(45,137,152, .5);
+    color: rgba(102, 102, 102, .5);
+}
+
+#theme-list .data-layer-links .color-up {
+    color: rgba(3, 11, 212, 1);
+}
+
+#theme-list .data-layer-links .color-down {
+    color: rgba(3, 11, 212, .8);
+}
+
+#theme-list .data-layer-links li  {
+    display: inline-block;
 }
 
 .blog .typeahead {
@@ -372,6 +391,19 @@
             $('.sublayer-name').removeClass('color-down');
             $('.sublayer-name').removeClass('color-up');
             $('.sublayer-name').addClass('color-up');
+        });
+
+        $('.data-layer-link').hover(function(e) { //trigger the mouseover event
+            $('.data-layer-link').removeClass('color-up');
+            $('.data-layer-link').addClass('color-down');
+            $(e.currentTarget).removeClass('color-down');
+            $(e.currentTarget).addClass('color-up');
+            //$('#theme-list .in').siblings('.sublayer-heading').find('.sublayer-name').removeClass('color-down');
+            //$('#theme-list .in').siblings('.sublayer-heading').find('.sublayer-name').addClass('color-up');
+        }, function(e) { //trigger the mouseout event
+            $('.data-layer-link').removeClass('color-down');
+            $('.data-layer-link').removeClass('color-up');
+            $('.data-layer-link').addClass('color-up');
         });
         
     });
