@@ -58,3 +58,15 @@ $(document).ready(function () {
         $(this).parents('.sidebar-nav-section').addClass('active');
     }); 
 });
+
+/**
+ * Set page block left margins to one pixel less due to border. 
+ * todo: determine which span in each row is tallest and only use a border there to allow
+ * for the borders to reach fully to the next row's top border.
+ */
+$(document).ready(function () {
+    $('.page-blocks > .row > [class*="span"]:first-child').css({'margin-right': '-=1'});
+    $('.page-blocks > .row > [class*="span"]:last-child').css({'margin-left': '-=1'});
+});
+
+

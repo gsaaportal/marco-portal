@@ -35,10 +35,12 @@ body {
   background-color: #F0FAFE;
   color: #000;
 }
+.primary { color: #030BD4; }
 .secondary-copy { color: #666; }
 .dividing-lines { color: #ccc; }
 
-
+p { word-break:hyphenate; }
+p.indent { margin-left: 25px; }
 
 /**
  * Links
@@ -262,15 +264,62 @@ footer h6 {
 .sidebar-nav-section { border-bottom: 1px dotted #ccc; }
 .sidebar-nav-section:last-child { border-bottom: none; }
 
+@media (max-width: 979px) {
+  .sidebar-nav-section > h3 {
+    font-size: 20px;
+  }
+}
 
 
+/**
+ * Page blocks
+ */
+.page-blocks > .row .page-block {
+  padding: 30px 30px 30px 0;
+}
+.page-blocks > .row:first-child .page-block {
+  padding-top: 0
+}
+.page-block > h4 {
+  margin: 20px 0;
+}
 
+@media (max-width: 770px) {
+  .page-blocks > .row > [class*="span"] {
+      border-bottom: 1px dotted #ccc;
+  }
+  .page-blocks > .row:last-child > [class*="span"]:last-child {
+      border-bottom: none;
+  }
+}
+/* dividing lines */
+@media (min-width: 771px) {
+  .page-blocks > .row  > [class*="span"] {
+    border-top: 1px dotted #ccc;
+    border-right: 1px dotted #ccc;
+    border-left: 1px dotted #ccc;
+  }
+  .page-blocks > .row:first-child > [class*="span"] {
+    border-top: none;
+  }
+  .page-blocks > .row > [class*="span"]:last-child {
+    border-right: none;
+    padding-left: 20px;
+  }
+  .page-blocks > .row > [class*="span"]:first-child {
+    border-left: none;    
+  }
+  .page-blocks > .row > [class*="span"]:last-child {
+    margin-left: 0;
+  }
+}
 
+/**
+ * Responsive
+ */
 @media (max-width: 768px) {
   footer h6 {
     margin-top: 30px;
   }
-
-
 }
 
