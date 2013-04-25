@@ -580,6 +580,14 @@ a.disabled-link:hover {
   right: 26px;
   max-height: 100px;
   overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#data-accordion .dropdown-menu li > a {
+  display: block;
+  width: 93%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #designs-accordion  ul.unstyled {
