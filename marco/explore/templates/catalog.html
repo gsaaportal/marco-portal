@@ -28,10 +28,12 @@
                 <a class="accordion-toggle theme-title color-up" data-toggle="collapse" data-parent="theme-list" href="#{{ theme_dict.theme.name }}">
                     <h3>
                         <span class="theme-search-name">{{ theme_dict.theme.display_name }}</span> / {{ theme_dict.layers|length }} 
+                        <small><i class="icon-caret-right caret-icon color-up" style="display: inline-block"></i></small>
+                        <small><i class="icon-caret-down caret-icon color-up" style="display: none"></i></small>
                     </h3>
                 </a>
             </div>
-            <div id="{{ theme_dict.theme.name }}" class="accordion-body collapse"> 
+            <div id="{{ theme_dict.theme.name }}" class="theme-accordion accordion-body collapse"> 
                 <div class="accordion-inner">
                     {% if not theme_dict.layers %}
                     <p>coming soon...</p>
@@ -217,6 +219,18 @@
     color: rgba(3, 11, 212, .5);
 }
 
+#theme-list .theme-heading small {
+    vertical-align: middle;
+}
+
+#theme-list .theme-heading i.color-up {
+    color: rgba(0,0,0, 1);
+}
+
+#theme-list .theme-heading i.color-down {
+    color: rgba(0,0,0, .5);
+}
+
 #theme-list .layer-heading .color-up {
     color: rgba(102, 102, 102, 1);
 }
@@ -354,17 +368,37 @@
         });
         
         // MODIFIED DATA CATALOG
+        
         $('.theme-group').hover(function(e) { //trigger the mouseover event
             $('.theme-title').removeClass('color-up');
             $('.theme-title').addClass('color-down');
+            $('.caret-icon').removeClass('color-up');
+            $('.caret-icon').addClass('color-down');
             $(e.currentTarget).find('.theme-title').removeClass('color-down');
             $(e.currentTarget).find('.theme-title').addClass('color-up');
+            $(e.currentTarget).find('.caret-icon').removeClass('color-down');
+            $(e.currentTarget).find('.caret-icon').addClass('color-up');
             $('#theme-list .in').siblings('.theme-heading').find('.theme-title').removeClass('color-down');
             $('#theme-list .in').siblings('.theme-heading').find('.theme-title').addClass('color-up');
+            $('#theme-list .in').siblings('.theme-heading').find('.caret-icon').removeClass('color-down');
+            $('#theme-list .in').siblings('.theme-heading').find('.caret-icon').addClass('color-up');
         }, function(e) { //trigger the mouseout event
             $('.theme-title').removeClass('color-down');
             $('.theme-title').removeClass('color-up');
             $('.theme-title').addClass('color-up');
+            $('.caret-icon').removeClass('color-down');
+            $('.caret-icon').removeClass('color-up');
+            $('.caret-icon').addClass('color-up');
+        });
+        
+        $('.theme-accordion').on('show', function(e) {
+            $(e.currentTarget).siblings('.theme-heading').find('i.icon-caret-right').css('display', 'none');
+            $(e.currentTarget).siblings('.theme-heading').find('i.icon-caret-down').css('display', 'inline-block');
+        });
+        
+        $('.theme-accordion').on('hide', function(e) {
+            $(e.currentTarget).siblings('.theme-heading').find('i.icon-caret-right').css('display', 'inline-block');
+            $(e.currentTarget).siblings('.theme-heading').find('i.icon-caret-down').css('display', 'none');
         });
         
         $('.layer-group').hover(function(e) { //trigger the mouseover event

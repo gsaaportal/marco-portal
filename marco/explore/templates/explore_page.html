@@ -2,7 +2,7 @@
 {% block main %}
 {% load flatblock_tags %}
 
-<div class="page-blocks">
+<div class="explore-page page-blocks">
 	<div class="row">
 		<div class="span5">
 			<div class="page-block">
@@ -17,7 +17,10 @@
                     under each theme, and you can also see the
                     GSAA Portal’s key new data needs under Data
                     Priorities. 
-                    <a href="/explore/catalog"> EXPLORE </a>
+                    <a href="/explore/catalog" class="pull-right"> 
+                        <b><small>EXPLORE </small> 
+                        <i class="icon-caret-right"></i></b>
+                    </a>
                 </p>
 			</div>
 		</div>
@@ -33,11 +36,28 @@
                     or would like to partner with GSAA in developing
                     one or more of the data sets mentioned. And
                     check back regularly for new requests. 
-                    <a href="/explore/needs"> EXPLORE </a>
+                    <a href="/explore/needs" class="pull-right"> 
+                        <b><small>EXPLORE </small> 
+                        <i class="icon-caret-right"></i></b>
+                    </a>
                 </p>
 			</div>
 		</div>
 	</div>
 </div>
+
+<style type="text/css">
+
+.explore-page a {
+    text-decoration: none;
+    color: rgba(0, 0, 0, .8);
+}
+
+.explore-page a:hover {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 1);
+}
+
+</style>
 
 {% endblock %}
