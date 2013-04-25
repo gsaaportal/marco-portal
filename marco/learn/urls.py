@@ -3,5 +3,5 @@ from views import *
 
 urlpatterns = patterns('',
     (r'^topic/([\w-]*)', topic_page),
-    (r'^([\w-]*)', learn_page),
+    (r'^', learn_page),
 )

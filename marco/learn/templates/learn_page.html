@@ -1,0 +1,46 @@
+{% extends 'base_with_sidebar.html' %}
+{% block main %}
+{% load flatblock_tags %}
+
+<div class="page-blocks">
+	<div class="row">
+		<div class="span5">
+			<div class="page-block">
+				<img src="{{MEDIA_URL}}gsaa/img/page-block-placeholder.png"/>
+				<h4 class="primary">{{ topics.0.display_name }}</h4>
+				<p>{{ topics.0.description }} <a href="/learn/topic/{{topics.0.name}}"> LEARN MORE </a></p>
+			</div>
+		</div>
+		<div class="span5">
+			<div class="page-block">
+                {% if topics.1 %}
+				<img src="{{MEDIA_URL}}gsaa/img/page-block-placeholder.png"/>
+				<h4 class="primary">{{ topics.1.display_name }}</h4>
+				<p>{{ topics.1.description }} <a href="/learn/topic/{{topics.1.name}}"> LEARN MORE </a></p>
+                {% endif %}
+			</div>
+		</div>
+	</div>
+    {% if topics.2 %}
+	<div class="row">
+		<div class="span5">
+			<div class="page-block">
+				<img src="{{MEDIA_URL}}gsaa/img/page-block-placeholder.png"/>
+				<h4 class="primary">{{ topics.2.display_name }}</h4>
+				<p>{{ topics.2.description }} <a href="/learn/topic/{{topics.2.name}}"> LEARN MORE </a></p>
+			</div>
+		</div>
+		<div class="span5">
+			<div class="page-block">
+                {% if topics.3 %}
+				<img src="{{MEDIA_URL}}gsaa/img/page-block-placeholder.png"/>
+				<h4 class="primary">{{ topics.3.display_name }}</h4>
+				<p>{{ topics.3.description }} <a href="/learn/topic/{{topics.3.name}}"> LEARN MORE </a></p>
+                {% endif %}
+			</div>
+		</div>
+	</div>
+    {% endif %}
+</div>
+
+{% endblock %}

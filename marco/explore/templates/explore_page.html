@@ -1,0 +1,43 @@
+{% extends 'base_with_sidebar.html' %}
+{% block main %}
+{% load flatblock_tags %}
+
+<div class="page-blocks">
+	<div class="row">
+		<div class="span5">
+			<div class="page-block">
+				<img src="{{MEDIA_URL}}gsaa/img/page-block-placeholder.png"/>
+				<h4 class="primary">Data Catalog</h4>
+				<p> The Data Catalog gathers available data and
+                    recruits new data about ocean resources and
+                    human use information such as fishing grounds,
+                    recreational areas, shipping lanes, habitat areas,
+                    and energy sites. Data falls into one of eight
+                    themes. You can explore the data available
+                    under each theme, and you can also see the
+                    GSAA Portal’s key new data needs under Data
+                    Priorities. 
+                    <a href="/explore/catalog"> EXPLORE </a>
+                </p>
+			</div>
+		</div>
+		<div class="span5">
+			<div class="page-block">
+				<img src="{{MEDIA_URL}}gsaa/img/page-block-placeholder.png"/>
+				<h4 class="primary">Data Priorities</h4>
+				<p> The GSAA Portal is actively seeking new data in
+                    order to comprehensively inform the regional
+                    ocean planning process. The list highlights the
+                    Portal’s top priorities at the moment. Please
+                    contact us if you have existing data we could use
+                    or would like to partner with GSAA in developing
+                    one or more of the data sets mentioned. And
+                    check back regularly for new requests. 
+                    <a href="/explore/needs"> EXPLORE </a>
+                </p>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

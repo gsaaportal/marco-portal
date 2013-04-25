@@ -6,6 +6,9 @@
                     <div class="sidebar-nav-section">
                         <h3><a href="/learn">LEARN</a></h3>
                         <ul class="unstyled">
+                            <li {% if topic.name == 'beach_renourishment' %}class="active"{% endif %}>
+                                <a href="/learn/topic/beach_renourishment">Beach Renourishment</a>
+                            </li>
                             <li {% if topic.name == 'sediment_management' %}class="active"{% endif %}>
                                 <a href="/learn/topic/sediment_management">Sediment Management</a>
                             </li>
