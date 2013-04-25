@@ -11,7 +11,8 @@ class Topic(models.Model):
     display_name = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
     #views = models.ManyToManyField("MapView", blank=True, null=True)
-    layers = models.ManyToManyField(Layer, blank=True, null=True)
+    layers = models.ManyToManyField(Layer, blank=True, null=True)  
+    ordering = models.IntegerField(null=True, blank=True)
 
     def __unicode__(self):
         return unicode('%s' % (self.name))

@@ -16,10 +16,9 @@ def topic_page(request, topic_name=None, template='topic_page.html'):
     context = {'topic': topic, 'views': views, 'views_list': viewsList, 'initial_view': views[0].name, 'layers': layers, 'domain': get_domain(8000), 'domain8010': get_domain()}
     return render_to_response(template, RequestContext(request, context)) 
 
-def learn_page(request, theme_name=None, template='theme_page.html'):
-    theme = get_object_or_404(Theme, name = theme_name)
-    theme.layers = theme.layer_set.all().order_by('name')
-    context = {'theme': theme, 'domain': get_domain(8000), 'domain8010': get_domain()}
+def learn_page(request, theme_name=None, template='learn_page.html'):
+    topics = Topic.objects.all().order_by('ordering')
+    context = {'topics': topics, 'domain': get_domain(8000), 'domain8010': get_domain()}
     return render_to_response(template, RequestContext(request, context)) 
 
 def get_ordered_list():
