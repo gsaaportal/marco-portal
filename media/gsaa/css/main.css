@@ -264,6 +264,10 @@ footer h6 {
   font-weight: normal;
   line-height: 40px;
 }
+.sidebar-nav-section > ul > li {
+  padding-bottom: 20px;
+  line-height: 20px;
+}
 .sidebar-nav-section > h3 > a,
 .sidebar-nav-section > ul > li > a {
   color: #000;
