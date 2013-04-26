@@ -6,7 +6,7 @@
 <div class="row-fluid">
     <div class="span4 pull-right">
         <b>The Data Catalog</b>
-        gathers available data and recruits new data about ocean resources and human use information such as fishing grounds, recreational areas, shipping lanes, habitat areas, and energy sites. Data falls into one of seven themes listed below. You can explore the data available under each theme, and you can also see the MARCO Portal’s key new data needs under Data Priorities.
+        gathers available data and recruits new data about ocean resources and human use information such as fishing grounds, recreational areas, shipping lanes, habitat areas, and energy sites. Data falls into one of seven themes listed below. You can explore the data available under each theme, or search for the data using the form below.
 
         <div class="search-row">
             <div style="margin: 15px 0;">
@@ -307,9 +307,9 @@ input[type="text"]:hover {
                 }
                 if ( $(layer.layer).closest('.sublayer-group').find('.accordion-body').first().length ) {
                     $(layer.layer).closest('.sublayer-group').find('.accordion-body').first().collapse('show');
-                    $(layer.layer).closest('.sublayer-group').find('.layer-search-name').effect("pulsate", {times:2}, 500);
+                    $(layer.layer).closest('.sublayer-group').find('.layer-search-name').effect("pulsate", {times:1}, 500);
                 } else {   
-                    $(layer.layer).closest('.layer-group').find('.layer-search-name').first().effect("pulsate", {times:2}, 500);
+                    $(layer.layer).closest('.layer-group').find('.layer-search-name').first().effect("pulsate", {times:1}, 500);
                 }
                 setTimeout(function() {$(window).scrollTop(layer.layer.closest('.layer-group').offset().top-300)}, 200);
             };

@@ -20,7 +20,8 @@ urlpatterns = patterns('',
     (r'^embed/', include('visualize.urls')),
     (r'^mobile/', include('visualize.urls')),
     (r'^feedback/', include('feedback.urls')),
-    (r'^$', direct_to_template, {'template': 'home.html'}),
+    (r'^portal/', direct_to_template, {'template': 'home.html'}),
+    (r'^', direct_to_template, {'template': 'home.html'}),
     (r'', include('madrona.common.urls')),
 )
 
