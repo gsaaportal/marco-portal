@@ -44,6 +44,7 @@ body {
 
 p { word-break:hyphenate; }
 p.indent { margin-left: 25px; }
+.nowrap { text-wrap:none; }
 
 /**
  * Links
@@ -309,7 +310,7 @@ footer h6 {
 }
 
 /* dividing lines when blocks are stacked */
-@media (max-width: 770px) {
+@media (max-width: 767px) {
   .page-blocks > [class*="row"] > [class*="span"] {
       border-bottom: 1px dotted #ccc;
   }
@@ -318,7 +319,7 @@ footer h6 {
   }
 }
 /* dividing lines when blocks side by side */
-@media (min-width: 771px) {
+@media (min-width: 768px) {
   .page-blocks > [class*="row"]  > [class*="span"] {
     border-top: 1px dotted #ccc;
     border-right: 1px dotted #ccc;
@@ -391,7 +392,7 @@ footer h6 {
 /**
  * Responsive
  */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   footer h6 {
     margin-top: 30px;
   }
@@ -400,7 +401,11 @@ footer h6 {
 #homeCarousel {
   margin-left: auto;
   margin-right: auto;
-  width: 857px;
+  width: 100%;
+}
+
+#homeCarousel .item > img {
+  width: 100%;
 }
 
 .carousel-indicators {
@@ -464,6 +469,7 @@ footer h6 {
   bottom: 16px;
   right: 18px;
   z-index: 10;
+  width: auto;
 }
 .tooltip {
   position: absolute;
@@ -543,11 +549,47 @@ footer h6 {
 }
 
 
-
-
-
-
 /* Make carousel fade rather than slide */
 .carousel .item {-webkit-transition: opacity 1s; -moz-transition: opacity 1s; -ms-transition: opacity 1s; -o-transition: opacity 1s; transition: opacity 1s;}
 .carousel .active.left {left:0;opacity:0;z-index:2;}
 .carousel .next {left:0;opacity:1;z-index:1;}
+
+
+/**
+ * Home page main links (under carousel)
+ */
+.home-main-nav-row {
+  margin-bottom: 30px;
+}
+.home-main-nav-row .item p {
+  max-width: 220px;
+}
+.home-main-nav-row .item > a > div {
+  padding: 30px;
+  padding-right: 50px;
+  border-right: 1px dotted #ccc;
+}
+.home-main-nav-row .item:last-child > a > div {
+  border-right: none;
+}
+.home-main-nav-row .item > a:hover .svg-link path {
+  fill: #34C4F2;
+}
+@media (max-width: 767px) {
+  .home-main-nav-row .item > a > div {
+    border-bottom: 1px dotted #ccc;
+    border-right: none;
+  }
+  .home-main-nav-row .item:last-child > a > div {
+    border-bottom: none;
+  }
+}
+
+
+
+.svg-link:hover path {
+  fill: #34C4F2;
+}
+.svg-link {
+  margin-bottom: -2px;
+}
