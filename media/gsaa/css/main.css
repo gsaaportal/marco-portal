@@ -355,10 +355,21 @@ footer h6 {
   text-align: center;
   padding-right: 30px;
 }
-.team-org-page-block .logo1 { background-image: url(http://placehold.it/100x175); }
-.team-org-page-block .logo2 { background-image: url(http://placehold.it/200x150); }
-.team-org-page-block .logo3 { background-image: url(http://placehold.it/200x100); }
+.team-org-page-block .logo1 { background-image: url(../img/partner-logos/secoora.jpg); }
+.team-org-page-block .logo2 { background-image: url(../img/partner-logos/georgia_tech.jpg); }
+.team-org-page-block .logo3 { background-image: url(../img/partner-logos/duke.jpg); }
+.team-org-page-block .logo4 { background-image: url(../img/partner-logos/east_carolina.jpg); }
+.team-org-page-block .logo5 { background-image: url(../img/partner-logos/nature_conservancy.jpg); }
+.team-org-page-block .logo6 { background-image: url(../img/partner-logos/south_carolina_u.jpg); }
 .team-org-page-block .logo7 { background-image: url(../img/partner-logos/ecotrust.jpg); }
+.team-org-page-block .logo8 { background-image: url(../img/partner-logos/florida_dept_env_protection.jpg); }
+.team-org-page-block .logo9 { background-image: url(../img/partner-logos/florida_fish_wildlife.jpg); }
+.team-org-page-block .logo10 { background-image: url(../img/partner-logos/georgia_dept_nat_resources.jpg); }
+.team-org-page-block .logo11 { background-image: url(../img/partner-logos/nc_dept_env.jpg); }
+.team-org-page-block .logo12 { background-image: url(../img/partner-logos/seagrant.jpg); }
+.team-org-page-block .logo13 { background-image: url(../img/partner-logos/georgia_dept_nat_resources.jpg); }
+.team-org-page-block .logo14 { background-image: url(../img/partner-logos/nc_dept_env.jpg); }
+.team-org-page-block .logo15 { background-image: url(../img/partner-logos/noaa.jpg); }
 
 
 
