@@ -61,7 +61,7 @@ a:focus,
 a.subtle:hover,
 .navbar .nav>li:focus,
 .navbar .nav>li>a:hover,
-.navbar .nav>li>a:focus, 
+.navbar .nav>li>a:focus,
 .navbar .nav > .active > a,
 .navbar .nav > .active > a:hover,
 .navbar .nav > .active > a:focus {
@@ -77,7 +77,7 @@ a.subtle:hover,
           box-shadow: inset 0 0 0 rgba(255, 0, 0, 1);
 }
 .navbar .nav li.dropdown.open>.dropdown-toggle,
-.navbar .nav li.dropdown.active>.dropdown-toggle, 
+.navbar .nav li.dropdown.active>.dropdown-toggle,
 .navbar .nav li.dropdown.open.active>.dropdown-toggle {
   background-color: white;
   color:#34C4F2;
@@ -131,7 +131,7 @@ header.shadow {
 .navbar-inner {
   border: none;
   border-radius: 0;
-  background-color: transparent;  
+  background-color: transparent;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
@@ -141,7 +141,7 @@ header.shadow {
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF, endColorstr=#00FFFFFF)";
   padding: 0;
 }
-.navbar .nav>li>a { 
+.navbar .nav>li>a {
   color: #333;
 }
 
@@ -199,7 +199,7 @@ header .span12 {
 }
 
 /**
- * Dropdown in header menu - some of this is purely 
+ * Dropdown in header menu - some of this is purely
  * stripping bootstrap styles.
  */
 .gsaa-nav .dropdown-menu {
@@ -238,7 +238,7 @@ footer #section1 p {
   color: #030BD4;
   font-weight: bold;
   line-height: 30px;
-  margin-right: 20px; 
+  margin-right: 20px;
 }
 footer h6 {
   margin-top: 0;
@@ -290,7 +290,7 @@ footer h6 {
  */
 [class*="row"] > h4 {
   margin-top: 50px;
-  padding-bottom: 18px;  
+  padding-bottom: 18px;
 }
 .page-blocks > [class*="row"] .page-block {
   padding: 30px 40px 30px 0;
