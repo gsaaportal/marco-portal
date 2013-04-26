@@ -265,8 +265,10 @@ footer h6 {
   line-height: 40px;
 }
 .sidebar-nav-section > ul > li {
-  padding-bottom: 20px;
-  line-height: 20px;
+  padding-bottom: 8px;
+}
+.sidebar-nav-section > ul > li:last-child {
+  padding-bottom: 10px;
 }
 .sidebar-nav-section > h3 > a,
 .sidebar-nav-section > ul > li > a {
@@ -284,7 +286,7 @@ footer h6 {
 .sidebar-nav-section > ul { display: none; }
 .sidebar-nav-section.active > ul { display: inherit; }
 
-.sidebar-nav-section > ul > li { height: 30px; }
+/*.sidebar-nav-section > ul > li { height: 30px; }*/
 
 .sidebar-nav-section { border-bottom: 1px dotted #ccc; }
 .sidebar-nav-section:last-child { border-bottom: none; }
