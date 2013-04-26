@@ -25,7 +25,7 @@
         <link rel="stylesheet" href="{{MEDIA_URL}}gsaa/css/main.css">
 
 
-        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script src="{{MEDIA_URL}}gsaa/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -36,7 +36,7 @@
             <div class="container">
                 <div class="row">
                     <div class="span12">
-                        <a class="logo" href="#home"><img src="{{MEDIA_URL}}gsaa/img/logo-gsaa.png"/></a>
+                        <a class="logo" href="/"><img src="{{MEDIA_URL}}gsaa/img/logo-gsaa.png"/></a>
                         <div class="navbar">
                             <div class="navbar-inner">
                                 <div class="container">
@@ -44,13 +44,13 @@
                                         <li class="dropdown">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">ABOUT THE PORTAL <b class="caret"></b></a>
                                             <ul class="dropdown-menu">
-                                                <li><a href="#">NEEDS & SOLUTIONS</a></li>
-                                                <li><a href="#">DATA DISCLAIMER</a></li>
-                                                <li><a href="#">PARTNERS & FUNDERS</a></li>
+                                                <li><a href="/about#needs">NEEDS & SOLUTIONS</a></li>
+                                                <li><a href="/about#disclaimer">DATA DISCLAIMER</a></li>
+                                                <li><a href="/about#partners">PARTNERS & FUNDERS</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="#" target="_blank">VISIT GSAA</a></li>
-                                        <li><a href="#">FEEDBACK</a></li>
+                                        <li><a href="http://www.southatlanticalliance.org/" target="_blank">VISIT GSAA</a></li>
+                                        <li><a href="#" data-toggle="modal" data-target="#feedback-modal">FEEDBACK</a></li>
                                     </ul>
                                     <form class="navbar-form search" method="get" accept-charset="utf-8" action="/search/" autocomplete="off">
                                         <a class="btn btn-link"><i class="icon-search icon-large"></i></a>
@@ -63,46 +63,46 @@
                 </div>
             </div>
         </header>
+        
+        <!-- FEEDBACK MODAL -->
+        <div id="feedback-modal" class="modal hide fade">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Feedback</h3>
+            </div>
+            <form class="form-horizontal" id="feedback-form">
+            <div class="modal-body">        
+                <div class="control-group">
+                  <label class="control-label" for="name">Full Name</label>
+                  <div class="controls">
+                    <input class="input-xlarge" type="text" name="name" placeholder="Full Name" required>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="email">Email Address</label>
+                  <div class="controls">
+                    <input class="input-xlarge" type="email" name="email" placeholder="Email Address" required>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="comment">Comment</label>
+                  <div class="controls">
+                      <textarea class="input-xlarge" rows="3" name="comment" required></textarea>
+                  </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button href="#" class="btn" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Send Feedback</button>
+            </div>
+          </form>
+        </div>
 
         <div class="container main-container">
-            <div class="row">
-                <div class="span3">
-
-                    <div class="sidebar-nav-section">
-                        <h3><a href="/learn">LEARN</a></h3>
-                        <ul class="unstyled">
-                            <li {% if topic.name == 'sediment_management' %}class="active"{% endif %}>
-                                <a href="/learn/topic/sediment_management">Sediment Management</a>
-                            </li>
-                            <li {% if topic.name == 'habitat_conservation' %}class="active"{% endif %}>
-                                <a href="/learn/topic/habitat_conservation">Habitat Conservation</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="sidebar-nav-section">
-                        <h3><a href="/explore">EXPLORE</a></h3>
-                        <ul class="unstyled">
-                            {% load flatblock_tags %}
-                            <li {% if request.path == '/explore/catalog' %}class="active"{% endif %}><a href="/explore/catalog">Data Catalog</a></li>
-                            <li {% if request.path == '/explore/needs' %}class="active"{% endif %}><a href="/explore/needs">Data Priorities</a></li>
-                        </ul>
-                    </div>
-                    <div class="sidebar-nav-section">
-                        <h3><a href="/visualize">VISUALIZE</a></h3>
-                        <ul class="unstyled">
-                            <li <a href="#" target="_blank">Marine Planner</a></li>
-                            <li {% if request.path == '/visualize/cartography' %}class="active"{% endif %}><a href="/visualize/cartography">Cartography</a></li>
-                            <li {% if request.path == '/visualize/collaboration' %}class="active"{% endif %}><a href="/visualize/collaboration">Collaboration</a></li>
-                            <li {% if request.path == '/visualize/interactivity' %}class="active"{% endif %}><a href="/visualize/interactivity">Interactivity</a></li>
-                        </ul>
-                    </div>
-
-                </div>
-                <div class="span9">
-                    {% block  main %}{% endblock %}
-                </div>
-            </div>
+            {% block  body %}{% endblock %}
         </div>  <!-- /container -->
+
         <footer>
             <div class="container">
             
@@ -112,8 +112,8 @@
                     </div>
                     <div class="span4">
                         <h6>LEARN MORE ABOUT US</h6>
-                        <p><strong><a class="subtle" href="#">OUR FUNDERS</a></strong> <i class="icon-caret-right"></i></p>
-                        <p><strong><a class="subtle" href="#">OUR PARTNERS</a></strong> <i class="icon-caret-right"></i></p>
+                        <p><strong><a class="subtle" href="/about#funders">OUR FUNDERS</a></strong> <i class="icon-caret-right"></i></p>
+                        <p><strong><a class="subtle" href="/about#partners">OUR PARTNERS</a></strong> <i class="icon-caret-right"></i></p>
                     </div>
                     <div class="span4">
                         <h6>GET IN TOUCH</h6>
@@ -125,6 +125,7 @@
         </footer>
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
 
         <script src="{{MEDIA_URL}}gsaa/js/vendor/bootstrap.min.js"></script>
@@ -142,6 +143,21 @@
             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
           })();
+          
+          $('#feedback-form').on('submit', function (event) {
+             var feedback = {}, $form = $(this);
+             event.preventDefault();
+              $(this).find('input, textarea').each(function (i, input) {
+                 var $input = $(input);
+                 feedback[$input.attr('name')] = $input.val();
+              });
+                  feedback.url = window.location.href;
+              $.post('/feedback/send', feedback, function () {
+                 $form.closest('.modal').modal('hide')
+              });
+              $form.closest('.modal').modal('hide')
+           });
+          
         </script>
         {% block javascript %}
         {% endblock %}

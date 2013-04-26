@@ -1,24 +1,27 @@
 @font-face {
   font-family: 'Aller';
-  src: url('../fonts/Aller/Aller_Rg.eot');
-  src: url('../fonts/Aller/Aller_Rg.otf');
-  src: url('../fonts/Aller/Aller_Rg.ttf') format("truetype");
+  src: url('../fonts/Aller/Aller_Rg.eot?iefix') format('eot'),
+       url('../fonts/Aller/Aller_Rg.woff') format('woff'),
+       url('../fonts/Aller/Aller_Rg.ttf') format("truetype"),
+       url('../fonts/Aller/Aller_Rg.svg#svgFontName') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'Aller';
-  src: url('../fonts/Aller/Aller_Bd.eot');
-  src: url('../fonts/Aller/Aller_Bd.otf');
-  src: url('../fonts/Aller/Aller_Bd.ttf') format("truetype");
+  src: url('../fonts/Aller/Aller_Bd.eot?iefix') format('eot'),
+       url('../fonts/Aller/Aller_Bd.woff') format('woff'),
+       url('../fonts/Aller/Aller_Bd.ttf') format("truetype"),
+       url('../fonts/Aller/Aller_Bd.svg#svgFontName') format('svg');
   font-weight: bold;
   font-style: normal;
 }
 @font-face {
   font-family: 'Aller';
-  src: url('../fonts/Aller/Aller_It.eot');
-  src: url('../fonts/Aller/Aller_It.otf');
-  src: url('../fonts/Aller/Aller_It.ttf') format("truetype");
+  src: url('../fonts/Aller/Aller_It.eot?iefix') format('eot'),
+       url('../fonts/Aller/Aller_It.woff') format('woff'),
+       url('../fonts/Aller/Aller_It.ttf') format("truetype"),
+       url('../fonts/Aller/Aller_It.svg#svgFontName') format('svg');
   font-weight: normal;
   font-style: italic;
 }
@@ -35,10 +38,12 @@ body {
   background-color: #F0FAFE;
   color: #000;
 }
+.primary { color: #030BD4; }
 .secondary-copy { color: #666; }
 .dividing-lines { color: #ccc; }
 
-
+p { word-break:hyphenate; }
+p.indent { margin-left: 25px; }
 
 /**
  * Links
@@ -53,6 +58,7 @@ a.subtle, a.subtle:visited {
 a.active,
 a:hover,
 a:focus,
+a.subtle:hover,
 .navbar .nav>li:focus,
 .navbar .nav>li>a:hover,
 .navbar .nav>li>a:focus, 
@@ -86,6 +92,15 @@ a[target="_blank"]:after {
   display: inline-block;
   text-decoration: inherit;
 }
+a[target="_view"]:after {
+  content: "\0000a0\0000a0\f041";
+  font-family: FontAwesome;
+  font-size: 12px;
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  text-decoration: inherit;
+}
 
 
 /**
@@ -98,6 +113,7 @@ header {
   right: 0;
   background-color: white;
   height: 155px;
+  z-index: 1000;
 }
 header.shadow {
   -webkit-box-shadow: rgba(0,0,0,0.3) 0px 2px 2px -1px;
@@ -174,6 +190,7 @@ header .span12 {
 .navbar .navbar-form.search input:focus {
   display: none;
   border: none;
+  outline: none;
   -webkit-box-shadow: none;
      -moz-box-shadow: none;
           box-shadow: none;
@@ -224,7 +241,7 @@ footer #section1 p {
   margin-right: 20px; 
 }
 footer h6 {
-  margin-top: 30px;
+  margin-top: 0;
   margin-bottom: 25px;
 }
 
@@ -260,3 +277,163 @@ footer h6 {
 
 .sidebar-nav-section { border-bottom: 1px dotted #ccc; }
 .sidebar-nav-section:last-child { border-bottom: none; }
+
+@media (max-width: 979px) {
+  .sidebar-nav-section > h3 {
+    font-size: 20px;
+  }
+}
+
+
+/**
+ * Page blocks
+ */
+[class*="row"] > h4 {
+  margin-top: 50px;
+  padding-bottom: 18px;  
+}
+.page-blocks > [class*="row"] .page-block {
+  padding: 30px 40px 30px 0;
+}
+.page-blocks > [class*="row"]:first-child .page-block {
+  padding-top: 0
+}
+.page-block > h4 {
+  margin: 20px 0;
+}
+
+/* dividing lines when blocks are stacked */
+@media (max-width: 770px) {
+  .page-blocks > [class*="row"] > [class*="span"] {
+      border-bottom: 1px dotted #ccc;
+  }
+  .page-blocks > [class*="row"]:last-child > [class*="span"]:last-child {
+      border-bottom: none;
+  }
+}
+/* dividing lines when blocks side by side */
+@media (min-width: 771px) {
+  .page-blocks > [class*="row"]  > [class*="span"] {
+    border-top: 1px dotted #ccc;
+    border-right: 1px dotted #ccc;
+    margin-left: 0px;
+    padding-left: 20px;
+  }
+  .page-blocks > [class*="row"]:first-child > [class*="span"] {
+    border-top: none;
+  }
+  .page-blocks > [class*="row"] > [class*="span"]:last-child {
+    border-right: none;
+    border-left: 1px dotted #ccc;
+    padding-left: 20px;
+  }
+}
+
+.team-org-page-block {
+  height: 200px;
+  position: relative;
+}
+.team-org-page-block [class*="logo"]{
+  height: 140px;
+  width: 100%;
+  background:url(http://placehold.it/200x100) no-repeat center center;
+  background-size: contain;
+}
+.team-org-page-block p {
+  position: absolute;
+  z-index: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  text-align: center;
+  padding-right: 30px;
+}
+.team-org-page-block .logo1 { background-image: url(http://placehold.it/100x175); }
+.team-org-page-block .logo2 { background-image: url(http://placehold.it/200x150); }
+.team-org-page-block .logo3 { background-image: url(http://placehold.it/200x100); }
+
+
+
+/**
+ * Responsive
+ */
+@media (max-width: 768px) {
+  footer h6 {
+    margin-top: 30px;
+  }
+}
+
+#homeCarousel {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.carousel-indicators {
+  position: absolute;
+  top: auto;
+  bottom: -15px;
+  right: 15px;
+  z-index: 5;
+  margin: 0;
+  list-style: none;
+}
+.carousel-indicators li {
+  width: 16px;
+  height: 6px;
+  background-color: transparent;
+  border: 1px solid #ccc;
+  -webkit-border-radius: 0;
+     -moz-border-radius: 0;
+          border-radius: 0;
+}
+.carousel-indicators li.active {
+  background-color:#34C4F2;
+  border-color: #34C4F2;
+}
+
+/* caption */
+.carousel-caption {
+  position: absolute;
+  right: auto;
+  bottom: 25px;
+  left: 35px;
+  height: 142px;
+  width: 142px;
+  background-color: transparent;
+}
+.carousel-caption .caption-box {
+  height: 100%;
+  width: 100%;
+  background: url('../img/carousel/caption-box.png') no-repeat center center;
+  padding: 35px 15px 15px 15px;
+}
+
+.carousel-caption h4,
+.carousel-caption p {
+  line-height: 20px;
+  color: #000;
+}
+
+.carousel-caption h4 {
+  margin: 0 0 5px;
+}
+
+.carousel-caption p {
+  margin-bottom: 0;
+}
+
+
+/* Make carousel fade rather than slide */
+.carousel .item {-webkit-transition: opacity 1s; -moz-transition: opacity 1s; -ms-transition: opacity 1s; -o-transition: opacity 1s; transition: opacity 1s;}
+.carousel .active.left {left:0;opacity:0;z-index:2;}
+.carousel .next {left:0;opacity:1;z-index:1;}
+
+/*.carousel.carousel-fade .item {
+  -webkit-transition: opacity 2s ease-in-out;
+  -moz-transition: opacity 2s ease-in-out;
+  -ms-transition: opacity 2s ease-in-out;
+  -o-transition: opacity 2s ease-in-out;
+  transition: opacity 2s ease-in-out;
+}
+*/

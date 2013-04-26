@@ -2,9 +2,11 @@ from django.conf.urls.defaults import *
 from django.contrib import admin
 from django.views.generic.simple import redirect_to
 from django.conf import settings
+from django.views.generic.simple import direct_to_template
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    (r'^about/', direct_to_template, {'template': 'news/about.html'}),
     (r'^marco_profile/', include('marco_profile.urls')),
     (r'^sdc/', include('scenarios.urls')),
     (r'^drawing/', include('drawing.urls')),
@@ -18,7 +20,7 @@ urlpatterns = patterns('',
     (r'^embed/', include('visualize.urls')),
     (r'^mobile/', include('visualize.urls')),
     (r'^feedback/', include('feedback.urls')),
-    (r'^$', redirect_to, {'url': '/portal/'}),
+    (r'^portal/', direct_to_template, {'template': 'home.html'}),
     (r'', include('madrona.common.urls')),
 )
 

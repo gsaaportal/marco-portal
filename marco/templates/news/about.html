@@ -1,4 +1,165 @@
-{% load appname %} 
+{% extends 'base_with_sidebar.html' %}
+{% block main %}
 {% load flatblock_tags %}
-<h2> {% appname %}</h2>
-<p> {% flatblock "about_paragraph_1" %}</p>
+
+<div class="page-blocks">
+	<div class="row">
+		<div class="span5">
+			<div class="page-block">
+				<img src="{{MEDIA_URL}}gsaa/img/page-block-placeholder.png"/>
+				<h4 class="primary">The Need</h4>
+				<p>The Governors’ South Atlantic Alliance (GSAA) strives to increase regional collaboration among South Atlantic states, with federal agency part- ners and other stakeholders, to sustain and enhance the environmental (coastal marine), natural resource, economic, public safety, social, and national defense missions of the respective states within the South Atlantic region. Data, information, and decision-support tools are required in order to meet these needs and to better balance the many and competing uses for the region’s natural resources. The GSAA Action Plan and Implementation Plan highlight specific needs for data, information, and decision support tools applicable across jurisdictional boundaries to facilitate collaborative action in the region’s four priority issue Areas:</p>
+				<ul class="unstyled">
+					<li><strong>Clean Coastal and Ocean Waters</strong></li>
+					<li><strong>Disaster-Resilient Communities</strong></li>
+					<li><strong>Healthy Ecosystems</strong></li>
+					<li><strong>Working Waterfronts</strong></li>
+				</ul>
+			</div>
+		</div>
+		<div class="span5">
+			<div class="page-block">
+				<img src="{{MEDIA_URL}}gsaa/img/page-block-placeholder.png"/>
+				<h4 class="primary">The Solution</h4>
+				<p>The GSAA Coast and Ocean Data Portal is an online toolkit and resource center that consoli- dates available state, regional, and federal data- sets into one location.</p>
+
+				<p>This allows users of the Portal to:</p>
+
+				<p class="indent"><strong>LEARN</strong> about the region’s data resources</p> 
+				<p class="indent"><strong>EXPLORE</strong> a robust data repository </p>
+				<p class="indent"><strong>VISUALIZE</strong> these data via the portal tools</p>
+
+				<p>The visualization tools provide a foundation for long-term collaborative planning in the South Atlantic region for a wide range of coastal uses.</p>
+
+				<p>For more information please visit <a target="_blank" href="http://www.southatlanticalliance.org">www.southatlanticalliance.org</a> or email <a href="mailto:info@gsaaportal.org">info@gsaaportal.org</a>.</p>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span5">
+			<div class="page-block">
+				<h4 class="primary">About the Portal Project Team</h4>
+				<p>The GSAA Coast and Ocean Data Portal was developed by a project team comprised of academic, state, NGO, and federal partners from North Carolina, South Carolina, Georgia, and Florida. The Portal team of natural resource managers, scientists, and information management system experts partnered to assess the geospatial and data technology needs in the region, develop the framework for the Portal, identify and incorporate relevant existing datalayers, and create new datalayers critical to the management needs in the region.</p>
+			</div>
+		</div>
+		<div class="span5">
+			<div class="page-block" id="disclaimer">
+				<h4 class="primary">Data Disclaimer</h4>
+				<p>The datasets provided on the GSAA Portal are only as good as the quality assurance and quality control procedures outlined by the data providers. Data providers are acknowledged in the metadata records for each datalayer. The user bears all responsibility for its subsequent use/misuse in any further analyses or comparisons. Neither the GSAA nor SECOORA assume liability to the Recipient or third persons, nor will the GSAA or SECOORA indemnify the Recipient for its liability due to any losses resulting in any way from the use of this dataset.</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="page-blocks">
+	<div class="row-fluid" id="partners">
+		<h4 class="primary clearfix">PORTAL PROJECT TEAM MEMBER ORGANIZATIONS</h4>
+		<div class="span4">
+			<div class="page-block team-org-page-block">
+				<div class="logo1"></div>
+				<p>The Southeast Coastal Ocean Observing Regional Association (SECOORA)</p>
+			</div>
+		</div>
+		<div class="span4">
+			<div class="page-block team-org-page-block">
+				<div class="logo2"></div>
+				<p>Center for GIS at Georgia Tech University</p>
+			</div>
+		</div>
+		<div class="span4">
+			<div class="page-block team-org-page-block">
+				<div class="logo3"></div>
+				<p>Duke University Marine Geospatial Ecology Lab</p>
+			</div>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span4">
+			<div class="page-block team-org-page-block">
+				<div class="logo4"></div>
+				<p>East Carolina University</p>
+			</div>
+		</div>
+		<div class="span4">
+			<div class="page-block team-org-page-block">
+				<div class="logo5"></div>
+				<p>The Nature Conservancy</p>
+			</div>
+		</div>
+		<div class="span4">
+			<div class="page-block team-org-page-block">
+				<div class="logo6"></div>
+				<p>University of South Carolina</p>
+			</div>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span4">
+			<div class="page-block team-org-page-block">
+				<div class="logo7"></div>
+				<p>Ecotrust: data portal development consultant, graphic design and website organization</p>
+			</div>
+		</div>
+		<div class="span4">
+			<div class="page-block team-org-page-block">
+				<div class="logo8"></div>
+				<p>Florida Department of Environmental Protection</p>
+			</div>
+		</div>
+		<div class="span4">
+			<div class="page-block team-org-page-block">
+				<div class="logo9"></div>
+				<p>Florida Fish and Wildlife Conservation Commission</p>
+			</div>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span4">
+			<div class="page-block team-org-page-block">
+				<div class="logo7"></div>
+				<p>Georgia Department of Natural Resource, Coastal Resources Division</p>
+			</div>
+		</div>
+		<div class="span4">
+			<div class="page-block team-org-page-block">
+				<div class="logo8"></div>
+				<p>North Carolina Department of Environment and Natural Resources, Coastal Management Division</p>
+			</div>
+		</div>
+		<div class="span4">
+			<div class="page-block team-org-page-block">
+				<div class="logo9"></div>
+				<p>Sea Grant</p>
+			</div>
+		</div>
+	</div>	<div class="row-fluid">
+		<div class="span4">
+			<div class="page-block team-org-page-block">
+				<div class="logo7"></div>
+				<p>Georgia Department of Natural Resource, Coastal Resources Division</p>
+			</div>
+		</div>
+		<div class="span4">
+			<div class="page-block team-org-page-block">
+				<div class="logo8"></div>
+				<p>North Carolina Department of Environment and Natural Resources, Coastal Management Division</p>
+			</div>
+		</div>
+		<div class="span4">
+			<div class="page-block team-org-page-block">
+				<div class="logo9"></div>
+				<p>NOAA Coastal Services Center<br>
+				NOAA National Oceanographic<br>
+				Data Center / National Coastal<br>
+				Data Development Center</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row" id="funders">
+	<h4 class="primary">PORTAL PROJECT FUNDERS</h4>
+	<p>Funding for the GSAA and this Portal is provided by the <strong>National Oceanic and Atmospheric Administration (NOAA)</strong> through the <strong>S.C. Sea Grant Consortium</strong>.</p>
+</div>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %} 
+{% block body %}
+            <div class="row">
+                <div class="span2">
+
+                    <div class="sidebar-nav-section">
+                        <h3><a href="/learn">LEARN</a></h3>
+                        <ul class="unstyled">
+                            <li {% if topic.name == 'beach_renourishment' %}class="active"{% endif %}>
+                                <a href="/learn/topic/beach_renourishment">Beach Renourishment</a>
+                            </li>
+                            <li {% if topic.name == 'sediment_management' %}class="active"{% endif %}>
+                                <a href="/learn/topic/sediment_management">Sediment Management</a>
+                            </li>
+                            <li {% if topic.name == 'habitat_conservation' %}class="active"{% endif %}>
+                                <a href="/learn/topic/habitat_conservation">Habitat Conservation</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="sidebar-nav-section">
+                        <h3><a href="/explore">EXPLORE</a></h3>
+                        <ul class="unstyled">
+                            {% load flatblock_tags %}
+                            <li {% if request.path == '/explore/catalog' %}class="active"{% endif %}><a href="/explore/catalog">Data Catalog</a></li>
+                            <!--<li {% if request.path == '/explore/needs' %}class="active"{% endif %}><a href="/explore/needs">Data Priorities</a></li>-->
+                        </ul>
+                    </div>
+                    <div class="sidebar-nav-section">
+                        <h3><a href="/visualize">VISUALIZE</a></h3>
+                        <ul class="unstyled">
+                            <li <a href="#" target="_blank">Marine Planner</a></li>
+                            <li {% if request.path == '/visualize/cartography' %}class="active"{% endif %}><a href="/visualize/cartography">Cartography</a></li>
+                            <li {% if request.path == '/visualize/collaboration' %}class="active"{% endif %}><a href="/visualize/collaboration">Collaboration</a></li>
+                            <li {% if request.path == '/visualize/interactivity' %}class="active"{% endif %}><a href="/visualize/interactivity">Interactivity</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="span10">
+                    {% block  main %}{% endblock %}
+                </div>
+            </div>
+{% endblock %}

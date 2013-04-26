@@ -1,4 +1,4 @@
-{% extends 'topics_base.html' %} 
+{% extends 'base_with_sidebar.html' %}
 {% block main %}
 {% load flatblock_tags %}
 
@@ -6,15 +6,17 @@
 <div class="row-fluid">
     <div class="span4 pull-right">
         <b>The Data Catalog</b>
-        gathers available data and recruits new data about ocean resources and human use information such as fishing grounds, recreational areas, shipping lanes, habitat areas, and energy sites. Data falls into one of seven themes listed below. You can explore the data available under each theme, and you can also see the MARCO Portal’s key new data needs under Data Priorities.
+        gathers available data and recruits new data about ocean resources and human use information such as fishing grounds, recreational areas, shipping lanes, habitat areas, and energy sites. Data falls into one of seven themes listed below. You can explore the data available under each theme, or search for the data using the form below.
 
         <div class="search-row">
             <div style="margin: 15px 0;">
-                <form class="form-search layer-search">
-                    <input type="text" class="search-box" data-provide="typeahead" placeholder="Search the Catalog" data-bind="value: searchTerm, event: { keyup: keySearch }">
-                    <a class="btn">
+                <form id="catalog-search-form" class="form-search layer-search">
+                    <button class="catalog-search-button" type="submit"><i class="icon-search icon-large"></i></button>
+                    <!--<input type="text" name="gsaa-q"/>-->
+                    <input type="text" style="display: inline-block" class="search-box" data-provide="typeahead" placeholder="Search the Catalog" data-bind="value: searchTerm, event: { keyup: keySearch }">
+                    <!--<a class="btn">
                         <i class="icon-remove icon-large"></i> 
-                    </a>
+                    </a>-->
                 </form>
             </div>
         </div>
@@ -28,10 +30,12 @@
                 <a class="accordion-toggle theme-title color-up" data-toggle="collapse" data-parent="theme-list" href="#{{ theme_dict.theme.name }}">
                     <h3>
                         <span class="theme-search-name">{{ theme_dict.theme.display_name }}</span> / {{ theme_dict.layers|length }} 
+                        <small><i class="icon-caret-right caret-icon color-up" style="display: inline-block"></i></small>
+                        <small><i class="icon-caret-down caret-icon color-up" style="display: none"></i></small>
                     </h3>
                 </a>
             </div>
-            <div id="{{ theme_dict.theme.name }}" class="accordion-body collapse"> 
+            <div id="{{ theme_dict.theme.name }}" class="theme-accordion accordion-body collapse"> 
                 <div class="accordion-inner">
                     {% if not theme_dict.layers %}
                     <p>coming soon...</p>
@@ -64,7 +68,7 @@
                                                                 <ul class="unstyled data-layer-links">
                                                                     <li>
                                                                         {% if sublayer.bookmark_link %}
-                                                                        <a href="{{sublayer.bookmark_link}}" class="data-layer-link color-up" target="_blank">VIEW</a>
+                                                                        <a href="{{sublayer.bookmark_link}}" class="data-layer-link color-up" target="_view">VIEW</a>
                                                                         {% else %}
                                                                         <span class="link-not-available">VIEW</span>
                                                                         {% endif %}
@@ -119,7 +123,7 @@
                                             <ul class="unstyled data-layer-links">
                                                 <li>
                                                     {% if layer.bookmark_link %}
-                                                    <a href="{{layer.bookmark_link}}" class="data-layer-link color-up" target="_blank">VIEW</a>
+                                                    <a href="{{layer.bookmark_link}}" class="data-layer-link color-up" target="_view">VIEW</a>
                                                     {% else %}
                                                     <span class="link-not-available">VIEW</span>
                                                     {% endif %}
@@ -174,6 +178,19 @@
 
 <style type="text/css">
 
+input[type="text"] {
+    /*border: 0px;*/
+}
+input[type="text"]:hover {
+    /*border: 1px solid #cccccc;*/
+}
+
+.catalog-search-button {
+    background-color: transparent; 
+    border: 0; 
+    padding: 0;
+}
+
 #theme-list .accordion-group {
     border: 0px;
     margin-bottom: 0px;
@@ -198,7 +215,11 @@
 
 #theme-list .accordion-inner li {
     padding-left: 0px;
-    padding-right: 10px;
+    padding-right: 20px;
+}
+
+#theme-list .accordion-body {
+    position: static;
 }
 
 #theme-list h3 {
@@ -215,6 +236,18 @@
 
 #theme-list .theme-heading .color-down h3 {
     color: rgba(3, 11, 212, .5);
+}
+
+#theme-list .theme-heading small {
+    vertical-align: middle;
+}
+
+#theme-list .theme-heading i.color-up {
+    color: rgba(0,0,0, 1);
+}
+
+#theme-list .theme-heading i.color-down {
+    color: rgba(0,0,0, .5);
 }
 
 #theme-list .layer-heading .color-up {
@@ -264,6 +297,7 @@
             layer_index = {},
             search =  function(val) {
                 var layer = layer_index[val];
+                
                 //layer.layer.closest('tr').effect("pulsate", {times:2 }, 500);
                 if ( ! $(layer.layer).closest('.theme-group').find('.accordion-body').first().hasClass('in') ) {
                     $(layer.layer).closest('.theme-group').find('.accordion-body').first().collapse('show');
@@ -273,9 +307,9 @@
                 }
                 if ( $(layer.layer).closest('.sublayer-group').find('.accordion-body').first().length ) {
                     $(layer.layer).closest('.sublayer-group').find('.accordion-body').first().collapse('show');
-                    $(layer.layer).closest('.sublayer-group').find('.layer-search-name').effect("pulsate", {times:2}, 500);
-                } else {                    
-                    $(layer.layer).closest('.layer-group').find('.layer-search-name').first().effect("pulsate", {times:2}, 500);
+                    $(layer.layer).closest('.sublayer-group').find('.layer-search-name').effect("pulsate", {times:1}, 500);
+                } else {   
+                    $(layer.layer).closest('.layer-group').find('.layer-search-name').first().effect("pulsate", {times:1}, 500);
                 }
                 setTimeout(function() {$(window).scrollTop(layer.layer.closest('.layer-group').offset().top-300)}, 200);
             };
@@ -311,18 +345,22 @@
         
         $('.layer-search').submit(function (event) {
             event.preventDefault();
+            //console.log('layer-search submit');
             search($(this).find('input').val());
         });
         
 
         $('.layer-search').on('keyup', 'input', function (event) {
-            event.preventDefault();    
+            event.preventDefault();  
+            //console.log('layer-search keyup ' + event.which);  
             if (event.which === 13) {
                 search($(this).val());
             }
         });
 
         $('ul.typeahead').on('click', 'li', function () {
+        //$('.layer-search').on('click', 'li', function () {
+            //console.log('layer-search list click');
             search($(this).text());
         });
 
@@ -354,17 +392,37 @@
         });
         
         // MODIFIED DATA CATALOG
+        
         $('.theme-group').hover(function(e) { //trigger the mouseover event
             $('.theme-title').removeClass('color-up');
             $('.theme-title').addClass('color-down');
+            $('.caret-icon').removeClass('color-up');
+            $('.caret-icon').addClass('color-down');
             $(e.currentTarget).find('.theme-title').removeClass('color-down');
             $(e.currentTarget).find('.theme-title').addClass('color-up');
+            $(e.currentTarget).find('.caret-icon').removeClass('color-down');
+            $(e.currentTarget).find('.caret-icon').addClass('color-up');
             $('#theme-list .in').siblings('.theme-heading').find('.theme-title').removeClass('color-down');
             $('#theme-list .in').siblings('.theme-heading').find('.theme-title').addClass('color-up');
+            $('#theme-list .in').siblings('.theme-heading').find('.caret-icon').removeClass('color-down');
+            $('#theme-list .in').siblings('.theme-heading').find('.caret-icon').addClass('color-up');
         }, function(e) { //trigger the mouseout event
             $('.theme-title').removeClass('color-down');
             $('.theme-title').removeClass('color-up');
             $('.theme-title').addClass('color-up');
+            $('.caret-icon').removeClass('color-down');
+            $('.caret-icon').removeClass('color-up');
+            $('.caret-icon').addClass('color-up');
+        });
+        
+        $('.theme-accordion').on('show', function(e) {
+            $(e.currentTarget).siblings('.theme-heading').find('i.icon-caret-right').css('display', 'none');
+            $(e.currentTarget).siblings('.theme-heading').find('i.icon-caret-down').css('display', 'inline-block');
+        });
+        
+        $('.theme-accordion').on('hide', function(e) {
+            $(e.currentTarget).siblings('.theme-heading').find('i.icon-caret-right').css('display', 'inline-block');
+            $(e.currentTarget).siblings('.theme-heading').find('i.icon-caret-down').css('display', 'none');
         });
         
         $('.layer-group').hover(function(e) { //trigger the mouseover event
@@ -392,7 +450,7 @@
             $('.sublayer-name').removeClass('color-up');
             $('.sublayer-name').addClass('color-up');
         });
-        
+
         $('.data-layer-link').hover(function(e) { //trigger the mouseover event
             $('.data-layer-link').removeClass('color-up');
             $('.data-layer-link').addClass('color-down');
