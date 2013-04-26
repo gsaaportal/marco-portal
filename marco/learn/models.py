@@ -13,6 +13,7 @@ class Topic(models.Model):
     #views = models.ManyToManyField("MapView", blank=True, null=True)
     layers = models.ManyToManyField(Layer, blank=True, null=True)  
     ordering = models.IntegerField(null=True, blank=True)
+    active = models.BooleanField(default=True)
 
     def __unicode__(self):
         return unicode('%s' % (self.name))
@@ -32,6 +33,7 @@ class MapView(models.Model):
     description = models.TextField(blank=True, null=True)
     url_hash = models.CharField(max_length=2050, blank=True, null=True)   
     ordering = models.IntegerField(null=True, blank=True)
+    active = models.BooleanField(default=True)
     
     def __unicode__(self):
         return unicode('%s' % (self.name))

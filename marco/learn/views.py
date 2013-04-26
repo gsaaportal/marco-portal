@@ -13,7 +13,7 @@ def topic_page(request, topic_name=None, template='topic_page.html'):
     views = MapView.objects.filter(topic=topic).order_by('ordering')
     viewsList = simplejson.dumps([view.name for view in views])
     layers = topic.layers.all().order_by('name')
-    context = {'topic': topic, 'views': views, 'views_list': viewsList, 'initial_view': views[0].name, 'layers': layers, 'domain': get_domain(8000), 'domain8010': get_domain()}
+    context = {'topic': topic, 'views': [views[0]], 'views_list': [viewsList[0]], 'initial_view': views[0].name, 'layers': layers, 'domain': get_domain(8000), 'domain8010': get_domain()}
     return render_to_response(template, RequestContext(request, context)) 
 
 def learn_page(request, theme_name=None, template='learn_page.html'):

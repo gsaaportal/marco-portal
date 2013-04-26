@@ -14,7 +14,7 @@
                         <h5>{{ view.display_name }}</h5>
                     </div>
                     <div id="{{view.name}}-description">
-                        {{ view.description }}
+                        {{ view.description|safe }}
                         <div>
                             <a href="{{domain}}/planner/#{{view.url_hash}}" target="_blank">
                                 View in Marine Planner
