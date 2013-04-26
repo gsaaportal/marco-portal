@@ -28,11 +28,11 @@
 
 
 /* limiting width unless we have time to address responsivness for phone sizes. */
-body{
-   min-width:770px;
-   width: auto !important;  /* Firefox will set width as auto */
-   width:770px;             /* As IE ignores !important it will set width as 770px; */
-}
+/*body{*/
+   /*min-width:770px;*/
+   /*width: auto !important;*/  /* Firefox will set width as auto */
+   /*width:770px;*/             /* As IE ignores !important it will set width as 770px; */
+/*}*/
 body {
   font-family: "Aller";
   background-color: #F0FAFE;
@@ -225,6 +225,12 @@ header .span12 {
   padding: 3px 0;
 }
 
+@media (max-width: 620px) {
+  header .navbar {
+    display: none;
+  }
+}
+
 /**
  * Footer
  */
@@ -352,6 +358,7 @@ footer h6 {
 .team-org-page-block .logo1 { background-image: url(http://placehold.it/100x175); }
 .team-org-page-block .logo2 { background-image: url(http://placehold.it/200x150); }
 .team-org-page-block .logo3 { background-image: url(http://placehold.it/200x100); }
+.team-org-page-block .logo7 { background-image: url(../img/partner-logos/ecotrust.jpg); }
 
 
 
@@ -367,6 +374,7 @@ footer h6 {
 #homeCarousel {
   margin-left: auto;
   margin-right: auto;
+  width: 857px;
 }
 
 .carousel-indicators {
@@ -392,12 +400,12 @@ footer h6 {
   border-color: #34C4F2;
 }
 
-/* caption */
+/* carousel caption */
 .carousel-caption {
   position: absolute;
   right: auto;
-  bottom: 25px;
-  left: 35px;
+  bottom: 10px;
+  left: 15px;
   height: 142px;
   width: 142px;
   background-color: transparent;
@@ -406,34 +414,35 @@ footer h6 {
   height: 100%;
   width: 100%;
   background: url('../img/carousel/caption-box.png') no-repeat center center;
-  padding: 35px 15px 15px 15px;
+  padding: 0;
 }
-
 .carousel-caption h4,
 .carousel-caption p {
-  line-height: 20px;
   color: #000;
 }
-
 .carousel-caption h4 {
-  margin: 0 0 5px;
+  line-height: 20px;
+  padding: 35px 10px 5px 10px;
 }
-
 .carousel-caption p {
   margin-bottom: 0;
+  padding: 0 10px 5px 10px;
+  font-style: italic;
+  font-size: 12px;
+  line-height: 16px;
 }
 
+/* info icon */
+#homeCarousel img.info-button {
+  position: absolute;
+  bottom: 16px;
+  right: 18px;
+  z-index: 10;
+}
+#homeCarousel img.info-button:hover {
+}
 
 /* Make carousel fade rather than slide */
 .carousel .item {-webkit-transition: opacity 1s; -moz-transition: opacity 1s; -ms-transition: opacity 1s; -o-transition: opacity 1s; transition: opacity 1s;}
 .carousel .active.left {left:0;opacity:0;z-index:2;}
 .carousel .next {left:0;opacity:1;z-index:1;}
-
-/*.carousel.carousel-fade .item {
-  -webkit-transition: opacity 2s ease-in-out;
-  -moz-transition: opacity 2s ease-in-out;
-  -ms-transition: opacity 2s ease-in-out;
-  -o-transition: opacity 2s ease-in-out;
-  transition: opacity 2s ease-in-out;
-}
-*/

@@ -86,6 +86,18 @@ $(document).ready(function () {
     // setPageBlockSizes();
     // $(window).resize(setPageBlockSizes);
 
-    $('.carousel').carousel();
+    $('.carousel').carousel({
+        interval: 4000
+    });
+
+    $('.carousel-indicators li').click(function () { 
+        var that = $(this);
+        
+        $('.carousel-indicators li').removeClass('active');
+        setTimeout(function () { 
+            that.addClass('active'); 
+        }, 10);
+    });
+
 });
 
