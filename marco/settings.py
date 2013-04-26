@@ -9,7 +9,7 @@ LOGIN_REDIRECT_URL = '/visualize'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'gsaa',
+        'NAME': 'gsaadev',
         'USER': 'vagrant',
     }
 }
@@ -28,8 +28,8 @@ LOG_FILE =  os.path.realpath(os.path.join(os.path.dirname(__file__), '..', 'marc
 
 
 INSTALLED_APPS += ( 'clipping',
-                    'general', 
-                    'scenarios', 
+                    'general',
+                    'scenarios',
                     'drawing',
                     'reports',
                     'data_manager',
@@ -45,10 +45,10 @@ GEOMETRY_DB_SRID = 99996
 GEOMETRY_CLIENT_SRID = 3857 #for latlon
 GEOJSON_SRID = 3857
 
-APP_NAME = "MARCO Mid-Atlantic Ocean Data Portal"
-FEEDBACK_RECIPIENT = "MARCO Portal Team <portal@midatlanticocean.org>"
-HELP_EMAIL = "portal@midatlanticocean.org"
-DEFAULT_FROM_EMAIL = "MARCO Portal Team <portal@midatlanticocean.org>"
+APP_NAME = "GSAA Portal"
+FEEDBACK_RECIPIENT = "GSAA Portal Team <gsaaportal@gmail.com>"
+HELP_EMAIL = "gsaaportal@gmail.com"
+DEFAULT_FROM_EMAIL = "MARCO Portal Team <gsaaportal@gmail.com>"
 
 # url for socket.io printing
 #SOCKET_URL = 'http://dev.marco.marineplanning.org:8080'
