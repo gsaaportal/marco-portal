@@ -17,7 +17,7 @@ def topic_page(request, topic_name=None, template='topic_page.html'):
     return render_to_response(template, RequestContext(request, context)) 
 
 def learn_page(request, theme_name=None, template='learn_page.html'):
-    topics = Topic.objects.all().order_by('ordering')
+    topics = Topic.objects.filter(active=True).order_by('ordering')
     context = {'topics': topics, 'domain': get_domain(8000), 'domain8010': get_domain()}
     return render_to_response(template, RequestContext(request, context)) 
 
