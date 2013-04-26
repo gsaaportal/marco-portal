@@ -4,19 +4,30 @@
 
 <div id="topic-page" class="row-fluid">
 	<div class="span12">
-        <h3>{{ topic.display_name }}</h3>
+        <h5>
+            {{ topic.display_name|upper }}
+            <span style="margin-left: 10px">
+                <img src="{{MEDIA_URL}}gsaa/img/vector-artwork/priority_issue_icons/healthy_ecosystem.png">
+            </span>
+            <span style="margin-left: 10px">
+                <img src="{{MEDIA_URL}}gsaa/img/vector-artwork/priority_issue_icons/disaster_resilient.png">
+            </span>
+        </h5>
 		<div class="split-column" style="width: 90%">{{ topic.description|safe }}</div>
-        
+        <div style="margin-top: 20px; font-size: 12px; color: #666666; border-bottom: 1px solid #ccc; width: 90%">
+            <b>HOW THE PORTAL CAN BE USED:</b>
+        </div>
         <div id="map-view-pane" class="row-fluid">
             <div id="map-view-list" class="span4">
                 {% for view in views %}
                     <div id="{{view.name}}">
-                        <h5>{{ view.display_name }}</h5>
+                        <h5>{{ view.display_name|upper }}</h5>
                     </div>
                     <div id="{{view.name}}-description">
                         {{ view.description|safe }}
-                        <div>
-                            <a href="{{domain}}/planner/#{{view.url_hash}}" target="_blank">
+                        <div style="position: absolute; bottom: 0;">
+                            <a href="{{domain}}/planner/#{{view.url_hash}}">
+                                <img style="margin-right: 4px; width: 5%; height: 5%;" class="svg-link" src="{{MEDIA_URL}}gsaa/img/vector-artwork/misc/visualize.svg">
                                 View in Marine Planner
                             </a>
                         </div>
@@ -32,23 +43,29 @@
             </div>
         </div>
         
+        <div style="margin-top: 20px; margin-bottom: 20px; color: #666666; border-bottom: 1px solid #ccc; width: 90%">
+        </div>
         
-        <h4>Related Datasets</h4>
+        <h5>RELATED DATASETS</h5>
 		{% for layer in layers %}
             <div class="row-fluid">
                 <div class="span4">
                     {{ layer.name }}	
                 </div>
                 <div class="span4">
-                    <a href="{{ layer.bookmark }}" target="_blank">
-                    View in Marine Planner
+                    <a href="{{ layer.bookmark }}">
+                        <img style="margin-right: 4px; width: 3%; height: 3%;" class="svg-link" src="{{MEDIA_URL}}gsaa/img/vector-artwork/misc/visualize.svg">
+                        View in Marine Planner
                     </a>
                 </div>
                 <div class="span4">
-                    <a href="/explore/catalog#{{ layer.slug }}" target="_blank">
-                    View in Data Catalog
+                    <a href="/explore/catalog#{{ layer.slug }}">
+                        <img style="margin-right: 4px; width: 4%; height: 4%;" class="svg-link" src="{{MEDIA_URL}}gsaa/img/vector-artwork/misc/explore.svg">
+                        View in Data Catalog 
                     </a>
                 </div>
+            </div>
+            <div style="margin-bottom: 5px; color: #666666; border-bottom: 1px solid #ccc; width: 90%">
             </div>
 		{% endfor %}
 	</div>
@@ -85,6 +102,19 @@
 }
 #map-view {
     height: 400px;
+}
+#topic-page a {
+    color: #333333;
+}
+#topic-page a:hover {
+    color: #34C4F2;
+}
+
+.svg-link:hover {
+  fill: #34C4F2;
+}
+.svg-link {
+  margin-bottom: 5px;
 }
 </style>
 
