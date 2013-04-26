@@ -28,11 +28,11 @@
 
 
 /* limiting width unless we have time to address responsivness for phone sizes. */
-body{
-   min-width:770px;
-   width: auto !important;  /* Firefox will set width as auto */
-   width:770px;             /* As IE ignores !important it will set width as 770px; */
-}
+/*body{*/
+   /*min-width:770px;*/
+   /*width: auto !important;*/  /* Firefox will set width as auto */
+   /*width:770px;*/             /* As IE ignores !important it will set width as 770px; */
+/*}*/
 body {
   font-family: "Aller";
   background-color: #F0FAFE;
@@ -225,6 +225,12 @@ header .span12 {
   padding: 3px 0;
 }
 
+@media (max-width: 620px) {
+  header .navbar {
+    display: none;
+  }
+}
+
 /**
  * Footer
  */
@@ -349,9 +355,21 @@ footer h6 {
   text-align: center;
   padding-right: 30px;
 }
-.team-org-page-block .logo1 { background-image: url(http://placehold.it/100x175); }
-.team-org-page-block .logo2 { background-image: url(http://placehold.it/200x150); }
-.team-org-page-block .logo3 { background-image: url(http://placehold.it/200x100); }
+.team-org-page-block .logo1 { background-image: url(../img/partner-logos/secoora.jpg); }
+.team-org-page-block .logo2 { background-image: url(../img/partner-logos/georgia_tech.jpg); }
+.team-org-page-block .logo3 { background-image: url(../img/partner-logos/duke.jpg); }
+.team-org-page-block .logo4 { background-image: url(../img/partner-logos/east_carolina.jpg); }
+.team-org-page-block .logo5 { background-image: url(../img/partner-logos/nature_conservancy.jpg); }
+.team-org-page-block .logo6 { background-image: url(../img/partner-logos/south_carolina_u.jpg); }
+.team-org-page-block .logo7 { background-image: url(../img/partner-logos/ecotrust.jpg); }
+.team-org-page-block .logo8 { background-image: url(../img/partner-logos/florida_dept_env_protection.jpg); }
+.team-org-page-block .logo9 { background-image: url(../img/partner-logos/florida_fish_wildlife.jpg); }
+.team-org-page-block .logo10 { background-image: url(../img/partner-logos/georgia_dept_nat_resources.jpg); }
+.team-org-page-block .logo11 { background-image: url(../img/partner-logos/nc_dept_env.jpg); }
+.team-org-page-block .logo12 { background-image: url(../img/partner-logos/seagrant.jpg); }
+.team-org-page-block .logo13 { background-image: url(../img/partner-logos/georgia_dept_nat_resources.jpg); }
+.team-org-page-block .logo14 { background-image: url(../img/partner-logos/nc_dept_env.jpg); }
+.team-org-page-block .logo15 { background-image: url(../img/partner-logos/noaa.jpg); }
 
 
 
@@ -367,6 +385,7 @@ footer h6 {
 #homeCarousel {
   margin-left: auto;
   margin-right: auto;
+  width: 857px;
 }
 
 .carousel-indicators {
@@ -392,12 +411,12 @@ footer h6 {
   border-color: #34C4F2;
 }
 
-/* caption */
+/* carousel caption */
 .carousel-caption {
   position: absolute;
   right: auto;
-  bottom: 25px;
-  left: 35px;
+  bottom: 10px;
+  left: 15px;
   height: 142px;
   width: 142px;
   background-color: transparent;
@@ -406,34 +425,114 @@ footer h6 {
   height: 100%;
   width: 100%;
   background: url('../img/carousel/caption-box.png') no-repeat center center;
-  padding: 35px 15px 15px 15px;
+  padding: 0;
 }
-
 .carousel-caption h4,
 .carousel-caption p {
-  line-height: 20px;
   color: #000;
 }
-
 .carousel-caption h4 {
-  margin: 0 0 5px;
+  line-height: 20px;
+  padding: 35px 10px 5px 10px;
 }
-
 .carousel-caption p {
   margin-bottom: 0;
+  padding: 0 10px 5px 10px;
+  font-style: italic;
+  font-size: 12px;
+  line-height: 16px;
 }
+
+/* info icon */
+#homeCarousel img.info-button {
+  position: absolute;
+  bottom: 16px;
+  right: 18px;
+  z-index: 10;
+}
+.tooltip {
+  position: absolute;
+  z-index: 1030;
+  display: block;
+  visibility: visible;
+  font-size: 11px;
+  line-height: 1.4;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+.tooltip.in {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+.tooltip.top {
+  margin-top: -3px;
+  padding: 5px 0;
+}
+.tooltip.right {
+  margin-left: 3px;
+  padding: 0 5px;
+}
+.tooltip.bottom {
+  margin-top: 3px;
+  padding: 5px 0;
+}
+.tooltip.left {
+  margin-left: -3px;
+  padding: 0 5px;
+}
+.tooltip-inner {
+  max-width: 300px;
+  padding: 8px;
+  color: #000000;
+  text-align: center;
+  text-decoration: none;
+  background-color: #ffffff;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+.tooltip-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+}
+.tooltip.top .tooltip-arrow {
+  bottom: 0;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px 5px 0;
+  border-top-color: #ffffff;
+}
+.tooltip.right .tooltip-arrow {
+  top: 50%;
+  left: 0;
+  margin-top: -5px;
+  border-width: 5px 5px 5px 0;
+  border-right-color: #ffffff;
+}
+.tooltip.left .tooltip-arrow {
+  top: 50%;
+  right: 0;
+  margin-top: -5px;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #ffffff;
+}
+.tooltip.bottom .tooltip-arrow {
+  top: 0;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 0 5px 5px;
+  border-bottom-color: #ffffff;
+}
+
+
+
+
 
 
 /* Make carousel fade rather than slide */
 .carousel .item {-webkit-transition: opacity 1s; -moz-transition: opacity 1s; -ms-transition: opacity 1s; -o-transition: opacity 1s; transition: opacity 1s;}
 .carousel .active.left {left:0;opacity:0;z-index:2;}
 .carousel .next {left:0;opacity:1;z-index:1;}
-
-/*.carousel.carousel-fade .item {
-  -webkit-transition: opacity 2s ease-in-out;
-  -moz-transition: opacity 2s ease-in-out;
-  -ms-transition: opacity 2s ease-in-out;
-  -o-transition: opacity 2s ease-in-out;
-  transition: opacity 2s ease-in-out;
-}
-*/
