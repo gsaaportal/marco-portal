@@ -327,7 +327,7 @@ $(function() {
   // Load the default guide!  
   $.pageguide(defaultGuide, defaultGuideOverrides);
   
-  $('#help-tab').on('click', function() {
+  $('#help-link').on('click', function() {
     if ( $.pageguide('isOpen') ) { // activated when 'tour' is clicked
         // close the pageguide
         $.pageguide('close');
