@@ -53,15 +53,48 @@
         <![endif]-->
 
         <style>
-        .navbar .nav > li:hover > a, .navbar .nav > li.active > a, .navbar .nav > li:hover > a:visited {
-            height: 30px;
+        </style>
+        <style>
 
+        .navbar .gsaa-nav>li>a {
+            color: #333;
+            font-size: 12px;
         }
-        .navbar .nav > li > a {
-            height: 25px;
+
+        .navbar .gsaa-nav>li>a:hover,
+        .navbar .gsaa-nav > .active > a,
+        .navbar .gsaa-nav > .active > a:hover {
+            color:#34C4F2;
+            text-decoration: none;
+        }
+
+        .navbar .gsaa-nav {
+            list-style: none;
+        }
+
+        .navbar .gsaa-nav ul {
+            line-height: 20px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            margin-top: 0px;
+            margin-right: 10px;
+            float: left;
+        }
+
+        .navbar .gsaa-nav li {
+            float: left;
+            margin-top: 5px;
+        }
+
+        .navbar .gsaa-nav li>a {
+            text-decoration: none;
+            padding-left: 15px;
+            padding-right: 15px;
         }
 
         </style>
+
+
         <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{MEDIA_URL}}/marco-proto/assets/ico/apple-touch-icon-144-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{MEDIA_URL}}/marco-proto/assets/ico/apple-touch-icon-114-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{MEDIA_URL}}/marco-proto/assets/ico/apple-touch-icon-72-precomposed.png">
@@ -119,18 +152,21 @@
                     <div class="container-fluid">
                         <div class="row-fluid">
                             <div class="span5">
-                                <a class="logo" href="/portal">
+                                <a href="/portal">
                                     <img src="{{MEDIA_URL}}gsaa/img/logo-gsaa.png"/>
                                 </a>
                                 <h3 class="pull-right" data-bind="visible: mapTitle, text: mapTitle"></h3>
                             </div>
-                            <div class="span7" style="line-height: 45px;">
+                            <div class="span7" style="margin-top: 15px; margin-bottom: 15px;">
+
                                 <div class="pull-right">
-                                    <!--<li class=""><a href="/portal">Return to Portal</a></li>-->
-                                    <!--<li class=""><a href="">Help</a></li>-->
+                                    <ul class="gsaa-nav">
+                                        <li><a href="#" data-toggle="modal" data-target="#feedback-modal">FEEDBACK</a></li>
+                                        <li><a id="help-link" data-toggle="modal">TOUR</a></li>
+                                        <li><a id="help-button" href="#help-modal" data-toggle="modal">HELP</a></li>
+                                    </ul>
+                                    <!--
                                     <span class="user-btn">
-                                        <a id="help-button" class="btn" href="#help-modal" data-toggle="modal">Help</a>
-                                        <!--
                                         {% if user.is_authenticated %}
                                         <span class="btn-group">
                                           <a class="btn dropdown-toggle" style="margin-top: 10px;" data-toggle="dropdown" href="#">
@@ -150,8 +186,8 @@
                                           <a id="#sign-in-button" style="margin-top: 10px;" class="btn" href="#sign-in-modal" data-toggle="modal">Sign In / Register</a>
                                         </span>
                                         {% endif %}
-                                        -->
                                     </span>
+                                    -->
                                 </div>
                             </div><!--/.nav-collapse -->
                         </div>
@@ -245,7 +281,7 @@
                                                                             <!-- ko if: !isCheckBoxLayer() -->
                                                                             <ul class="dropdown-menu layer-menu" data-bind="event: { mouseleave: closeMenu }">
                                                                                 <li data-bind="foreach: subLayers">
-                                                                                    <a data-bind="click: toggleActive">
+                                                                                    <a class="sublayer-selection" data-bind="click: toggleActive">
                                                                                         <span data-bind="style: {visibility: active() ? 'visible': 'hidden' }">• </span>
                                                                                         <!--<span style="margin-left: -10px" data-bind="style: {visibility: active() ? 'visible': 'hidden' }">
                                                                                             <i class="icon-ok-circle"></i>
@@ -258,7 +294,7 @@
                                                                             <!-- ko if: isCheckBoxLayer() -->
                                                                             <ul class="dropdown-menu layer-menu" data-bind="event: { mouseleave: closeMenu }">
                                                                                 <li data-bind="foreach: subLayers">
-                                                                                    <a data-bind="click: toggleActive">
+                                                                                    <a class="sublayer-selection" data-bind="click: toggleActive">
                                                                                         <span style="margin-left: -10px">
                                                                                             <i class="icon-check" data-bind="style: {display: active() ? 'inline': 'none' }"></i>
                                                                                             <i style="opacity: .4" class="icon-check-empty" data-bind="style: {display: ! active() ? 'inline': 'none' }"></i>
@@ -776,5 +812,4 @@
         </script>
 
     </body>
-
 </html>
