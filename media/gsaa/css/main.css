@@ -335,13 +335,25 @@ footer h6 {
   }
 }
 
+
+.the-need-page-block ul > li {
+  padding-top: 15px;
+}
+.the-need-page-block ul > li > span {
+  width: 30px;
+}
+.the-need-page-block ul > li > img {
+  margin: 0 auto;
+}
 .team-org-page-block {
   height: 200px;
   position: relative;
 }
 .team-org-page-block [class*="logo"]{
   height: 140px;
-  width: 100%;
+  max-width: 200px;
+  margin-left: auto;
+  margin-right: auto;
   background:url(http://placehold.it/200x100) no-repeat center center;
   background-size: contain;
 }
@@ -354,6 +366,9 @@ footer h6 {
   height: 60px;
   text-align: center;
   padding-right: 30px;
+  font-size: 12px;
+  line-height: 14px;
+  color: #666;
 }
 .team-org-page-block .logo1 { background-image: url(../img/partner-logos/secoora.jpg); }
 .team-org-page-block .logo2 { background-image: url(../img/partner-logos/georgia_tech.jpg); }
@@ -367,8 +382,8 @@ footer h6 {
 .team-org-page-block .logo10 { background-image: url(../img/partner-logos/georgia_dept_nat_resources.jpg); }
 .team-org-page-block .logo11 { background-image: url(../img/partner-logos/nc_dept_env.jpg); }
 .team-org-page-block .logo12 { background-image: url(../img/partner-logos/seagrant.jpg); }
-.team-org-page-block .logo13 { background-image: url(../img/partner-logos/georgia_dept_nat_resources.jpg); }
-.team-org-page-block .logo14 { background-image: url(../img/partner-logos/nc_dept_env.jpg); }
+.team-org-page-block .logo13 { background-image: url(../img/partner-logos/sc_dept_nat_resources.jpg); }
+.team-org-page-block .logo14 { background-image: url(../img/partner-logos/sc_dept_health.jpg); }
 .team-org-page-block .logo15 { background-image: url(../img/partner-logos/noaa.jpg); }
 
 
