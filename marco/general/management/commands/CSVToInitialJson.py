@@ -422,141 +422,145 @@ class Command(BaseCommand):
       attributeid = 0
       for line in dataFile:
         logger.info("Processing line: %d" % (lineCnt))
-        if(lineCnt > 0):
-          logger.debug("Layer: %s %s" % (line['DATA LAYER'], line['REST LAYER']))
-          themeObj = None
-          topics = []
-            
-          #A layer could be associated with one or more topics, so let's see what we have.
-          topicNames = line['TOPICS'].split(',')          
-          for index,topicName in enumerate(topicNames):
-            if(len(topicName)):
-              topicObj = None
-              if(topicName in topicDict):
-                topicObj = topicDict[topicName]
-              else:
-                logger.debug("Adding topic: %s" % (topicName))
-                topicObj = Topic()
-                topicObj.pk = topicid
-                topicObj.name = topicName
-                topicObj.display_name = topicName
-                topicDict[topicName] = topicObj
-                topicid += 1
-              topics.append(topicObj.pk)
-                
-              
-          for index,theme in enumerate(themeList):
-            if(theme.display_name == line['MAIN THEME']):
-              themeObj = theme
-              break
-          if(themeObj == None):
-            logger.debug("Adding theme: %s" % (line['MAIN THEME']))
-            themeObj = Theme()
-            themeObj.pk = themeid
-            themeObj.name = line['MAIN THEME'].replace(" ", "")
-            themeObj.display_name = line['MAIN THEME']
-            themeList.append(themeObj)
-            themeid += 1
+        #if(lineCnt > 0):
+        logger.debug("Layer: %s %s" % (line['DATA LAYER'], line['REST LAYER']))
+        themeObj = None
+        topics = []
           
-          layerObj = Layer(logger=True)
-          layerList.append(layerObj)          
-          
-          layerObj.pk = layerid 
-          layerid += 1
-          if(len(line['DATA LAYER'])):
-            layerObj.name = line['DATA LAYER']
-          layerObj.data_notes = line["Comments"]
-          layerObj.data_download = line["Raw Data Link"]
-          layerObj.data_source = line["SOURCE"]
-          layerObj.source = line["SOURCE URL"]
-
-          #Parse the attributes for the layer and add them to the dictionary if we don't have it.
-          attributeNames = line['Attributes'].split(',')
-          attrDisplayNames = []
-          if(len(line['Attributes Display Name'])):  
-            attrDisplayNames = line['Attributes Display Name'].split(',')
-          order = 1        
-          attributeDict = None
-          for index,attrName in enumerate(attributeNames):            
-            if(len(attrName)):
-              logger.debug("Adding attribute: %s" % (attrName))
-              attrObj = AttributeInfo()
-              attrObj.pk = attributeid
-              attrObj.field_name = attrName
-              if(len(attrDisplayNames)):
-                attrObj.display_name = attrDisplayNames[index]
-              else:
-                attrObj.display_name = attrName
-              attrObj.order = order;
-              attributeList.append(attrObj)
-              order += 1
-              attributeid += 1
-              
-              #Add the attribute id to teh layer.
-              layerObj.attribute_fields.append(attrObj.pk) 
-
-                    
-          #Build the metadata
-          if(len(line['REST Endpoint'])):
-            
-            layerObj.layer_type = "ArcRest"
-            
-            restUrl = line['REST Endpoint']
-            restArrayId = None
-            logger.debug("Requesting rest JSON: %s" % (restUrl))
-            if(len(line['REST Array Number'])):
-              restArrayId = int(line['REST Array Number'])
-              logger.debug("Rest Array ID: %d" % (restArrayId))
-            esriRestEndpoint = restEndpoint(restUrl, restArrayId)
-            if(esriRestEndpoint.queryRestJSON() == False):
-              logger.error("Failed to retrieve endpoint data, skipping layer")
-              continue
+        #A layer could be associated with one or more topics, so let's see what we have.
+        topicNames = line['TOPICS'].split(',')          
+        for index,topicName in enumerate(topicNames):
+          if(len(topicName)):
+            topicObj = None
+            if(topicName in topicDict):
+              topicObj = topicDict[topicName]
             else:
-              layerObj.createLayerFromRest(topics, 
-                                           themeObj, 
-                                           lon, 
-                                           lat, 
-                                           esriRestEndpoint,
-                                           line['Description'],
-                                           line['Hover Description'], 
-                                           legendDirectory, 
-                                           legendsBaseURL, 
-                                           line['local metadata url'],
-                                           None,
-                                           line['kml'])
-              #Is this layer a sublayer of another?              
-              if(len(line['PARENT LAYER'])):
-                parentLayer = None
-                for layer in layerList:
-                  if(layer.name == line['PARENT LAYER']):
-                    parentLayer = layer
-                    break
-                if(parentLayer):
-                  parentLayer.layer_type = "checkbox"
-                  parentLayer.arcgis_layers = ""
-                  parentLayer.sublayers.append(layerObj.pk)
-                  layerObj.sublayers.append(parentLayer.pk)
-                  layerObj.is_sublayer = True
-              #layerid += 1
+              logger.debug("Adding topic: %s" % (topicName))
+              topicObj = Topic()
+              topicObj.pk = topicid
+              topicObj.name = topicName
+              topicObj.display_name = topicName
+              topicDict[topicName] = topicObj
+              topicid += 1
+            topics.append(topicObj.pk)
               
-              if(queryFieldsOutDir):
-                queryFields = esriRestEndpoint.__getattr__('fields')
-                if(queryFields):
-                  names = []
-                  aliases = []
-                  ignoreList = ['FID', 'Shape', 'OBJECTID', 'OBJECTID_1']
-                  for field in queryFields:
-                    if(field['name'] not in ignoreList):
-                      names.append(field['name'])
-                      aliases.append(field['alias'])
-                  queryFile.write("\"%s\",\"%s\",\"%s\"" % (layerObj.name,",".join(names),",".join(aliases)))  
-                  queryFile.write("\n")
-                else:
-                  queryFile.write("Layer: %s\n" % (layerObj.name))
-                    
+            
+        for index,theme in enumerate(themeList):
+          if(theme.display_name == line['MAIN THEME']):
+            themeObj = theme
+            break
+        if(themeObj == None):
+          logger.debug("Adding theme: %s" % (line['MAIN THEME']))
+          themeObj = Theme()
+          themeObj.pk = themeid
+          themeObj.name = line['MAIN THEME'].replace(" ", "")
+          themeObj.display_name = line['MAIN THEME']
+          themeList.append(themeObj)
+          themeid += 1
+        
+        layerObj = Layer(logger=True)
+        layerList.append(layerObj)          
+        
+        layerObj.pk = layerid 
+        layerid += 1
+        if(len(line['DATA LAYER'])):
+          layerObj.name = line['DATA LAYER'].strip()
+        layerObj.data_notes = line["Comments"]
+        layerObj.data_download = line["Raw Data Link"]
+        layerObj.data_source = line["SOURCE"]
+        layerObj.source = line["SOURCE URL"]
+
+        #Parse the attributes for the layer and add them to the dictionary if we don't have it.
+        attributeNames = line['Attributes'].split(',')
+        attrDisplayNames = []
+        if(len(line['Attributes Display Name'])):  
+          attrDisplayNames = line['Attributes Display Name'].split(',')
+        order = 1        
+        attributeDict = None
+        for index,attrName in enumerate(attributeNames):            
+          if(len(attrName)):
+            logger.debug("Adding attribute: %s" % (attrName))
+            attrObj = AttributeInfo()
+            attrObj.pk = attributeid
+            attrObj.field_name = attrName
+            if(len(attrDisplayNames)):
+              attrObj.display_name = attrDisplayNames[index]
+            else:
+              attrObj.display_name = attrName
+            attrObj.order = order;
+            attributeList.append(attrObj)
+            order += 1
+            attributeid += 1
+            
+            #Add the attribute id to teh layer.
+            layerObj.attribute_fields.append(attrObj.pk) 
+
+                  
+        #Build the metadata
+        if(len(line['REST Endpoint'])):
+          
+          layerObj.layer_type = "ArcRest"
+          
+          restUrl = line['REST Endpoint']
+          restArrayId = None
+          logger.debug("Requesting rest JSON: %s" % (restUrl))
+          if(len(line['REST Array Number'])):
+            restArrayId = int(line['REST Array Number'])
+            logger.debug("Rest Array ID: %d" % (restArrayId))
+          esriRestEndpoint = restEndpoint(restUrl, restArrayId)
+          if(esriRestEndpoint.queryRestJSON() == False):
+            logger.error("Failed to retrieve endpoint data, skipping layer")
+            continue
           else:
-            layerObj.layer_type = "placeholder"
-            layerObj.themes.append(themeObj.pk)        
+            layerObj.createLayerFromRest(topics, 
+                                         themeObj, 
+                                         lon, 
+                                         lat, 
+                                         esriRestEndpoint,
+                                         line['Description'],
+                                         line['Hover Description'], 
+                                         legendDirectory, 
+                                         legendsBaseURL, 
+                                         line['local metadata url'],
+                                         None,
+                                         line['kml'])
+            #Is this layer a sublayer of another?                            
+            if(len(line['PARENT LAYER'])):
+              parentLayerName = line['PARENT LAYER'].strip()
+              logger.debug("Parent Layer is: %s" % (parentLayerName))
+              parentLayer = None
+              for layer in layerList:
+                if(layer.name == parentLayerName):
+                  parentLayer = layer
+                  break
+              if(parentLayer):
+                parentLayer.layer_type = "checkbox"
+                parentLayer.arcgis_layers = ""
+                parentLayer.sublayers.append(layerObj.pk)
+                layerObj.sublayers.append(parentLayer.pk)
+                layerObj.is_sublayer = True
+              else:
+                logger.error("Unable to find parent layer: %s information." % (line['PARENT LAYER']))
+            #layerid += 1
+            
+            if(queryFieldsOutDir):
+              queryFields = esriRestEndpoint.__getattr__('fields')
+              if(queryFields):
+                names = []
+                aliases = []
+                ignoreList = ['FID', 'Shape', 'OBJECTID', 'OBJECTID_1']
+                for field in queryFields:
+                  if(field['name'] not in ignoreList):
+                    names.append(field['name'])
+                    aliases.append(field['alias'])
+                queryFile.write("\"%s\",\"%s\",\"%s\"" % (layerObj.name,",".join(names),",".join(aliases)))  
+                queryFile.write("\n")
+              else:
+                queryFile.write("Layer: %s\n" % (layerObj.name))
+                  
+        else:
+          layerObj.layer_type = "placeholder"
+          layerObj.themes.append(themeObj.pk)        
         lineCnt += 1
       
       inputFile.close()
