@@ -85,19 +85,32 @@ $(document).ready(function () {
 
     // setPageBlockSizes();
     // $(window).resize(setPageBlockSizes);
+});
 
-    $('.carousel').carousel({
+/* home page carousel */
+$(document).ready(function () {
+    $('#homeCarousel').carousel({
         interval: 4000
     });
 
-    $('.carousel-indicators li').click(function () { 
+    $('#homeCarousel .carousel-indicators li').click(function () { 
         var that = $(this);
         
-        $('.carousel-indicators li').removeClass('active');
+        $('#homeCarousel .carousel-indicators li').removeClass('active');
         setTimeout(function () { 
             that.addClass('active'); 
         }, 10);
     });
 
+    // $('#homeCarousel .info-button').popover({
+    //     content: 'asdfcontent',
+    //     html: 'asdfhtml',
+    //     placement: 'top'
+    // });
+    $('#homeCarousel .info-button').tooltip({
+        html: true,
+        title: '<h5 class="primary">SAPELO ISLAND NATIONAL ESTUARINE RESEARCH RESERVE</h5><p><strong>Georgia</strong>, Sapelo Island</p><p class="photo-credits">Photographer: Jim Couch, Georgia Department of Natural Resources</p>',
+        placement: 'top'
+    });
 });
 
