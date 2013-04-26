@@ -6,8 +6,10 @@
 	<div class="row">
 		<div class="span5">
 			<div class="page-block">
-				<img style="width: 70%; height: 70%" src="{{MEDIA_URL}}gsaa/img/photos/learn_top_left.jpg"/>
-				<h4 class="primary">{{ topics.0.display_name }}</h4>
+                <a href="/learn/topic/{{topics.0.name}}"> 
+                    <img style="width: 70%; height: 70%" src="{{MEDIA_URL}}gsaa/img/photos/learn_top_left.jpg"/>
+                    <h4 class="primary">{{ topics.0.display_name }}</h4>
+                </a>
 				<p>
                     {{ topics.0.description }} 
                     <a href="/learn/topic/{{topics.0.name}}" class="pull-right"> 
@@ -19,8 +21,10 @@
 		<div class="span5">
 			<div class="page-block">
                 {% if topics.1 %}
-				<img style="width: 70%; height: 70%" src="{{MEDIA_URL}}gsaa/img/photos/learn_top_right.jpg"/>
-				<h4 class="primary">{{ topics.1.display_name }}</h4>
+                <a href="/learn/topic/{{topics.1.name}}">
+                    <img style="width: 70%; height: 70%" src="{{MEDIA_URL}}gsaa/img/photos/learn_top_right.jpg"/>
+                    <h4 class="primary">{{ topics.1.display_name }}</h4>
+                </a>
 				<p>
                     {{ topics.1.description }} 
                     <a href="/learn/topic/{{topics.1.name}}" class="pull-right">
@@ -35,8 +39,10 @@
 	<div class="row">
 		<div class="span5">
 			<div class="page-block">
-				<img style="width: 70%; height: 70%" src="{{MEDIA_URL}}gsaa/img/photos/learn_bottom_left.jpg"/>
-				<h4 class="primary">{{ topics.2.display_name }}</h4>
+                <a href="/learn/topic/{{topics.2.name}}">
+                    <img style="width: 70%; height: 70%" src="{{MEDIA_URL}}gsaa/img/photos/learn_bottom_left.jpg"/>
+                    <h4 class="primary">{{ topics.2.display_name }}</h4>
+                </a>
 				<p>
                     {{ topics.2.description }} 
                     <a href="/learn/topic/{{topics.2.name}}" class="pull-right">
@@ -48,8 +54,10 @@
 		<div class="span5">
 			<div class="page-block">
                 {% if topics.3 %}
-				<img src="{{MEDIA_URL}}gsaa/img/page-block-placeholder.png"/>
-				<h4 class="primary">{{ topics.3.display_name }}</h4>
+                <a href="/learn/topic/{{topics.3.name}}">
+                    <img src="{{MEDIA_URL}}gsaa/img/page-block-placeholder.png"/>
+                    <h4 class="primary">{{ topics.3.display_name }}</h4>
+                </a>
 				<p>
                     {{ topics.3.description }} 
                     <a href="/learn/topic/{{topics.3.name}}" class="pull-right">
@@ -73,6 +81,7 @@
 .learn-page a:hover {
     text-decoration: none;
     color: rgba(0, 0, 0, 1);
+    /*color:#34C4F2;*/
 }
 
 </style>

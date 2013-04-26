@@ -108,6 +108,15 @@ a[target="_view"]:after {
   display: inline-block;
   text-decoration: inherit;
 }
+a[target="_download"]:after {
+  content: "\0000a0\0000a0\f019";
+  font-family: FontAwesome;
+  font-size: 12px;
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  text-decoration: inherit;
+}
 
 
 /**
