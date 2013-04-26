@@ -10,11 +10,13 @@
 
         <div class="search-row">
             <div style="margin: 15px 0;">
-                <form class="form-search layer-search">
-                    <input type="text" class="search-box" data-provide="typeahead" placeholder="Search the Catalog" data-bind="value: searchTerm, event: { keyup: keySearch }">
-                    <a class="btn">
+                <form id="catalog-search-form" class="form-search layer-search">
+                    <button class="catalog-search-button" type="submit"><i class="icon-search icon-large"></i></button>
+                    <!--<input type="text" name="gsaa-q"/>-->
+                    <input type="text" style="display: inline-block" class="search-box" data-provide="typeahead" placeholder="Search the Catalog" data-bind="value: searchTerm, event: { keyup: keySearch }">
+                    <!--<a class="btn">
                         <i class="icon-remove icon-large"></i> 
-                    </a>
+                    </a>-->
                 </form>
             </div>
         </div>
@@ -176,6 +178,19 @@
 
 <style type="text/css">
 
+input[type="text"] {
+    /*border: 0px;*/
+}
+input[type="text"]:hover {
+    /*border: 1px solid #cccccc;*/
+}
+
+.catalog-search-button {
+    background-color: transparent; 
+    border: 0; 
+    padding: 0;
+}
+
 #theme-list .accordion-group {
     border: 0px;
     margin-bottom: 0px;
@@ -201,6 +216,10 @@
 #theme-list .accordion-inner li {
     padding-left: 0px;
     padding-right: 20px;
+}
+
+#theme-list .accordion-body {
+    position: static;
 }
 
 #theme-list h3 {
@@ -278,6 +297,7 @@
             layer_index = {},
             search =  function(val) {
                 var layer = layer_index[val];
+                
                 //layer.layer.closest('tr').effect("pulsate", {times:2 }, 500);
                 if ( ! $(layer.layer).closest('.theme-group').find('.accordion-body').first().hasClass('in') ) {
                     $(layer.layer).closest('.theme-group').find('.accordion-body').first().collapse('show');
@@ -288,7 +308,7 @@
                 if ( $(layer.layer).closest('.sublayer-group').find('.accordion-body').first().length ) {
                     $(layer.layer).closest('.sublayer-group').find('.accordion-body').first().collapse('show');
                     $(layer.layer).closest('.sublayer-group').find('.layer-search-name').effect("pulsate", {times:2}, 500);
-                } else {                    
+                } else {   
                     $(layer.layer).closest('.layer-group').find('.layer-search-name').first().effect("pulsate", {times:2}, 500);
                 }
                 setTimeout(function() {$(window).scrollTop(layer.layer.closest('.layer-group').offset().top-300)}, 200);
@@ -325,18 +345,22 @@
         
         $('.layer-search').submit(function (event) {
             event.preventDefault();
+            //console.log('layer-search submit');
             search($(this).find('input').val());
         });
         
 
         $('.layer-search').on('keyup', 'input', function (event) {
-            event.preventDefault();    
+            event.preventDefault();  
+            //console.log('layer-search keyup ' + event.which);  
             if (event.which === 13) {
                 search($(this).val());
             }
         });
 
         $('ul.typeahead').on('click', 'li', function () {
+        //$('.layer-search').on('click', 'li', function () {
+            //console.log('layer-search list click');
             search($(this).text());
         });
 
