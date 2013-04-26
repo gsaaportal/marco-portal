@@ -75,14 +75,14 @@
                                                                     </li>
                                                                     <li>
                                                                         {% if sublayer.kml %}
-                                                                        <a href="{{sublayer.kml}}" class="data-layer-link color-up">KML</a>
+                                                                        <a href="{{sublayer.kml}}" class="data-layer-link color-up" target="_download">KML</a>
                                                                         {% else %}
                                                                         <span class="link-not-available">KML</span>
                                                                         {% endif %}
                                                                     </li>
                                                                     <li>
                                                                         {% if sublayer.data_download_link %}
-                                                                        <a href="{{sublayer.data_download_link}}" class="data-layer-link color-up">DATA</a>
+                                                                        <a href="{{sublayer.data_download_link}}" class="data-layer-link color-up" target="_download">DATA</a>
                                                                         {% else %}
                                                                         <span class="link-not-available">DATA</span>
                                                                         {% endif %}
@@ -130,14 +130,14 @@
                                                 </li>
                                                 <li>
                                                     {% if layer.kml %}
-                                                    <a href="{{layer.kml}}" class="data-layer-link color-up">KML</a>
+                                                    <a href="{{layer.kml}}" class="data-layer-link color-up" target="_download">KML</a>
                                                     {% else %}
                                                     <span class="link-not-available">KML</span>
                                                     {% endif %}
                                                 </li>
                                                 <li>
                                                     {% if layer.data_download_link %}
-                                                    <a href="{{layer.data_download_link}}" class="data-layer-link color-up">DATA</a>
+                                                    <a href="{{layer.data_download_link}}" class="data-layer-link color-up" target="_download">DATA</a>
                                                     {% else %}
                                                     <span class="link-not-available">DATA</span>
                                                     {% endif %}
