@@ -12,7 +12,7 @@ class TopicAdmin(admin.ModelAdmin):
         return super(TopicAdmin, self).formfield_for_manytomany(db_field, request, **kwargs)
 
 class MapViewAdmin(admin.ModelAdmin):
-    list_display = ('display_name', 'topic', 'ordering', 'name', 'url_hash', 'active')
+    list_display = ('display_name', 'topic', 'ordering', 'name', 'active')
     search_fields = ['display_name', 'name', 'topic']
     ordering = ('topic', 'ordering', 'display_name')
 
