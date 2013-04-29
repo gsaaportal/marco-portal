@@ -60,6 +60,7 @@ FEEDBACK_SUBJECT = "GSAA Portal Feedback"
 
 # Change the following line to True, to display the 'under maintenance' template
 UNDER_MAINTENANCE_TEMPLATE = False
+SOCKET_URL = 'http://gsaaportal.org:8080'
 
 TEMPLATE_DIRS = ( os.path.realpath(os.path.join(os.path.dirname(__file__), 'templates').replace('\\','/')), )
 
