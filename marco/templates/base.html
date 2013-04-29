@@ -56,14 +56,14 @@
                                         <a class="btn btn-link"><i class="icon-search icon-large"></i></a>
                                         <input type="text" name="gsaa-q"/>
                                     </form>
-                                </div>                       
-                            </div>            
-                        </div>       
-                    </div>     
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </header>
-        
+
         <!-- FEEDBACK MODAL -->
         <div id="feedback-modal" class="modal hide fade">
             <div class="modal-header">
@@ -71,7 +71,7 @@
                 <h3>Feedback</h3>
             </div>
             <form class="form-horizontal" id="feedback-form">
-            <div class="modal-body">        
+            <div class="modal-body">
                 <div class="control-group">
                   <label class="control-label" for="name">Full Name</label>
                   <div class="controls">
@@ -105,7 +105,7 @@
 
         <footer>
             <div class="container">
-            
+
                 <div class="row">
                     <div id="section1" class="span4">
                         <p>Providing regional coastal and ocean planning tools to support the Governors' South Atlantic Alliance (GSAA).</p>
@@ -118,7 +118,7 @@
                     <div class="span4">
                         <h6>GET IN TOUCH</h6>
                         <p>Please e-mail inquiries about the GSAA Portal to the regional information management system coordinator.</p>
-                        <p><strong>Email</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="subtle" href="mailto:info@gsaaportal.org">info@gsaaportal.org</a></p>
+                        <p><strong>Email</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="subtle" href="mailto:gsaaportal@gmail.com">gsaaportal@gmail.com</a></p>
                     </div>
                 </div>
             </div> <!-- /container -->
@@ -143,7 +143,7 @@
             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
           })();
-          
+
           $('#feedback-form').on('submit', function (event) {
              var feedback = {}, $form = $(this);
              event.preventDefault();
@@ -157,7 +157,7 @@
               });
               $form.closest('.modal').modal('hide')
            });
-          
+
         </script>
         {% block javascript %}
         {% endblock %}
