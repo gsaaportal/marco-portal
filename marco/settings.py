@@ -45,10 +45,12 @@ GEOMETRY_DB_SRID = 99996
 GEOMETRY_CLIENT_SRID = 3857 #for latlon
 GEOJSON_SRID = 3857
 
+#See the settings_local.py file for the SMTP credentials.
 APP_NAME = "GSAA Portal"
-FEEDBACK_RECIPIENT = "GSAA Portal Team <gsaaportal@gmail.com>"
-HELP_EMAIL = "gsaaportal@gmail.com"
-DEFAULT_FROM_EMAIL = "MARCO Portal Team <gsaaportal@gmail.com>"
+FEEDBACK_RECIPIENT = "dan@inlet.geol.sc.edu"
+HELP_EMAIL = "dan@inlet.geol.sc.edu"
+DEFAULT_FROM_EMAIL = "GSAA Portal Team <gsaaportal@gmail.com>"
+FEEDBACK_SUBJECT = "GSAA Portal Feedback"
 
 # url for socket.io printing
 #SOCKET_URL = 'http://dev.marco.marineplanning.org:8080'
