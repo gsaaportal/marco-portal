@@ -334,26 +334,37 @@ footer h6 {
 @media (max-width: 767px) {
   .page-blocks > [class*="row"] > [class*="span"] {
       border-bottom: 1px dotted #ccc;
+      margin-top: 30px;
+  }
+  .page-blocks > [class*="row"] {
+    width: 100%\9;    /* IE 8 and below */
+  }
+  .page-blocks > [class*="row"] > [class*="span"] {
+    max-width: 400px\9;    /* IE 8 and below */
+    float: none\9;
   }
   .page-blocks > [class*="row"]:last-child > [class*="span"]:last-child {
       border-bottom: none;
   }
 }
-/* dividing lines when blocks side by side */
+/* dividing lines when blocks are side by side */
 @media (min-width: 768px) {
   .page-blocks > [class*="row"]  > [class*="span"] {
     border-top: 1px dotted #ccc;
-    border-right: 1px dotted #ccc;
     margin-left: 0px;
     padding-left: 20px;
+  }
+  .page-blocks > [class*="row"]  > [class*="span"] > .page-block {
+    border-right: 1px dotted #ccc;
   }
   .page-blocks > [class*="row"]:first-child > [class*="span"] {
     border-top: none;
   }
   .page-blocks > [class*="row"] > [class*="span"]:last-child {
-    border-right: none;
-    border-left: 1px dotted #ccc;
     padding-left: 20px;
+  }
+  .page-blocks > [class*="row"] > [class*="span"]:last-child > .page-block {
+    border-right: none;
   }
 }
 
