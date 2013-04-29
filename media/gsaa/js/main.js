@@ -83,7 +83,6 @@ $(document).ready(function () {
     // });
     $('#homeCarousel .info-button').tooltip({
         html: true,
-        title: '<h5 class="primary">SAPELO ISLAND NATIONAL ESTUARINE RESEARCH RESERVE</h5><p><strong>Georgia</strong>, Sapelo Island</p><p class="photo-credits">Photographer: Jim Couch, Georgia Department of Natural Resources</p>',
         placement: 'top'
     });
 });
