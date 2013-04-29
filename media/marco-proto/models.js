@@ -331,7 +331,6 @@ function layerModel(options, parent) {
     // called from activateLayer
     self.activateParentLayer = function() {
         var layer = this;
-
         if (layer.parent.type === 'radio' && layer.parent.activeSublayer()) {
             // only allow one sublayer on at a time
             layer.parent.activeSublayer().deactivateLayer();
@@ -442,6 +441,14 @@ function layerModel(options, parent) {
                     layer.showSublayers(false);
                 }
             } else if ( layer.type === 'checkbox' ) { //else if layer does have an active sublayer and it's checkbox (not radio)
+                if (!layer.showSublayers()) {
+                    //show drop-down menu
+                    layer.showSublayers(true);
+                } else {
+                    //hide drop-down menu
+                    layer.showSublayers(false);
+                }
+            } else if ( layer.type === 'radio' ) { //perhaps same behavior should 
                 if (!layer.showSublayers()) {
                     //show drop-down menu
                     layer.showSublayers(true);
