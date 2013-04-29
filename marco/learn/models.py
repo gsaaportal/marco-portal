@@ -10,9 +10,14 @@ class Topic(models.Model):
     name = models.CharField(max_length=100)
     display_name = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
+    clean_waters = models.BooleanField(default=False)
+    resilient_communities = models.BooleanField(default=False)
+    healthy_ecosystems = models.BooleanField(default=False)
+    working_waterfronts = models.BooleanField(default=False)
     #views = models.ManyToManyField("MapView", blank=True, null=True)
     layers = models.ManyToManyField(Layer, blank=True, null=True)  
     ordering = models.IntegerField(null=True, blank=True)
+    active = models.BooleanField(default=True)
 
     def __unicode__(self):
         return unicode('%s' % (self.name))
@@ -32,6 +37,7 @@ class MapView(models.Model):
     description = models.TextField(blank=True, null=True)
     url_hash = models.CharField(max_length=2050, blank=True, null=True)   
     ordering = models.IntegerField(null=True, blank=True)
+    active = models.BooleanField(default=True)
     
     def __unicode__(self):
         return unicode('%s' % (self.name))

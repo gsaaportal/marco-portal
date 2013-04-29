@@ -1,0 +1,133 @@
+[
+    {
+        "pk": 1,
+        "model": "learn.topic",
+        "fields": {
+            "layers": [
+                2
+            ],
+            "working_waterfronts": false,
+            "display_name": "Sediment Management",
+            "name": "sediment_management",
+            "ordering": 2,
+            "healthy_ecosystems": false,
+            "clean_waters": false,
+            "active": false,
+            "resilient_communities": false,
+            "description": "The southeastern United States is known for having well maintained, broad sandy beaches. Tourists travel from all of the country, and the world to enjoy our coast and all that it has to offer. Additionally, each of the four GSAA states have busy ports that are frequently in need of expansion in order to keep pace with the changing maritime industry. "
+        }
+    },
+    {
+        "pk": 2,
+        "model": "learn.topic",
+        "fields": {
+            "layers": [
+                1
+            ],
+            "working_waterfronts": false,
+            "display_name": "Habitat Conservation",
+            "name": "habitat_conservation",
+            "ordering": 3,
+            "healthy_ecosystems": false,
+            "clean_waters": false,
+            "active": false,
+            "resilient_communities": false,
+            "description": "The southeastern United States is known for having dolphins and alligators.  Please do not feed the animals."
+        }
+    },
+    {
+        "pk": 3,
+        "model": "learn.topic",
+        "fields": {
+            "layers": [
+                60,
+                114,
+                68
+            ],
+            "working_waterfronts": false,
+            "display_name": "Beach Renourishment",
+            "name": "beach_renourishment",
+            "ordering": 1,
+            "healthy_ecosystems": true,
+            "clean_waters": false,
+            "active": true,
+            "resilient_communities": true,
+            "description": "The southeastern United States is known for its broad sandy beaches with tourists travel from across the globe to enjoy our coast and all that it has to offer. Erosion is a natural process on many coastal beaches, but it can be exacerbate by human changes such as dredging and maintenance of inlets and development. One mechanism to manage erosion is through beach renourishment, appropriate sand resources are  identified offshore and then pumped onshore to replenish the beach area. Completing a beach renourishment project requires detailed understanding of sand availablility, type and location; as well as, potential impacts to natural resources (e.g. sea turtles and shorebirds) and other uses in the area."
+        }
+    },
+    {
+        "pk": 4,
+        "model": "learn.topic",
+        "fields": {
+            "layers": [
+                124,
+                107,
+                50,
+                121,
+                58,
+                60
+            ],
+            "working_waterfronts": true,
+            "display_name": "Port Maintenance and Expansion",
+            "name": "port_maintenance",
+            "ordering": null,
+            "healthy_ecosystems": false,
+            "clean_waters": false,
+            "active": true,
+            "resilient_communities": false,
+            "description": "The four Governors' South Atlantic Alliance states each have busy ports that help feed the coastal economy. These ports require regular dredging to maintain their shipping lanes.  The widening of the Panama Canal is changing the maritime industry in the southeast, enabling the transit of larger ships and therefore increasing the size of ships visiting our ports.  Ports from Charleston to Miami are in the process of evaluating the feasibility of deepening their shipping lanes in response. A variety of information goes into making these decisions including environmental impacts, capacity to transport goods inland, and sediment disposal options. "
+        }
+    },
+    {
+        "pk": 1,
+        "model": "learn.mapview",
+        "fields": {
+            "url_hash": "x=-78.50&y=33.72&z=9&dls%5B%5D=true&dls%5B%5D=0.5&dls%5B%5D=89&dls%5B%5D=true&dls%5B%5D=0.5&dls%5B%5D=94&basemap=ESRI+Ocean&themes%5Bids%5D%5B%5D=5&themes%5Bids%5D%5B%5D=8&tab=data&legends=false&layers=true",
+            "display_name": "Myrtle Beach",
+            "name": "myrtle_beach",
+            "ordering": 1,
+            "topic": 1,
+            "active": false,
+            "description": "Mrtyle Beach is undergoing a number of activities for sediment management. Notice on the map how historic dredge areas overlap with sea turtle habitat"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "learn.mapview",
+        "fields": {
+            "url_hash": "x=-75.51&y=36.02&z=9&dls%5B%5D=true&dls%5B%5D=0.5&dls%5B%5D=84&dls%5B%5D=true&dls%5B%5D=0.5&dls%5B%5D=7&dls%5B%5D=true&dls%5B%5D=0.5&dls%5B%5D=92&basemap=ESRI+Ocean&themes%5Bids%5D%5B%5D=8&themes%5Bids%5D%5B%5D=7&themes%5Bids%5D%5B%5D=3&themes%5Bids%5D%5B%5D=5&tab=data&legends=false&layers=true",
+            "display_name": "Nags Head",
+            "name": "nags_head",
+            "ordering": 1,
+            "topic": 2,
+            "active": false,
+            "description": "Nags Head and the Outerbanks has great surfing and wild horses!"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "learn.mapview",
+        "fields": {
+            "url_hash": "x=-81.25&y=30.35&z=10&logo=true&dls%5B%5D=true&dls%5B%5D=0.61&dls%5B%5D=60&dls%5B%5D=true&dls%5B%5D=0.62&dls%5B%5D=107&dls%5B%5D=true&dls%5B%5D=0.49&dls%5B%5D=50&dls%5B%5D=true&dls%5B%5D=1&dls%5B%5D=128&dls%5B%5D=true&dls%5B%5D=1&dls%5B%5D=121&basemap=ESRI+Ocean&tab=active&legends=false&layers=true",
+            "display_name": "Jacksonville",
+            "name": "jacksonville",
+            "ordering": null,
+            "topic": 4,
+            "active": true,
+            "description": "Like several southeast ports, Jacksonville Port Authority is currently working with the US Army Corps of Engineers to complete an economic, engineering and environmental study to determine the optimal depth of the federal channel. \r\n<p><p>\r\nThis map illustrates some of the data layers available on the Portal taken associated with planning for port expansion \u2013 bottom type, threatened and endangered species locations, potential disposal areas, and shipping traffic."
+        }
+    },
+    {
+        "pk": 6,
+        "model": "learn.mapview",
+        "fields": {
+            "url_hash": "x=-78.82&y=33.60&z=10&logo=true&dls%5B%5D=true&dls%5B%5D=1&dls%5B%5D=60&dls%5B%5D=true&dls%5B%5D=1&dls%5B%5D=114&dls%5B%5D=true&dls%5B%5D=1&dls%5B%5D=68&basemap=ESRI+Ocean&themes%5Bids%5D%5B%5D=1&themes%5Bids%5D%5B%5D=6&themes%5Bids%5D%5B%5D=6&tab=active&legends=false&layers=true",
+            "display_name": "Myrtle Beach",
+            "name": "myrtle_beach",
+            "ordering": null,
+            "topic": 3,
+            "active": true,
+            "description": "The Grand Strand region of the South Carolina coast is a popular coastal tourist destination, annually hosting over 4.6 million visitors.  Since the mid-1980\u2019s the region has completed three major beach renourishment projects involving over 8 million cubic yards of sand.  \r\n<p><p>\r\nThis map illustrates some of the data layers available in the Portal, which are factors that impact beach renourishment project design \u2013 sediment type, sea turtles, shorebird nesting, and <a href=\"http://www.onencnaturally.org/pages/CHPP_Hard_Bottom.html\" target=\"_blank\">hard bottom</a> areas.  Note that for an actual beach renourishment construction project, more site specific information is gathered and evaluated. "
+        }
+    }
+]
