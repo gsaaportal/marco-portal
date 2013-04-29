@@ -495,6 +495,7 @@ footer h6 {
   line-height: 16px;
 }
 
+
 /* info icon */
 #homeCarousel img.info-button {
   position: absolute;
@@ -505,7 +506,7 @@ footer h6 {
 }
 .tooltip {
   position: absolute;
-  z-index: 1030;
+  z-index: 100;
   display: block;
   visibility: visible;
   font-size: 11px;
@@ -519,6 +520,7 @@ footer h6 {
 }
 .tooltip.top {
   margin-top: -3px;
+  margin-right: 10px;
   padding: 5px 0;
 }
 .tooltip.right {
@@ -543,6 +545,12 @@ footer h6 {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 1.0);
+   -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 1.0);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 1.0);
+  -webkit-background-clip: padding-box;
+     -moz-background-clip: padding;
+          background-clip: padding-box;
 }
 .tooltip-arrow {
   position: absolute;

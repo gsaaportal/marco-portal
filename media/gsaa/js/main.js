@@ -64,7 +64,7 @@ $(document).ready(function () {
  */
 $(document).ready(function () {
     $('#homeCarousel').carousel({
-        interval: 4000
+        interval: 4000000
     });
 
     $('#homeCarousel .carousel-indicators li').click(function () { 
@@ -83,7 +83,8 @@ $(document).ready(function () {
     // });
     $('#homeCarousel .info-button').tooltip({
         html: true,
-        placement: 'top'
+        placement: 'top',
+        trigger: 'click'
     });
 });
 
