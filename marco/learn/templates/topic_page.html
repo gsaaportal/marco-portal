@@ -6,12 +6,26 @@
 	<div class="span12">
         <h5>
             {{ topic.display_name|upper }}
-            <span style="margin-left: 10px">
+            {% if topic.healthy_ecosystems %}
+            <span id="healthy-ecosystems" style="margin-left: 10px" rel="popover" data-placement="top" data-content="HEALTHY ECOSYSTEMS" data-trigger="hover">
                 <img src="{{MEDIA_URL}}gsaa/img/vector-artwork/priority_issue_icons/healthy_ecosystem.png">
             </span>
-            <span style="margin-left: 10px">
+            {% endif %}
+            {% if topic.resilient_communities %}
+            <span id="resilient-communities" style="margin-left: 10px" rel="popover" data-placement="top" data-content="DISASTER-RESILIENT COMMUNITIES" data-trigger="hover">
                 <img src="{{MEDIA_URL}}gsaa/img/vector-artwork/priority_issue_icons/disaster_resilient.png">
             </span>
+            {% endif %}
+            {% if topic.clean_waters %}
+            <span id="clean-waters" style="margin-left: 10px" rel="popover" data-placement="top" data-content="CLEAN WATERS" data-trigger="hover">
+                <img src="{{MEDIA_URL}}gsaa/img/vector-artwork/priority_issue_icons/clean_coastal_waters.png">
+            </span>
+            {% endif %}
+            {% if topic.working_waterfronts %}
+            <span id="working-waterfronts" style="margin-left: 10px" rel="popover" data-placement="top" data-content="WORKING WATERFRONTS" data-trigger="hover">
+                <img src="{{MEDIA_URL}}gsaa/img/vector-artwork/priority_issue_icons/working_waterfronts.png">
+            </span>
+            {% endif %}
         </h5>
 		<div class="split-column" style="width: 90%">{{ topic.description|safe }}</div>
         <div style="margin-top: 20px; font-size: 12px; color: #666666; border-bottom: 1px solid #ccc; width: 90%">
@@ -27,7 +41,7 @@
                         {{ view.description|safe }}
                         <div style="position: absolute; bottom: 0;">
                             <a href="{{domain}}/planner/#{{view.url_hash}}">
-                                <img style="margin-right: 4px; width: 5%; height: 5%;" class="svg-link" src="{{MEDIA_URL}}gsaa/img/vector-artwork/misc/visualize.svg">
+                                <img style="margin-right: 4px; width: 7%; height: 7%;" class="svg-link" src="{{MEDIA_URL}}gsaa/img/vector-artwork/misc/visualize.svg">
                                 View in Marine Planner
                             </a>
                         </div>
@@ -54,13 +68,13 @@
                 </div>
                 <div class="span4">
                     <a href="{{ layer.bookmark }}">
-                        <img style="margin-right: 4px; width: 3%; height: 3%;" class="svg-link" src="{{MEDIA_URL}}gsaa/img/vector-artwork/misc/visualize.svg">
+                        <img style="margin-right: 4px; width: 4%; height: 4%;" class="svg-link" src="{{MEDIA_URL}}gsaa/img/vector-artwork/misc/visualize.svg">
                         View in Marine Planner
                     </a>
                 </div>
                 <div class="span4">
                     <a href="/explore/catalog#{{ layer.slug }}">
-                        <img style="margin-right: 4px; width: 4%; height: 4%;" class="svg-link" src="{{MEDIA_URL}}gsaa/img/vector-artwork/misc/explore.svg">
+                        <img style="margin-right: 4px; width: 5%; height: 5%;" class="svg-link" src="{{MEDIA_URL}}gsaa/img/vector-artwork/misc/explore.svg">
                         View in Data Catalog 
                     </a>
                 </div>
@@ -77,6 +91,12 @@
     window.onload = function() {
         //$('#map-view-list .accordion-body').first().collapse('show');
         //$('#map-view .map-view-iframe').first().show();
+        $(function () {
+            $("#healthy-ecosystems").popover();
+            $("#resilient-communities").popover();
+            $("#clean-waters").popover();
+            $("#working-waterfronts").popover();
+        });
     };
     
     //madrona.onShow(function(){
@@ -115,6 +135,14 @@
 }
 .svg-link {
   margin-bottom: 5px;
+}
+.popover-title { 
+    display: none; 
+}
+.popover-content { 
+    color: #030bd4;
+    padding: 5px 10px;
+    font-size: 12px;
 }
 </style>
 
