@@ -64,7 +64,7 @@ $(document).ready(function () {
  */
 $(document).ready(function () {
     $('#homeCarousel').carousel({
-        interval: 4000000
+        interval: 4000
     });
 
     $('#homeCarousel .carousel-indicators li').click(function () { 
@@ -76,15 +76,9 @@ $(document).ready(function () {
         }, 10);
     });
 
-    // $('#homeCarousel .info-button').popover({
-    //     content: 'asdfcontent',
-    //     html: 'asdfhtml',
-    //     placement: 'top'
-    // });
-    $('#homeCarousel .info-button').tooltip({
+    $('.info-button').tooltip({
         html: true,
-        placement: 'top',
-        trigger: 'click'
+        placement: 'top'
     });
 });
 
