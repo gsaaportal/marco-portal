@@ -39,7 +39,10 @@ INSTALLED_APPS += ( 'clipping',
                     'feedback',
                     'django.contrib.humanize',
                     'flatblocks',
-                    'marco_profile' )
+                    'marco_profile',
+                    'google-analytics')
+
+GOOGLE_ANALYTICS_MODEL = True
 
 GEOMETRY_DB_SRID = 99996
 GEOMETRY_CLIENT_SRID = 3857 #for latlon
@@ -47,8 +50,8 @@ GEOJSON_SRID = 3857
 
 #See the settings_local.py file for the SMTP credentials.
 APP_NAME = "GSAA Portal"
-FEEDBACK_RECIPIENT = "dan@inlet.geol.sc.edu"
-HELP_EMAIL = "dan@inlet.geol.sc.edu"
+FEEDBACK_RECIPIENT = "gsaaportal@gmail.com"
+HELP_EMAIL = "gsaaportal@gmail.com"
 DEFAULT_FROM_EMAIL = "GSAA Portal Team <gsaaportal@gmail.com>"
 FEEDBACK_SUBJECT = "GSAA Portal Feedback"
 
