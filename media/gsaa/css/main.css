@@ -495,17 +495,22 @@ footer h6 {
   line-height: 16px;
 }
 
+
 /* info icon */
-#homeCarousel img.info-button {
+.info-image {
+  position: relative;
+}
+#homeCarousel img.info-button,
+div.info-image img.info-button {
   position: absolute;
   bottom: 16px;
   right: 18px;
-  z-index: 10;
+  z-index: 100;
   width: auto;
 }
 .tooltip {
   position: absolute;
-  z-index: 1030;
+  z-index: 100;
   display: block;
   visibility: visible;
   font-size: 11px;
@@ -519,6 +524,7 @@ footer h6 {
 }
 .tooltip.top {
   margin-top: -3px;
+  margin-right: 10px;
   padding: 5px 0;
 }
 .tooltip.right {
@@ -533,16 +539,25 @@ footer h6 {
   margin-left: -3px;
   padding: 0 5px;
 }
+.learn-page .tooltip-inner {
+  min-width: 240px;
+}
 .tooltip-inner {
-  max-width: 300px;
-  padding: 8px;
+  max-width: 400px;
+  padding: 20px 25px;
   color: #000000;
-  text-align: center;
+  text-align: left;
   text-decoration: none;
   background-color: #ffffff;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+   -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  -webkit-background-clip: padding-box;
+     -moz-background-clip: padding;
+          background-clip: padding-box;
 }
 .tooltip-arrow {
   position: absolute;
@@ -578,6 +593,10 @@ footer h6 {
   margin-left: -5px;
   border-width: 0 5px 5px;
   border-bottom-color: #ffffff;
+}
+
+.photo-credits {
+  font-style: italic;
 }
 
 

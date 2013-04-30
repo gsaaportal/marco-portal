@@ -1153,7 +1153,7 @@ body.borderless #map-wrapper {
 	body {
 		margin-top: 0px;
 	}
-    #content {
+    #primary-content {
         margin-top: 120px;
     }
 	#sidebar-nav {
