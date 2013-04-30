@@ -37,6 +37,7 @@ INSTALLED_APPS += ( 'clipping',
                     'explore',
                     'visualize',
                     'feedback',
+                    'search',
                     'django.contrib.humanize',
                     'flatblocks',
                     'marco_profile' )
