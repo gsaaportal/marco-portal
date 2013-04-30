@@ -129,3 +129,17 @@ $(document).ready(function () {
 
     });
 });        
+
+
+
+/**
+ * Compensate for the fixed header when scrolling to mid-page anchors.
+ */
+$(document).ready(function () {
+    var hash = window.location.hash,
+        offsettop = $('header').height(),
+        speed = 300;
+    if (hash !== '') {
+        $('html,body').animate({scrollTop: $(hash).offset().top - offsettop}, speed);
+    }
+});

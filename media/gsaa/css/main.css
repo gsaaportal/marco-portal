@@ -142,7 +142,7 @@ header.shadow {
 .navbar {
     background-color: transparent;
     font-size: 12px;
-    margin-top: 20px;
+    margin-top: 6px;
 }
 .navbar-inner {
   border: none;
@@ -218,6 +218,9 @@ header .span12 {
  * Dropdown in header menu - some of this is purely 
  * stripping bootstrap styles.
  */
+.nav.gsaa-nav>li>a.dropdown-toggle {
+  padding-bottom: 5px;
+}
 .gsaa-nav .dropdown-menu {
   border: none;
   border-radius: 0;
