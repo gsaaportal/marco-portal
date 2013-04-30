@@ -1,0 +1,2800 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml"><HEAD>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<SCRIPT type=text/javascript><!--
+      function fix(e) {
+        var par = e.parentNode;
+        e.id = "";
+        e.style.marginLeft = "0.42in";
+        var pos = e.innerText.indexOf("\n");
+        if (pos > 0) {
+          while (pos > 0) {
+            var t = e.childNodes(0);
+            var n = document.createElement("pre");
+            var s = t.splitText(pos);
+            e.insertAdjacentElement("afterEnd", n);
+            n.appendChild(s);
+            n.style.marginLeft = "0.42in";
+            e = n;
+            pos = e.innerText.indexOf("\n");
+          }
+          var count = (par.children.length);
+          for (var i = 0; i < count; i++) {
+            e = par.children(i);
+            if (e.tagName == "pre") {
+              pos = e.innerText.indexOf(">");
+              if (pos != 0) {
+                n = document.createElement("dd");
+                e.insertAdjacentElement("afterEnd", n);
+                n.innerText = e.innerText;
+                e.removeNode(true);
+              }
+            }
+          }
+          if (par.children.tags("pre").length > 0) {
+            count = (par.children.length);
+            for (i = 0; i < count; i++) {
+              e = par.children(i);
+              if (e.tagName == "pre") {
+                e.id = "";
+                if (i < (count-1)) {
+                  var e2 = par.children(i + 1);
+                  if (e2.tagName == "pre") {
+                    e.insertAdjacentText("beforeEnd", e2.innerText+"\n");
+                    e2.removeNode(true);
+                    count = count-1;
+                    i = i-1;
+                  }
+                }
+              }
+            }
+          }
+        }
+        else {
+          n = document.createElement("dd");
+          par.appendChild(n);
+          n.innerText = e.innerText;
+          e.removeNode(true);
+        }
+      }
+    -->
+</SCRIPT>
+
+<STYLE>BODY {
+	FONT-FAMILY: arial; COLOR: #000000; FONT-SIZE: 11pt
+}
+LI {
+	FONT-FAMILY: arial; COLOR: #000000; FONT-SIZE: 11pt
+}
+P {
+	FONT-FAMILY: arial; COLOR: #000000; FONT-SIZE: 11pt
+}
+DT {
+	FONT-FAMILY: arial; COLOR: #000000; FONT-SIZE: 11pt
+}
+DD {
+	FONT-FAMILY: arial; COLOR: #000000; FONT-SIZE: 11pt
+}
+DD {
+	FONT-FAMILY: arial; COLOR: #000000; FONT-SIZE: 11pt
+}
+TABLE.head {
+	BORDER-BOTTOM: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; BORDER-RIGHT: #cccccc 1px solid
+}
+TH {
+	TEXT-ALIGN: left; PADDING-BOTTOM: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 10px; FONT-FAMILY: arial; COLOR: #000000; FONT-SIZE: 11pt; PADDING-TOP: 5px
+}
+TD {
+	PADDING-BOTTOM: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 10px; FONT-FAMILY: arial; COLOR: #000000; FONT-SIZE: 10pt; PADDING-TOP: 5px
+}
+H1 {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+H2 {
+	TEXT-DECORATION: none
+}
+.head_row {
+	BACKGROUND-COLOR: #f6f6f6
+}
+TABLE.head {
+	BORDER-BOTTOM: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; BORDER-RIGHT: #cccccc 1px solid
+}
+TD.head {
+	BORDER-BOTTOM: #e4e4e4 0px solid; BORDER-LEFT: #e4e4e4 0px solid; PADDING-BOTTOM: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 10px; FONT-FAMILY: arial; COLOR: #000000; FONT-SIZE: 11pt; BORDER-TOP: #e4e4e4 0px solid; BORDER-RIGHT: #e4e4e4 1px solid; PADDING-TOP: 5px
+}
+TH.head {
+	BORDER-BOTTOM: #e4e4e4 1px solid; TEXT-ALIGN: left; BORDER-LEFT: #e4e4e4 0px solid; PADDING-BOTTOM: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 10px; FONT-FAMILY: arial; COLOR: #000000; FONT-SIZE: 11pt; BORDER-TOP: #e4e4e4 0px solid; BORDER-RIGHT: #e4e4e4 1px solid; PADDING-TOP: 5px
+}
+.head_row {
+	BACKGROUND-COLOR: #f6f6f6
+}
+.even_row {
+	BACKGROUND-COLOR: #f8f8f8
+}
+</STYLE>
+
+<META name=GENERATOR content="MSHTML 9.00.8112.16470"></HEAD>
+<BODY oncontextmenu="return true">
+<TABLE>
+  <THEAD>
+  <TR>
+    <TD>
+      <TABLE border=0 cellSpacing=0 cellPadding=0 width="100%">
+        <TBODY>
+        <TR>
+          <DT></DT>
+          <TD>
+            <P></P></TD></TR></TBODY></TABLE>
+      <HR>
+    </TD></TR></THEAD>
+  <TBODY>
+  <TR>
+    <TD><A name=Top>
+      <H1>DRAFT - Benthic Habitats - Hardbottom</H1>
+      <H2><FONT color=green>Metadata:</FONT> </H2>
+      <UL>
+        <LI><A 
+        href="file:///C:/Users/njordan/AppData/Local/Temp/tmpF48D.tmp.html#Identification_Information">Identification 
+        Information</A> 
+        <LI><A 
+        href="file:///C:/Users/njordan/AppData/Local/Temp/tmpF48D.tmp.html#Data_Quality_Information">Data 
+        Quality Information</A> 
+        <LI><A 
+        href="file:///C:/Users/njordan/AppData/Local/Temp/tmpF48D.tmp.html#Spatial_Data_Organization_Information">Spatial 
+        Data Organization Information</A> 
+        <LI><A 
+        href="file:///C:/Users/njordan/AppData/Local/Temp/tmpF48D.tmp.html#Spatial_Reference_Information">Spatial 
+        Reference Information</A> 
+        <LI><A 
+        href="file:///C:/Users/njordan/AppData/Local/Temp/tmpF48D.tmp.html#Entity_and_Attribute_Information">Entity 
+        and Attribute Information</A> 
+        <LI><A 
+        href="file:///C:/Users/njordan/AppData/Local/Temp/tmpF48D.tmp.html#IDAATPWY">Distribution 
+        Information</A> 
+        <LI><A 
+        href="file:///C:/Users/njordan/AppData/Local/Temp/tmpF48D.tmp.html#Metadata_Reference_Information">Metadata 
+        Reference Information</A> </LI></UL><A name=Identification_Information 
+      xmlns="">
+      <HR>
+      </A>
+      <DL xmlns="">
+        <DT><I>Identification Information:</I> 
+        <DD>
+        <DL>
+          <DT><I>Citation:</I> 
+          <DD>
+          <DL>
+            <DT><I>Citation Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Originator: </I>Eastern Division Conservation Science 
+              office of The Nature Conservancy 
+              <DT><I>Publication Date: </I>
+              <DT><I>Title:</I> 
+              <DD>DRAFT - Benthic Habitats - Hardbottom 
+              <DT><I>Edition: </I>DRAFT 
+              <DT><I>Geospatial Data Presentation Form: </I>vector digital data 
+              <DT><I>Series Information:</I> 
+              <DD>
+              <DL></DL>
+              <DT><I>Publication Information:</I> 
+              <DD>
+              <DL></DL>
+              <DT><I>Online Linkage: </I><A 
+              href="file:///C:/Users/njordan/AppData/Local/Temp/not%20established%20yet%20(will%20be%20available%20on%20TNC%E2%80%99s%20Conservation%20Gateway%20in%20the%20next%20several%20months)" 
+              target=viewer>not established yet (will be available on TNC’s 
+              Conservation Gateway in the next several months) </A>
+              <DT><I>Larger Work Citation:</I> 
+              <DD>
+              <DL>
+                <DT><I>Citation Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Publication Date: </I>
+                  <DT><I>Title:</I> 
+                  <DD>
+                  <DT><I>Series Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Publication Information:</I> 
+                  <DD>
+                  <DL></DL></DD></DL></DD></DL></DD></DL></DD></DL>
+          <DT><I>Description:</I> 
+          <DD>
+          <DL>
+            <DIV>
+            <DT><I>Abstract:</I> <PRE id=original>This data product maps the location of hardbottom habitats within the seafloor environments of the South Atlantic Bight inside a 1 x 1 minute grid. Hard bottom habitat refers to live corals/coral reefs, underwater rocky vertical outcrops, exposed flat pavements colonized by marine invertebrates, shallow drowned slopes supporting macroalgae and hard bottom/gravel mixed substrates. These habitats are associated with diverse marine communities are considered Essential Fish Habitat (EFH) for a wide variety of species that are commercially and recreationally important throughout the South Atlantic Bight. The total area of hardbottoms mapped in this dataset is limited to the areas where studies have occurred; therefore this is not a complete representation of regional hardbottom resources.
+The Nature Conservancy’s objective for this project is to create an updated version of the 1 x 1 minute grid that was originally developed during the Southeast Area Monitoring and Assessment Program’s (SEAMAP) Bottom Mapping Project from 2001. TNC used the protocols previously defined by SEAMAP to classify data records as: Hardbottom [HB] (clear evidence of hardbottom habitat), Potential hardbottom [PH] (possible evidence of hardbottom habitat) or Not hardbottom [NH] (no evidence of hardbottom habitat being present). Data records incorporated into this database include all data records from the SEAMAP Bottom Mapping Project except those that include information from trawls and dredges due to a more conservative methodology used to assess hardbottom occurrences as well as several other data records that have been updated with more current information for those specified spatial locations. The database also added new datasets available since the publishing of the original SEAMAP hardbottom dataset. The source citation list later in this document provides additional information about how each dataset was incorporated. Information is summarized at the 1x1 minute grid scale which classifies each polygon that contains a survey record as either “Hardbottom” – cells that have one or more occurrence of HB, “Potential hardbottom” – cells that do not have a HB occurrence but have one or more PH occurrence or “Surveys with no identification of hardbottom” – cells that do not have any HB or PH occurrences but have one or more NH occurrence within that 1x1 minute gridded area.
+</PRE>
+            <SCRIPT>fix(original)</SCRIPT>
+            </DT></DIV>
+            <DIV>
+            <DT><I>Purpose:</I> <PRE id=original>To provide a publically accessible and available dataset that identifies benthic hardbottom habitats throughout the South Atlantic Bight</PRE>
+            <SCRIPT>fix(original)</SCRIPT>
+            </DT></DIV>
+            <DIV>
+            <DT><I>Supplemental Information:</I> <PRE id=original>SEAMAP-Bottom Mapping Project (2001)</PRE>
+            <SCRIPT>fix(original)</SCRIPT>
+            </DT></DIV></DL>
+          <DT><I>Time Period of Content:</I> 
+          <DD>
+          <DL>
+            <DT><I>Time Period Information:</I> 
+            <DD>
+            <DL></DL>
+            <DIV></DIV>
+            <DT><I>Currentness Reference:</I> <PRE id=original>publication date</PRE>
+            <SCRIPT>fix(original)</SCRIPT>
+
+            <DIV></DIV></DT></DL>
+          <DT><I>Status:</I> 
+          <DD>
+          <DL>
+            <DT><I>Progress: </I>In work 
+            <DT><I>Maintenance and Update Frequency: </I>As needed </DT></DL>
+          <DT><I>Spatial Domain:</I> 
+          <DD>
+          <DL>
+            <DT><I>Bounding Coordinates:</I> 
+            <DD>
+            <DL>
+              <DT><I>West Bounding Coordinate: </I>
+              <DT><I>East Bounding Coordinate: </I>
+              <DT><I>North Bounding Coordinate: </I>
+              <DT><I>South Bounding Coordinate: </I></DT></DL>
+            <DT><I>Data Set G-Polygon:</I> 
+            <DD>
+            <DL></DL></DD></DL>
+          <DT><I>Keywords:</I> 
+          <DD>
+          <DL></DL>
+          <DT><I>Access Constraints: </I>This data may be accessed only within 
+          the GSAA portal until it has been reviewed by regional experts. Once 
+          finalized, the data will be available for distribution and download 
+          through the GSAA regional portal and The Nature Conservancy’s Internet 
+          Map Server (IMS) within the Conservation Gateway 
+          (conservationgateway.org). 
+          <DIV></DIV>
+          <DT><I>Use Constraints:</I> <PRE id=original>The Nature Conservancy (TNC) compiled this data set from publicly available data sources as well as several proprietary sources. While the base datasets are not available for circulation, the final version of this data product will be available for distribution without permission from this TNC office. This data set must be cited on all electronic and hard copy products using the language of the Data Set Credit. The Nature Conservancy shall not be held liable for improper or incorrect use of the data described and/or contained herein. Any sale, distribution, loan, or offering for use of these digital data, in whole or in part, is prohibited without the approval of the Nature Conservancy. The use of these data to produce other GIS products and services with the intent to sell for a profit is prohibited without the written consent of the Nature Conservancy. All parties receiving these data must be informed of these restrictions. The Nature Conservancy shall be acknowledged as data contributors to any reports or other products derived from these data.</PRE>
+          <SCRIPT>fix(original)</SCRIPT>
+
+          <DIV></DIV>
+          <DT><I>Point of Contact:</I> 
+          <DD>
+          <DL>
+            <DT><I>Contact Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Contact Person Primary:</I> 
+              <DD>
+              <DL>
+                <DT><I>Contact Person: </I>Robert Newton 
+                <DT><I>Contact Organization: </I>The Nature Conservancy - 
+                Southeast Region </DT></DL>
+              <DT><I>Contact Position: </I>Marine GIS Manager 
+              <DT><I>Contact Address:</I> 
+              <DD>
+              <DL>
+                <DT><I>Address Type: </I>mailing and physical address 
+                <DIV></DIV>
+                <DT><I>Address:</I> <PRE id=original>1417 Stuart Engals Blvd</PRE>
+                <SCRIPT>fix(original)</SCRIPT>
+
+                <DIV></DIV>
+                <DT><I>City: </I>Mt Pleasant 
+                <DT><I>State or Province: </I>SC 
+                <DT><I>Postal Code: </I>29464 
+                <DT><I>Country: </I>USA </DT></DL>
+              <DT><I>Contact Voice Telephone: </I>843.937.8807 ext. 36 
+              <DT><I>Contact Electronic Mail Address: </I>rnewton@tnc.org 
+            </DT></DL></DD></DL>
+          <DT><I>Browse Graphic:</I> 
+          <DD>
+          <DL></DL>
+          <DIV></DIV>
+          <DT><I>Data Set Credit:</I> <PRE id=original>The Nature Conservancy reserves all rights in data provided. All data are provided as is.   This is not a survey quality dataset. The Nature Conservancy makes no warranty as to the currency, completeness, accuracy or utility of any specific data. This disclaimer applies both to individual use of the data and aggregate use with other data. It is strongly recommended that careful attention be paid to the contents of the metadata file associated with these data. This data was developed into this formatted product by the Nature Conservancy. All data sources are explicitly listed within the metadata. Further information can be found about the source citations by exploring those data resources. The dataset currently exists as a draft format and must be reviewed further before it is considered as a finalized version.</PRE>
+          <SCRIPT>fix(original)</SCRIPT>
+
+          <DIV></DIV>
+          <DT><I>Security Information:</I> 
+          <DD>
+          <DL>
+            <DT><I>Security Classification System: </I>
+            <DT><I>Security Classification: </I>Unclassified 
+            <DT><I>Security Handling Description: </I></DT></DL>
+          <DT><I>Native Data Set Environment:</I> 
+          <DD>Microsoft Windows 7 Professional Service Pack 1; ESRI ArcCatalog 
+          10.0 (Build 2414) 
+          <DT><I>Cross Reference:</I> 
+          <DD>
+          <DL></DL></DD></DL></DD></DL><A 
+      href="file:///C:/Users/njordan/AppData/Local/Temp/tmpF48D.tmp.html#Top" 
+      xmlns="">Back to Top</A><A name=Data_Quality_Information xmlns="">
+      <HR>
+      </A>
+      <DL xmlns="">
+        <DT><I>Data Quality Information:</I> 
+        <DD>
+        <DL>
+          <DT><I>Attribute Accuracy:</I> 
+          <DD>
+          <DL>
+            <DIV>
+            <DT><I>Attribute Accuracy Report:</I> <PRE id=original></PRE>
+            <SCRIPT>fix(original)</SCRIPT>
+            </DT></DIV>
+            <DT><I>Quantitative Attribute Accuracy Assessment:</I> 
+            <DD>
+            <DL>
+              <DT><I>Attribute Accuracy Value: </I>1 x 1 minute grid cell 
+              <DIV></DIV>
+              <DT><I>Attribute Accuracy Explanation:</I> <PRE id=original>Each rectangular polygon area is a 1 x 1 minute grid cell classified as either Hardbottom, Potential hardbottom or Surveys in area have not identified hardbottom. These values are derived from base data information within the gridded cell that it            populates in order of a singular occurrence of HB, PH or NH, respectively. </PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV></DT></DL></DD></DL>
+          <DIV></DIV>
+          <DT><I>Logical Consistency Report:</I> <PRE id=original></PRE>
+          <SCRIPT>fix(original)</SCRIPT>
+
+          <DIV></DIV>
+          <DIV></DIV>
+          <DT><I>Completeness Report:</I> <PRE id=original></PRE>
+          <SCRIPT>fix(original)</SCRIPT>
+
+          <DIV></DIV>
+          <DT><I>Positional Accuracy:</I> 
+          <DD>
+          <DL>
+            <DT><I>Horizontal Positional Accuracy:</I> 
+            <DD>
+            <DL>
+              <DIV>
+              <DT><I>Horizontal Positional Accuracy Report:</I> <PRE id=original></PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+              </DT></DIV></DL>
+            <DT><I>Vertical Positional Accuracy:</I> 
+            <DD>
+            <DL>
+              <DIV>
+              <DT><I>Vertical Positional Accuracy Report:</I> <PRE id=original></PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+              </DT></DIV></DL></DD></DL>
+          <DT><I>Lineage:</I> 
+          <DD>
+          <DL>
+            <DT><I>Source Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Source Citation:</I> 
+              <DD>
+              <DL>
+                <DT><I>Citation Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Originator: </I>SEAMAP Bottom Mapping Work Group 
+                  <DT><I>Originator: </I>Atlantic States Marine Fisheries 
+                  Commission 
+                  <DT><I>Originator: </I>National Oceanic and Atmospheric 
+                  Administration 
+                  <DT><I>Originator: </I>South Atlantic Fishery Management 
+                  Council 
+                  <DT><I>Originator: </I>North Carolina Division of Coastal 
+                  Management 
+                  <DT><I>Originator: </I>South Carolina Department of Natural 
+                  Resources - Marine Resources Research Institute 
+                  <DT><I>Originator: </I>Georgia Southern University - Applied 
+                  Coastal Research Institute 
+                  <DT><I>Originator: </I>Florida Fish and Wildlife Conservation 
+                  Commission - Florida Wildlife Research Institute 
+                  <DT><I>Publication Date: </I>04/15/2001 
+                  <DT><I>Title:</I> 
+                  <DD>Southeast Area Monitoring and Assessment Program – Bottom 
+                  Mapping Project Database 
+                  <DT><I>Edition: </I>Version 1 
+                  <DT><I>Geospatial Data Presentation Form: </I>vector digital 
+                  data 
+                  <DT><I>Series Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Publication Information:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Publication Place: </I>Washington, DC 
+                    <DT><I>Publisher: </I>Atlantic States Marine Fisheries 
+                    Commission </DT></DL>
+                  <DT><I>Other Citation Details:</I> 
+                  <DD>The primary focus of this effort was to identify the 
+                  location and extent of benthic hardbottoms, since these areas 
+                  represent essential fish habitat (EFH) for a wide variety of 
+                  species that are commercially and recreationally harvested in 
+                  the South Atlantic region. The SEAMAP Bottom Mapping Project 
+                  spatial database and related products were originally 
+                  developed from over 125 sources and have been the go to 
+                  resource for understanding of South Atlantic Bight hardbottom 
+                  habitats since its being published. The following is a list of 
+                  selected data resources that are included in current version 
+                  of the South Atlantic Bight Benthic Habitats database (with 
+                  original agency SEAMAP code and data type abbreviation 
+                  provided): AS01 - Geophysical/Vibracore Survey, Murrell’s 
+                  Inlet to Little River Inlet, SC [NH] AT01- Geotechnical 
+                  Report: Hydrographic surveys and vibracores sampling off Grand 
+                  Strand, SC 1991 [NH] CA01 - South Atlantic Hard Bottom Study, 
+                  June 1979 [HB, NH] CA02 - Field Survey of the Fernandina 
+                  Harbor Candidate ODMDS, 1986 [HB, NH] CA03 - Field Survey of 
+                  the Canaveral Harbor Candidate ODMDS, 1987 [NH] CA04 - 
+                  Side-scan Sonar &amp; Hardbottom Mapping – Brevard Co 
+                  Shoreline Protection Study, 1994 [NH] CC15 - High resolution 
+                  seismic lines off Folly Beach, 1994 [PH, NH] CC16 - High 
+                  resolution seismic lines off Folly Beach-Edisto Island, 1994 
+                  [PH, NH] CC17 - High resolution seismic lines off Edisto 
+                  Island – St Helena Sound, 1994 [PH, NH] CC18 - High resolution 
+                  seismic lines off Folly Beach – Edisto Island, 1994 [PH, NH] 
+                  CC19 - Vibracoring of Folly Beach, SC (NURC), 1994 [PH, NH] 
+                  CC20 - Vibracoring of Folly Beach, SC (NOAA Ferrel Cruise), 
+                  1994 [NH] CE01 - Storm Damage Reduction Project, Carolina 
+                  Beach and Vicinity, 1993 [NH] CE02 - Manteo (Shallowbag) Bay 
+                  Project Design Study, 1983 [NH] CE03 - US ACOE JAX Vibracore 
+                  samples 1973-1994 [NH] CH82 - R/V Cape Hatteras Geophysical 
+                  Investigations, 1982 [HB, PH, NH] CH83 - R/V Cape Hatteras 
+                  Geophysical Investigations, 1983 [HB, PH, NH] CH84 - R/V Cape 
+                  Hatteras Geophysical Investigations, 1984 [HB, PH, NH] CH89 - 
+                  R/V Cape Hatteras Geophysical Investigations, 1989 [HB, PH, 
+                  NH] DM01 - Geologic Hazards: Blocks 25 and 26, OCS G-3672 and 
+                  OCS G-3673 Jacksonville Area, NE-17-5 S Atlantic [PH] DM02 - 
+                  Geologic Hazards: Blocks 912 and 913, OCS G-3663 and OCS 
+                  G-3664 Brunswick Area, NH-17-2 S Atlantic [PH] DM72 - R/V Dan 
+                  Moore Studies, Exploratory Fish/General Survey 68-69, 
+                  77-81[PH] DS02 - A multi-sensor engineering survey of 
+                  Brunswick area, block 1005 (OCS G-3671) for Transco 
+                  Exploration Co [PH] DU01 - Duke University, unpublished data 
+                  records, 1973-1980 from Orrin Pilkey [HB, NH] DU02 - R/V 
+                  Eastward, Underwater Camera Data 1965-1973[HB, PH, NH] E380 - 
+                  R/V Eastward Geophysical Investigations, 1980 [HB, PH, NH] 
+                  EN80 - R/V Endeavor Geophysical Investigations, 1980 [HB, PH, 
+                  NH] EP01 - EPA survey of offshore disposal area, Jan 1990 [HB, 
+                  NH] EP02 - EPA survey of offshore disposal area, June 1990 
+                  [HB, NH] EP03 - EPA survey of Jacksonville Harbor ODMDS [NH] 
+                  EP04 – EPA survey of Fort Pierce Harbor ODMDS [NH] FC01 – 
+                  Unpublished data records, NMFS SEFSC, Beaufort [HB, NH] FL02 - 
+                  Florida DNR, Rock Shrimp Project [HB, NH] FL03 - Florida DNR 
+                  Hutchinson Island Nuclear Power Plant Env Study [NH] FL04 - 
+                  Applied Biology St Lucie Power Plant 316a Study [NH] FL06 - 
+                  Florida DEP, Marine Specimen Collection [HB, NH] FL08 – Indian 
+                  River Co, Aerial Photos [HB] FT01 - USACOE Study Geomorphology 
+                  and Sediments, Inner Continental Shelf - Palm Beach, FL to GA, 
+                  Side-Scan Sonar [HB, PH, NH] FT02 - USACOE Study Geomorphology 
+                  and Sediments, Inner Continental Shelf - Palm Beach, FL to GA, 
+                  Vibracores [NH] GO01 - Geologic Drilling Hazard Survey Federal 
+                  OCS lease block 471, 1978 [PH] GO02 - Geologic Drilling Hazard 
+                  Survey Federal OCS lease block 252, 1978 [PH] GO03 - Geologic 
+                  Drilling Hazard Survey Federal OCS lease block 427, 1978 [PH] 
+                  GO04 - Geologic Drilling Hazard Survey Federal OCS lease block 
+                  472, 1978 [PH] GO05 - Geologic Drilling Hazard Survey Federal 
+                  OCS lease block 383, 1978 [PH] GO06 - Geologic Drilling Hazard 
+                  Survey Federal OCS lease block 384, 1978 [PH] GO07 - Geologic 
+                  Drilling Hazard Survey Federal OCS lease block 166, 1978 [PH] 
+                  GO08 - Geologic Drilling Hazard Survey Federal OCS lease block 
+                  564, 1978 [HB, PH] GR01 - Georgia DNR Offshore Fishing Guide, 
+                  1991 [HB] HB01 - HBOI East Florida Shelf, Trawl &amp; Dredge 
+                  Survey, 1973-1978[HB, NH] HB02 - HBOI East Florida Shelf, 
+                  Submersible Reconnaissance Program [HB, NH] HB03 - HBOI East 
+                  Florida Shelf, Submersible Reconnaissance Program, Transcripts 
+                  [HB, NH] HB04 - HBOI East Florida Shelf, Scuba Reef Survey, 
+                  1974-1982 [HB] HB05 - HBOI East Florida Shelf, Sidescan Survey 
+                  [HB, PH] I815 - R/V Columbus Iselin Geophysical 
+                  Investigations, 1981 [HB, PH, NH] MM01 - South Atlantic OCS 
+                  Area Living Marine Resources Study, Year II [HB, NH] MR01 - 
+                  Identification and location of live bottom habitats in five 
+                  potential borrow sites off Myrtle Beach, SC, 1991 [HB, NH] 
+                  MR02 - A remote survey of bottom characteristics within a 
+                  potential borrow site near Little River, SC, 1992 [NH] MR07 – 
+                  Biological assessment of beach and nearshore areas along the 
+                  SC Grand Strand [HB, PH, NH] MR08 - MARMAP program data, 
+                  1973-1992 [HB, PH] MR09 - MARMAP program data, Florida Study 
+                  Area [HB, PH] MR11 - SEAMAP program data, Florida Study Area, 
+                  92-94 [NH] MR15 - MARMAP program data, 1993 to 1996 [HB, PH] 
+                  NA01 - U.S. Navy survey of Charleston Minefield [HB, PH, NH] 
+                  PA01- NMFS Bottom Trawl Surveys 1957-1984 [HB, PH] RP01 - 
+                  Feasibility study: Survey of offshore sand deposits for beach 
+                  renourishment, Myrtle Beach, SC [HB] SC01 - Shoreline 
+                  Protection Project, Side Scan Sonar Survey, Martin Co, FL - 
+                  Survey No.93-206, June 1993 [HB, PH, NH] SC02 - Side Scan 
+                  Sonar Investigation and Hydrographic Survey, St Johns Co - 
+                  Beach Erosion Control Project [NH] SP05 - Hot Spots, NE 
+                  Florida Loran Guide, Reef Resource Team, Jacksonville 
+                  Scubanauts &amp; Offshore Fishing Club [HB] SR01 - Submersible 
+                  (Parker and Ross 1986) and SCUBA (S.W. Ross unpublished data) 
+                  records [HB] UA01 - Ocean bottom survey of the Georgia Bight, 
+                  R/V Bluefin cruise 1979[PH, NH] UA02 - Ocean bottom survey of 
+                  the Georgia Bight, R/V Bluefin cruise 1980, GS-7, line 10 [NH] 
+                  UA03 - Ocean bottom survey of the Georgia Bight, R/V Bluefin 
+                  cruise 1980, GS-7, line 14 [PH, NH] UA04 - Ocean bottom survey 
+                  of the Georgia Bight, R/V Bluefin cruise 1980, GS-7, line 
+                  19-20 [NH] UG01 - Ocean bottom Survey of the U.S. South 
+                  Atlantic OCS region [HB, PH] UG02 - Side Scan Sonar Survey of 
+                  the inner continental Shelf of Georgia [HB, PH] UG04 - 
+                  Reconnaissance mapping of the Gray's Reef National Marine 
+                  Sanctuary [HB, PH] WH03 – Trace metal concentrations in 
+                  sediment cores from the continental shelf off the Southeastern 
+                  US [NH] 
+                  <DT><I>Larger Work Citation:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Citation Information:</I> 
+                    <DD>
+                    <DL>
+                      <DT><I>Publication Date: </I>
+                      <DT><I>Title:</I> 
+                      <DD>
+                      <DT><I>Series Information:</I> 
+                      <DD>
+                      <DL></DL>
+                      <DT><I>Publication Information:</I> 
+                      <DD>
+                      <DL></DL></DD></DL></DD></DL></DD></DL></DD></DL>
+              <DT><I>Source Scale Denominator: </I>
+              <DT><I>Type of Source Media: </I>
+              <DT><I>Source Time Period of Content:</I> 
+              <DD>
+              <DL>
+                <DT><I>Time Period Information:</I> 
+                <DD>
+                <DL></DL>
+                <DT><I>Source Currentness Reference:</I> 
+                <DD>publication date </DD></DL>
+              <DT><I>Source Citation Abbreviation:</I> 
+              <DD>SEAMAP 
+              <DIV></DIV>
+              <DT><I>Source Contribution:</I> <PRE id=original>Southeast Area Monitoring and Assessment Program - Bottom Mapping Project</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV></DT></DL>
+            <DT><I>Source Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Source Citation:</I> 
+              <DD>
+              <DL>
+                <DT><I>Citation Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Originator: </I>Chasin' Tails Outdoors 
+                  <DT><I>Publication Date: </I>Unknown 
+                  <DT><I>Title:</I> 
+                  <DD>Chasin’ Tails Outdoors - Natural Reef Sites 
+                  <DT><I>Geospatial Data Presentation Form: </I>tabular digital 
+                  data 
+                  <DT><I>Series Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Publication Information:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Publication Place: </I>Atlantic Beach, NC 
+                    <DT><I>Publisher: </I>Chasin' Tails Outdoors </DT></DL>
+                  <DT><I>Other Citation Details:</I> 
+                  <DD>This data comes from the Chasin' Tails Outdoors GPS 
+                  numbers web page. It includes points classified as corals, 
+                  humps, ledges, reefs &amp; rocks. All the data included in the 
+                  database is characterized as HB (hardbottom). 
+                  <DT><I>Online Linkage: </I><A 
+                  href="http://www.chasintailsoutdoors.com/gps-numbers.php" 
+                  target=viewer>http://www.chasintailsoutdoors.com/gps-numbers.php</A> 
+
+                  <DT><I>Larger Work Citation:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Citation Information:</I> 
+                    <DD>
+                    <DL>
+                      <DT><I>Publication Date: </I>
+                      <DT><I>Title:</I> 
+                      <DD>
+                      <DT><I>Series Information:</I> 
+                      <DD>
+                      <DL></DL>
+                      <DT><I>Publication Information:</I> 
+                      <DD>
+                      <DL></DL></DD></DL></DD></DL></DD></DL></DD></DL>
+              <DT><I>Source Scale Denominator: </I>
+              <DT><I>Type of Source Media: </I>
+              <DT><I>Source Time Period of Content:</I> 
+              <DD>
+              <DL>
+                <DT><I>Time Period Information:</I> 
+                <DD>
+                <DL></DL>
+                <DT><I>Source Currentness Reference:</I> 
+                <DD></DD></DL>
+              <DT><I>Source Citation Abbreviation:</I> 
+              <DD>Chasin' Tails 
+              <DIV></DIV>
+              <DT><I>Source Contribution:</I> <PRE id=original>Chasin' Tails Outdoors - Natural Reef Sites</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV></DT></DL>
+            <DT><I>Source Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Source Citation:</I> 
+              <DD>
+              <DL>
+                <DT><I>Citation Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Originator: </I>US Geological Survey 
+                  <DT><I>Originator: </I>NOAA Coral Reef Conservation Program 
+                  <DT><I>Publication Date: </I>
+                  <DT><I>Title:</I> 
+                  <DD>CoWCoG - NOAA-CRCP/USGS Cold-Water Coral Geographic 
+                  Database 
+                  <DT><I>Edition: </I>Version 1A - yet to be published (Version 
+                  1 is available online) 
+                  <DT><I>Geospatial Data Presentation Form: </I>vector digital 
+                  data 
+                  <DT><I>Series Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Publication Information:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Publication Place: </I>Reston, VA &amp; Silver 
+                    Spring, MD 
+                    <DT><I>Publisher: </I>US Geological Survey &amp; National 
+                    Oceanic and Atmospheric Administration </DT></DL>
+                  <DT><I>Other Citation Details:</I> 
+                  <DD>The NOAA/USGS cold water coral geographic database 
+                  [CoWCoG] was established by USGS in 2008 and is currently 
+                  maintained by NOAA Coral Reef Conservation Program (CRCP) – 
+                  Deep Sea Coral Research and Technology Program (DSCRTP). 
+                  CoWCoG is used to identify deep sea coral ecosystems (DSCE) 
+                  throughout US waters. The database makes information about the 
+                  locations and taxonomy of cold-water corals available to the 
+                  public in an easy-to-access form while preserving the 
+                  scientific integrity of the data. This database is based on 
+                  sampling events as well as historic literature review. All 
+                  data records included are classified as hardbottom [HB]. 
+                  Individual Source Citations are as follows: Brooke, S. and 
+                  C.M. Young, 2003. Reproductive ecology of a deep–water 
+                  scleractinian coral, Oculina varicosa, from the southeast 
+                  Florida shelf Cairns SD, 1976. Review of the deep-water 
+                  ahermatypic corals (Scleractinia) of the tropical western 
+                  Atlantic. Cairns, S.D., 1977. A review of the recent species 
+                  of Balanophyllia (Anthozoa: Scleractinia) in the western 
+                  Atlantic, with descriptions of four new species Cairns, S.D., 
+                  1978. A checklist of the ahermatypic scleractinia of the Gulf 
+                  of Mexico, with the description of a new species Cairns, S.D., 
+                  1979. The deep-water scleractinia of the Caribbean and 
+                  adjacent waters Freiwald A, Roberts JM, eds. 2005. Cold-water 
+                  Corals and Ecosystems George, R. Y., 2002, Ben Franklin 
+                  temperate reef and deep sea 'Agassiz Coral Hills' in the Blake 
+                  Plateau off North Carolina Messing, C. G., Neuman, A. C., and 
+                  Lang, J. C., 1990, Biozonation of deep-water lithoherms and 
+                  associated hardgrounds in the northeastern Straits of Florida 
+                  Reed, J. K., 1980, Distribution and structure of deep-water 
+                  Oculina varicosa coral reefs off central eastern Florida Reed, 
+                  J. K., Pomponi, S. A., Weaver, Doug, Paull, C. K., and Wright, 
+                  A. E., 2005, Deep-water sinkholes and bioherms of South 
+                  Florida and the Pourtales Terrace—Habitat and Fauna Reed, J. 
+                  K., Weaver, D. C., and Pomponi, S. A., 2006, Habitat and fauna 
+                  of deep-water Lophelia pertusa coral reefs off the 
+                  southeastern U.S.—Blake Plateau, Straits of Florida, and Gulf 
+                  of Mexico Smithsonian Inst. NMNH - National Museum of Natural 
+                  History Collection, Search IZ Collections: accessed in July, 
+                  2007 at http://invertebrates.si.edu/index.htm. Viada, S. T., 
+                  and Cairns, S. D., 1987, Range extensions of ahermatypic 
+                  scleractinia in the Gulf of Mexico Watling, L., and Auster, P. 
+                  J., 2005, Distribution of deepwater Alcyonacea off the 
+                  northeast coast of the United States Berlin, p. 279-296. 
+                  Williams, B., Risk, M.J., Ross, S. W., and Sulak, K. J., 2006, 
+                  Deep-water antipatharians—Proxies of environmental change 
+                  <DT><I>Online Linkage: </I><A 
+                  href="http://pubs.usgs.gov/of/2008/1351/title_page.html" 
+                  target=viewer>http://pubs.usgs.gov/of/2008/1351/title_page.html</A>
+                  <DT><I>Larger Work Citation:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Citation Information:</I> 
+                    <DD>
+                    <DL>
+                      <DT><I>Publication Date: </I>
+                      <DT><I>Title:</I> 
+                      <DD>
+                      <DT><I>Series Information:</I> 
+                      <DD>
+                      <DL></DL>
+                      <DT><I>Publication Information:</I> 
+                      <DD>
+                      <DL></DL></DD></DL></DD></DL></DD></DL></DD></DL>
+              <DT><I>Source Scale Denominator: </I>
+              <DT><I>Type of Source Media: </I>
+              <DT><I>Source Time Period of Content:</I> 
+              <DD>
+              <DL>
+                <DT><I>Time Period Information:</I> 
+                <DD>
+                <DL></DL>
+                <DT><I>Source Currentness Reference:</I> 
+                <DD></DD></DL>
+              <DT><I>Source Citation Abbreviation:</I> 
+              <DD>CoWCoG 
+              <DIV></DIV>
+              <DT><I>Source Contribution:</I> <PRE id=original>CoWCoG - NOAA-CRCP/USGS Cold-Water Coral Geographic Database </PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV></DT></DL>
+            <DT><I>Source Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Source Citation:</I> 
+              <DD>
+              <DL>
+                <DT><I>Citation Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Originator: </I>Florida Fish and Wildlife Research 
+                  Institute 
+                  <DT><I>Originator: </I>Nova Southeastern University 
+                  Oceanographic Center 
+                  <DT><I>Publication Date: </I>11/22/2004 
+                  <DT><I>Title:</I> 
+                  <DD>Benthic Hardbottom Habitats - Broward County 2004 
+                  <DT><I>Geospatial Data Presentation Form: </I>vector digital 
+                  data 
+                  <DT><I>Series Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Publication Information:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Publication Place: </I>St Petersburg, FL 
+                    <DT><I>Publisher: </I>Florida Fish and Wildlife Research 
+                    Institute </DT></DL>
+                  <DT><I>Other Citation Details:</I> 
+                  <DD>This GIS data set represents coral and hardbottom habitats 
+                  off Broward County Florida. These data are the results of an 
+                  integrated mapping project undertaken to provide a habitat map 
+                  of the shallow Broward County seafloor between the 0m and 35m 
+                  contour. All data were mapped in ArcGIS9 and polygons were 
+                  drawn at a scale of 1:6000 with a one acre minimum mapping 
+                  unit. The entire area mapped was roughly 110 
+                  square-kilometers. This dataset overlaps with several other 
+                  remotely sensed habitat products out of which the source data 
+                  used to attribute the SAB Benthic Habitat 1 x 1 minute grid 
+                  included the area of coverage for each of the most recently 
+                  developed dataset at that specified spatial location. All data 
+                  in this dataset was classified as either Hardbottom (HB) – 
+                  [aggregated patch reef, colonized pavement, linear reef, patch 
+                  reef, ridge &amp; spur and groove] or Not hardbottom (NH) – 
+                  [sand, sand borrow area &amp; scattered coral/rock in sand]. 
+                  <DT><I>Larger Work Citation:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Citation Information:</I> 
+                    <DD>
+                    <DL>
+                      <DT><I>Publication Date: </I>
+                      <DT><I>Title:</I> 
+                      <DD>
+                      <DT><I>Series Information:</I> 
+                      <DD>
+                      <DL></DL>
+                      <DT><I>Publication Information:</I> 
+                      <DD>
+                      <DL></DL></DD></DL></DD></DL></DD></DL></DD></DL>
+              <DT><I>Source Scale Denominator: </I>
+              <DT><I>Type of Source Media: </I>
+              <DT><I>Source Time Period of Content:</I> 
+              <DD>
+              <DL>
+                <DT><I>Time Period Information:</I> 
+                <DD>
+                <DL></DL>
+                <DT><I>Source Currentness Reference:</I> 
+                <DD></DD></DL>
+              <DT><I>Source Citation Abbreviation:</I> 
+              <DD>Broward 04 
+              <DIV></DIV>
+              <DT><I>Source Contribution:</I> <PRE id=original>Florida FWRI Benthic Habitats - Broward County 2004</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV></DT></DL>
+            <DT><I>Source Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Source Citation:</I> 
+              <DD>
+              <DL>
+                <DT><I>Citation Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Originator: </I>Florida Fish and Wildlife Research 
+                  Institute 
+                  <DT><I>Publication Date: </I>09/14/2005 
+                  <DT><I>Title:</I> 
+                  <DD>Florida FWRI Benthic Habitats - Florida Bay 2004 
+                  <DT><I>Geospatial Data Presentation Form: </I>vector digital 
+                  data 
+                  <DT><I>Series Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Publication Information:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Publication Place: </I>St Petersburg, FL 
+                    <DT><I>Publisher: </I>Florida Fish and Wildlife Research 
+                    Institute </DT></DL>
+                  <DT><I>Other Citation Details:</I> 
+                  <DD>This GIS data set serves as a documentation of the benthic 
+                  habitat found in Florida Bay as it existed in the spring of 
+                  2004. Digital data was collected using photogrammetric 
+                  techniques. Groundtruthing was performed to verify 
+                  photointerpretation classification. This dataset was created 
+                  to provide an accurate depiction of the benthic habitat of 
+                  Florida Bay, as defined using "Habitat Classification 
+                  Categories for Florida Bay”. This dataset overlaps with 
+                  several other remotely sensed habitat products out of which 
+                  the source data used to attribute the SAB Benthic Habitat 1 x 
+                  1 minute grid included the area of coverage for each of the 
+                  most recently developed dataset at that spatial location. All 
+                  data in this dataset was classified as either Hardbottom (HB) 
+                  – [hardbottom] or Not hardbottom (NH) – [attached macroalgae, 
+                  continuous SRV, discontinuous SRV, turbid plume, 
+                  unconsolidated sediments &amp; unconsolidated sediments 
+                  (bank)]. 
+                  <DT><I>Larger Work Citation:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Citation Information:</I> 
+                    <DD>
+                    <DL>
+                      <DT><I>Publication Date: </I>
+                      <DT><I>Title:</I> 
+                      <DD>
+                      <DT><I>Series Information:</I> 
+                      <DD>
+                      <DL></DL>
+                      <DT><I>Publication Information:</I> 
+                      <DD>
+                      <DL></DL></DD></DL></DD></DL></DD></DL></DD></DL>
+              <DT><I>Source Scale Denominator: </I>
+              <DT><I>Type of Source Media: </I>
+              <DT><I>Source Time Period of Content:</I> 
+              <DD>
+              <DL>
+                <DT><I>Time Period Information:</I> 
+                <DD>
+                <DL></DL>
+                <DT><I>Source Currentness Reference:</I> 
+                <DD></DD></DL>
+              <DT><I>Source Citation Abbreviation:</I> 
+              <DD>Florida Bay 2004 
+              <DIV></DIV>
+              <DT><I>Source Contribution:</I> <PRE id=original>Florida FWRI Benthic Habitats - Florida Bay 2004</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV></DT></DL>
+            <DT><I>Source Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Source Citation:</I> 
+              <DD>
+              <DL>
+                <DT><I>Citation Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Originator: </I>NOAA National Ocean Service, National 
+                  Centers for Coastal Ocean Science, Center for Coastal 
+                  Monitoring and Assessment, Biogeography Branch 
+                  <DT><I>Originator: </I>Miles Anderson, Analytical Laboratories 
+                  of Hawaii 
+                  <DT><I>Originator: </I>National Coral Reef Institute 
+                  <DT><I>Originator: </I>Richard Eastlake, Photo Science Inc. 
+                  <DT><I>Publication Date: </I>
+                  <DT><I>Title:</I> 
+                  <DD>Florida FWRI Benthic Habitats - Florida Keys 2006 to 2011 
+                  <DT><I>Geospatial Data Presentation Form: </I>vector digital 
+                  data 
+                  <DT><I>Series Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Publication Information:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Publication Place: </I>Silver Spring, MD 
+                    <DT><I>Publisher: </I>NOAA's Ocean Service, National Centers 
+                    for Coastal Ocean Science (NCCOS) </DT></DL>
+                  <DT><I>Online Linkage: </I><A 
+                  href="http://ocean.floridamarine.org/mrgis/Description_Layers_Marine.htm" 
+                  target=viewer>http://ocean.floridamarine.org/mrgis/Description_Layers_Marine.htm</A>
+                  <DT><I>Online Linkage: </I><A 
+                  href="file:///C:/Users/njordan/AppData/Local/Temp/%3Chttp://ccma.nos.noaa.gov/ecosystems/coralreef/fl_mapping/%3E" 
+                  target=viewer>&lt;http://ccma.nos.noaa.gov/ecosystems/coralreef/fl_mapping/&gt; 
+                  </A>
+                  <DT><I>Larger Work Citation:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Citation Information:</I> 
+                    <DD>
+                    <DL>
+                      <DT><I>Publication Date: </I>
+                      <DT><I>Title:</I> 
+                      <DD>
+                      <DT><I>Series Information:</I> 
+                      <DD>
+                      <DL></DL>
+                      <DT><I>Publication Information:</I> 
+                      <DD>
+                      <DL></DL></DD></DL></DD></DL></DD></DL></DD></DL>
+              <DT><I>Source Scale Denominator: </I>
+              <DT><I>Type of Source Media: </I>
+              <DT><I>Source Time Period of Content:</I> 
+              <DD>
+              <DL>
+                <DT><I>Time Period Information:</I> 
+                <DD>
+                <DL></DL>
+                <DT><I>Source Currentness Reference:</I> 
+                <DD></DD></DL>
+              <DT><I>Source Citation Abbreviation:</I> 
+              <DD>Florida Keys 06 to 11 
+              <DIV></DIV>
+              <DT><I>Source Contribution:</I> <PRE id=original>Florida FWRI Benthic Habitats - Florida Keys 2006 to 2011
+            
+</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV></DT></DL>
+            <DT><I>Source Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Source Citation:</I> 
+              <DD>
+              <DL>
+                <DT><I>Citation Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Originator: </I>Coastal Planning &amp; Engineering, 
+                  Inc. 
+                  <DT><I>Publication Date: </I>06/01/2011 
+                  <DT><I>Title:</I> 
+                  <DD>Florida FWRI Benthic Habitats - Marquesas 2006 
+                  <DT><I>Geospatial Data Presentation Form: </I>vector digital 
+                  data 
+                  <DT><I>Series Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Publication Information:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Publication Place: </I>St Petersburg, FL 
+                    <DT><I>Publisher: </I>Florida Fish and Wildlife Research 
+                    Institute </DT></DL>
+                  <DT><I>Other Citation Details:</I> 
+                  <DD>This GIS data set represents the delineation of benthic 
+                  habitats for the Marquesas-Quicksands area of the Florida Keys 
+                  interpreted from digital, high-resolution, pan-sharpened, 
+                  color IKONOS satellite imagery supplied by FWC-FWRI staff. 
+                  This dataset overlaps with several other remotely sensed 
+                  habitat products out of which the source data used to 
+                  attribute the SAB Benthic Habitat 1 x 1 minute grid included 
+                  the area of coverage for each of the most recently developed 
+                  dataset at that spatial location. All data in this dataset was 
+                  classified as either Hardbottom (HB) – [aggregate reef, 
+                  individual or aggregate patch reef, pavement &amp; reef 
+                  rubble] or Not hardbottom (NH) – [mud &amp; sand]. 
+                  <DT><I>Larger Work Citation:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Citation Information:</I> 
+                    <DD>
+                    <DL>
+                      <DT><I>Publication Date: </I>
+                      <DT><I>Title:</I> 
+                      <DD>
+                      <DT><I>Series Information:</I> 
+                      <DD>
+                      <DL></DL>
+                      <DT><I>Publication Information:</I> 
+                      <DD>
+                      <DL></DL></DD></DL></DD></DL></DD></DL></DD></DL>
+              <DT><I>Source Scale Denominator: </I>
+              <DT><I>Type of Source Media: </I>
+              <DT><I>Source Time Period of Content:</I> 
+              <DD>
+              <DL>
+                <DT><I>Time Period Information:</I> 
+                <DD>
+                <DL></DL>
+                <DT><I>Source Currentness Reference:</I> 
+                <DD></DD></DL>
+              <DT><I>Source Citation Abbreviation:</I> 
+              <DD>Marquesas 2006 
+              <DIV></DIV>
+              <DT><I>Source Contribution:</I> <PRE id=original>Florida FWRI Benthic Habitats - Marquesas 2006</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV></DT></DL>
+            <DT><I>Source Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Source Citation:</I> 
+              <DD>
+              <DL>
+                <DT><I>Citation Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Originator: </I>Brian Walker 
+                  <DT><I>Originator: </I>NOVA Southeastern University 
+                  Oceanographic Center 
+                  <DT><I>Publication Date: </I>06/30/2009 
+                  <DT><I>Title:</I> 
+                  <DD>FWRI Benthic Habitats - Miami-Dade 2006 
+                  <DT><I>Edition: </I>1 
+                  <DT><I>Geospatial Data Presentation Form: </I>vector digital 
+                  data 
+                  <DT><I>Series Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Publication Information:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Publication Place: </I>Dania Beach, FL 
+                    <DT><I>Publisher: </I>NOVA Southeastern University 
+                    Oceanographic Center </DT></DL>
+                  <DT><I>Other Citation Details:</I> 
+                  <DD>The benthic habitat mapping efforts employed a 
+                  combined-technique approach incorporating laser bathymetry, 
+                  aerial photography, acoustic ground discrimination (AGD), 
+                  video groundtruthing, limited subbottom profiling, and expert 
+                  knowledge (Walker et al., 2008). The maps were produced by 
+                  outlining the features in the high resolution bathymetric data 
+                  and classifying the features based on their geomorphology and 
+                  benthic fauna. In situ data, video camera groundtruthing, and 
+                  acoustic ground discrimination were used to help substantiate 
+                  the classification of the habitats using aerial photography 
+                  and geomorphology. This dataset overlaps with several other 
+                  remotely sensed habitat products out of which the source data 
+                  used to attribute the SAB Benthic Habitat 1 x 1 minute grid 
+                  included the area of coverage for each of the most recently 
+                  developed dataset at that spatial location. All data in this 
+                  dataset was classified as either Hardbottom (HB) – [coral reef 
+                  and colonized hardbottom] or Not hardbottom (NH) – [other 
+                  delineations, seagrass &amp; unconsolidated sediments]. 
+                  <DT><I>Larger Work Citation:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Citation Information:</I> 
+                    <DD>
+                    <DL>
+                      <DT><I>Publication Date: </I>
+                      <DT><I>Title:</I> 
+                      <DD>
+                      <DT><I>Series Information:</I> 
+                      <DD>
+                      <DL></DL>
+                      <DT><I>Publication Information:</I> 
+                      <DD>
+                      <DL></DL></DD></DL></DD></DL></DD></DL></DD></DL>
+              <DT><I>Source Scale Denominator: </I>
+              <DT><I>Type of Source Media: </I>
+              <DT><I>Source Time Period of Content:</I> 
+              <DD>
+              <DL>
+                <DT><I>Time Period Information:</I> 
+                <DD>
+                <DL></DL>
+                <DT><I>Source Currentness Reference:</I> 
+                <DD></DD></DL>
+              <DT><I>Source Citation Abbreviation:</I> 
+              <DD>Miami-Dade 2006 
+              <DIV></DIV>
+              <DT><I>Source Contribution:</I> <PRE id=original>Florida FWRI Benthic Habitats - Miami-Dade 2006</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV></DT></DL>
+            <DT><I>Source Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Source Citation:</I> 
+              <DD>
+              <DL>
+                <DT><I>Citation Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Originator: </I>Florida Fish and Wildlife Research 
+                  Institute 
+                  <DT><I>Originator: </I>NOAA Coastal Services Center 
+                  <DT><I>Publication Date: </I>01/01/2001 
+                  <DT><I>Title:</I> 
+                  <DD>Florida FWRI Benthic Habitats - South Florida 2001 
+                  <DT><I>Geospatial Data Presentation Form: </I>vector digital 
+                  data 
+                  <DT><I>Series Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Publication Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Other Citation Details:</I> 
+                  <DD>This data set includes benthic data for Florida Bay, 
+                  Biscayne Bay and the Florida Keys National Marine Sanctuary 
+                  interpreted from 1:48,000-scale natural color aerial 
+                  photography and delineated by ecologists and FWC/FMRI staff. 
+                  Each of the three regions had their data digitized in 
+                  different manners. FKNMS used NOAA photogrammetry and stereo 
+                  analytical plotters. The plotter data were then converted into 
+                  ARC/INFO. Biscayne Bay aerial photos were digitized by 
+                  Greenhorne and O'Mara using stereo analytical plotters. 
+                  Florida Bay data was digitized by NOAA-CSC in Charleston, SC 
+                  by scanning the photos and the linework overlays. The 
+                  classification system was the same for all three regions. A 
+                  hard copy atlas and CD-ROM titled "Florida Marine Research 
+                  Institute Technical Reports: Benthic Habitats of the Florida 
+                  Keys", were created by the FWC/FMRI and NOAA. This dataset 
+                  overlaps with several other remotely sensed habitat products 
+                  out of which the source data used to attribute the SAB Benthic 
+                  Habitat 1 x 1 minute grid included the area of coverage for 
+                  each of the most recently developed dataset at that spatial 
+                  location. All data in this dataset was classified as either 
+                  Hardbottom (HB) – [hardbottom, hardbottom with seagrass, patch 
+                  reef &amp; platform margin reef] or Not hardbottom (NH) – 
+                  [bare substrate, continuous seagrass &amp; patchy 
+                  (discontinuous) seagrass]. 
+                  <DT><I>Larger Work Citation:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Citation Information:</I> 
+                    <DD>
+                    <DL>
+                      <DT><I>Publication Date: </I>
+                      <DT><I>Title:</I> 
+                      <DD>
+                      <DT><I>Series Information:</I> 
+                      <DD>
+                      <DL></DL>
+                      <DT><I>Publication Information:</I> 
+                      <DD>
+                      <DL></DL></DD></DL></DD></DL></DD></DL></DD></DL>
+              <DT><I>Source Scale Denominator: </I>
+              <DT><I>Type of Source Media: </I>
+              <DT><I>Source Time Period of Content:</I> 
+              <DD>
+              <DL>
+                <DT><I>Time Period Information:</I> 
+                <DD>
+                <DL></DL>
+                <DT><I>Source Currentness Reference:</I> 
+                <DD></DD></DL>
+              <DT><I>Source Citation Abbreviation:</I> 
+              <DD>South Florida 2001 
+              <DIV></DIV>
+              <DT><I>Source Contribution:</I> <PRE id=original>Florida FWRI Benthic Habitats - South Florida 2001</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV></DT></DL>
+            <DT><I>Source Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Source Citation:</I> 
+              <DD>
+              <DL>
+                <DT><I>Citation Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Originator: </I>National Park Service 
+                  <DT><I>Originator: </I>Robert J. Waara 
+                  <DT><I>Originator: </I>Brian Witcher 
+                  <DT><I>Originator: </I>Avineon, Inc. 
+                  <DT><I>Publication Date: </I>01/01/2011 
+                  <DT><I>Title:</I> 
+                  <DD>Florida FWRI Benthic Habitats - Dry Tortugas 2010 
+                  <DT><I>Geospatial Data Presentation Form: </I>vector digital 
+                  data 
+                  <DT><I>Series Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Publication Information:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Publication Place: </I>Palmetto Bay, FL 
+                    <DT><I>Publisher: </I>National Park Service, South 
+                    Florida/Caribbean Network </DT></DL>
+                  <DT><I>Other Citation Details:</I> 
+                  <DD>The first draft of this feature class was created in 2008 
+                  by the contractor Avineon, Inc. This feature class was 
+                  improved in 2010 by incorporating new high-resolution side 
+                  scan sonar data and 2054 field data points. Additional edits 
+                  were made in August 2011 to ensure that this benthic habitat 
+                  map would merge seamlessly with the 2010 vegetation map for 
+                  the islands of Dry Tortugas National Park. To this end, the 
+                  shapes of the islands were updated to reflect those in the 
+                  2010 vegetation map. For more information please see the final 
+                  report: For more information please read the final project 
+                  report: Waara, Robert J. 2011. Development and policy 
+                  applications of the 2010 benthic habitat map for Dry Tortugas 
+                  National Park. Natural Resource Technical Report 
+                  NPS/SFCN/NRTR-2011/474. National Park Service, Fort Collins, 
+                  Colorado. This dataset overlaps with several other remotely 
+                  sensed habitat products out of which the source data used to 
+                  attribute the SAB Benthic Habitat 1 x 1 minute grid included 
+                  the area of coverage for each of the most recently developed 
+                  dataset at that spatial location. All data in this dataset was 
+                  classified as either Hardbottom (HB) – [aggregated patch reef, 
+                  high relief spur and groove, individual patch reef, low relief 
+                  spur and groove, patchy coral and/or rock in unconsolidated 
+                  sediments, pavement, reef rubble, reef terrace (high profile) 
+                  &amp; remnant (low profile)] or Not hardbottom (NH) – 
+                  [continuous SRV, discontinuous SRV &amp; unconsolidated 
+                  sediments]. 
+                  <DT><I>Larger Work Citation:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Citation Information:</I> 
+                    <DD>
+                    <DL>
+                      <DT><I>Publication Date: </I>
+                      <DT><I>Title:</I> 
+                      <DD>
+                      <DT><I>Series Information:</I> 
+                      <DD>
+                      <DL></DL>
+                      <DT><I>Publication Information:</I> 
+                      <DD>
+                      <DL></DL></DD></DL></DD></DL></DD></DL></DD></DL>
+              <DT><I>Source Scale Denominator: </I>
+              <DT><I>Type of Source Media: </I>
+              <DT><I>Source Time Period of Content:</I> 
+              <DD>
+              <DL>
+                <DT><I>Time Period Information:</I> 
+                <DD>
+                <DL></DL>
+                <DT><I>Source Currentness Reference:</I> 
+                <DD></DD></DL>
+              <DT><I>Source Citation Abbreviation:</I> 
+              <DD>Tortugas 2010 
+              <DIV></DIV>
+              <DT><I>Source Contribution:</I> <PRE id=original>Florida FWRI Benthic Habitats - Dry Tortugas 2010</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV></DT></DL>
+            <DT><I>Source Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Source Citation:</I> 
+              <DD>
+              <DL>
+                <DT><I>Citation Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Originator: </I>University of Georgia Marine Extension 
+                  Service 
+                  <DT><I>Originator: </I>Georgia Sea Grant College Program 
+                  <DT><I>Publication Date: </I>01/01/1985 
+                  <DT><I>Title:</I> 
+                  <DD>Georgia Marine Extension/Sea Grant Reef Fish Sampling 
+                  Points 
+                  <DT><I>Geospatial Data Presentation Form: </I>vector digital 
+                  data 
+                  <DT><I>Series Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Publication Information:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Publication Place: </I>St Petersburg, FL 
+                    <DT><I>Publisher: </I>Florida Fish and Wildlife Research 
+                    Institute </DT></DL>
+                  <DT><I>Other Citation Details:</I> 
+                  <DD>In 1982, the Gulf and South Atlantic Fisheries Development 
+                  Foundation, the Georgia Sea Grant College Program, and five 
+                  shrimp bottom captains initiated a cooperative venture fishing 
+                  program to determine how shrimp trawlers could be used for 
+                  fishing for offshore finfish. Four alternative fishing methods 
+                  were examined, including bottom trawling, trapping, bottom 
+                  long lining, and hand lining. These sites represent sampling 
+                  points where obligate reef fish species were found. All the 
+                  data included in the database is characterized as HB 
+                  (hardbottom). 
+                  <DT><I>Larger Work Citation:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Citation Information:</I> 
+                    <DD>
+                    <DL>
+                      <DT><I>Publication Date: </I>
+                      <DT><I>Title:</I> 
+                      <DD>
+                      <DT><I>Series Information:</I> 
+                      <DD>
+                      <DL></DL>
+                      <DT><I>Publication Information:</I> 
+                      <DD>
+                      <DL></DL></DD></DL></DD></DL></DD></DL></DD></DL>
+              <DT><I>Source Scale Denominator: </I>
+              <DT><I>Type of Source Media: </I>
+              <DT><I>Source Time Period of Content:</I> 
+              <DD>
+              <DL>
+                <DT><I>Time Period Information:</I> 
+                <DD>
+                <DL></DL>
+                <DT><I>Source Currentness Reference:</I> 
+                <DD></DD></DL>
+              <DT><I>Source Citation Abbreviation:</I> 
+              <DD>Georgia Mar Ex 
+              <DIV></DIV>
+              <DT><I>Source Contribution:</I> <PRE id=original>Georgia Marine Extension/Sea Grant Reef Fish Sampling Sites
+            
+</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV></DT></DL>
+            <DT><I>Source Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Source Citation:</I> 
+              <DD>
+              <DL>
+                <DT><I>Citation Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Originator: </I>Maps Unique 
+                  <DT><I>Publication Date: </I>
+                  <DT><I>Title:</I> 
+                  <DD>Maps Unique Hard &amp; Live Bottom Reef Areas 
+                  <DT><I>Geospatial Data Presentation Form: </I>tabular digital 
+                  data 
+                  <DT><I>Series Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Publication Information:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Publication Place: </I>Kure Beach, NC 
+                    <DT><I>Publisher: </I>Maps Unique </DT></DL>
+                  <DT><I>Other Citation Details:</I> 
+                  <DD>Maps Unique has been researching and plotting live bottom 
+                  reef areas since 1988 and updating these with new sites with 
+                  each updated published map. Maps Unique has compiled live 
+                  bottom data from a variety of resources through the years 
+                  including government studies/research, on site 
+                  interpretations, and especially from interviews/feedback from 
+                  fishing clients, including commercial interests through the 
+                  years. All data included in this database was classified as 
+                  hardbottom [HB] (banks, Charleston Bump, cigar, east bank, 
+                  hole, Hoyt Hills, Ledge, live bottom, outcrop, reef, rocks, 
+                  roll, scarp, seamount, terrace, The Point). 
+                  <DT><I>Online Linkage: </I><A 
+                  href="http://offshore-fishing-map.com/" 
+                  target=viewer>http://offshore-fishing-map.com/</A>
+                  <DT><I>Larger Work Citation:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Citation Information:</I> 
+                    <DD>
+                    <DL>
+                      <DT><I>Publication Date: </I>
+                      <DT><I>Title:</I> 
+                      <DD>
+                      <DT><I>Series Information:</I> 
+                      <DD>
+                      <DL></DL>
+                      <DT><I>Publication Information:</I> 
+                      <DD>
+                      <DL></DL></DD></DL></DD></DL></DD></DL></DD></DL>
+              <DT><I>Source Scale Denominator: </I>
+              <DT><I>Type of Source Media: </I>
+              <DT><I>Source Time Period of Content:</I> 
+              <DD>
+              <DL>
+                <DT><I>Time Period Information:</I> 
+                <DD>
+                <DL></DL>
+                <DT><I>Source Currentness Reference:</I> 
+                <DD></DD></DL>
+              <DT><I>Source Citation Abbreviation:</I> 
+              <DD>Maps Unique 
+              <DIV></DIV>
+              <DT><I>Source Contribution:</I> <PRE id=original>Maps Unique Hardbottom &amp; Live-bottom Reef Areas</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV></DT></DL>
+            <DT><I>Source Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Source Citation:</I> 
+              <DD>
+              <DL>
+                <DT><I>Citation Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Originator: </I>The Nature Conservancy 
+                  <DT><I>Publication Date: </I>07/01/2005 
+                  <DT><I>Title:</I> 
+                  <DD>The Nature Conservancy, South Floridian Ecoregional Plan - 
+                  Florida Keys Fish Spawning Aggregations 
+                  <DT><I>Geospatial Data Presentation Form: </I>vector digital 
+                  data 
+                  <DT><I>Series Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Publication Information:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Publication Place: </I>Ft Lauderdale, FL 
+                    <DT><I>Publisher: </I>The Nature Conservancy </DT></DL>
+                  <DT><I>Other Citation Details:</I> 
+                  <DD>The dataset was created to identify known locations of 
+                  spawning aggregations for harvested species within the 
+                  snapper/grouper complex of the Florida Keys. All data included 
+                  in this database was classified as Hardbottom [HB]. 
+                  <DT><I>Larger Work Citation:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Citation Information:</I> 
+                    <DD>
+                    <DL>
+                      <DT><I>Publication Date: </I>
+                      <DT><I>Title:</I> 
+                      <DD>
+                      <DT><I>Series Information:</I> 
+                      <DD>
+                      <DL></DL>
+                      <DT><I>Publication Information:</I> 
+                      <DD>
+                      <DL></DL></DD></DL></DD></DL></DD></DL></DD></DL>
+              <DT><I>Source Scale Denominator: </I>
+              <DT><I>Type of Source Media: </I>
+              <DT><I>Source Time Period of Content:</I> 
+              <DD>
+              <DL>
+                <DT><I>Time Period Information:</I> 
+                <DD>
+                <DL></DL>
+                <DT><I>Source Currentness Reference:</I> 
+                <DD></DD></DL>
+              <DT><I>Source Citation Abbreviation:</I> 
+              <DD>FL Keys Spawn Agg 
+              <DIV></DIV>
+              <DT><I>Source Contribution:</I> <PRE id=original>The Nature Conservancy, South Floridian Ecoregional Plan - Florida Keys Fish Spawning Aggregations
+
+</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV></DT></DL>
+            <DT><I>Source Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Source Citation:</I> 
+              <DD>
+              <DL>
+                <DT><I>Citation Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Originator: </I>NOAA/NOS/NCCOS/CCMA Biogeography Team 
+                  <DT><I>Publication Date: </I>05/01/2003 
+                  <DT><I>Title:</I> 
+                  <DD>NOAA NCCOS - Gray’s Reef NMS Benthic Habitat Mapping 
+                  <DT><I>Geospatial Data Presentation Form: </I>vector digital 
+                  data 
+                  <DT><I>Series Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Publication Information:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Publication Place: </I>Silver Spring, MD 
+                    <DT><I>Publisher: </I>NOAA/NOS/NCCOS/CCMA Biogeography Team 
+                    </DT></DL>
+                  <DT><I>Other Citation Details:</I> 
+                  <DD>The area was mapped using backscatter from sidescan and 
+                  bathymetry from multibeam sonar systems in conjunction with 
+                  scuba and towed video to aid in delineating bottom features. 
+                  All data in this dataset was classified as either Hardbottom 
+                  (HB) – [densely colonized live bottom, moderately colonized 
+                  live bottom &amp; sparsely colonized live bottom] or Not 
+                  hardbottom (NH) – [flat sand]. 
+                  <DT><I>Larger Work Citation:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Citation Information:</I> 
+                    <DD>
+                    <DL>
+                      <DT><I>Publication Date: </I>
+                      <DT><I>Title:</I> 
+                      <DD>
+                      <DT><I>Series Information:</I> 
+                      <DD>
+                      <DL></DL>
+                      <DT><I>Publication Information:</I> 
+                      <DD>
+                      <DL></DL></DD></DL></DD></DL></DD></DL></DD></DL>
+              <DT><I>Source Scale Denominator: </I>
+              <DT><I>Type of Source Media: </I>
+              <DT><I>Source Time Period of Content:</I> 
+              <DD>
+              <DL>
+                <DT><I>Time Period Information:</I> 
+                <DD>
+                <DL></DL>
+                <DT><I>Source Currentness Reference:</I> 
+                <DD></DD></DL>
+              <DT><I>Source Citation Abbreviation:</I> 
+              <DD>Gray's Reef Ben Hab 
+              <DIV></DIV>
+              <DT><I>Source Contribution:</I> <PRE id=original>NOAA NCCOS - Gray’s Reef NMS Benthic Habitat Mapping</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV></DT></DL>
+            <DT><I>Source Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Source Citation:</I> 
+              <DD>
+              <DL>
+                <DT><I>Citation Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Originator: </I>NOAA NMFS Northeast Fisheries Science 
+                  Center (NEFSC) 
+                  <DT><I>Originator: </I>Ocean Biogeographic Information System 
+                  (OBIS) 
+                  <DT><I>Originator: </I>Steven Fromm 
+                  <DT><I>Originator: </I>Northeast Monitoring Program 
+                  <DT><I>Originator: </I>Ocean Pulse Program 
+                  <DT><I>Publication Date: </I>01/19/2012 
+                  <DT><I>Title:</I> 
+                  <DD>NOAA NMFS Northeast Fisheries Science Center [NEFSC] 
+                  Benthic Database 
+                  <DT><I>Geospatial Data Presentation Form: </I>vector digital 
+                  data 
+                  <DT><I>Series Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Publication Information:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Publication Place: </I>Woods Hole, MA 
+                    <DT><I>Publisher: </I>Woods Hole Laboratories, NOAA, Steven 
+                    Fromm, steven.fromm@noaa.gov </DT></DL>
+                  <DT><I>Other Citation Details:</I> 
+                  <DD>Benthic fauna data has been collected from 1881 to the 
+                  present by the National Marine Fisheries Service Laboratories. 
+                  These samples are coral specimens that were taken during the 
+                  Northeast Monitoring Program &amp; Ocean Pulse Program. All 
+                  the data records included are classified as hardbottom [HB]. 
+                  <DT><I>Online Linkage: </I><A 
+                  href="http://www.usgs.gov/obis-usa" 
+                  target=viewer>http://www.usgs.gov/obis-usa</A>
+                  <DT><I>Larger Work Citation:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Citation Information:</I> 
+                    <DD>
+                    <DL>
+                      <DT><I>Publication Date: </I>
+                      <DT><I>Title:</I> 
+                      <DD>
+                      <DT><I>Series Information:</I> 
+                      <DD>
+                      <DL></DL>
+                      <DT><I>Publication Information:</I> 
+                      <DD>
+                      <DL></DL></DD></DL></DD></DL></DD></DL></DD></DL>
+              <DT><I>Source Scale Denominator: </I>
+              <DT><I>Type of Source Media: </I>
+              <DT><I>Source Time Period of Content:</I> 
+              <DD>
+              <DL>
+                <DT><I>Time Period Information:</I> 
+                <DD>
+                <DL></DL>
+                <DT><I>Source Currentness Reference:</I> 
+                <DD></DD></DL>
+              <DT><I>Source Citation Abbreviation:</I> 
+              <DD>NEFSC Benthic 
+              <DIV></DIV>
+              <DT><I>Source Contribution:</I> <PRE id=original>NOAA NMFS Northeast Fisheries Science Center [NEFSC] Benthic Database</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV></DT></DL>
+            <DT><I>Source Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Source Citation:</I> 
+              <DD>
+              <DL>
+                <DT><I>Citation Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Originator: </I>NOAA NMFS Southeast Fisheries Science 
+                  Center [SEFSC] 
+                  <DT><I>Publication Date: </I>
+                  <DT><I>Title:</I> 
+                  <DD>NOAA NMFS Southeast Fisheries Science Center [SEFSC] 
+                  Cruise Reports 
+                  <DT><I>Geospatial Data Presentation Form: </I>vector digital 
+                  data 
+                  <DT><I>Series Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Publication Information:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Publication Place: </I>Pivers Island, NC 
+                    <DT><I>Publisher: </I>NOAA NMFS Southeast Fisheries Science 
+                    Center [SEFSC] </DT></DL>
+                  <DT><I>Other Citation Details:</I> 
+                  <DD>This dataset was provided directly by NOAA NMFS SEFSC and 
+                  derived from original cruise reports. We included the point 
+                  data information with direct sampling locations (trap and 
+                  longline) of demersal fish species. Any trawl or dredge 
+                  information was excluded. All data records included were 
+                  classified as hardbottom [HB]. 
+                  <DT><I>Larger Work Citation:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Citation Information:</I> 
+                    <DD>
+                    <DL>
+                      <DT><I>Publication Date: </I>
+                      <DT><I>Title:</I> 
+                      <DD>
+                      <DT><I>Series Information:</I> 
+                      <DD>
+                      <DL></DL>
+                      <DT><I>Publication Information:</I> 
+                      <DD>
+                      <DL></DL></DD></DL></DD></DL></DD></DL></DD></DL>
+              <DT><I>Source Scale Denominator: </I>
+              <DT><I>Type of Source Media: </I>
+              <DT><I>Source Time Period of Content:</I> 
+              <DD>
+              <DL>
+                <DT><I>Time Period Information:</I> 
+                <DD>
+                <DL></DL>
+                <DT><I>Source Currentness Reference:</I> 
+                <DD></DD></DL>
+              <DT><I>Source Citation Abbreviation:</I> 
+              <DD>SEFSC Cruises 
+              <DIV></DIV>
+              <DT><I>Source Contribution:</I> <PRE id=original>NOAA NMFS Southeast Fisheries Science Center [SEFSC] Cruise Reports</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV></DT></DL>
+            <DT><I>Source Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Source Citation:</I> 
+              <DD>
+              <DL>
+                <DT><I>Citation Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Originator: </I>Palm Beach County - Environmental 
+                  Resources Management 
+                  <DT><I>Publication Date: </I>10/05/2012 
+                  <DT><I>Title:</I> 
+                  <DD>Palm Beach County Benthic Habitats 2012 
+                  <DT><I>Geospatial Data Presentation Form: </I>vector digital 
+                  data 
+                  <DT><I>Series Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Publication Information:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Publication Place: </I>West Palm Beach, FL 
+                    <DT><I>Publisher: </I>Palm Beach County - Countywide GIS 
+                    </DT></DL>
+                  <DT><I>Other Citation Details:</I> 
+                  <DD>The extent and classification of nearshore hardbottoms, 
+                  digitized from digital ortho photography. All data in this 
+                  dataset was classified as either Hardbottom (HB) – [nearshore 
+                  reef, offshore reef &amp; rubble] or Not hardbottom (NH) – 
+                  [borrow areas]. 
+                  <DT><I>Online Linkage: </I><A 
+                  href="http://www.pbcgov.com/iss/itoperations/cwgis/gisorganization.htm" 
+                  target=viewer>http://www.pbcgov.com/iss/itoperations/cwgis/gisorganization.htm</A>
+                  <DT><I>Larger Work Citation:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Citation Information:</I> 
+                    <DD>
+                    <DL>
+                      <DT><I>Publication Date: </I>
+                      <DT><I>Title:</I> 
+                      <DD>
+                      <DT><I>Series Information:</I> 
+                      <DD>
+                      <DL></DL>
+                      <DT><I>Publication Information:</I> 
+                      <DD>
+                      <DL></DL></DD></DL></DD></DL></DD></DL></DD></DL>
+              <DT><I>Source Scale Denominator: </I>
+              <DT><I>Type of Source Media: </I>
+              <DT><I>Source Time Period of Content:</I> 
+              <DD>
+              <DL>
+                <DT><I>Time Period Information:</I> 
+                <DD>
+                <DL></DL>
+                <DT><I>Source Currentness Reference:</I> 
+                <DD></DD></DL>
+              <DT><I>Source Citation Abbreviation:</I> 
+              <DD>Palm Beach Co Ben Hab 
+              <DIV></DIV>
+              <DT><I>Source Contribution:</I> <PRE id=original>Palm Beach County Benthic Habitats</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV></DT></DL>
+            <DT><I>Source Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Source Citation:</I> 
+              <DD>
+              <DL>
+                <DT><I>Citation Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Originator: </I>South Atlantic Fisheries Management 
+                  Council 
+                  <DT><I>Originator: </I>Florida Fish and Wildlife Research 
+                  Institute 
+                  <DT><I>Publication Date: </I>01/01/2008 
+                  <DT><I>Title:</I> 
+                  <DD>Blake Ridge Diapir 
+                  <DT><I>Geospatial Data Presentation Form: </I>vector digital 
+                  data 
+                  <DT><I>Series Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Publication Information:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Publication Place: </I>St Petersburg, FL 
+                    <DT><I>Publisher: </I>Florida Fish and Wildlife Research 
+                    Institute </DT></DL>
+                  <DT><I>Other Citation Details:</I> 
+                  <DD>This is the Deepwater Coral HAPC surrounding the Blake 
+                  Ridge Diapir methane seep live-bottom area. This area is 
+                  classified as hardbottom [HB]. 
+                  <DT><I>Online Linkage: </I><A 
+                  href="http://www.safmc.net/HabitatManagement/DeepwaterCorals/Lophelia/tabid/247/Default.aspx" 
+                  target=viewer>http://www.safmc.net/HabitatManagement/DeepwaterCorals/Lophelia/tabid/247/Default.aspx</A> 
+
+                  <DT><I>Larger Work Citation:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Citation Information:</I> 
+                    <DD>
+                    <DL>
+                      <DT><I>Publication Date: </I>
+                      <DT><I>Title:</I> 
+                      <DD>
+                      <DT><I>Series Information:</I> 
+                      <DD>
+                      <DL></DL>
+                      <DT><I>Publication Information:</I> 
+                      <DD>
+                      <DL></DL></DD></DL></DD></DL></DD></DL></DD></DL>
+              <DT><I>Source Scale Denominator: </I>
+              <DT><I>Type of Source Media: </I>
+              <DT><I>Source Time Period of Content:</I> 
+              <DD>
+              <DL>
+                <DT><I>Time Period Information:</I> 
+                <DD>
+                <DL></DL>
+                <DT><I>Source Currentness Reference:</I> 
+                <DD></DD></DL>
+              <DT><I>Source Citation Abbreviation:</I> 
+              <DD>Blake Ridge Diapir 
+              <DIV></DIV>
+              <DT><I>Source Contribution:</I> <PRE id=original>Blake Ridge Diapir </PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV></DT></DL>
+            <DT><I>Source Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Source Citation:</I> 
+              <DD>
+              <DL>
+                <DT><I>Citation Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Originator: </I>Team Live Wire 
+                  <DT><I>Originator: </I>Andren Software 
+                  <DT><I>Publication Date: </I>
+                  <DT><I>Title:</I> 
+                  <DD>Team Live Wire Offshore GPS Coordinates – North Carolina, 
+                  South Carolina, Florida Atlantic &amp; Florida Keys 
+                  <DT><I>Geospatial Data Presentation Form: </I>vector digital 
+                  data 
+                  <DT><I>Series Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Publication Information:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Publication Place: </I>Indiatlantic, FL 
+                    <DT><I>Publisher: </I>Andren Software Company </DT></DL>
+                  <DT><I>Other Citation Details:</I> 
+                  <DD>This information was derived from recorded GPS coordinates 
+                  of known hardbottom related sites and is available on the 
+                  Andren/Sea Marks Program webpage. All data in this dataset was 
+                  classified as either Hardbottom (HB) – [break, cones, coral, 
+                  drops, fingers, grouper site, hardbottom, horseshoe, hump, 
+                  ledge, live bottom, lumps, mounds, peak, pinnacle, reef, rock, 
+                  rock ledge, rock bottom, roll, rubble, sinkhole &amp; wall] or 
+                  Not hardbottom (NH) – [flats]. 
+                  <DT><I>Online Linkage: </I><A 
+                  href="http://www.andren.com/downloadwaypoints.html" 
+                  target=viewer>http://www.andren.com/downloadwaypoints.html</A>
+                  <DT><I>Larger Work Citation:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Citation Information:</I> 
+                    <DD>
+                    <DL>
+                      <DT><I>Publication Date: </I>
+                      <DT><I>Title:</I> 
+                      <DD>
+                      <DT><I>Series Information:</I> 
+                      <DD>
+                      <DL></DL>
+                      <DT><I>Publication Information:</I> 
+                      <DD>
+                      <DL></DL></DD></DL></DD></DL></DD></DL></DD></DL>
+              <DT><I>Source Scale Denominator: </I>
+              <DT><I>Type of Source Media: </I>
+              <DT><I>Source Time Period of Content:</I> 
+              <DD>
+              <DL>
+                <DT><I>Time Period Information:</I> 
+                <DD>
+                <DL></DL>
+                <DT><I>Source Currentness Reference:</I> 
+                <DD></DD></DL>
+              <DT><I>Source Citation Abbreviation:</I> 
+              <DD>Live Wire 
+              <DIV></DIV>
+              <DT><I>Source Contribution:</I> <PRE id=original>Team Live Wire Offshore GPS Coordinates – North Carolina, South Carolina, Florida Atlantic &amp; Florida Keys</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV></DT></DL>
+            <DT><I>Source Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Source Citation:</I> 
+              <DD>
+              <DL>
+                <DT><I>Citation Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Originator: </I>United Nation Environment Programme – 
+                  World Conservation Monitoring Centre 
+                  <DT><I>Publication Date: </I>01/01/2005 
+                  <DT><I>Title:</I> 
+                  <DD>UNEP-WCMC Global Distribution of Cold Water Corals 
+                  <DT><I>Geospatial Data Presentation Form: </I>vector digital 
+                  data 
+                  <DT><I>Series Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Publication Information:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Publication Place: </I>Cambridge, UK 
+                    <DT><I>Publisher: </I>UNEP-World Conservation Monitoring 
+                    Centre </DT></DL>
+                  <DT><I>Other Citation Details:</I> 
+                  <DD>This dataset was compiled by UNEP –World Conservation 
+                  Monitoring Center to show the global distribution of 
+                  cold-water coral reefs. The information was imported into GIS 
+                  format by UNEP-WCMC sourced from A. Freiwald, Alex Rogers and 
+                  Jason Hall-Spencer, and other contributors. All the data 
+                  records incorporated into the database were calssified as 
+                  hardbottom [HB]. Individual Source Citations: Cairns, 1979. 
+                  The deep-water Scleractinia of the Caribbean Sea and adjacent 
+                  waters. Cairns, 2001. A brief history of taxonomic research on 
+                  azooxanthellate Scleractinia Paull CK, Neumann AC, am Ende BA, 
+                  Ussler W, Rodriguez NM, 2000. Lithoherms on the 
+                  Florida-Hatteras Slope Reed JK, 2002a. Deep-water Oculina 
+                  reefs of Florida: biology, impacts, and management. Reed JK, 
+                  2002b. Comparison of deep-water coral reefs and lithoherms off 
+                  southeastern USA. Rogers AD, 1999. The biology of Lophelia 
+                  pertusa (Linnaeus, 1758) and other deep-water reef-forming 
+                  corals and impacts from human activities. Stanley and Cairns. 
+                  No citation. Zibrowius H, 1980. Les Scléractiniaires de la 
+                  Méditerranée et de l'Atlantique nord-oriental. 
+                  <DT><I>Larger Work Citation:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Citation Information:</I> 
+                    <DD>
+                    <DL>
+                      <DT><I>Publication Date: </I>
+                      <DT><I>Title:</I> 
+                      <DD>
+                      <DT><I>Series Information:</I> 
+                      <DD>
+                      <DL></DL>
+                      <DT><I>Publication Information:</I> 
+                      <DD>
+                      <DL></DL></DD></DL></DD></DL></DD></DL></DD></DL>
+              <DT><I>Source Scale Denominator: </I>
+              <DT><I>Type of Source Media: </I>
+              <DT><I>Source Time Period of Content:</I> 
+              <DD>
+              <DL>
+                <DT><I>Time Period Information:</I> 
+                <DD>
+                <DL></DL>
+                <DT><I>Source Currentness Reference:</I> 
+                <DD></DD></DL>
+              <DT><I>Source Citation Abbreviation:</I> 
+              <DD>GDoCWC 
+              <DIV></DIV>
+              <DT><I>Source Contribution:</I> <PRE id=original>UNEP-WCMC Global Distribution of Cold Water Corals</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV></DT></DL>
+            <DT><I>Source Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Source Citation:</I> 
+              <DD>
+              <DL>
+                <DT><I>Citation Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Originator: </I>US Geological Survey 
+                  <DT><I>Originator: </I>NOAA National Marine Fisheries Service 
+                  <DT><I>Originator: </I>Kathyrn Scanlon 
+                  <DT><I>Originator: </I>Peter Briere 
+                  <DT><I>Publication Date: </I>
+                  <DT><I>Title:</I> 
+                  <DD>USGS Oculina Bank: Sidescan Sonar and Sediment Data from a 
+                  Deep-Water Coral Reef Habitat off East-Central Florida 
+                  <DT><I>Geospatial Data Presentation Form: </I>vector digital 
+                  data 
+                  <DT><I>Series Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Publication Information:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Publication Place: </I>Woods Hole, MA 
+                    <DT><I>Publisher: </I>U.S. Geological Survey </DT></DL>
+                  <DT><I>Other Citation Details:</I> 
+                  <DD>The Experimental Oculina Research Reserve (EORR) 
+                  encompasses numerous high-relief rocky pinnacles where Oculina 
+                  varicosa, a fragile deep-water coral, grows. The project’s 
+                  goal was to provide reconnaissance geologic maps of the 
+                  Experimental Oculina Research Reserve and an unprotected 
+                  control area north of the reserve to support NOAA NMFS studies 
+                  of grouper spawning aggregations. To accomplish this, the 
+                  project collected sidescan sonar data and sediment samples 
+                  throughout both study areas and used video and observations 
+                  from a manned submersible at selected sites. The data records 
+                  were classified as hardbottom [HB] (high relief/high 
+                  backscatter &amp; low relief/high backscatter) or Not 
+                  hardbottom [NH] (low relief/low backscatter). 
+                  <DT><I>Online Linkage: </I><A 
+                  href="http://pubs.usgs.gov/of/1999/of99-010/htm/einterp.htm#Map" 
+                  target=viewer>http://pubs.usgs.gov/of/1999/of99-010/htm/einterp.htm#Map</A>
+                  <DT><I>Larger Work Citation:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Citation Information:</I> 
+                    <DD>
+                    <DL>
+                      <DT><I>Publication Date: </I>
+                      <DT><I>Title:</I> 
+                      <DD>
+                      <DT><I>Series Information:</I> 
+                      <DD>
+                      <DL></DL>
+                      <DT><I>Publication Information:</I> 
+                      <DD>
+                      <DL></DL></DD></DL></DD></DL></DD></DL></DD></DL>
+              <DT><I>Source Scale Denominator: </I>
+              <DT><I>Type of Source Media: </I>
+              <DT><I>Source Time Period of Content:</I> 
+              <DD>
+              <DL>
+                <DT><I>Time Period Information:</I> 
+                <DD>
+                <DL></DL>
+                <DT><I>Source Currentness Reference:</I> 
+                <DD></DD></DL>
+              <DT><I>Source Citation Abbreviation:</I> 
+              <DD>Oculina Bank 
+              <DIV></DIV>
+              <DT><I>Source Contribution:</I> <PRE id=original>USGS Oculina Bank: Sidescan Sonar and Sediment Data from a Deep-Water Coral Reef Habitat off East-Central Florida</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV></DT></DL>
+            <DT><I>Source Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Source Citation:</I> 
+              <DD>
+              <DL>
+                <DT><I>Citation Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Originator: </I>Clark Alexander 
+                  <DT><I>Originator: </I>Mike Robinson 
+                  <DT><I>Publication Date: </I>09/15/2004 
+                  <DT><I>Title:</I> 
+                  <DD>Deepwater Coral Mounds of the Blake Plateau 
+                  <DT><I>Geospatial Data Presentation Form: </I>vector digital 
+                  data 
+                  <DT><I>Series Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Publication Information:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Publication Place: </I>Savannah, GA 
+                    <DT><I>Publisher: </I>Skidaway Institute of Oceanography 
+                    </DT></DL>
+                  <DT><I>Other Citation Details:</I> 
+                  <DD>This database of deepwater coral mounds was developed by 
+                  Clark Alexander &amp; Mike Robinson from the Skidaway 
+                  Institute of Oceanography for the SEAMAP Deepwater Bottom 
+                  Mapping Project. The information is taken directly from a USGS 
+                  study conducted by Peter Popenoe entitled “Bottom Character 
+                  Map of the Northern Blake Plateau (OFR-93-724)” published in 
+                  January 1994. All the data records were classified as 
+                  hardbottom [HB]. 
+                  <DT><I>Online Linkage: </I><A 
+                  href="http://pubs.usgs.gov/of/1993/0724/report.pdf" 
+                  target=viewer>http://pubs.usgs.gov/of/1993/0724/report.pdf</A>
+                  <DT><I>Larger Work Citation:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Citation Information:</I> 
+                    <DD>
+                    <DL>
+                      <DT><I>Publication Date: </I>
+                      <DT><I>Title:</I> 
+                      <DD>
+                      <DT><I>Series Information:</I> 
+                      <DD>
+                      <DL></DL>
+                      <DT><I>Publication Information:</I> 
+                      <DD>
+                      <DL></DL></DD></DL></DD></DL></DD></DL></DD></DL>
+              <DT><I>Source Scale Denominator: </I>
+              <DT><I>Type of Source Media: </I>
+              <DT><I>Source Time Period of Content:</I> 
+              <DD>
+              <DL>
+                <DT><I>Time Period Information:</I> 
+                <DD>
+                <DL></DL>
+                <DT><I>Source Currentness Reference:</I> 
+                <DD></DD></DL>
+              <DT><I>Source Citation Abbreviation:</I> 
+              <DD>Blake Plateau Coral Mounds 
+              <DIV></DIV>
+              <DT><I>Source Contribution:</I> <PRE id=original>USGS Study of Northern Blake Plateau - Deepwater Coral Mounds</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV></DT></DL>
+            <DT><I>Source Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Source Citation:</I> 
+              <DD>
+              <DL>
+                <DT><I>Citation Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Originator: </I>US Geological Survey, Coastal and 
+                  Marine Geology Program 
+                  <DT><I>Publication Date: </I>
+                  <DT><I>Title:</I> 
+                  <DD>USGS usSEABED - Offshore Surficial Sediments - parsed and 
+                  extracted data - hardbottom occurrences 
+                  <DT><I>Geospatial Data Presentation Form: </I>vector digital 
+                  data 
+                  <DT><I>Series Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Publication Information:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Publication Place: </I>Woods Hole, MA 
+                    <DT><I>Publisher: </I>US Geological Survey, Coastal and 
+                    Marine Geology Program </DT></DL>
+                  <DT><I>Other Citation Details:</I> 
+                  <DD>Surficial sediment data from physical sampling equipment 
+                  (grabs and cores) compiled by the USGS during their usSEABED 
+                  program. These original source data records had a Folk code of 
+                  “H” and a Shepard code of “solid”. All the data records were 
+                  classified as hardbottom [HB]. Individual Source Citations: 
+                  Atlantic Margin Coring Project (AMCOR): USGS OFR 76-844 
+                  CERCTM34: USACE ICONS Cores, Palm Beach to Cape Kennedy, 
+                  Florida Smithsonian Institution master sediment data file USGS 
+                  OFR 98-596: Wrightsville Beach, NC USGS/WHOI CONMAR analyses, 
+                  part 1 USGS/WHOI CONMAR analyses, part 2 
+                  <DT><I>Online Linkage: </I><A 
+                  href="http://pubs.usgs.gov/ds/2005/118/" 
+                  target=viewer>http://pubs.usgs.gov/ds/2005/118/</A> 
+                  <DT><I>Online Linkage: </I><A 
+                  href="http://pubs.usgs.gov/ds/2006/146/" 
+                  target=viewer>http://pubs.usgs.gov/ds/2006/146/</A>
+                  <DT><I>Larger Work Citation:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Citation Information:</I> 
+                    <DD>
+                    <DL>
+                      <DT><I>Publication Date: </I>
+                      <DT><I>Title:</I> 
+                      <DD>
+                      <DT><I>Series Information:</I> 
+                      <DD>
+                      <DL></DL>
+                      <DT><I>Publication Information:</I> 
+                      <DD>
+                      <DL></DL></DD></DL></DD></DL></DD></DL></DD></DL>
+              <DT><I>Source Scale Denominator: </I>
+              <DT><I>Type of Source Media: </I>
+              <DT><I>Source Time Period of Content:</I> 
+              <DD>
+              <DL>
+                <DT><I>Time Period Information:</I> 
+                <DD>
+                <DL></DL>
+                <DT><I>Source Currentness Reference:</I> 
+                <DD></DD></DL>
+              <DT><I>Source Citation Abbreviation:</I> 
+              <DD>usSEABED 
+              <DIV></DIV>
+              <DT><I>Source Contribution:</I> <PRE id=original>USGS usSEABED - Offshore Surficial Sediments - parsed and extracted data - hardbottom occurrences</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV></DT></DL>
+            <DT><I>Source Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Source Citation:</I> 
+              <DD>
+              <DL>
+                <DT><I>Citation Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Originator: </I>Bureau of Ocean Energy Management, 
+                  Leasing Division 
+                  <DT><I>Publication Date: </I>05/11/2012 
+                  <DT><I>Title:</I> 
+                  <DD>Offshore Authorized Borrow Areas for Beach Renourishment 
+                  <DT><I>Geospatial Data Presentation Form: </I>vector digital 
+                  data 
+                  <DT><I>Series Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Publication Information:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Publication Place: </I>Herndon, VA 
+                    <DT><I>Publisher: </I>Office of Strategic Resources, Bureau 
+                    of Ocean Energy Management, Leasing Division </DT></DL>
+                  <DT><I>Other Citation Details:</I> 
+                  <DD>These areas provide users with a more accurate delineation 
+                  of sand resources that have a high potential for use in shore 
+                  protection, beach nourishment and/or wetlands restoration 
+                  projects. The Authorized Borrow Areas (ABAs) were selected for 
+                  the SAB region from the original source data, thus eliminating 
+                  Potential Borrow Areas (PBAs) from inclusion in the SAB 
+                  Benthic Habitat database since these areas have not yet been 
+                  used for resource extraction activites. We classified ABAs as 
+                  surveyed areas that have not identified hardbottom(s) at those 
+                  locations. All data records classified as Not hardbottom [NH]. 
+
+                  <DT><I>Online Linkage: </I><A 
+                  href="http://www.marinecadastre.gov/data/default.aspx" 
+                  target=viewer>http://www.marinecadastre.gov/data/default.aspx</A> 
+
+                  <DT><I>Online Linkage: </I><A 
+                  href="http://gis.boemre.gov/arcgis/rest/services/BOEM_BSEE/MMC_Layers/MapServer" 
+                  target=viewer>http://gis.boemre.gov/arcgis/rest/services/BOEM_BSEE/MMC_Layers/MapServer</A>
+                  <DT><I>Larger Work Citation:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Citation Information:</I> 
+                    <DD>
+                    <DL>
+                      <DT><I>Publication Date: </I>
+                      <DT><I>Title:</I> 
+                      <DD>
+                      <DT><I>Series Information:</I> 
+                      <DD>
+                      <DL></DL>
+                      <DT><I>Publication Information:</I> 
+                      <DD>
+                      <DL></DL></DD></DL></DD></DL></DD></DL></DD></DL>
+              <DT><I>Source Scale Denominator: </I>
+              <DT><I>Type of Source Media: </I>
+              <DT><I>Source Time Period of Content:</I> 
+              <DD>
+              <DL>
+                <DT><I>Time Period Information:</I> 
+                <DD>
+                <DL></DL>
+                <DT><I>Source Currentness Reference:</I> 
+                <DD></DD></DL>
+              <DT><I>Source Citation Abbreviation:</I> 
+              <DD>BOEM ABAs 
+              <DIV></DIV>
+              <DT><I>Source Contribution:</I> <PRE id=original>Bureau of Ocean Energy Management, Leasing Division - Offshore Authorized Borrow Areas for Beach Renourishment</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV></DT></DL>
+            <DT><I>Source Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Source Citation:</I> 
+              <DD>
+              <DL>
+                <DT><I>Citation Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Originator: </I>Environmental Protection Agency 
+                  <DT><I>Originator: </I>NOAA Coastal Services Center 
+                  <DT><I>Publication Date: </I>09/30/1998 
+                  <DT><I>Title:</I> 
+                  <DD>EPA Ocean Dredge Material Disposal Sites 
+                  <DT><I>Geospatial Data Presentation Form: </I>vector digital 
+                  data 
+                  <DT><I>Series Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Publication Information:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Publication Place: </I>Charleston, SC 
+                    <DT><I>Publisher: </I>NOAA Coastal Services Center </DT></DL>
+                  <DT><I>Other Citation Details:</I> 
+                  <DD>This data layer was built from coordinates defined by the 
+                  U.S. Environmental Protection Agency (EPA), Region 4 and 
+                  developed into GIS data by NOAA Coastal Services Center. 
+                  Coordinates are published in the Coastal Programs and Surface 
+                  Water Quality Grants Section, Ocean Dumping Program. This data 
+                  was used to delineate “Not hardbottom” (NH) areas and to 
+                  remove data that portray previous benthic environments before 
+                  dredge material was disposed of at these locations. 
+                  <DT><I>Online Linkage: </I><A 
+                  href="http://www.epa.gov/region4/water/oceans/" 
+                  target=viewer>http://www.epa.gov/region4/water/oceans/</A> 
+                  <DT><I>Larger Work Citation:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Citation Information:</I> 
+                    <DD>
+                    <DL>
+                      <DT><I>Publication Date: </I>
+                      <DT><I>Title:</I> 
+                      <DD>
+                      <DT><I>Series Information:</I> 
+                      <DD>
+                      <DL></DL>
+                      <DT><I>Publication Information:</I> 
+                      <DD>
+                      <DL></DL></DD></DL></DD></DL></DD></DL></DD></DL>
+              <DT><I>Source Scale Denominator: </I>
+              <DT><I>Type of Source Media: </I>
+              <DT><I>Source Time Period of Content:</I> 
+              <DD>
+              <DL>
+                <DT><I>Time Period Information:</I> 
+                <DD>
+                <DL></DL>
+                <DT><I>Source Currentness Reference:</I> 
+                <DD></DD></DL>
+              <DT><I>Source Citation Abbreviation:</I> 
+              <DD>EPA ODMDS 
+              <DIV></DIV>
+              <DT><I>Source Contribution:</I> <PRE id=original>EPA Ocean Dredge Material Disposal Sites </PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV></DT></DL>
+            <DT><I>Source Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Source Citation:</I> 
+              <DD>
+              <DL>
+                <DT><I>Citation Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Originator: </I>Eastern Division Conservation Science 
+                  office of The Nature Conservancy 
+                  <DT><I>Publication Date: </I>04/01/2013 
+                  <DT><I>Title:</I> 
+                  <DD>The Nature Conservancy's South Atlantic Bight Sediment 
+                  Database 
+                  <DT><I>Geospatial Data Presentation Form: </I>vector digital 
+                  data 
+                  <DT><I>Series Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Publication Information:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Publication Place: </I>Durham, NC 
+                    <DT><I>Publisher: </I>Eastern Division Conservation Science 
+                    office of The Nature Conservancy </DT></DL>
+                  <DT><I>Other Citation Details:</I> 
+                  <DD>This is the base data used to create the sediment grain 
+                  size interpolated grid for the South Atlantic Bight Marine 
+                  Assessment near shore (up to 200 meter depth) area. The 
+                  interpolation was done using grab and core sample data from 
+                  original data sources. These include USGS usSEABED Extracted 
+                  and Parsed data for the Atlantic Coast, USGS usSEABED 
+                  Extracted and Parsed data for the Gulf of Mexico, Carteret 
+                  County North Carolina Sand Search cores, and South Carolina 
+                  Dept. of Natural Resources Ocean Sediment point data. All data 
+                  points in this dataset were classified as Not hardbottom [NH]. 
+
+                  <DT><I>Larger Work Citation:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Citation Information:</I> 
+                    <DD>
+                    <DL>
+                      <DT><I>Publication Date: </I>
+                      <DT><I>Title:</I> 
+                      <DD>
+                      <DT><I>Series Information:</I> 
+                      <DD>
+                      <DL></DL>
+                      <DT><I>Publication Information:</I> 
+                      <DD>
+                      <DL></DL></DD></DL></DD></DL></DD></DL></DD></DL>
+              <DT><I>Source Scale Denominator: </I>
+              <DT><I>Type of Source Media: </I>
+              <DT><I>Source Time Period of Content:</I> 
+              <DD>
+              <DL>
+                <DT><I>Time Period Information:</I> 
+                <DD>
+                <DL></DL>
+                <DT><I>Source Currentness Reference:</I> 
+                <DD></DD></DL>
+              <DT><I>Source Citation Abbreviation:</I> 
+              <DD>SAB Sediment 
+              <DIV></DIV>
+              <DT><I>Source Contribution:</I> <PRE id=original>The Nature Conservancy's South Atlantic Bight Sediment Database</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV></DT></DL>
+            <DT><I>Process Step:</I> 
+            <DD>
+            <DL>
+              <DIV>
+              <DT><I>Process Description:</I> <PRE id=original>Removed trawl and dredge data from original SEAMAP datasets. This information is considered ambiguous when determining the spatial location of benthic habitats in relation to the information that data provides. While it was originally included, the new methodology adopted called for a more conservative approach for how hardbottom habitats were identified.  </PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+              </DT></DIV>
+              <DT><I>Process Date: </I>
+              <DT><I>Process Contact:</I> 
+              <DD>
+              <DL>
+                <DT><I>Contact Information:</I> 
+                <DD>
+                <DL></DL></DD></DL></DD></DL>
+            <DT><I>Process Step:</I> 
+            <DD>
+            <DL>
+              <DIV>
+              <DT><I>Process Description:</I> <PRE id=original>Extracted data that occurs within the South Atlantic Bight regional area of analysis for all newly added datasets </PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+              </DT></DIV>
+              <DT><I>Process Date: </I>
+              <DT><I>Process Contact:</I> 
+              <DD>
+              <DL>
+                <DT><I>Contact Information:</I> 
+                <DD>
+                <DL></DL></DD></DL></DD></DL>
+            <DT><I>Process Step:</I> 
+            <DD>
+            <DL>
+              <DIV>
+              <DT><I>Process Description:</I> <PRE id=original>Compiled all source data records into point, line &amp; polygon spatial databases</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+              </DT></DIV>
+              <DT><I>Process Date: </I>
+              <DT><I>Process Contact:</I> 
+              <DD>
+              <DL>
+                <DT><I>Contact Information:</I> 
+                <DD>
+                <DL></DL></DD></DL></DD></DL>
+            <DT><I>Process Step:</I> 
+            <DD>
+            <DL>
+              <DIV>
+              <DT><I>Process Description:</I> <PRE id=original>Removed spatially overlapping data records that were older and/or of lesser resolution than the most recently published data for that specified location. This mainly consisted of locations where higher resolution remotely sensed benthic habitat data and/or current &amp; historic Ocean Dredge Material Disposal Sites (ODMDS) [polygons] occurred that overlapped grab, core, trap, sidescan and/or subbottom profiling data [points and lines].</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+              </DT></DIV>
+              <DT><I>Process Date: </I>
+              <DT><I>Process Contact:</I> 
+              <DD>
+              <DL>
+                <DT><I>Contact Information:</I> 
+                <DD>
+                <DL></DL></DD></DL></DD></DL>
+            <DT><I>Process Step:</I> 
+            <DD>
+            <DL>
+              <DIV>
+              <DT><I>Process Description:</I> <PRE id=original>Applied methodology used in original SEAMAP Bottom Habitat Mapping Project to classify non-SEAMAP data records as either: Hardbottom (HB), Potential Hardbottom or Not Hardbottom (NH). We also removed any data that was unable to be directly input into any of these three classification types.</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+              </DT></DIV>
+              <DT><I>Process Date: </I>
+              <DT><I>Process Contact:</I> 
+              <DD>
+              <DL>
+                <DT><I>Contact Information:</I> 
+                <DD>
+                <DL></DL></DD></DL></DD></DL>
+            <DT><I>Process Step:</I> 
+            <DD>
+            <DL>
+              <DIV>
+              <DT><I>Process Description:</I> <PRE id=original>When data groupings and classifications were finalized, we spatially joined each classified data type (HB points, HB lines, HB polygons, PH points, PH lines, PH polygons, NH points, NH lines and NH polygons) into the 1 x 1 minute gridded format.</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+              </DT></DIV>
+              <DT><I>Process Date: </I>
+              <DT><I>Process Contact:</I> 
+              <DD>
+              <DL>
+                <DT><I>Contact Information:</I> 
+                <DD>
+                <DL></DL></DD></DL></DD></DL>
+            <DT><I>Process Step:</I> 
+            <DD>
+            <DL>
+              <DIV>
+              <DT><I>Process Description:</I> <PRE id=original>With the data in the 1 x 1 minute gridded format, we combined all 3 like gridded data types (HB, PH, NH) into one 1 x 1 minute gridded spatial dataset for a total of 3 1x1 minute grids; removing overlap that may occur in the merging process.</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+              </DT></DIV>
+              <DT><I>Process Date: </I>
+              <DT><I>Process Contact:</I> 
+              <DD>
+              <DL>
+                <DT><I>Contact Information:</I> 
+                <DD>
+                <DL></DL></DD></DL></DD></DL>
+            <DT><I>Process Step:</I> 
+            <DD>
+            <DL>
+              <DIV>
+              <DT><I>Process Description:</I> <PRE id=original>The three 1 x 1 minute grids where then merged together inside ArcGIS giving spatial precedence to the Hardbottom classified cells (HB) over Potential Hardbottom classified cells (PH) over Not Hardbottom classified cells (NH)
+</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+              </DT></DIV>
+              <DT><I>Process Date: </I>
+              <DT><I>Process Contact:</I> 
+              <DD>
+              <DL>
+                <DT><I>Contact Information:</I> 
+                <DD>
+                <DL></DL></DD></DL></DD></DL>
+            <DT><I>Process Step:</I> 
+            <DD>
+            <DL>
+              <DIV>
+              <DT><I>Process Description:</I> <PRE id=original>The "finalized" grid was then given the following classification: "Hardbottom(s)" for HB classified cells, "Potential Hardbottom(s)" for PH classified cells and "Surveys in area have not identified hardbottom(s)"for NH classified cells 
+</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+              </DT></DIV>
+              <DT><I>Process Date: </I>
+              <DT><I>Process Contact:</I> 
+              <DD>
+              <DL>
+                <DT><I>Contact Information:</I> 
+                <DD>
+                <DL></DL></DD></DL></DD></DL></DD></DL></DD></DL></DD></DL><A 
+      href="file:///C:/Users/njordan/AppData/Local/Temp/tmpF48D.tmp.html#Top" 
+      xmlns="">Back to Top</A><A name=Spatial_Data_Organization_Information 
+      xmlns="">
+      <HR>
+      </A>
+      <DL xmlns="">
+        <DT><I>Spatial Data Organization Information:</I> 
+        <DD>
+        <DL>
+          <DT><I>Direct Spatial Reference Method: </I>Vector 
+          <DT><I>Point and Vector Object Information:</I> 
+          <DD>
+          <DL>
+            <DT><I>VPF Terms Description:</I> 
+            <DD>
+            <DL>
+              <DT><I>VPF Topology Level: </I></DT></DL></DD></DL></DD></DL></DD></DL><A 
+      href="file:///C:/Users/njordan/AppData/Local/Temp/tmpF48D.tmp.html#Top" 
+      xmlns="">Back to Top</A><A name=Spatial_Reference_Information xmlns="">
+      <HR>
+      </A>
+      <DL xmlns="">
+        <DT><I>Spatial Reference Information:</I> 
+        <DD>
+        <DL>
+          <DT><I>Horizontal Coordinate System Definition:</I> 
+          <DD>
+          <DL>
+            <DT><I>Geographic:</I> 
+            <DD>
+            <DL>
+              <DT><I>Latitude Resolution: </I>
+              <DT><I>Longitude Resolution: </I>
+              <DT><I>Geographic Coordinate Units: </I></DT></DL>
+            <DT><I>Geodetic Model:</I> 
+            <DD>
+            <DL></DL></DD></DL>
+          <DT><I>Vertical Coordinate System Definition:</I> 
+          <DD>
+          <DL>
+            <DT><I>Altitude System Definition:</I> 
+            <DD>
+            <DL>
+              <DT><I>Altitude Datum Name: </I>
+              <DT><I>Altitude Distance Units: </I>
+              <DT><I>Altitude Encoding Method: </I></DT></DL>
+            <DT><I>Depth System Definition:</I> 
+            <DD>
+            <DL>
+              <DT><I>Depth Datum Name: </I>
+              <DT><I>Depth Distance Units: </I>
+              <DT><I>Depth Encoding Method: 
+      </I></DT></DL></DD></DL></DD></DL></DD></DL><A 
+      href="file:///C:/Users/njordan/AppData/Local/Temp/tmpF48D.tmp.html#Top" 
+      xmlns="">Back to Top</A><A name=Entity_and_Attribute_Information xmlns="">
+      <HR>
+      </A>
+      <DL xmlns="">
+        <DT><I>Entity and Attribute Information:</I> 
+        <DD>
+        <DL>
+          <DT><I>Detailed Description:</I> 
+          <DD>
+          <DL>
+            <DT><I>Entity Type:</I> 
+            <DD>
+            <DL>
+              <DT><I>Entity Type Label: </I>SAB_BenthicHabitats_1mingrid 
+              <DT><I>Entity Type Definition: </I>
+              <DD>
+              <DT><I>Entity Type Definition Source:</I> 
+              <DD></DD></DL>
+            <DT><I>Attribute:</I> 
+            <DD>
+            <DL>
+              <DT><I>Attribute Label: </I>FID 
+              <DIV></DIV>
+              <DT><I>Attribute Definition:</I> <PRE id=original>Internal feature number.</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV>
+              <DIV></DIV>
+              <DT><I>Attribute Definition Source:</I> <PRE id=original>ESRI</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV>
+              <DT><I>Attribute Domain Values:</I> 
+              <DD>
+              <DL>
+                <DT><I>Unrepresentable Domain:</I> 
+                <DD>Sequential unique whole numbers that are automatically 
+                generated. </DD></DL>
+              <DT><I>Beginning Date of Attribute Values: </I></DT></DL>
+            <DT><I>Attribute:</I> 
+            <DD>
+            <DL>
+              <DT><I>Attribute Label: </I>Shape 
+              <DIV></DIV>
+              <DT><I>Attribute Definition:</I> <PRE id=original>Feature geometry.</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV>
+              <DIV></DIV>
+              <DT><I>Attribute Definition Source:</I> <PRE id=original>ESRI</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV>
+              <DT><I>Attribute Domain Values:</I> 
+              <DD>
+              <DL>
+                <DT><I>Unrepresentable Domain:</I> 
+                <DD>Feature type </DD></DL>
+              <DT><I>Beginning Date of Attribute Values: </I></DT></DL>
+            <DT><I>Attribute:</I> 
+            <DD>
+            <DL>
+              <DT><I>Attribute Label: </I>Name 
+              <DIV></DIV>
+              <DT><I>Attribute Definition:</I> <PRE id=original>data type within 1 x 1 minute grid area</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV>
+              <DIV></DIV>
+              <DT><I>Attribute Definition Source:</I> <PRE id=original>conglomerate of data records in specific 1 x 1 minute location ( see abstract for brief methodology description)</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV>
+              <DT><I>Attribute Domain Values:</I> 
+              <DD>
+              <DL>
+                <DT><I>Enumerated Domain:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Enumerated Domain Value: </I>Hardbottom(s) 
+                  <DIV></DIV>
+                  <DT><I>Enumerated Domain Value Definition:</I> <PRE id=original>cells that have one or more occurrence of HB</PRE>
+                  <SCRIPT>fix(original)</SCRIPT>
+
+                  <DIV></DIV>
+                  <DIV></DIV>
+                  <DT><I>Enumerated Domain Value Definition Source:</I> <PRE id=original></PRE>
+                  <SCRIPT>fix(original)</SCRIPT>
+
+                  <DIV></DIV></DT></DL>
+                <DT><I>Enumerated Domain:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Enumerated Domain Value: </I>Potential hardbottom 
+                  <DIV></DIV>
+                  <DT><I>Enumerated Domain Value Definition:</I> <PRE id=original>cells that do not have a HB occurrence but have one or more PH occurrence </PRE>
+                  <SCRIPT>fix(original)</SCRIPT>
+
+                  <DIV></DIV>
+                  <DIV></DIV>
+                  <DT><I>Enumerated Domain Value Definition Source:</I> <PRE id=original></PRE>
+                  <SCRIPT>fix(original)</SCRIPT>
+
+                  <DIV></DIV></DT></DL>
+                <DT><I>Enumerated Domain:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Enumerated Domain Value: </I>Surveys with no 
+                  identification of hardbottom 
+                  <DIV></DIV>
+                  <DT><I>Enumerated Domain Value Definition:</I> <PRE id=original>cells that do not have any HB or PH occurrences but have one or more NH occurrence</PRE>
+                  <SCRIPT>fix(original)</SCRIPT>
+
+                  <DIV></DIV>
+                  <DIV></DIV>
+                  <DT><I>Enumerated Domain Value Definition Source:</I> <PRE id=original></PRE>
+                  <SCRIPT>fix(original)</SCRIPT>
+
+                  <DIV></DIV></DT></DL></DD></DL>
+              <DT><I>Beginning Date of Attribute Values: </I></DT></DL></DD></DL>
+          <DT><I>Overview Description:</I> 
+          <DD>
+          <DL></DL></DD></DL></DD></DL><A 
+      href="file:///C:/Users/njordan/AppData/Local/Temp/tmpF48D.tmp.html#Top" 
+      xmlns="">Back to Top</A><A name=IDAATPWY xmlns="">
+      <HR>
+      </A>
+      <DL xmlns="">
+        <DT><I>Distribution Information:</I> 
+        <DD>
+        <DL>
+          <DT><I>Distributor:</I> 
+          <DD>
+          <DL>
+            <DT><I>Contact Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Contact Person Primary:</I> 
+              <DD>
+              <DL>
+                <DT><I>Contact Person: </I>Robert Newton 
+                <DT><I>Contact Organization: </I>The Nature Conservancy </DT></DL>
+              <DT><I>Contact Position: </I>Marine GIS Manager 
+              <DT><I>Contact Address:</I> 
+              <DD>
+              <DL>
+                <DT><I>Address Type: </I>mailing and physical address 
+                <DIV></DIV>
+                <DT><I>Address:</I> <PRE id=original>1417 Stuart Engals Blvd</PRE>
+                <SCRIPT>fix(original)</SCRIPT>
+
+                <DIV></DIV>
+                <DT><I>City: </I>Mt Pleasant 
+                <DT><I>State or Province: </I>SC 
+                <DT><I>Postal Code: </I>29464 
+                <DT><I>Country: </I>USA </DT></DL>
+              <DT><I>Contact Voice Telephone: </I>(843) 937-8807 ext. 36 
+              <DT><I>Contact Electronic Mail Address: </I>rnewton@tnc.org 
+            </DT></DL></DD></DL>
+          <DT><I>Resource Description: </I>Regional portable accessible dataset 
+          <DIV></DIV>
+          <DT><I>Distribution Liability:</I> <PRE id=original>Neither The Nature Conservancy nor any of the ecoregional planning team participants makes any warranty, expressed or implied as to the use or appropriateness of use of the enclosed data, nor are there warranties of merchantability or fitness for a particular purpose or use. No representation is made as to the currency, accuracy or completeness of the information in this dataset or of the data sources on which it is based.  Neither The Nature Conservancy nor  any of the ecoregional planning team participants shall be liable for any lost profits or consequential damages, or claims against the user by third parties. 
+</PRE>
+          <SCRIPT>fix(original)</SCRIPT>
+
+          <DIV></DIV>
+          <DIV></DIV>
+          <DT><I>Custom Order Process:</I> <PRE id=original></PRE>
+          <SCRIPT>fix(original)</SCRIPT>
+
+          <DIV></DIV>
+          <DT><I>Technical Prerequisites:</I> 
+          <DD>
+          <DT><I>Available Time Period:</I> 
+          <DD>
+          <DL>
+            <DT><I>Time Period Information:</I> 
+            <DD>
+            <DL></DL></DD></DL></DD></DL></DD></DL><A 
+      href="file:///C:/Users/njordan/AppData/Local/Temp/tmpF48D.tmp.html#Top" 
+      xmlns="">Back to Top</A><A name=Metadata_Reference_Information xmlns="">
+      <HR>
+      </A>
+      <DL xmlns="">
+        <DT><I>Metadata Reference Information:</I> 
+        <DD>
+        <DL>
+          <DT><I>Metadata Date: </I>20130425 
+          <DT><I>Metadata Review Date: </I>
+          <DT><I>Metadata Future Review Date: </I>
+          <DT><I>Metadata Contact:</I> 
+          <DD>
+          <DL>
+            <DT><I>Contact Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Contact Person Primary:</I> 
+              <DD>
+              <DL>
+                <DT><I>Contact Person: </I>Robert Newton 
+                <DT><I>Contact Organization: </I>The Nature Conservancy - 
+                Southeast Region </DT></DL>
+              <DT><I>Contact Position: </I>Marine GIS Manager 
+              <DT><I>Contact Address:</I> 
+              <DD>
+              <DL>
+                <DT><I>Address Type: </I>mailing and physical address 
+                <DIV></DIV>
+                <DT><I>Address:</I> <PRE id=original>1417 Stuart Engals Blvd</PRE>
+                <SCRIPT>fix(original)</SCRIPT>
+
+                <DIV></DIV>
+                <DT><I>City: </I>Mt Pleasant 
+                <DT><I>State or Province: </I>SC 
+                <DT><I>Postal Code: </I>29464 
+                <DT><I>Country: </I>USA </DT></DL>
+              <DT><I>Contact Voice Telephone: </I>(843) 937-8807 ext 36 
+              <DT><I>Contact Electronic Mail Address: </I>rnewton@tnc.org 
+            </DT></DL></DD></DL>
+          <DT><I>Metadata Standard Name: </I>FGDC Content Standards for Digital 
+          Geospatial Metadata 
+          <DT><I>Metadata Standard Version: </I>
+          <DT><I>Metadata Time Convention: </I>
+          <DT><I>Metadata Access Constraints: </I>
+          <DT><I>Metadata Use Constraints:</I> 
+          <DD>
+          <DT><I>Metadata Security Information:</I> 
+          <DD>
+          <DL>
+            <DT><I>Metadata Security Classification System: </I>
+            <DT><I>Metadata Security Classification: </I>Unclassified 
+            <DT><I>Metadata Security Handling Description:</I> 
+            <DD></DD></DL>
+          <DT><I>Metadata Extensions:</I> 
+          <DD>
+          <DL></DL></DD></DL></DD></DL><A 
+      href="file:///C:/Users/njordan/AppData/Local/Temp/tmpF48D.tmp.html#Top" 
+      xmlns="">Back to Top</A></TD></TR></TBODY></TABLE></BODY></HTML>

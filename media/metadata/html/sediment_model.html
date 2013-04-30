@@ -1,0 +1,955 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml"><HEAD>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<SCRIPT type=text/javascript><!--
+      function fix(e) {
+        var par = e.parentNode;
+        e.id = "";
+        e.style.marginLeft = "0.42in";
+        var pos = e.innerText.indexOf("\n");
+        if (pos > 0) {
+          while (pos > 0) {
+            var t = e.childNodes(0);
+            var n = document.createElement("pre");
+            var s = t.splitText(pos);
+            e.insertAdjacentElement("afterEnd", n);
+            n.appendChild(s);
+            n.style.marginLeft = "0.42in";
+            e = n;
+            pos = e.innerText.indexOf("\n");
+          }
+          var count = (par.children.length);
+          for (var i = 0; i < count; i++) {
+            e = par.children(i);
+            if (e.tagName == "pre") {
+              pos = e.innerText.indexOf(">");
+              if (pos != 0) {
+                n = document.createElement("dd");
+                e.insertAdjacentElement("afterEnd", n);
+                n.innerText = e.innerText;
+                e.removeNode(true);
+              }
+            }
+          }
+          if (par.children.tags("pre").length > 0) {
+            count = (par.children.length);
+            for (i = 0; i < count; i++) {
+              e = par.children(i);
+              if (e.tagName == "pre") {
+                e.id = "";
+                if (i < (count-1)) {
+                  var e2 = par.children(i + 1);
+                  if (e2.tagName == "pre") {
+                    e.insertAdjacentText("beforeEnd", e2.innerText+"\n");
+                    e2.removeNode(true);
+                    count = count-1;
+                    i = i-1;
+                  }
+                }
+              }
+            }
+          }
+        }
+        else {
+          n = document.createElement("dd");
+          par.appendChild(n);
+          n.innerText = e.innerText;
+          e.removeNode(true);
+        }
+      }
+    -->
+</SCRIPT>
+
+<STYLE>BODY {
+	FONT-FAMILY: arial; COLOR: #000000; FONT-SIZE: 11pt
+}
+LI {
+	FONT-FAMILY: arial; COLOR: #000000; FONT-SIZE: 11pt
+}
+P {
+	FONT-FAMILY: arial; COLOR: #000000; FONT-SIZE: 11pt
+}
+DT {
+	FONT-FAMILY: arial; COLOR: #000000; FONT-SIZE: 11pt
+}
+DD {
+	FONT-FAMILY: arial; COLOR: #000000; FONT-SIZE: 11pt
+}
+DD {
+	FONT-FAMILY: arial; COLOR: #000000; FONT-SIZE: 11pt
+}
+TABLE.head {
+	BORDER-BOTTOM: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; BORDER-RIGHT: #cccccc 1px solid
+}
+TH {
+	TEXT-ALIGN: left; PADDING-BOTTOM: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 10px; FONT-FAMILY: arial; COLOR: #000000; FONT-SIZE: 11pt; PADDING-TOP: 5px
+}
+TD {
+	PADDING-BOTTOM: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 10px; FONT-FAMILY: arial; COLOR: #000000; FONT-SIZE: 10pt; PADDING-TOP: 5px
+}
+H1 {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+H2 {
+	TEXT-DECORATION: none
+}
+.head_row {
+	BACKGROUND-COLOR: #f6f6f6
+}
+TABLE.head {
+	BORDER-BOTTOM: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; BORDER-RIGHT: #cccccc 1px solid
+}
+TD.head {
+	BORDER-BOTTOM: #e4e4e4 0px solid; BORDER-LEFT: #e4e4e4 0px solid; PADDING-BOTTOM: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 10px; FONT-FAMILY: arial; COLOR: #000000; FONT-SIZE: 11pt; BORDER-TOP: #e4e4e4 0px solid; BORDER-RIGHT: #e4e4e4 1px solid; PADDING-TOP: 5px
+}
+TH.head {
+	BORDER-BOTTOM: #e4e4e4 1px solid; TEXT-ALIGN: left; BORDER-LEFT: #e4e4e4 0px solid; PADDING-BOTTOM: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 10px; FONT-FAMILY: arial; COLOR: #000000; FONT-SIZE: 11pt; BORDER-TOP: #e4e4e4 0px solid; BORDER-RIGHT: #e4e4e4 1px solid; PADDING-TOP: 5px
+}
+.head_row {
+	BACKGROUND-COLOR: #f6f6f6
+}
+.even_row {
+	BACKGROUND-COLOR: #f8f8f8
+}
+</STYLE>
+
+<META name=GENERATOR content="MSHTML 9.00.8112.16470"></HEAD>
+<BODY oncontextmenu="return true">
+<TABLE>
+  <THEAD>
+  <TR>
+    <TD>
+      <TABLE border=0 cellSpacing=0 cellPadding=0 width="100%">
+        <TBODY>
+        <TR>
+          <DT></DT>
+          <TD>
+            <P></P></TD></TR></TBODY></TABLE>
+      <HR>
+    </TD></TR></THEAD>
+  <TBODY>
+  <TR>
+    <TD><A name=Top>
+      <H1>Draft Shallow Sediment Model</H1>
+      <H2><FONT color=green>Metadata:</FONT> </H2>
+      <UL>
+        <LI><A 
+        href="file:///C:/Users/njordan/AppData/Local/Temp/tmp22BF.tmp.html#Identification_Information">Identification 
+        Information</A> 
+        <LI><A 
+        href="file:///C:/Users/njordan/AppData/Local/Temp/tmp22BF.tmp.html#Data_Quality_Information">Data 
+        Quality Information</A> 
+        <LI><A 
+        href="file:///C:/Users/njordan/AppData/Local/Temp/tmp22BF.tmp.html#Spatial_Data_Organization_Information">Spatial 
+        Data Organization Information</A> 
+        <LI><A 
+        href="file:///C:/Users/njordan/AppData/Local/Temp/tmp22BF.tmp.html#Spatial_Reference_Information">Spatial 
+        Reference Information</A> 
+        <LI><A 
+        href="file:///C:/Users/njordan/AppData/Local/Temp/tmp22BF.tmp.html#Entity_and_Attribute_Information">Entity 
+        and Attribute Information</A> 
+        <LI><A 
+        href="file:///C:/Users/njordan/AppData/Local/Temp/tmp22BF.tmp.html#IDAPWQXO">Distribution 
+        Information</A> 
+        <LI><A 
+        href="file:///C:/Users/njordan/AppData/Local/Temp/tmp22BF.tmp.html#Metadata_Reference_Information">Metadata 
+        Reference Information</A> </LI></UL><A name=Identification_Information 
+      xmlns="">
+      <HR>
+      </A>
+      <DL xmlns="">
+        <DT><I>Identification Information:</I> 
+        <DD>
+        <DL>
+          <DT><I>Citation:</I> 
+          <DD>
+          <DL>
+            <DT><I>Citation Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Originator: </I>Eastern Division Conservation Science 
+              office of The Nature Conservancy 
+              <DT><I>Publication Date: </I>
+              <DT><I>Title:</I> 
+              <DD>Draft Shallow Sediment Model 
+              <DT><I>Edition: </I>Draft 
+              <DT><I>Geospatial Data Presentation Form: </I>raster digital data 
+              <DT><I>Series Information:</I> 
+              <DD>
+              <DL></DL>
+              <DT><I>Publication Information:</I> 
+              <DD>
+              <DL></DL>
+              <DT><I>Online Linkage: </I><A 
+              href="file://sro-tnc/SRO2/GIS/data/ecoregional/carolinian_marine/iteration2/sediment/March2013Kriging/sed" 
+              target=viewer>file://sro-tnc/SRO2/GIS/data/ecoregional/carolinian_marine/iteration2/sediment/March2013Kriging/sed</A> 
+
+              <DT><I>Larger Work Citation:</I> 
+              <DD>
+              <DL>
+                <DT><I>Citation Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Publication Date: </I>
+                  <DT><I>Title:</I> 
+                  <DD>
+                  <DT><I>Series Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Publication Information:</I> 
+                  <DD>
+                  <DL></DL></DD></DL></DD></DL></DD></DL></DD></DL>
+          <DT><I>Description:</I> 
+          <DD>
+          <DL>
+            <DIV>
+            <DT><I>Abstract:</I> <PRE id=original>Draft - Interpolated grid of sediment size for the South Atlantic Bight Marine Assessment near shore (to 200 meter depth) area.  The interpolation was done using point data from U.S. Seabed and other sources (see Supplemental Information).</PRE>
+            <SCRIPT>fix(original)</SCRIPT>
+            </DT></DIV>
+            <DIV>
+            <DT><I>Purpose:</I> <PRE id=original>Provide a model of the sediment size throughout the South Atlantic Bight shallow (to 200 meter depth) sea floor.</PRE>
+            <SCRIPT>fix(original)</SCRIPT>
+            </DT></DIV>
+            <DIV>
+            <DT><I>Supplemental Information:</I> <PRE id=original>U.S. Seabed data points for the Atlantic and Gulf areas both Parsed and Extracted data types.</PRE>
+            <SCRIPT>fix(original)</SCRIPT>
+            </DT></DIV></DL>
+          <DT><I>Time Period of Content:</I> 
+          <DD>
+          <DL>
+            <DT><I>Time Period Information:</I> 
+            <DD>
+            <DL></DL>
+            <DIV></DIV>
+            <DT><I>Currentness Reference:</I> <PRE id=original>publication date</PRE>
+            <SCRIPT>fix(original)</SCRIPT>
+
+            <DIV></DIV></DT></DL>
+          <DT><I>Status:</I> 
+          <DD>
+          <DL>
+            <DT><I>Progress: </I>In work 
+            <DT><I>Maintenance and Update Frequency: </I>As needed </DT></DL>
+          <DT><I>Spatial Domain:</I> 
+          <DD>
+          <DL>
+            <DT><I>Bounding Coordinates:</I> 
+            <DD>
+            <DL>
+              <DT><I>West Bounding Coordinate: </I>-84.115108 
+              <DT><I>East Bounding Coordinate: </I>-73.831973 
+              <DT><I>North Bounding Coordinate: </I>38.022333 
+              <DT><I>South Bounding Coordinate: </I>23.018755 </DT></DL>
+            <DT><I>Data Set G-Polygon:</I> 
+            <DD>
+            <DL></DL></DD></DL>
+          <DT><I>Keywords:</I> 
+          <DD>
+          <DL>
+            <DT><I>Place:</I> 
+            <DD>
+            <DL>
+              <DT><I>Place Keyword Thesaurus: </I>None 
+              <DT><I>Place Keyword: </I>South Atlantic Bight 
+              <DT><I>Place Keyword: </I>South Atlantic 
+              <DT><I>Place Keyword: </I>Sea Floor 
+              <DT><I>Place Keyword: </I>Sediment 
+              <DT><I>Place Keyword: </I>Phi </DT></DL></DD></DL>
+          <DT><I>Access Constraints: </I>Draft 
+          <DIV></DIV>
+          <DT><I>Use Constraints:</I> <PRE id=original>The Nature Conservancy (TNC) compiled this data set from publicly available data sources and this data is freely distributable without permission from this TNC office. This data set must be cited on all electronic and hard copy products using the language of the Data Set Credit. The Nature Conservancy shall not be held liable for improper or incorrect use of the data described and/or contained herein. Any sale, distribution, loan, or offering for use of these digital data, in whole or in part, is prohibited without the approval of the Nature Conservancy. The use of these data to produce other GIS products and services with the intent to sell for a profit is prohibited without the written consent of the Nature Conservancy. All parties receiving these data must be informed of these restrictions. The Nature Conservancy shall be acknowledged as data contributors to any reports or other products derived from these data.</PRE>
+          <SCRIPT>fix(original)</SCRIPT>
+
+          <DIV></DIV>
+          <DT><I>Point of Contact:</I> 
+          <DD>
+          <DL>
+            <DT><I>Contact Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Contact Organization Primary:</I> 
+              <DD>
+              <DL>
+                <DT><I>Contact Organization: </I>Eastern Division Conservation 
+                Science office of The Nature Conservancy 
+                <DT><I>Contact Person: </I>John Prince </DT></DL>
+              <DT><I>Contact Voice Telephone: </I>919.794.6545 
+              <DT><I>Contact Electronic Mail Address: </I>jprince@tnc.org 
+            </DT></DL></DD></DL>
+          <DT><I>Browse Graphic:</I> 
+          <DD>
+          <DL></DL>
+          <DIV></DIV>
+          <DT><I>Data Set Credit:</I> <PRE id=original>The Nature Conservancy reserves all rights in data provided. All data are provided as is. This is not a survey quality dataset. The Nature Conservancy makes no warranty as to the currency, completeness, accuracy or utility of any specific data. This disclaimer applies both to individual use of the data and aggregate use with other data. It is strongly recommended that careful attention be paid to the contents of the metadata file associated with these data.
+</PRE>
+          <SCRIPT>fix(original)</SCRIPT>
+
+          <DIV></DIV>
+          <DT><I>Security Information:</I> 
+          <DD>
+          <DL>
+            <DT><I>Security Classification System: </I>
+            <DT><I>Security Classification: </I>
+            <DT><I>Security Handling Description: </I></DT></DL>
+          <DT><I>Native Data Set Environment:</I> 
+          <DD>Microsoft Windows XP Version 5.1 (Build 2600) Service Pack 3; ESRI 
+          ArcCatalog 9.3.1.3500 
+          <DT><I>Cross Reference:</I> 
+          <DD>
+          <DL></DL></DD></DL></DD></DL><A 
+      href="file:///C:/Users/njordan/AppData/Local/Temp/tmp22BF.tmp.html#Top" 
+      xmlns="">Back to Top</A><A name=Data_Quality_Information xmlns="">
+      <HR>
+      </A>
+      <DL xmlns="">
+        <DT><I>Data Quality Information:</I> 
+        <DD>
+        <DL>
+          <DT><I>Attribute Accuracy:</I> 
+          <DD>
+          <DL>
+            <DIV>
+            <DT><I>Attribute Accuracy Report:</I> <PRE id=original></PRE>
+            <SCRIPT>fix(original)</SCRIPT>
+            </DT></DIV>
+            <DT><I>Quantitative Attribute Accuracy Assessment:</I> 
+            <DD>
+            <DL>
+              <DT><I>Attribute Accuracy Value: </I>millimeters 
+              <DIV></DIV>
+              <DT><I>Attribute Accuracy Explanation:</I> <PRE id=original>Sediment grain size is in millimeters</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV></DT></DL></DD></DL>
+          <DIV></DIV>
+          <DT><I>Logical Consistency Report:</I> <PRE id=original></PRE>
+          <SCRIPT>fix(original)</SCRIPT>
+
+          <DIV></DIV>
+          <DIV></DIV>
+          <DT><I>Completeness Report:</I> <PRE id=original></PRE>
+          <SCRIPT>fix(original)</SCRIPT>
+
+          <DIV></DIV>
+          <DT><I>Positional Accuracy:</I> 
+          <DD>
+          <DL>
+            <DT><I>Horizontal Positional Accuracy:</I> 
+            <DD>
+            <DL>
+              <DIV>
+              <DT><I>Horizontal Positional Accuracy Report:</I> <PRE id=original></PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+              </DT></DIV></DL>
+            <DT><I>Vertical Positional Accuracy:</I> 
+            <DD>
+            <DL>
+              <DIV>
+              <DT><I>Vertical Positional Accuracy Report:</I> <PRE id=original></PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+              </DT></DIV></DL></DD></DL>
+          <DT><I>Lineage:</I> 
+          <DD>
+          <DL>
+            <DT><I>Source Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Source Citation:</I> 
+              <DD>
+              <DL>
+                <DT><I>Citation Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Publication Date: </I>
+                  <DT><I>Title:</I> 
+                  <DD>
+                  <DT><I>Series Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Publication Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Larger Work Citation:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Citation Information:</I> 
+                    <DD>
+                    <DL>
+                      <DT><I>Publication Date: </I>
+                      <DT><I>Title:</I> 
+                      <DD>
+                      <DT><I>Series Information:</I> 
+                      <DD>
+                      <DL></DL>
+                      <DT><I>Publication Information:</I> 
+                      <DD>
+                      <DL></DL></DD></DL></DD></DL></DD></DL></DD></DL>
+              <DT><I>Source Scale Denominator: </I>
+              <DT><I>Type of Source Media: </I>
+              <DT><I>Source Time Period of Content:</I> 
+              <DD>
+              <DL>
+                <DT><I>Time Period Information:</I> 
+                <DD>
+                <DL></DL>
+                <DT><I>Source Currentness Reference:</I> 
+                <DD></DD></DL>
+              <DT><I>Source Citation Abbreviation:</I> 
+              <DD>usSeabed 
+              <DIV></DIV>
+              <DT><I>Source Contribution:</I> <PRE id=original>U.S. Seabed Coastal &amp; Marine Geology Program
+
+Originator: U.S. Geological Survey 
+Originator: University of Colorado 
+Publication Date: 2005 
+Title: 
+ATL_EXT: usSEABED EXTracted data for the entire U.S. Atlantic Coast 
+Edition: 1.0 
+Geospatial Data Presentation Form: vector digital data 
+Online Linkage: http://pubs.usgs.gov/ds/2005/118/data/atl_ext.zip 
+Online Linkage: http://pubs.usgs.gov/ds/2005/118/htmldocs/data_cata.htm 
+Larger Work Citation: 
+Citation Information: 
+Originator: J.M. Reid 
+Originator: J.A. Reid 
+Originator: C.J. Jenkins 
+Originator: M.E. Hastings 
+Originator: S.J. Williams 
+Originator: L.J. Poppe 
+Publication Date: 2005 
+Title: 
+usSEABED: Atlantic Coast Offshore Surficial Sediment Data Release 
+Series Information: 
+Series Name: Data Series 
+Issue Identification: 118 
+Publication Information: 
+Publication Place: Woods Hole Science Center, Woods Hole, MA 
+Publisher: U.S. Geological Survey, Coastal and Marine Geology Program 
+Online Linkage: http://pubs.usgs.gov/ds/2005/118/ 
+
+Originator: U.S. Geological Survey 
+Originator: University of Colorado 
+Publication Date: 2005 
+Title: 
+ATL_PRS: usSEABED PaRSed data for the entire U.S. Atlantic Coast 
+Edition: 1.0 
+Geospatial Data Presentation Form: vector digital data 
+Online Linkage: http://pubs.usgs.gov/ds/2005/118/data/atl_prs.zip 
+Online Linkage: http://pubs.usgs.gov/ds/2005/118/htmldocs/data_cata.htm 
+Larger Work Citation: 
+Citation Information: 
+Originator: J.M. Reid 
+Originator: J.A. Reid 
+Originator: C.J. Jenkins 
+Originator: M.E. Hastings 
+Originator: S.J. Williams 
+Originator: L.J. Poppe 
+Publication Date: 2005 
+Title: 
+usSEABED: Atlantic Coast Offshore Surficial Sediment Data Release 
+Edition: 1.0 
+Series Information: 
+Series Name: Data Series 
+Issue Identification: 118 
+Publication Information: 
+Publication Place: Woods Hole Science Center, Woods Hole, MA 
+Publisher: U.S. Geological Survey, Coastal and Marine Geology Program 
+Online Linkage: http://pubs.usgs.gov/ds/2005/118/ 
+
+Citation Information: 
+Title: usSEABED EXTracted data for the Gulf of Mexico and Caribbean
+gmx_ext 
+Online Linkage: file: http://pubs.usgs.gov/ds/2006/146/
+
+
+Citation Information: 
+Title: usSEABED EXTracted data for the Gulf of Mexico and Caribbean
+gmx_prs 
+Online Linkage: file: http://pubs.usgs.gov/ds/2006/146/</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV></DT></DL>
+            <DT><I>Source Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Source Citation:</I> 
+              <DD>
+              <DL>
+                <DT><I>Citation Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Publication Date: </I>
+                  <DT><I>Title:</I> 
+                  <DD>
+                  <DT><I>Series Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Publication Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Larger Work Citation:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Citation Information:</I> 
+                    <DD>
+                    <DL>
+                      <DT><I>Publication Date: </I>
+                      <DT><I>Title:</I> 
+                      <DD>
+                      <DT><I>Series Information:</I> 
+                      <DD>
+                      <DL></DL>
+                      <DT><I>Publication Information:</I> 
+                      <DD>
+                      <DL></DL></DD></DL></DD></DL></DD></DL></DD></DL>
+              <DT><I>Source Scale Denominator: </I>
+              <DT><I>Type of Source Media: </I>
+              <DT><I>Source Time Period of Content:</I> 
+              <DD>
+              <DL>
+                <DT><I>Time Period Information:</I> 
+                <DD>
+                <DL></DL>
+                <DT><I>Source Currentness Reference:</I> 
+                <DD></DD></DL>
+              <DT><I>Source Citation Abbreviation:</I> 
+              <DD>FL FWC 
+              <DIV></DIV>
+              <DT><I>Source Contribution:</I> <PRE id=original>Florida
+Title: Florida Fish and Wildlife Conservation Commission (FWC) Fish and Wildlife Research Institute‘s (FWRI) Fisheries-Independent Monitoring (FIM) program data. 2009</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV></DT></DL>
+            <DT><I>Source Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Source Citation:</I> 
+              <DD>
+              <DL>
+                <DT><I>Citation Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Publication Date: </I>
+                  <DT><I>Title:</I> 
+                  <DD>
+                  <DT><I>Series Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Publication Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Larger Work Citation:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Citation Information:</I> 
+                    <DD>
+                    <DL>
+                      <DT><I>Publication Date: </I>
+                      <DT><I>Title:</I> 
+                      <DD>
+                      <DT><I>Series Information:</I> 
+                      <DD>
+                      <DL></DL>
+                      <DT><I>Publication Information:</I> 
+                      <DD>
+                      <DL></DL></DD></DL></DD></DL></DD></DL></DD></DL>
+              <DT><I>Source Scale Denominator: </I>
+              <DT><I>Type of Source Media: </I>
+              <DT><I>Source Time Period of Content:</I> 
+              <DD>
+              <DL>
+                <DT><I>Time Period Information:</I> 
+                <DD>
+                <DL></DL>
+                <DT><I>Source Currentness Reference:</I> 
+                <DD></DD></DL>
+              <DT><I>Source Citation Abbreviation:</I> 
+              <DD>NC Carteret County 
+              <DIV></DIV>
+              <DT><I>Source Contribution:</I> <PRE id=original>Title: Carteret Sand Search Cores - 2011
+Online Linkage: file: http://maps2.roktech.net/carteret_gomaps/index.html#</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV></DT></DL>
+            <DT><I>Source Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Source Citation:</I> 
+              <DD>
+              <DL>
+                <DT><I>Citation Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Publication Date: </I>
+                  <DT><I>Title:</I> 
+                  <DD>
+                  <DT><I>Series Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Publication Information:</I> 
+                  <DD>
+                  <DL></DL>
+                  <DT><I>Larger Work Citation:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Citation Information:</I> 
+                    <DD>
+                    <DL>
+                      <DT><I>Publication Date: </I>
+                      <DT><I>Title:</I> 
+                      <DD>
+                      <DT><I>Series Information:</I> 
+                      <DD>
+                      <DL></DL>
+                      <DT><I>Publication Information:</I> 
+                      <DD>
+                      <DL></DL></DD></DL></DD></DL></DD></DL></DD></DL>
+              <DT><I>Source Scale Denominator: </I>
+              <DT><I>Type of Source Media: </I>
+              <DT><I>Source Time Period of Content:</I> 
+              <DD>
+              <DL>
+                <DT><I>Time Period Information:</I> 
+                <DD>
+                <DL></DL>
+                <DT><I>Source Currentness Reference:</I> 
+                <DD></DD></DL>
+              <DT><I>Source Citation Abbreviation:</I> 
+              <DD>SC DNR 
+              <DIV></DIV>
+              <DT><I>Source Contribution:</I> <PRE id=original>Originator: South Carolina Department of Natural Resources 
+Publication Date: October 2011 
+Title: 
+OceanSedimentPtData 
+Geospatial Data Presentation Form: vector digital data 
+Online Linkage: \\Mrdnas\shellmap\Work\Wind\FileDB\GISData\Habitat.gdb</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+
+              <DIV></DIV></DT></DL>
+            <DT><I>Process Step:</I> 
+            <DD>
+            <DL>
+              <DIV>
+              <DT><I>Process Description:</I> <PRE id=original>usSeabed
+Add "Source" field to document the origin of each record.
+Extracted points within 10 Kilometers of the South Atlantic Bight Marine Assessment area from the Atlantic Extracted and Parsed and the Gulf &amp; Caribbean Extracted and Parsed records.
+Combine all four datasets into one ShapeFile (Atlantic Extracted, Atlantic Parsed, Gulf &amp; Caribbean Extracted, Gulf &amp; Caribbean Parsed).
+Removed hard bottom records (ShepherfCode = Solid and records with no grain size (grainsize = -99).
+Created a LatLong field and populate it with the concatinated values of the Latitude and Longitude values for each point location record.  Summarize on the LatLong field to identify locations that were represented by multiple records.  That identified 6,188 records that had from two up to 49 records representing one location.  For each location that had multiple records, the following rules were used to consistently identify a point from the duplicate records to represent each of the locations, all of the multiple points records for a location were examined to tag the appropriate point to keep in the interpolation set along with the other already unique points.  The rules:
+I.	FIRST priority given to Extracted data  - and if there are multiple Extracted points then a record with the most identical grain size values (mode) is tagged
+II.	If there is no mode in the extracted value records then the lowest Extracted grain size value is tagged
+III.	If there are no Extracted data points for a location then the same selection process is used with the Parsed data; mode of grain size values is tagged
+IV.	If no mode then the lowest Parsed grain size value is tagged
+With the representative point tagged for all the locations that have multiple points I created a new ShapeFile of all the unique data points (Extracted &amp; Parsed), 10,435 points in all.
+Phi size was converted to millimeters for all records.</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+              </DT></DIV>
+              <DT><I>Process Date: </I>
+              <DT><I>Process Contact:</I> 
+              <DD>
+              <DL>
+                <DT><I>Contact Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Contact Person Primary:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Contact Person: </I>John Prince 
+                    <DT><I>Contact Organization: </I>Eastern Division 
+                    Conservation Science office of The Nature Conservancy 
+                  </DT></DL></DD></DL></DD></DL></DD></DL>
+            <DT><I>Process Step:</I> 
+            <DD>
+            <DL>
+              <DIV>
+              <DT><I>Process Description:</I> <PRE id=original>Florida Fish and Wildlife Conservation Commission
+Data was provided as an Excel spreadsheet which was added to ArcGIS as an Event Theme then saved to a ShapeFile
+Remove records with Latitude and/or Longitude value of zero.
+Add "Source" field to document the origin of each record.
+Hard bottom records were removed as well as all other records where the BottomType attriute was other than S (sand) or M (mud).  The sand records were assigned a value of 0.239251 millimeters which is the average sand value of usSeabed sand points within 1 Kilometer of these points.  The mud records were assigned 0.0025 millimeters.  Mud, a mixture of clay and silt was given this value as the break point between the two classes in the wentworth scale.
+Created a LatLong field and populate it with the concatinated values of the Latitude and Longitude values for each point location record.  Summarize on the LatLong field to identify locations that were represented by multiple records.  All locations with multiple records that had conflicting Bottom Type values (sand and mud) were removed and those that agreed were reduced to one record/location and used along with the other unique records for a unique location.  These locations were also checked against the usSeabed data to verify there were no duplicate points between the two sets.</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+              </DT></DIV>
+              <DT><I>Process Date: </I>
+              <DT><I>Process Contact:</I> 
+              <DD>
+              <DL>
+                <DT><I>Contact Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Contact Person Primary:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Contact Person: </I>John Prince 
+              </DT></DL></DD></DL></DD></DL></DD></DL>
+            <DT><I>Process Step:</I> 
+            <DD>
+            <DL>
+              <DIV>
+              <DT><I>Process Description:</I> <PRE id=original>Carteret Sand Search Cores - 2011
+Data was provided as an Excel spreadsheet which was added to ArcGIS as an Event Theme then saved to a ShapeFile
+Add "Source" field to document the origin of each record.
+Visual inspection confirmed there were no duplicate points with the usSeabed data.
+No sediment size field was in the attrbutes but a geology description field provided some indication of the nature of the bottom environment for most records.  Where there was no "geology" description that gave an indication of the nature of the seabed those records were removed.  The records with some descriptive information of the seabed were assigned a sediment size based on the average usSeabed value for that Shepardcode type of sediment (eg. sand or silt).</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+              </DT></DIV>
+              <DT><I>Process Date: </I>
+              <DT><I>Process Contact:</I> 
+              <DD>
+              <DL>
+                <DT><I>Contact Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Contact Person Primary:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Contact Person: </I>John Prince 
+              </DT></DL></DD></DL></DD></DL></DD></DL>
+            <DT><I>Process Step:</I> 
+            <DD>
+            <DL>
+              <DIV>
+              <DT><I>Process Description:</I> <PRE id=original>South Carolina Department of Natural Resources 
+Add "Source" field to document the origin of each record.
+Visual inspection confirmed there were no duplicate points with the usSeabed data.
+Phi size was converted to millimeters for all records.</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+              </DT></DIV>
+              <DT><I>Process Date: </I>
+              <DT><I>Process Contact:</I> 
+              <DD>
+              <DL>
+                <DT><I>Contact Information:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Contact Person Primary:</I> 
+                  <DD>
+                  <DL>
+                    <DT><I>Contact Person: </I>John Prince 
+              </DT></DL></DD></DL></DD></DL></DD></DL>
+            <DT><I>Process Step:</I> 
+            <DD>
+            <DL>
+              <DIV>
+              <DT><I>Process Description:</I> <PRE id=original>INTERPOLATION/KRIGING
+Several Kriging test runs were made with different parameters.  
+Inputs to the interpolation;
+Number of points from each source included in the sediment interpolation: 30,409 Total.
+usSEABED 10,435
+Florida Fish and Wildlife Conservation Commission 15,994
+Carteret Sand Search Cores  159
+South Carolina Department of Natural Resources 3,821
+Point ShapeFiles for the four sets; usSEABED, Florida Fish and Wildlife Conservation Commission, Carteret Sand Search Cores, and South Carolina Department of Natural Resources were merged into one set with 30,409 points.
+In ArcGIS version 10.0 Spatial Analyst these points were interpolated using the Kriging method with the following parameters:
+Kriging Method = Ordinary
+Semivariogram model = Spherical
+Output cell size = 90 (meters)
+Search radius = variable
+Number of points = 3
+A mask of the shallow portion (to 200 meters depth) of the South Atlantic Bight Marine Assessment area was used in the processing.  An Output variance of prediction raster was produced.
+</PRE>
+              <SCRIPT>fix(original)</SCRIPT>
+              </DT></DIV>
+              <DT><I>Process Date: </I>
+              <DT><I>Process Contact:</I> 
+              <DD>
+              <DL>
+                <DT><I>Contact Information:</I> 
+                <DD>
+                <DL></DL></DD></DL></DD></DL></DD></DL></DD></DL></DD></DL><A 
+      href="file:///C:/Users/njordan/AppData/Local/Temp/tmp22BF.tmp.html#Top" 
+      xmlns="">Back to Top</A><A name=Spatial_Data_Organization_Information 
+      xmlns="">
+      <HR>
+      </A>
+      <DL xmlns="">
+        <DT><I>Spatial Data Organization Information:</I> 
+        <DD>
+        <DL>
+          <DT><I>Direct Spatial Reference Method: </I>Raster 
+          <DT><I>Raster Object Information:</I> 
+          <DD>
+          <DL>
+            <DT><I>Raster Object Type: </I>Grid Cell 
+            <DT><I>Row Count: </I>17363 
+            <DT><I>Column Count: </I>7976 
+            <DT><I>Vertical Count: </I>1 </DT></DL></DD></DL></DD></DL><A 
+      href="file:///C:/Users/njordan/AppData/Local/Temp/tmp22BF.tmp.html#Top" 
+      xmlns="">Back to Top</A><A name=Spatial_Reference_Information xmlns="">
+      <HR>
+      </A>
+      <DL xmlns="">
+        <DT><I>Spatial Reference Information:</I> 
+        <DD>
+        <DL>
+          <DT><I>Horizontal Coordinate System Definition:</I> 
+          <DD>
+          <DL>
+            <DT><I>Planar:</I> 
+            <DD>
+            <DL>
+              <DT><I>Map Projection:</I> 
+              <DD>
+              <DL>
+                <DT><I>Map Projection Name: </I>Albers Conical Equal Area 
+                <DT><I>Albers Conical Equal Area:</I>Albers Conical Equal Area
+                <DD>
+                <DL>
+                  <DT><I>Longitude of Central Meridian: </I>
+                  <DT><I>Latitude of Projection Origin: </I>
+                  <DT><I>False Easting: </I>
+                  <DT><I>False Northing: </I></DT></DL></DD></DL>
+              <DT><I>Planar Coordinate Information:</I> 
+              <DD>
+              <DL>
+                <DT><I>Planar Coordinate Encoding Method: </I>Row and Column 
+                <DT><I>Coordinate Representation:</I> 
+                <DD>
+                <DL>
+                  <DT><I>Abscissa Resolution: </I>90.000000 
+                  <DT><I>Ordinate Resolution: </I>90.000000 </DT></DL>
+                <DT><I>Planar Distance Units: </I>meters </DT></DL></DD></DL>
+            <DT><I>Geodetic Model:</I> 
+            <DD>
+            <DL>
+              <DT><I>Horizontal Datum Name: </I>North American Datum of 1983 
+              <DT><I>Ellipsoid Name: </I>Geodetic Reference System 80 
+              <DT><I>Semi-major Axis: </I>6378137.000000 
+              <DT><I>Denominator of Flattening Ratio: </I>298.257222 
+            </DT></DL></DD></DL>
+          <DT><I>Vertical Coordinate System Definition:</I> 
+          <DD>
+          <DL>
+            <DT><I>Altitude System Definition:</I> 
+            <DD>
+            <DL>
+              <DT><I>Altitude Datum Name: </I>
+              <DT><I>Altitude Distance Units: </I>
+              <DT><I>Altitude Encoding Method: </I></DT></DL>
+            <DT><I>Depth System Definition:</I> 
+            <DD>
+            <DL>
+              <DT><I>Depth Datum Name: </I>
+              <DT><I>Depth Distance Units: </I>
+              <DT><I>Depth Encoding Method: 
+      </I></DT></DL></DD></DL></DD></DL></DD></DL><A 
+      href="file:///C:/Users/njordan/AppData/Local/Temp/tmp22BF.tmp.html#Top" 
+      xmlns="">Back to Top</A><A name=Entity_and_Attribute_Information xmlns="">
+      <HR>
+      </A>
+      <DL xmlns="">
+        <DT><I>Entity and Attribute Information:</I> 
+        <DD>
+        <DL>
+          <DT><I>Detailed Description:</I> 
+          <DD>
+          <DL></DL>
+          <DT><I>Overview Description:</I> 
+          <DD>
+          <DL></DL></DD></DL></DD></DL><A 
+      href="file:///C:/Users/njordan/AppData/Local/Temp/tmp22BF.tmp.html#Top" 
+      xmlns="">Back to Top</A><A name=IDAPWQXO xmlns="">
+      <HR>
+      </A>
+      <DL xmlns="">
+        <DT><I>Distribution Information:</I> 
+        <DD>
+        <DL>
+          <DT><I>Distributor:</I> 
+          <DD>
+          <DL>
+            <DT><I>Contact Information:</I> 
+            <DD>
+            <DL></DL></DD></DL>
+          <DT><I>Resource Description: </I>Downloadable Data 
+          <DIV></DIV>
+          <DT><I>Distribution Liability:</I> <PRE id=original>Neither The Nature Conservancy nor any of the ecoregional planning team participants makes any warranty, expressed or implied as to the use or appropriateness of use of the enclosed data, nor are there warranties of merchantability or fitness for a particular purpose or use.  No representation is made as to the currency, accuracy or completeness of the information in this dataset or of the data sources on which it is based.  Neither The Nature Conservancy nor any of the ecoregional planning team participants shall be liable for any lost profits or consequential damages, or claims against the user by third parties.</PRE>
+          <SCRIPT>fix(original)</SCRIPT>
+
+          <DIV></DIV>
+          <DT><I>Standard Order Process:</I> 
+          <DD>
+          <DL>
+            <DT><I>Digital Form:</I> 
+            <DD>
+            <DL>
+              <DT><I>Digital Transfer Information:</I> 
+              <DD>
+              <DL>
+                <DT><I>Format Name: </I>
+                <DT><I>Transfer Size: </I>535.675 </DT></DL></DD></DL>
+            <DT><I>Fees: </I>
+            <DIV></DIV>
+            <DT><I>Ordering Instructions:</I> <PRE id=original></PRE>
+            <SCRIPT>fix(original)</SCRIPT>
+
+            <DIV></DIV>
+            <DT><I>Turnaround: </I></DT></DL>
+          <DIV></DIV>
+          <DT><I>Custom Order Process:</I> <PRE id=original></PRE>
+          <SCRIPT>fix(original)</SCRIPT>
+
+          <DIV></DIV>
+          <DT><I>Technical Prerequisites:</I> 
+          <DD>
+          <DT><I>Available Time Period:</I> 
+          <DD>
+          <DL>
+            <DT><I>Time Period Information:</I> 
+            <DD>
+            <DL></DL></DD></DL></DD></DL></DD></DL><A 
+      href="file:///C:/Users/njordan/AppData/Local/Temp/tmp22BF.tmp.html#Top" 
+      xmlns="">Back to Top</A><A name=Metadata_Reference_Information xmlns="">
+      <HR>
+      </A>
+      <DL xmlns="">
+        <DT><I>Metadata Reference Information:</I> 
+        <DD>
+        <DL>
+          <DT><I>Metadata Date: </I>20130328 
+          <DT><I>Metadata Review Date: </I>
+          <DT><I>Metadata Future Review Date: </I>
+          <DT><I>Metadata Contact:</I> 
+          <DD>
+          <DL>
+            <DT><I>Contact Information:</I> 
+            <DD>
+            <DL>
+              <DT><I>Contact Organization Primary:</I> 
+              <DD>
+              <DL>
+                <DT><I>Contact Organization: </I>The Nature Conservancy 
+                <DT><I>Contact Person: </I>John Prince </DT></DL>
+              <DT><I>Contact Position: </I>Conservation Information Manager 
+              <DT><I>Contact Address:</I> 
+              <DD>
+              <DL>
+                <DT><I>Address Type: </I>REQUIRED: The mailing and/or physical 
+                address for the organization or individual. 
+                <DT><I>City: </I>REQUIRED: The city of the address. 
+                <DT><I>State or Province: </I>REQUIRED: The state or province of 
+                the address. 
+                <DT><I>Postal Code: </I>REQUIRED: The ZIP or other postal code 
+                of the address. </DT></DL>
+              <DT><I>Contact Voice Telephone: </I>919.794.6545 
+              <DT><I>Contact Electronic Mail Address: </I>jprince@tnc.org 
+            </DT></DL></DD></DL>
+          <DT><I>Metadata Standard Name: </I>FGDC Content Standards for Digital 
+          Geospatial Metadata 
+          <DT><I>Metadata Standard Version: </I>FGDC-STD-001-1998 
+          <DT><I>Metadata Time Convention: </I>local time 
+          <DT><I>Metadata Access Constraints: </I>
+          <DT><I>Metadata Use Constraints:</I> 
+          <DD>
+          <DT><I>Metadata Security Information:</I> 
+          <DD>
+          <DL>
+            <DT><I>Metadata Security Classification System: </I>
+            <DT><I>Metadata Security Classification: </I>
+            <DT><I>Metadata Security Handling Description:</I> 
+            <DD></DD></DL>
+          <DT><I>Metadata Extensions:</I> 
+          <DD>
+          <DL></DL></DD></DL></DD></DL><A 
+      href="file:///C:/Users/njordan/AppData/Local/Temp/tmp22BF.tmp.html#Top" 
+      xmlns="">Back to Top</A></TD></TR></TBODY></TABLE></BODY></HTML>
