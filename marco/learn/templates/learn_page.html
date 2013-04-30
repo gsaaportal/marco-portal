@@ -56,8 +56,15 @@
 		<div class="span5">
 			<div class="page-block">
                 <a href="/learn/topic/{{topics.2.name}}">
-                    <img style="width: 70%; height: 70%" src="{{MEDIA_URL}}gsaa/img/photos/learn_bottom_left.jpg"/>
-                    <h4 class="primary">{{ topics.2.display_name }}</h4>
+                    <div class="info-image pull-left">
+                        <img src="{{MEDIA_URL}}gsaa/img/photos/learn_bottom_left.jpg"/>
+                        <img 
+                            class="info-button"
+                            src="{{MEDIA_URL}}gsaa/img/vector-artwork/misc/i.png"
+                            data-title="<h5 class='primary'>Right whale and calf, 2005</h5><p class='photo-credits'>Credit: NOAA NMFS</p>"
+                        >
+                        <h4 class="primary">{{ topics.2.display_name }}</h4>
+                    </div>
                 </a>
 				<p>
                     {{ topics.2.description }} 
@@ -71,8 +78,10 @@
 			<div class="page-block">
                 {% if topics.3 %}
                 <a href="/learn/topic/{{topics.3.name}}">
-                    <img src="{{MEDIA_URL}}gsaa/img/page-block-placeholder.png"/>
-                    <h4 class="primary">{{ topics.3.display_name }}</h4>
+                    <div class="info-image pull-left">
+                        <img src="{{MEDIA_URL}}gsaa/img/page-block-placeholder.png"/>
+                        <h4 class="primary">{{ topics.3.display_name }}</h4>
+                    </div>
                 </a>
 				<p>
                     {{ topics.3.description }} 
