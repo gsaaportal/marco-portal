@@ -2,8 +2,8 @@
 {% block main %}
 {% load flatblock_tags %}
 
-<div style="margin-bottom: 10px">
-Search results for '{{ search_key }}' ...
+<div style="margin-bottom: 20px">
+<h4 style="font-size: 16px">Search results for '{{ search_key }}' within the GSAA Portal website.</h4>
 </div>
 
 <div id="google-search-results">
@@ -44,8 +44,11 @@ Searching...
                         console.log(result.items);
                         for (var x=0; x<result.items.length; x+=1) {
                             output += '<li class="search-list-item"><div class="search-list-item-div">';
-                            output += '<a href="' + result.items[x].link + '">' + result.items[x].htmlTitle + '</a>';
-                            output += '<div>' + result.items[x].snippet + '</div></li>';
+                            var link = result.items[x].link,
+                                title = result.items[x].htmlTitle.substring(0, result.items[x].htmlTitle.indexOf('- GSAA')),
+                                snippet = result.items[x].snippet;
+                            output += '<a href="' + link + '">' + title + '</a>';
+                            output += '<div>' + snippet + '</div></li>';
                         }
                         output += '</ol></div>';
                     }
