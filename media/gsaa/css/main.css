@@ -139,7 +139,7 @@ header.shadow {
           box-shadow: rgba(0,0,0,0.3) 0px 2px 2px -1px;
 }
 
-
+header .logo > img { margin-top: 8px; }
 
 .navbar {
     background-color: transparent;
@@ -274,6 +274,7 @@ footer h6 {
 
 .main-container {
   padding-top: 30px;
+  padding-bottom: 115px;
 }
 
 
@@ -408,22 +409,21 @@ footer h6 {
   line-height: 14px;
   color: #666;
 }
-.team-org-page-block .logo1 { background-image: url(../img/partner-logos/secoora.jpg); }
-.team-org-page-block .logo2 { background-image: url(../img/partner-logos/georgia_tech.jpg); }
-.team-org-page-block .logo3 { background-image: url(../img/partner-logos/duke.jpg); }
-.team-org-page-block .logo4 { background-image: url(../img/partner-logos/east_carolina.jpg); }
-.team-org-page-block .logo5 { background-image: url(../img/partner-logos/nature_conservancy.jpg); }
-.team-org-page-block .logo6 { background-image: url(../img/partner-logos/south_carolina_u.jpg); }
-.team-org-page-block .logo7 { background-image: url(../img/partner-logos/ecotrust.jpg); }
-.team-org-page-block .logo8 { background-image: url(../img/partner-logos/florida_dept_env_protection.jpg); }
-.team-org-page-block .logo9 { background-image: url(../img/partner-logos/florida_fish_wildlife.jpg); }
-.team-org-page-block .logo10 { background-image: url(../img/partner-logos/georgia_dept_nat_resources.jpg); }
-.team-org-page-block .logo11 { background-image: url(../img/partner-logos/nc_dept_env.jpg); }
-.team-org-page-block .logo12 { background-image: url(../img/partner-logos/seagrant.jpg); }
-.team-org-page-block .logo13 { background-image: url(../img/partner-logos/sc_dept_nat_resources.jpg); }
-.team-org-page-block .logo14 { background-image: url(../img/partner-logos/sc_dept_health.jpg); }
-.team-org-page-block .logo15 { background-image: url(../img/partner-logos/noaa.jpg); }
-
+.team-org-page-block .logo1 { background-image: url(../img/partner-logos/secoora.jpg?v=2); }
+.team-org-page-block .logo2 { background-image: url(../img/partner-logos/georgia_tech.jpg?v=2); }
+.team-org-page-block .logo3 { background-image: url(../img/partner-logos/duke.jpg?v=2); }
+.team-org-page-block .logo4 { background-image: url(../img/partner-logos/east_carolina.jpg?v=2); }
+.team-org-page-block .logo5 { background-image: url(../img/partner-logos/nature_conservancy.jpg?v=2); }
+.team-org-page-block .logo6 { background-image: url(../img/partner-logos/south_carolina_u.jpg?v=2); }
+.team-org-page-block .logo7 { background-image: url(../img/partner-logos/ecotrust.jpg?v=2); }
+.team-org-page-block .logo8 { background-image: url(../img/partner-logos/florida_dept_env_protection.jpg?v=2); }
+.team-org-page-block .logo9 { background-image: url(../img/partner-logos/florida_fish_wildlife.png?v=2); }
+.team-org-page-block .logo10 { background-image: url(../img/partner-logos/georgia_dept_nat_resources.jpg?v=2); }
+.team-org-page-block .logo11 { background-image: url(../img/partner-logos/nc_dept_env.jpg?v=2); }
+.team-org-page-block .logo12 { background-image: url(../img/partner-logos/seagrant.jpg?v=2); }
+.team-org-page-block .logo13 { background-image: url(../img/partner-logos/sc_dept_nat_resources.jpg?v=2); background-size: contain; }
+.team-org-page-block .logo14 { background-image: url(../img/partner-logos/sc_dept_health.jpg?v=2); }
+.team-org-page-block .logo15 { background-image: url(../img/partner-logos/noaa.jpg?v=2); background-size: contain; }
 
 
 /**
