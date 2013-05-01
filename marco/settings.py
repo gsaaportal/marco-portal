@@ -56,11 +56,10 @@ DEFAULT_FROM_EMAIL = "GSAA Portal Team <gsaaportal@gmail.com>"
 FEEDBACK_SUBJECT = "GSAA Portal Feedback"
 
 # url for socket.io printing
-#SOCKET_URL = 'http://dev.marco.marineplanning.org:8080'
+#SOCKET_URL = 'http://gsaaportal.org:8080'
 
 # Change the following line to True, to display the 'under maintenance' template
 UNDER_MAINTENANCE_TEMPLATE = False
-SOCKET_URL = 'http://gsaaportal.org:8080'
 
 TEMPLATE_DIRS = ( os.path.realpath(os.path.join(os.path.dirname(__file__), 'templates').replace('\\','/')), )
 
