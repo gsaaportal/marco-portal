@@ -2,14 +2,14 @@
 from madrona.common.default_settings import *
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-TIME_ZONE = 'America/Vancouver'
+TIME_ZONE = 'America/New_York'
 ROOT_URLCONF = 'urls' # 'marco.urls'
 LOGIN_REDIRECT_URL = '/visualize'
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'gsaadev',
+        'NAME': 'gsaa',
         'USER': 'vagrant',
     }
 }
@@ -39,10 +39,9 @@ INSTALLED_APPS += ( 'clipping',
                     'feedback',
                     'django.contrib.humanize',
                     'flatblocks',
-                    'marco_profile',
-                    'google-analytics')
+                    'marco_profile')
 
-GOOGLE_ANALYTICS_MODEL = True
+#GOOGLE_ANALYTICS_MODEL = True
 
 GEOMETRY_DB_SRID = 99996
 GEOMETRY_CLIENT_SRID = 3857 #for latlon
