@@ -58,7 +58,8 @@ p.indent { margin-left: 25px; }
 a, a:visited {
   color: #030BD4;
 }
-a.subtle, a.subtle:visited {
+a.subtle, 
+a.subtle:visited {
   color: #000;
 }
 /* hover/active state */
@@ -66,6 +67,7 @@ a.active,
 a:hover,
 a:focus,
 a.subtle:hover,
+a.subtle:hover p,
 .navbar .nav>li:focus,
 .navbar .nav>li>a:hover,
 .navbar .nav>li>a:focus,
@@ -142,7 +144,7 @@ header.shadow {
 .navbar {
     background-color: transparent;
     font-size: 12px;
-    margin-top: 20px;
+    margin-top: 6px;
 }
 .navbar-inner {
   border: none;
@@ -218,6 +220,9 @@ header .span12 {
  * Dropdown in header menu - some of this is purely
  * stripping bootstrap styles.
  */
+.nav.gsaa-nav>li>a.dropdown-toggle {
+  padding-bottom: 5px;
+}
 .gsaa-nav .dropdown-menu {
   border: none;
   border-radius: 0;
@@ -384,11 +389,11 @@ footer h6 {
 }
 .team-org-page-block [class*="logo"]{
   height: 140px;
-  max-width: 200px;
+  max-width: 190px;
   margin-left: auto;
   margin-right: auto;
   background:url(http://placehold.it/200x100) no-repeat center center;
-  background-size: contain;
+  /*background-size: contain;*/
 }
 .team-org-page-block p {
   position: absolute;

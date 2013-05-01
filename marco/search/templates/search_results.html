@@ -1,0 +1,70 @@
+{% extends 'base_with_sidebar.html' %}
+{% block main %}
+{% load flatblock_tags %}
+
+<div style="margin-bottom: 20px">
+<h4 style="font-size: 16px">Search results for '{{ search_key }}' within the GSAA Portal website.</h4>
+</div>
+
+<div id="google-search-results">
+Searching...
+
+
+</div>
+
+<style type="text/css">
+.search-results .search-list-item {
+    list-style-type: none;
+    margin-bottom: 20px;
+}
+</style>
+
+{% endblock %}
+
+{% block javascript %}
+<script>
+    $(document).ready( function() {
+        var domain = 'https://www.googleapis.com/customsearch/v1?',
+            key = 'AIzaSyB9k_sZ7nVhXxypShS3qoe9p9GzKkd5HUY',
+            cx = '006763711666504423763:anwl8m04xli',
+            search = window.location.search.substring(window.location.search.indexOf('=')+1),
+            searchURL = domain + 'key=' + key + '&cx=' + cx + '&q=' + search + '&alt=json';
+        
+        var search = function() {
+            $.ajax({
+                async: false,
+                url: searchURL,
+                type: 'GET',
+                dataType: 'json',
+                success: function(result) {
+                    var output = '<div class="search-results"><ol>';
+                    if ( ! result.items) {
+                        output = '<div>No Results were found from your search.</div> <div style="margin-top: 20px;"><a href="javascript:history.go(-1)">Return to previous page.</a></div>';
+                    } else {
+                        console.log(result.items);
+                        for (var x=0; x<result.items.length; x+=1) {
+                            output += '<li class="search-list-item"><div class="search-list-item-div">';
+                            var link = result.items[x].link,
+                                title = result.items[x].htmlTitle.substring(0, result.items[x].htmlTitle.indexOf('- GSAA')),
+                                snippet = result.items[x].snippet;
+                            output += '<a href="' + link + '">' + title + '</a>';
+                            output += '<div>' + snippet + '</div></li>';
+                        }
+                        output += '</ol></div>';
+                    }
+                    $('#google-search-results').html(output);
+                },
+                error: function(result) { 
+                    debugger;
+                }
+            });
+        };
+        search();
+    });
+</script>
+{% endblock %}
+
+
+
+
+
