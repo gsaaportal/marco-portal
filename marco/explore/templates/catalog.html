@@ -15,27 +15,27 @@
                     <!--<input type="text" name="gsaa-q"/>-->
                     <input type="text" style="display: inline-block" class="search-box" data-provide="typeahead" placeholder="Search the Catalog" data-bind="value: searchTerm, event: { keyup: keySearch }">
                     <!--<a class="btn">
-                        <i class="icon-remove icon-large"></i> 
+                        <i class="icon-remove icon-large"></i>
                     </a>-->
                 </form>
             </div>
         </div>
     </div>
 
-    
+
     <div class="span8 theme catalog-page accordion" id="theme-list">
         {% for theme_dict in themes %}
         <div class="accordion-group theme-group">
             <div class="accordion-heading theme-heading">
                 <a class="accordion-toggle theme-title color-up" data-toggle="collapse" data-parent="theme-list" href="#{{ theme_dict.theme.name }}">
                     <h3>
-                        <span class="theme-search-name">{{ theme_dict.theme.display_name }}</span> / {{ theme_dict.layers|length }} 
+                        <span class="theme-search-name">{{ theme_dict.theme.display_name }}</span> / {{ theme_dict.layers|length }}
                         <small><i class="icon-caret-right caret-icon color-up" style="display: inline-block"></i></small>
                         <small><i class="icon-caret-down caret-icon color-up" style="display: none"></i></small>
                     </h3>
                 </a>
             </div>
-            <div id="{{ theme_dict.theme.name }}" class="theme-accordion accordion-body collapse"> 
+            <div id="{{ theme_dict.theme.name }}" class="theme-accordion accordion-body collapse">
                 <div class="accordion-inner">
                     {% if not theme_dict.layers %}
                     <p>coming soon...</p>
@@ -45,11 +45,11 @@
                         {% for layer in theme_dict.layers %}
                             <div class="accordion-group layer-group">
                                 {% if layer.is_sublayer %}
-                                {% else %} 
-                                    {% if layer.is_parent %}   
+                                {% else %}
+                                    {% if layer.is_parent %}
                                     <div class="accordion-heading layer-heading">
                                         <a class="accordion-toggle layer-name color-up" data-toggle="collapse" data-parent="{{theme_dict.theme.name}}-layer-list" href="#{{layer.slug}}-links">
-                                            <span class="layer-search-name">{{ layer.name|upper }}</span> / {{ layer.sublayer_list|length }}
+                                            <span class="layer-search-name">{{ layer.name|upper }}</span> / {{ layer.sublayer_list|length }} ...
                                         </a>
                                     </div>
                                     <div id="{{layer.slug}}-links" class="accordion-body collapse">
@@ -59,10 +59,10 @@
                                                     <div class="accordion-group sublayer-group">
                                                         <div class="accordion-heading sublayer-heading">
                                                             <a class="accordion-toggle sublayer-name color-up" data-toggle="collapse" data-parent="{{layer.slug}}-sublayer-list" href="#{{sublayer.slug}}-links">
-                                                            <span class="layer-search-name">{{ sublayer.name }}</span>
+                                                            <span class="layer-search-name">{{ sublayer.name }} ...</span>
                                                             </a>
                                                         </div>
-                                                                            
+
                                                         <div id="{{sublayer.slug}}-links" class="accordion-body collapse">
                                                             <div class="accordion-inner">
                                                                 <ul class="unstyled data-layer-links">
@@ -112,7 +112,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    {% else %}   
+                                    {% else %}
                                     <div class="accordion-heading layer-heading">
                                         <a class="accordion-toggle layer-name color-up" data-toggle="collapse" data-parent="{{theme_dict.theme.name}}-layer-list" href="#{{layer.slug}}-links">
                                             <span class="layer-search-name">{{ layer.name|upper }}</span>
@@ -186,8 +186,8 @@ input[type="text"]:hover {
 }
 
 .catalog-search-button {
-    background-color: transparent; 
-    border: 0; 
+    background-color: transparent;
+    border: 0;
     padding: 0;
 }
 
@@ -297,7 +297,7 @@ input[type="text"]:hover {
             layer_index = {},
             search =  function(val) {
                 var layer = layer_index[val];
-                
+
                 //layer.layer.closest('tr').effect("pulsate", {times:2 }, 500);
                 if ( ! $(layer.layer).closest('.theme-group').find('.accordion-body').first().hasClass('in') ) {
                     $(layer.layer).closest('.theme-group').find('.accordion-body').first().collapse('show');
@@ -308,7 +308,7 @@ input[type="text"]:hover {
                 if ( $(layer.layer).closest('.sublayer-group').find('.accordion-body').first().length ) {
                     $(layer.layer).closest('.sublayer-group').find('.accordion-body').first().collapse('show');
                     $(layer.layer).closest('.sublayer-group').find('.layer-search-name').effect("pulsate", {times:1}, 500);
-                } else {   
+                } else {
                     $(layer.layer).closest('.layer-group').find('.layer-search-name').first().effect("pulsate", {times:1}, 500);
                 }
                 setTimeout(function() {$(window).scrollTop(layer.layer.closest('.layer-group').offset().top-300)}, 200);
@@ -327,32 +327,32 @@ input[type="text"]:hover {
                     description = $(layer).closest('.accordion-group').find('.descriptive-text'),
                     kitchenSink = $.trim($(layer).text()) + ' ' + $.trim(theme_name) + ' ' + $.trim($(description).text());
                 layers.push(name);
-                layer_index[name] = { 
+                layer_index[name] = {
                     layer: $(layer),
                     fullSearch: kitchenSink
-                };                
+                };
             });
         });
-        
+
         $('.layer-search').find('input').typeahead( {
             source: layers.sort(),
             matcher: function(item) {
-                if (layer_index[item].fullSearch.toLowerCase().indexOf(this.query.toLowerCase()) !== -1) { 
+                if (layer_index[item].fullSearch.toLowerCase().indexOf(this.query.toLowerCase()) !== -1) {
                     return true;
                 }
             }
         });
-        
+
         $('.layer-search').submit(function (event) {
             event.preventDefault();
             //console.log('layer-search submit');
             search($(this).find('input').val());
         });
-        
+
 
         $('.layer-search').on('keyup', 'input', function (event) {
-            event.preventDefault();  
-            //console.log('layer-search keyup ' + event.which);  
+            event.preventDefault();
+            //console.log('layer-search keyup ' + event.which);
             if (event.which === 13) {
                 search($(this).val());
             }
@@ -390,9 +390,9 @@ input[type="text"]:hover {
         $('.layer-name').popover({
             template: '<div class="popover layer-popover"><div class="arrow"></div><div class="popover-inner layer-tooltip"><div class="popover-content"><p></p></div></div></div>'
         });
-        
+
         // MODIFIED DATA CATALOG
-        
+
         $('.theme-group').hover(function(e) { //trigger the mouseover event
             $('.theme-title').removeClass('color-up');
             $('.theme-title').addClass('color-down');
@@ -414,17 +414,17 @@ input[type="text"]:hover {
             $('.caret-icon').removeClass('color-up');
             $('.caret-icon').addClass('color-up');
         });
-        
+
         $('.theme-accordion').on('show', function(e) {
             $(e.currentTarget).siblings('.theme-heading').find('i.icon-caret-right').css('display', 'none');
             $(e.currentTarget).siblings('.theme-heading').find('i.icon-caret-down').css('display', 'inline-block');
         });
-        
+
         $('.theme-accordion').on('hide', function(e) {
             $(e.currentTarget).siblings('.theme-heading').find('i.icon-caret-right').css('display', 'inline-block');
             $(e.currentTarget).siblings('.theme-heading').find('i.icon-caret-down').css('display', 'none');
         });
-        
+
         $('.layer-group').hover(function(e) { //trigger the mouseover event
             $('.layer-namee').removeClass('color-up');
             $('.layer-name').addClass('color-down');
@@ -437,7 +437,7 @@ input[type="text"]:hover {
             $('.layer-name').removeClass('color-up');
             $('.layer-name').addClass('color-up');
         });
-        
+
         $('.sublayer-name').hover(function(e) { //trigger the mouseover event
             $('.sublayer-namee').removeClass('color-up');
             $('.sublayer-name').addClass('color-down');
@@ -463,7 +463,7 @@ input[type="text"]:hover {
             $('.data-layer-link').removeClass('color-up');
             $('.data-layer-link').addClass('color-up');
         });
-        
+
     });
 </script>
 {% endblock %}
