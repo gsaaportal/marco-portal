@@ -448,7 +448,7 @@ function layerModel(options, parent) {
                     //hide drop-down menu
                     layer.showSublayers(false);
                 }
-            } else if ( layer.type === 'radio' ) { //perhaps same behavior should 
+            } else if ( layer.type === 'radio' ) { //perhaps same behavior should
                 if (!layer.showSublayers()) {
                     //show drop-down menu
                     layer.showSublayers(true);
@@ -1761,7 +1761,7 @@ function viewModel() {
         app.viewModel.closeAllThemes();
         app.viewModel.deactivateAllLayers();
         app.viewModel.themes()[0].setOpenTheme();
-        app.setMapPosition(-73, 38.5, 7);
+        app.setMapPosition(-81.03, 30.65, 7);
         $('#dataTab').tab('show');
 
         //start the tour
@@ -1797,12 +1797,12 @@ function viewModel() {
                 app.viewModel.themes()[0].layers()[i].activateLayer();
             }
         }
-        for (var i=0; i < app.viewModel.themes()[2].layers().length; i++) {
-            if ( app.viewModel.themes()[2].layers()[i].name === 'Benthic Habitats (South)' ) {
+        for (var i=0; i < app.viewModel.themes()[1].layers().length; i++) {
+            if ( app.viewModel.themes()[2].layers()[i].name === 'Sediment Type' ) {
                 app.viewModel.themes()[2].layers()[i].activateLayer();
             }
         }
-        app.setMapPosition(-75, 37.6, 8);
+        app.setMapPosition(-79.65, 32.33, 7);
         $('#activeTab').tab('show');
 
         //start the tour
