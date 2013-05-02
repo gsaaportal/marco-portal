@@ -1797,9 +1797,9 @@ function viewModel() {
                 app.viewModel.themes()[0].layers()[i].activateLayer();
             }
         }
-        for (var i=0; i < app.viewModel.themes()[1].layers().length; i++) {
-            if ( app.viewModel.themes()[2].layers()[i].name === 'Sediment Type' ) {
-                app.viewModel.themes()[2].layers()[i].activateLayer();
+        for (var i=0; i < app.viewModel.themes()[0].layers().length; i++) {
+            if ( app.viewModel.themes()[0].layers()[i].name === 'Marine Protected Areas (NonNMFS)' ) { //might be more robust if indexOf were used
+                app.viewModel.themes()[0].layers()[i].activateLayer();
             }
         }
         app.setMapPosition(-79.65, 32.33, 7);
