@@ -7,14 +7,14 @@ app.init = function () {
         displayProjection: new OpenLayers.Projection("EPSG:4326"),
         projection: "EPSG:102113"
     });
-    
+
     esriOcean = new OpenLayers.Layer.XYZ("ESRI Ocean", "http://services.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/${z}/${y}/${x}", {
         sphericalMercator: true,
         isBaseLayer: true,
         numZoomLevels: 13,
         attribution: "Sources: GEBCO, NOAA, CHS, OSU, UNH, CSUMB, National Geographic, DeLorme, NAVTEQ, and Esri"
     });
-    
+
     openStreetMap = new OpenLayers.Layer.OSM("Open Street Map", "http://a.tile.openstreetmap.org/${z}/${x}/${y}.png", {
         sphericalMercator: true,
         isBaseLayer: true,
@@ -37,7 +37,7 @@ app.init = function () {
         isBaseLayer: true,
         numZoomLevels: 13
     });
-    
+
     /*var bingHybrid = new OpenLayers.Layer.Bing( {
         name: "Bing Hybrid",
         key: "AvD-cuulbvBqwFDQGNB1gCXDEH4S6sEkS7Yw9r79gOyCvd2hBvQYPaRBem8cpkjv",
@@ -46,15 +46,15 @@ app.init = function () {
         isBaseLayer: true,
         numZoomLevels: 13
     });*/
-    
+
     // need api key from http://bingmapsportal.com/
     /*var bingHybrid = new OpenLayers.Layer.Bing({
         name: "Bing Hybrid",
         key: "AvD-cuulbvBqwFDQGNB1gCXDEH4S6sEkS7Yw9r79gOyCvd2hBvQYPaRBem8cpkjv",
         type: "AerialWithLabels"
     });*/
-    
-    nauticalCharts = new OpenLayers.Layer.WMS("Nautical Charts", "http://egisws02.nos.noaa.gov/ArcGIS/services/RNC/NOAA_RNC/ImageServer/WMSServer", 
+
+    nauticalCharts = new OpenLayers.Layer.WMS("Nautical Charts", "http://egisws02.nos.noaa.gov/ArcGIS/services/RNC/NOAA_RNC/ImageServer/WMSServer",
         {
             layers: 'null'
         },
@@ -64,14 +64,14 @@ app.init = function () {
             projection: "EPSG:102113"
         }
     );
-    
+
     map.addLayers([esriOcean, openStreetMap, googleStreet, googleTerrain, googleSatellite, nauticalCharts]);
-    
+
     //map.addLayers([esriOcean]);
     esriOcean.setZIndex(100);
 
     map.addControl(new SimpleLayerSwitcher());
-    
+
     //Scale Bar
     var scalebar = new OpenLayers.Control.ScaleBar( {
         displaySystem: "english",
@@ -81,7 +81,7 @@ app.init = function () {
         subdivisions: 2, //default
         showMinorMeasures: false //default
     });
-    map.addControl(scalebar);    
+    map.addControl(scalebar);
 
     map.zoomBox = new OpenLayers.Control.ZoomBox( {
         //enables zooming to a given extent on the map by holding down shift key while dragging the mouse
@@ -93,7 +93,7 @@ app.init = function () {
     map.events.register("zoomend", null, function () {
         if (map.zoomBox.active) {
             app.viewModel.deactivateZoomBox();
-        }        
+        }
     });
 
     // map.addControl(new OpenLayers.Control.MousePosition({
@@ -109,12 +109,12 @@ app.init = function () {
     // callback functions for vector attribution (SelectFeature Control)
     var report = function(e) {
         var layer = e.feature.layer.layerModel;
-        
+
         if ( layer.attributes.length ) {
             var attrs = layer.attributes,
                 title = layer.name,
                 text = [];
-            app.viewModel.attributeTitle(title); 
+            app.viewModel.attributeTitle(title);
             for (var i=0; i<attrs.length; i++) {
                 if ( e.feature.data[attrs[i].field] ) {
                     text.push({'display': attrs[i].display, 'data': e.feature.data[attrs[i].field]});
@@ -124,32 +124,32 @@ app.init = function () {
         }
     };
     */
-    /*  
+    /*
     var clearout = function(e) {
-        //document.getElementById("output").innerHTML = ""; 
+        //document.getElementById("output").innerHTML = "";
         app.viewModel.attributeTitle(false);
         app.viewModel.attributeData(false);
-    };  
+    };
     */
-    
+
     app.map = map;
-    
+
     app.map.attributes = [];
     //app.map.clickOutput = { time: 0, attributes: [] };
     app.map.clickOutput = { time: 0, attributes: {} };
-    
+
     //UTF Attribution
     map.UTFControl = new OpenLayers.Control.UTFGrid({
         //attributes: layer.attributes,
         layers: [],
         //events: {fallThrough: true},
         handlerMode: 'click',
-        callback: function(infoLookup, lonlat, xy) {   
+        callback: function(infoLookup, lonlat, xy) {
             app.map.utfGridClickHandling(infoLookup);
         }
     });
-    map.addControl(map.UTFControl);    
-    
+    map.addControl(map.UTFControl);
+
     app.map.utfGridClickHandling = function(infoLookup) {
         for (var idx in infoLookup) {
             $.each(app.viewModel.visibleLayers(), function (layer_index, potential_layer) {
@@ -158,13 +158,13 @@ app.init = function () {
                     info = infoLookup[idx],
                     date = new Date(),
                     newTime = date.getTime();
-                if (info && info.data) { 
+                if (info && info.data) {
                     console.log('utfcontrol click');
                     var newmsg = '',
                         hasAllAttributes = true,
                         parentHasAllAttributes = false;
                     // if info.data has all the attributes we're looking for
-                    // we'll accept this layer as the attribution layer 
+                    // we'll accept this layer as the attribution layer
                     //if ( ! potential_layer.attributes.length ) {
                     hasAllAttributes = false;
                     //}
@@ -189,7 +189,7 @@ app.init = function () {
                     } else if (parentHasAllAttributes) {
                         new_attributes = potential_layer.parent.attributes;
                     }
-                    if (new_attributes) { 
+                    if (new_attributes) {
                         var attribute_objs = [];
                         $.each(new_attributes, function(index, obj) {
                             if ( potential_layer.compress_attributes ) {
@@ -210,7 +210,7 @@ app.init = function () {
                                     }
                                     attribute_objs.push({'display': obj.display, 'data': value});
                                 }
-                                
+
                             }
                         });
                         var title = potential_layer.name,
@@ -234,20 +234,20 @@ app.init = function () {
                             }
                         }
                         app.viewModel.aggregatedAttributes(app.map.clickOutput.attributes);
-                    } 
-                } 
+                    }
+                }
               }
             });
         }
     }; //end utfGridClickHandling
-      
+
     app.map.events.register("featureclick", null, function(e) {
         var layer = e.feature.layer.layerModel || e.feature.layer.scenarioModel;
         var date = new Date();
         var newTime = date.getTime();
         var text = [],
             title = layer.name;
-        
+
         if ( layer.scenarioAttributes && layer.scenarioAttributes.length ) {
             var attrs = layer.scenarioAttributes;
             for (var i=0; i<attrs.length; i++) {
@@ -255,7 +255,7 @@ app.init = function () {
             }
         } else if ( layer.attributes.length ) {
             var attrs = layer.attributes;
-            
+
             for (var i=0; i<attrs.length; i++) {
                 if ( e.feature.data[attrs[i].field] ) {
                     text.push({'display': attrs[i].display, 'data': e.feature.data[attrs[i].field]});
@@ -264,59 +264,59 @@ app.init = function () {
         } else if ( layer.name === 'Selected OCS Blocks' ) {
             text = app.viewModel.getOCSAttributes(title, e.feature.attributes);
         }
-        
+
         if (newTime - app.map.clickOutput.time > 300) {
             app.map.clickOutput.attributes = {};
             app.map.clickOutput.time = newTime;
-        } 
+        }
         app.map.clickOutput.attributes[title] = text;
         app.viewModel.aggregatedAttributes(app.map.clickOutput.attributes);
-        
+
     });
-    
+
     app.map.events.register("nofeatureclick", null, function(e) {
         var date = new Date();
         var newTime = date.getTime();
         if (newTime - app.map.clickOutput.time > 300) {
             app.viewModel.closeAttribution();
-        } 
+        }
     });
-    
+
     app.markers = new OpenLayers.Layer.Markers( "Markers" );
     var size = new OpenLayers.Size(16,25);
     var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
     //var icon = new OpenLayers.Icon('/media/marco-proto/assets/img/red-pin.png', size, offset);
     app.markers.icon = new OpenLayers.Icon('/media/marco-proto/assets/img/red-pin.png', size, offset);
     app.map.addLayer(app.markers);
-              
+
     //place the marker on click events
     app.map.events.register("click", app.map , function(e){
         app.marker = new OpenLayers.Marker(app.map.getLonLatFromViewPortPx(e.xy), app.markers.icon);
         app.marker.map = app.map;
         app.viewModel.updateMarker();
     });
-    
+
 };
 
 app.addLayerToMap = function(layer, isVisible) {
     //2013-02-20 DWR
     //Added so we can use the topic button to add the layers into the Active tab, but not make them visible.
     var layerVisible = typeof(isVisible) === "undefined" ? true : isVisible;
-    
+
     if (!layer.layer) {
         var opts = {
             displayInLayerSwitcher: false
         };
-        
+
         /***BEGIN TEMPORARY FIX FOR CORALS LAYER IN IE8***/
         if ( $.browser.msie && $.browser.version < 9.0 && layer.name === "Coldwater Corals" ) {
-        //if ( layer.name === "Coldwater Corals" ) {    
+        //if ( layer.name === "Coldwater Corals" ) {
             layer.type = 'XYZ';
             layer.url = 'https://s3.amazonaws.com/marco-public-2d/Conservation/CoralTiles/${z}/${x}/${y}.png';
             layer.utfurl = '/media/data_manager/utfgrid/coldwater_corals/${z}/${x}/${y}.json';
         }
         /***END TEMPORARY FIX FOR CORALS LAYER IN IE8***/
-        
+
         if (layer.utfurl || (layer.parent && layer.parent.utfurl)) {
             layer.utfgrid = new OpenLayers.Layer.UTFGrid({
                 layerModel: layer,
@@ -330,11 +330,11 @@ app.addLayerToMap = function(layer, isVisible) {
             //layer.utfgrid.projection = new OpenLayers.Projection("EPSG:4326");
             //2013-02-20 DWR
             layer.layer.setVisibility(isVisible);
-            app.map.addLayer(layer.utfgrid);           
+            app.map.addLayer(layer.utfgrid);
             layer.layer = new OpenLayers.Layer.XYZ(
-                layer.name, 
+                layer.name,
                 layer.url,
-                $.extend({}, opts, 
+                $.extend({}, opts,
                     {
                         sphericalMercator: true,
                         isBaseLayer: false //previously set automatically when allOverlays was set to true, must now be set manually
@@ -342,8 +342,8 @@ app.addLayerToMap = function(layer, isVisible) {
                 )
             );
             //2013-02-20 DWR
-            layer.layer.setVisibility(isVisible);            
-            app.map.addLayer(layer.layer);  
+            layer.layer.setVisibility(isVisible);
+            app.map.addLayer(layer.layer);
         } else if (layer.type === 'Vector') {
             var styleMap = new OpenLayers.StyleMap( {
                 fillColor: layer.color,
@@ -363,22 +363,22 @@ app.addLayerToMap = function(layer, isVisible) {
             });
             if (layer.lookupField) {
                 var mylookup = {};
-                $.each(layer.lookupDetails, function(index, details) {    
+                $.each(layer.lookupDetails, function(index, details) {
                     var fillOp = 0.5;
-                    //the following are special cases for Shipping Lanes that ensure suitable attribution with proper display 
+                    //the following are special cases for Shipping Lanes that ensure suitable attribution with proper display
                     if (details.value === 'Precautionary Area') {
-                        fillOp = 0.0; 
+                        fillOp = 0.0;
                     } else if (details.value === 'Shipping Safety Fairway') {
                         fillOp = 0.0;
                     } else if (details.value === 'Traffic Lane') {
                         fillOp = 0.0;
                     }
-                    mylookup[details.value] = { strokeColor: details.color, 
-                                                strokeDashstyle: details.dashstyle, 
+                    mylookup[details.value] = { strokeColor: details.color,
+                                                strokeDashstyle: details.dashstyle,
                                                 fill: details.fill,
-                                                fillColor: details.color, 
+                                                fillColor: details.color,
                                                 fillOpacity: fillOp,
-                                                externalGraphic: details.graphic }; 
+                                                externalGraphic: details.graphic };
                 });
                 styleMap.addUniqueValueRules("default", layer.lookupField, mylookup);
                 //styleMap.addUniqueValueRules("select", layer.lookupField, mylookup);
@@ -393,14 +393,14 @@ app.addLayerToMap = function(layer, isVisible) {
                         url: layer.url,
                         format: new OpenLayers.Format.GeoJSON()
                     }),
-                    styleMap: styleMap,                    
+                    styleMap: styleMap,
                     layerModel: layer
                 }
             );
             //2013-02-20 DWR
             layer.layer.setVisibility(isVisible);
             //app.addVectorAttribution(layer);
-            app.map.addLayer(layer.layer);  
+            app.map.addLayer(layer.layer);
             //selectFeatureControl = app.map.getControlsByClass("OpenLayers.Control.SelectFeature")[0];
             if (layer.attributes.length) {
                 app.map.vectorList.unshift(layer.layer);
@@ -412,7 +412,8 @@ app.addLayerToMap = function(layer, isVisible) {
             var esriQueryFields = [];
             for(var i = 0; i < layer.attributes.length; i++)
             {
-              esriQueryFields.push(layer.attributes[i].display);
+              //esriQueryFields.push(layer.attributes[i].display);
+              esriQueryFields.push(layer.attributes[i].field);
             }
             layer.identifyControl = new OpenLayers.Control.ArcGisRestIdentify(
               {
@@ -424,7 +425,7 @@ app.addLayerToMap = function(layer, isVisible) {
                     //Remove the previous attributes.
                     app.viewModel.attributeTitle(false);
                     app.viewModel.attributeData(false);
-                    app.viewModel.featureRequested(true);                    
+                    app.viewModel.featureRequested(true);
                   },
                   //THis is the handler for the return click data.
                   resultarrived : function(responseText, xy)
@@ -433,7 +434,7 @@ app.addLayerToMap = function(layer, isVisible) {
                     var jsonFormat = new OpenLayers.Format.JSON();
                     var returnJSON = jsonFormat.read(responseText.text);
                     //Activate the Identify tab.
-                    $('#identifyTab').tab('show');                    
+                    $('#identifyTab').tab('show');
                     app.viewModel.attributeTitle(layer.name);
                     if('features' in returnJSON)
                     {
@@ -447,7 +448,7 @@ app.addLayerToMap = function(layer, isVisible) {
                           {
                             $.each(returnJSON['fields'], function(fieldNdx, field)
                             {
-                              attributeObjs.push({'display' : field.name,
+                              attributeObjs.push({'display' : field.alias,
                                                   'data' : attributeList[field.name]});
                             });
                           }
@@ -465,7 +466,7 @@ app.addLayerToMap = function(layer, isVisible) {
                 outFields : esriQueryFields.length ? esriQueryFields.join(',') : '*'
               });
             layer.layer = new OpenLayers.Layer.ArcGIS93Rest(
-                layer.name, 
+                layer.name,
                 layer.url,
                 {
                     layers: "show:"+layer.arcgislayers,
@@ -482,10 +483,10 @@ app.addLayerToMap = function(layer, isVisible) {
             //2013-02-20 DWR
             //ADd the identify control.
             app.map.addControl(layer.identifyControl);
-            
+
         } else if (layer.type === 'WMS') {
             layer.layer = new OpenLayers.Layer.WMS(
-                layer.name, 
+                layer.name,
                 layer.url,
                 {
                     'layers': 'basic'
@@ -493,13 +494,13 @@ app.addLayerToMap = function(layer, isVisible) {
             );
             //2013-02-20 DWR
             layer.setVisibility(isVisible);
-            app.map.addLayer(layer.layer);  
+            app.map.addLayer(layer.layer);
         } else { //if XYZ with no utfgrid
-            // adding layer to the map for the first time		
-            layer.layer = new OpenLayers.Layer.XYZ(layer.name, 
-                //layer.type === 'XYZ' ? layer.url : layer.url + '.png', 
+            // adding layer to the map for the first time
+            layer.layer = new OpenLayers.Layer.XYZ(layer.name,
+                //layer.type === 'XYZ' ? layer.url : layer.url + '.png',
                 layer.url,
-                $.extend({}, opts, 
+                $.extend({}, opts,
                     {
                         sphericalMercator: true,
                         isBaseLayer: false //previously set automatically when allOverlays was set to true, must now be set manually
@@ -508,11 +509,11 @@ app.addLayerToMap = function(layer, isVisible) {
             );
             //2013-02-20 DWR
             layer.layer.setVisibility(isVisible);
-            app.map.addLayer(layer.layer);  
+            app.map.addLayer(layer.layer);
         }
     } else if ( layer.utfurl ) { //re-adding utfcontrol for existing utf layers (they are destroyed in layer.deactivateLayer)
         //layer.utfcontrol = app.addUTFControl(layer);
-        //app.map.addControl(layer.utfcontrol); 
+        //app.map.addControl(layer.utfcontrol);
     }
     layer.layer.opacity = layer.opacity();
     layer.layer.setVisibility(true);
@@ -543,8 +544,8 @@ $("#overview-overlay-text").hover(
         for(var i = 0; i < controls.length; ++i) {
             controls[i].disableZoomWheel();
         }
-            
-    }, 
+
+    },
     function () {
         var controls = app.map.getControlsByClass('OpenLayers.Control.Navigation');
         for(var i = 0; i < controls.length; ++i) {
@@ -552,4 +553,3 @@ $("#overview-overlay-text").hover(
         }
     }
 )
-
