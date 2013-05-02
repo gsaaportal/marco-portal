@@ -56,7 +56,7 @@ function bookmarkModel(options) {
     // get the url from a bookmark
     self.getBookmarkUrl = function() {
         var host = window.location.href.split('#')[0];
-        host = 'http://portal.midatlanticocean.org/visualize/';
+        host = 'http://gsaaportal.org/visualize/';
         return host + "#" + $.param(self.state);
     };
     
