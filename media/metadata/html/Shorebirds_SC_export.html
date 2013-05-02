@@ -1,0 +1,174 @@
+<html><head><title>Shorebirds_SC</title><link rel="schema.dc" href="http://dublincore.org/documents/dces/"/><meta name="dc.title" content="Shorebirds_SC"/><meta name="dc.creator" content="Felicia Sanders, SCDNR"/><meta name="dc.subject" content="Seabird Colonies Royal tern Gull-billed tern Snowy egret Eastern brown pelican Black skimmer Common tern Sandwich tern Least tern Tricolored heron Glossy Ibis Black-crowned night heron Cattle egret Great egret"/><meta name="dc.description" content="This data set is based on summaries of observed nesting activities and presence of all bird species monitored by the SCDNR from 2006 through 2010 at several transient washover islands that are critical habitat used by these seabirds for nesting in South Carolina. Numbers are from nest counts or from estimates made from counting adults that appear to be incubating or brooding young. Nests counts were conducted by walking through the colony and counting nests with eggs or chicks. The number of wading bird nests at these sites is also included. Wading bird counts were primarily estimates from counting adults that were assumed to be nesting. Each site was only counted once, thus these numbers may not represent peak numbers of nests at the site. This data does not include all species that nest on a site. For example, laughing gulls, shorebirds, and uncommon species are not included. This data set does not include all sites in SC that have nesting seabirds, thus totaling all nests for a species during one year, may not be the total number of nests in SC for that species."/><meta name="dc.type" content="data.vector digital data"/><meta name="dc.coverage.x.min" scheme="DD" content="-80.868373"/><meta name="dc.coverage.x.max" scheme="DD" content="-79.406281"/><meta name="dc.coverage.y.min" scheme="DD" content="32.049742"/><meta name="dc.coverage.y.max" scheme="DD" content="33.027592"/><meta name="dc.coverage.placeName" content="Castle Pinckney"/><meta name="dc.coverage.placeName" content="South Carolina"/><meta name="dc.coverage.placeName" content="Deveaux Bank"/><meta name="dc.coverage.placeName" content="Marsh Island"/><meta name="dc.coverage.placeName" content="Bird Key"/><meta name="dc.coverage.placeName" content="Tomkins Island"/><meta name="dc.coverage.placeName" content="Crab Bank"/><meta name="dc.coverage.placeName" content="Lighthouse Island (south end)"/><meta name="dc.coverage.placeName" content="White Banks"/><meta name="dc.rights" content="Access constraints: None;  Use constraints: Neither the State of South Carolina, the Department of Natural Resources, nor any of its employees, is responsible for any improper or incorrect use of the information described and/or contained herein, and assume no responsibility for the use of the information. The South Carolina Department of Natural Resources should be acknowledged as the data source in products derived from these data."/><script type="text/javascript" language="JavaScript1.3">
+/* Onload - Find each <pre> element with an Id="fixvalue" and
+call fixvalue() function to parse text to respect line breaks,
+replace <pre> element with <div> elememt, and convert URL address
+strings in text to <a href> element. */
+
+window.onload = function() {
+	elem = document.getElementById("fixvalue");
+	while (Boolean(elem != null)) {
+		fixvalue(elem);
+		elem = document.getElementById("fixvalue");
+	}
+	window.focus()
+}
+	
+/* Fix value - Parse text in <pre> element to respect line breaks introduced in ArcCatalog
+by the metadata author who intentionally introduced single line breaks to start new lines
+or even more than one consecutive line break to further separate text to form paragraphs.
+Note, fixvalue() calls the addtext() function, which adds text to DIV elements, which are
+sequentially added to a parent DIV element to form separate lines and paragraphs of text. */
+
+function fixvalue(elem) {
+	elem.id = "";
+	var n
+	var val = String("");
+	var pos = Number(0);
+	// Make a newline character to use for basis for splitting string into 
+	// an array of strings that are processed and turned into separate div
+	// elements with either new line or paragraphic-like style.
+	var newline = String.fromCharCode(10);
+	var par = elem.parentNode;
+	if (elem.innerText) {
+		// Position of first newline character in IE
+		n = elem;
+		val = n.innerText;
+		pos = val.indexOf(newline);
+	} else {
+		// Position of first newline character in NS, Firefox
+		n = elem.childNodes[0];
+		val = n.nodeValue;
+		pos = val.indexOf(newline);
+	}
+	if (pos > 0) {
+		// Text string contains at least one white space character
+		var sValue = new String ("");
+		// Split entire text string value on newline character
+		// in order to create an array of string values to process	
+		var aValues = val.split(newline);
+		var padBottom = Number(0);
+		var add = Boolean("false");
+		// Loop thru each potential new line or paragraph and append <DIV>
+		// element and set its className accordingly.				
+		for (var i = 0; i <= aValues.length - 1; i++) {
+			var div = document.createElement("DIV");
+			sValue = aValues[i];
+			add = false;
+			for (var j = 0; j < sValue.length; j++) {
+				if (sValue.charCodeAt(j) > 32) {
+					add = true;
+					// window.alert("CHARACTER AT " + sValue.charAt(j) + " CHARCODE " + sValue.charCodeAt(j))
+					break;
+				}
+			}
+			if (add) {
+				if (i == 0) {
+					// Must clone and append label property (e.g. <b>Abstract</b>) to first <DIV>
+					// element, and then remove it from parent if at first element in aValues array.
+					prev = elem.previousSibling;
+					if (Boolean(prev != null)) {
+						var label = prev.cloneNode(true)
+						div.appendChild(label);
+						par.removeChild(prev);
+					}
+				}
+				// Now test to see whether to set style.paddingBottom to 0 or 4 for newline or 
+				// paragraph, respectively.  Look ahead and if all characters in the next element 
+				// in the aValues array (the next DIV element to make) are not white space then set
+				// style.paddingBottom = 0. Otherwise, set style.paddingBottom = 4 to separate the 
+				// the current <DIV> from the next <DIV> element. 			
+				padBottom = Number(0);
+				if (i < aValues.length - 1) {
+					// Assume paragraph-like separation between DIV elements
+					padBottom = Number(4);
+					// Look for non-white space characters in content for next DIV
+					var nextValue = aValues[i+1];
+					for (var k = 0; k < nextValue.length; k++) {
+						if (nextValue.charCodeAt(k) > 32) {
+							// Found a non-white space character
+							padBottom = Number(0);
+							// window.alert("CHARACTER AT " + nextval.charAt(k) + " CHARCODE " + nextval.charCodeAt(k))
+							break;
+						}
+					}
+				}
+				// Pad element
+				div.style.paddingLeft = 0;
+				div.style.paddingRight = 0;
+				div.style.paddingTop = 0;
+				div.style.paddingBottom = padBottom;
+				// Scan text for URL strings before adding text to div element
+				addtext(div,sValue);
+				// Add new div element to parent div element
+				par.appendChild(div);
+			}
+		}
+		par.removeChild(elem);
+	} else {
+		// No white space charaters in text string so can be added directly to parent DIV element.
+		par.removeChild(elem);
+		// Scan text for URL strings before adding text to div element
+		addtext(par,val);
+	}		
+}
+
+/* Add text - This function adds text to (inside) DIV element, but before doing so 
+searches for strings in the text that resemble URLs and converts them to hypertext
+elements and adds them to the div element as well. Searches for strings that begin 
+with "://" or "www." and converts them to <a href> elements. Add text function is 
+called by fixvalue function */ 
+ 
+function addtext(elem,txt) {
+	// Scan entire text value and test for presense of URL strings, 
+	// convert URL strings to Hypertext Elements, convert text strings
+	// between URL strings to Text Nodes and append all Hypertext
+	// Elements and Text Nodes to DIV element.
+	var start = new Number (0);
+	var end = new Number (0);
+	var url = new String("");
+	var urlpattern = /(\w+):\/\/([\w.]+)((\S)*)|www\.([\w.]+)((\S)*)/g;
+	var punctuation = /[\.\,\;\:\?\!\[\]\(\)\{\}\'\"]/;
+	var result
+	var elemText
+	while((result = urlpattern.exec(txt)) != null) {
+		var fullurl = result[0];
+		var protocol = result[1];
+		url = fullurl;
+		end = result.index;
+		if (start < end){
+			// Append Text Node to parent
+			elemText = document.createTextNode(txt.substring(start, end));
+			elem.appendChild(elemText);
+		}
+		var lastchar = fullurl.charAt(fullurl.length - 1);
+		// Remove last character from url if character is punctuation mark, bracket or parenthesis;
+		if (lastchar.match(punctuation) != null) {
+			// Remove next-to-last character from url if character is punctuation mark, bracket or parenthesis. For example the ")" in "),"
+			var nexttolastchar = fullurl.charAt(fullurl.length - 2);
+			if (nexttolastchar.match(punctuation) != null) {
+				url = fullurl.substring(0,fullurl.length - 2);		
+			} else {		
+				url = fullurl.substring(0,fullurl.length - 1);
+			}		
+		}
+		start = (result.index + url.length)
+		// Test to concatinate 'http://' to url if not already begininng with 'http://', 'https://' or 'ftp://'"
+		if (protocol == "") {
+			url = "http://" + url;
+		}
+		// Append Hypertext (anchor) Element to parent
+		elemText = document.createTextNode(url);
+		var elemAnchor = document.createElement("A");
+		elemAnchor.setAttribute("href", url);
+		elemAnchor.setAttribute("target", "viewer");
+		elemAnchor.appendChild(elemText);
+		elem.appendChild(elemAnchor);				
+	}
+	end = txt.length;
+	if (start < end) {
+		// Append Text Node that follows last Hypertext Element
+		elemText = document.createTextNode(txt.substring(start, end));
+		elem.appendChild(elemText);
+	}
+}
+</script></head><body><a name="Top"/><h1>Shorebirds_SC</h1><h2>Metadata:</h2><ul><li><a href="#Identification_Information">Identification_Information</a></li><li><a href="#Data_Quality_Information">Data_Quality_Information</a></li><li><a href="#Spatial_Data_Organization_Information">Spatial_Data_Organization_Information</a></li><li><a href="#Spatial_Reference_Information">Spatial_Reference_Information</a></li><li><a href="#Entity_and_Attribute_Information">Entity_and_Attribute_Information</a></li><li><a href="#Distributor1">Distribution_Information</a></li><li><a href="#Metadata_Reference_Information">Metadata_Reference_Information</a></li></ul><a name="Identification_Information"><hr/></a><dl><dt><i>Identification_Information: </i></dt><dd><dl><dt><i>Citation: </i></dt><dd><dl><dt><i>Citation_Information: </i></dt><dd><dl><dt><i>Originator: </i>Felicia Sanders, SCDNR</dt><dt><i>Title: </i></dt><dd>Shorebirds_SC</dd><dt><i>Geospatial_Data_Presentation_Form: </i>vector digital data</dt></dl></dd></dl></dd><dt><i>Description: </i></dt><dd><dl><dt><i>Abstract: </i></dt><dd><pre id="fixvalue">This data set is based on summaries of observed nesting activities and presence of all bird species monitored by the SCDNR from 2006 through 2010 at several transient washover islands that are critical habitat used by these seabirds for nesting in South Carolina. Numbers are from nest counts or from estimates made from counting adults that appear to be incubating or brooding young. Nests counts were conducted by walking through the colony and counting nests with eggs or chicks. The number of wading bird nests at these sites is also included. Wading bird counts were primarily estimates from counting adults that were assumed to be nesting. Each site was only counted once, thus these numbers may not represent peak numbers of nests at the site. This data does not include all species that nest on a site. For example, laughing gulls, shorebirds, and uncommon species are not included. This data set does not include all sites in SC that have nesting seabirds, thus totaling all nests for a species during one year, may not be the total number of nests in SC for that species.</pre></dd><dt><i>Purpose: </i></dt><dd><pre id="fixvalue">This GIS data set was created for the purpose of describing the location and types of seabird colonies that nest along the South Carolina coastline so that these nesting activities can be considered for any planned energy development or other coastal use activities.</pre></dd></dl></dd><dt><i>Status: </i></dt><dd><dl><dt><i>Progress: </i>Complete</dt><dt><i>Maintenance_and_Update_Frequency: </i>None planned</dt></dl></dd><dt><i>Spatial_Domain: </i></dt><dd><dl><dt><i>Bounding_Coordinates: </i></dt><dd><dl><dt><i>West_Bounding_Coordinate: </i>-80.868373</dt><dt><i>East_Bounding_Coordinate: </i>-79.406281</dt><dt><i>North_Bounding_Coordinate: </i>33.027592</dt><dt><i>South_Bounding_Coordinate: </i>32.049742</dt></dl></dd></dl></dd><dt><i>Keywords: </i></dt><dd><dl><dt><i>Theme: </i></dt><dd><dl><dt><i>Theme_Keyword_Thesaurus: </i>None</dt><dt><i>Theme_Keyword: </i>Seabird Colonies</dt><dt><i>Theme_Keyword: </i>Royal tern</dt><dt><i>Theme_Keyword: </i>Gull-billed tern</dt><dt><i>Theme_Keyword: </i>Snowy egret</dt><dt><i>Theme_Keyword: </i>Eastern brown pelican</dt><dt><i>Theme_Keyword: </i>Black skimmer</dt><dt><i>Theme_Keyword: </i>Common tern</dt><dt><i>Theme_Keyword: </i>Sandwich tern</dt><dt><i>Theme_Keyword: </i>Least tern</dt><dt><i>Theme_Keyword: </i>Tricolored heron</dt><dt><i>Theme_Keyword: </i>Glossy Ibis</dt><dt><i>Theme_Keyword: </i>Black-crowned night heron</dt><dt><i>Theme_Keyword: </i>Cattle egret</dt><dt><i>Theme_Keyword: </i>Great egret</dt></dl></dd><dt><i>Place: </i></dt><dd><dl><dt><i>Place_Keyword_Thesaurus: </i>None</dt><dt><i>Place_Keyword: </i>Castle Pinckney</dt><dt><i>Place_Keyword: </i>South Carolina</dt><dt><i>Place_Keyword: </i>Deveaux Bank</dt><dt><i>Place_Keyword: </i>Marsh Island</dt><dt><i>Place_Keyword: </i>Bird Key</dt><dt><i>Place_Keyword: </i>Tomkins Island</dt><dt><i>Place_Keyword: </i>Crab Bank</dt><dt><i>Place_Keyword: </i>Lighthouse Island (south end)</dt><dt><i>Place_Keyword: </i>White Banks</dt></dl></dd></dl></dd><dt><i>Access_Constraints: </i>None</dt><dt><i>Use_Constraints: </i></dt><dd><pre id="fixvalue">Neither the State of South Carolina, the Department of Natural Resources, nor any of its employees, is responsible for any improper or incorrect use of the information described and/or contained herein, and assume no responsibility for the use of the information. The South Carolina Department of Natural Resources should be acknowledged as the data source in products derived from these data.</pre></dd><dt><i>Point_of_Contact: </i></dt><dd><dl><dt><i>Contact_Information: </i></dt><dd><dl><dt><i>Contact_Organization_Primary: </i></dt><dd><dl><dt><i>Contact_Organization: </i>South Carolina Department of Natural Resources</dt><dt><i>Contact_Person: </i>Felicia Sanders</dt></dl></dd><dt><i>Contact_Position: </i>Wildlife Biologist</dt><dt><i>Contact_Address: </i></dt><dd><dl><dt><i>Address_Type: </i>mailing</dt><dt><i>Address: </i></dt><dd><pre id="fixvalue">Santee Coastal Reserve</pre></dd><dt><i>Address: </i></dt><dd><pre id="fixvalue">P.O.Box 37</pre></dd><dt><i>City: </i>McClellanville</dt><dt><i>State_or_Province: </i>SC</dt><dt><i>Postal_Code: </i>29458</dt><dt><i>Country: </i>US</dt></dl></dd><dt><i>Contact_Voice_Telephone: </i>843-520-0961</dt><dt><i>Contact_Electronic_Mail_Address: </i>sandersf@dnr.sc.gov</dt></dl></dd></dl></dd><dt><i>Native_Data_Set_Environment: </i></dt><dd> Version 6.2 (Build 9200) ; Esri ArcGIS 10.1.0.3035</dd></dl></dd></dl><a href="#Top">Back to Top</a><a name="Data_Quality_Information"><hr/></a><dl><dt><i>Data_Quality_Information: </i></dt><dd><dl><dt><i>Lineage: </i></dt><dd><dl><dt><i>Process_Step: </i></dt><dd><dl><dt><i>Process_Description: </i></dt><dd><pre id="fixvalue">Due to the transient and constantly changing nature of these island, a single point was used to represent the island. The point was placed on the island in a location that was present on all of the following 1 meter imagery: 2009 NAIP, 2006 DOQQ, 1999 DOQQ, and 1994 DOQQs. Numbers are from nest counts or from estimates made from counting adults that appear to be incubating or brooding young. Nests counts were conducted by walking through the colony and counting nests with eggs or chicks. The number of wading bird nests at these sites is also included. Wading bird counts were primarily estimates from counting adults that were assumed to be nesting. Each site was only counted once, thus these numbers may not represent peak numbers of nests at the site. This data does not include all species that nest on a site. For example, Laughing gulls, shorebirds, and uncommon species are not included. This data set does not include all sites in SC that have nesting seabirds, thus totaling all nests for a species during one year, may not be the total number of nests in SC for that species.</pre></dd><dt><i>Source_Used_Citation_Abbreviation: </i></dt><dd>\\Mrdnas\GIS\Boynton\GISProjects\2011\Other\Research\SCWindProject\Metadata\MetadataTemplate</dd><dt><i>Process_Date: </i>20110615</dt><dt><i>Process_Time: </i>102721</dt><dt><i>Process_Contact: </i></dt><dd><dl><dt><i>Contact_Information: </i></dt><dd><dl><dt><i>Contact_Organization_Primary: </i></dt><dd><dl><dt><i>Contact_Organization: </i>SCDNR</dt><dt><i>Contact_Person: </i>Jessica Boynton</dt></dl></dd><dt><i>Contact_Position: </i>GIS Manager</dt><dt><i>Contact_Address: </i></dt><dd><dl><dt><i>Address_Type: </i>physical</dt><dt><i>Address: </i></dt><dd><pre id="fixvalue">217 Fort Johnson Rd.</pre></dd><dt><i>City: </i>Charleston</dt><dt><i>State_or_Province: </i>SC</dt><dt><i>Postal_Code: </i>29412</dt><dt><i>Country: </i>US</dt></dl></dd><dt><i>Contact_Voice_Telephone: </i>843-953-9163</dt><dt><i>Contact_Facsimile_Telephone: </i>843-953-9820</dt><dt><i>Contact_Electronic_Mail_Address: </i>boyntonj@dnr.sc.gov</dt></dl></dd></dl></dd></dl></dd></dl></dd></dl></dd></dl><a href="#Top">Back to Top</a><a name="Spatial_Data_Organization_Information"><hr/></a><dl><dt><i>Spatial_Data_Organization_Information: </i></dt><dd><dl><dt><i>Direct_Spatial_Reference_Method: </i>Vector</dt><dt><i>Point_and_Vector_Object_Information: </i></dt><dd><dl><dt><i>SDTS_Terms_Description: </i></dt><dd><dl><dt><i>SDTS_Point_and_Vector_Object_Type: </i>Entity point</dt><dt><i>Point_and_Vector_Object_Count: </i>8</dt></dl></dd></dl></dd></dl></dd></dl><a href="#Top">Back to Top</a><a name="Spatial_Reference_Information"><hr/></a><dl><dt><i>Spatial_Reference_Information: </i></dt><dd><dl><dt><i>Horizontal_Coordinate_System_Definition: </i></dt><dd><dl><dt><i>Planar: </i></dt><dd><dl><dt><i>Map_Projection: </i></dt><dd><dl><dt><i>Map_Projection_Name: </i>Transverse Mercator</dt><dt><i>Transverse_Mercator: </i></dt>Transverse Mercator<dd><dl><dt><i>Scale_Factor_at_Central_Meridian: </i>0.9996</dt><dt><i>Longitude_of_Central_Meridian: </i>-81.0</dt><dt><i>Latitude_of_Projection_Origin: </i>0.0</dt><dt><i>False_Easting: </i>500000.0</dt><dt><i>False_Northing: </i>0.0</dt></dl></dd></dl></dd><dt><i>Planar_Coordinate_Information: </i></dt><dd><dl><dt><i>Planar_Coordinate_Encoding_Method: </i>coordinate pair</dt><dt><i>Coordinate_Representation: </i></dt><dd><dl><dt><i>Abscissa_Resolution: </i>0.0001</dt><dt><i>Ordinate_Resolution: </i>0.0001</dt></dl></dd><dt><i>Planar_Distance_Units: </i></dt></dl></dd></dl></dd><dt><i>Geodetic_Model: </i></dt><dd><dl><dt><i>Horizontal_Datum_Name: </i>D North American 1983</dt><dt><i>Ellipsoid_Name: </i>GRS 1980</dt><dt><i>Semi-major_Axis: </i>6378137.0</dt><dt><i>Denominator_of_Flattening_Ratio: </i>298.257222101</dt></dl></dd></dl></dd></dl></dd></dl><a href="#Top">Back to Top</a><a name="Entity_and_Attribute_Information"><hr/></a><dl><dt><i>Entity_and_Attribute_Information: </i></dt><dd><dl><dt><i>Detailed_Description: </i></dt><dd><dl><dt><i>Entity_Type: </i></dt><dd><dl><dt><i>Entity_Type_Label: </i>Shorebirds_SC</dt></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>OBJECTID</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Internal feature number.</pre></dd><dt><i>Attribute_Definition_Source: </i></dt><dd><pre id="fixvalue">ESRI</pre></dd><dt><i>Attribute_Domain_Values: </i></dt><dd><dl><dt><i>Unrepresentable_Domain: </i></dt><dd>Sequential unique whole numbers that are automatically generated.</dd></dl></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Shape</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Feature geometry.</pre></dd><dt><i>Attribute_Definition_Source: </i></dt><dd><pre id="fixvalue">ESRI</pre></dd><dt><i>Attribute_Domain_Values: </i></dt><dd><dl><dt><i>Unrepresentable_Domain: </i></dt><dd>Coordinates defining the features.</dd></dl></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Site</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">The name of the island.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Lat</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">The latitude of the island.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Long</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">The longitude of the island.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>BrnPelAvg</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">The average nests over five years (2006-2010) for Eastern Brown Pelicans.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>BrnPelCV</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Coefficient of variance.  Calculated by divided the standard deviation (for the five years 2006-2010) by the average number of nests for the same five year period for Eastern brown pelican.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>BlCrnNHAvg</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">The average nests over five years (2006-2010) for Black-crowned night heron.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>BlCrnNHCV</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Coefficient of variance.  Calculated by divided the standard deviation (for the five years 2006-2010) by the average number of nests for the same five year period for Black-crowned night heron.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>GrtEgrtAvg</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">The average nests over five years (2006-2010) for Great egret.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>GrtEgrtCV</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Coefficient of variance.  Calculated by divided the standard deviation (for the five years 2006-2010) by the average number of nests for the same five year period for Great egret.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>SnwEgrtAvg</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">The average nests over five years (2006-2010) for Snowy egret.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>SnwEgrtCV</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Coefficient of variance.  Calculated by divided the standard deviation (for the five years 2006-2010) by the average number of nests for the same five year period for Snowy egret.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>TrCldHnAvg</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">The average nests over five years (2006-2010) for Tricolored heron.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>TrCldHnCV</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Coefficient of variance.  Calculated by divided the standard deviation (for the five years 2006-2010) by the average number of nests for the same five year period for Tricolored heron.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>BlkSkmAvg</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">The average nests over five years (2006-2010) for Black skimmer.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>BlkSkmCV</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Coefficient of variance.  Calculated by divided the standard deviation (for the five years 2006-2010) by the average number of nests for the same five year period for Black skimmer.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>CtlEgrtAvg</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">The average nests over five years (2006-2010) for Cattle egret.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>CtlEgrtCV</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Coefficient of variance.  Calculated by divided the standard deviation (for the five years 2006-2010) by the average number of nests for the same five year period for Cattle egret.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>GlBldTnAvg</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">The average nests over five years (2006-2010) for Gull-billed tern.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>GlBldTnCV</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Coefficient of variance.  Calculated by divided the standard deviation (for the five years 2006-2010) by the average number of nests for the same five year period for Gull-billed tern.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>WhtIbisAvg</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">The average nests over five years (2006-2010) for White ibis.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>WhtIbisCV</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Coefficient of variance.  Calculated by divided the standard deviation (for the five years 2006-2010) by the average number of nests for the same five year period for White ibis.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>RylTrnAvg</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">The average nests over five years (2006-2010) for Royal tern.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>RylTrnCV</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Coefficient of variance.  Calculated by divided the standard deviation (for the five years 2006-2010) by the average number of nests for the same five year period for Royal tern .</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>SdwchTnAvg</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">The average nests over five years (2006-2010) for Sandwich tern.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>SdwchTnCV</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Coefficient of variance.  Calculated by divided the standard deviation (for the five years 2006-2010) by the average number of nests for the same five year period for Sandwich tern.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>GlsyIbsAvg</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">The average nests over five years (2006-2010) for Glossy ibis.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>GlsyIbsCV</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Coefficient of variance.  Calculated by divided the standard deviation (for the five years 2006-2010) by the average number of nests for the same five year period for Glossy ibis.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>LstTrnAvg</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">The average nests over five years (2006-2010) for Least tern.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>LstTrnCV</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Coefficient of variance.  Calculated by divided the standard deviation (for the five years 2006-2010) by the average number of nests for the same five year period for Least tern.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>CmmnTrnAvg</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">The average nests over five years (2006-2010) for Common tern.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>CmmnTrnCV</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Coefficient of variance.  Calculated by divided the standard deviation (for the five years 2006-2010) by the average number of nests for the same five year period for Common tern.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>FrstrTnAvg</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">The average nests over five years (2006-2010) for Forster's tern.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>FrstrTnCV</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Coefficient of variance.  Calculated by divided the standard deviation (for the five years 2006-2010) by the average number of nests for the same five year period for Forster's tern.</pre></dd></dl></dd></dl></dd></dl></dd></dl><a href="#Top">Back to Top</a><a name="Distributor1"><hr/></a><dl><dt><i>Distribution_Information: </i></dt><dd><dl><dt><i>Distributor: </i></dt><dd><dl><dt><i>Contact_Information: </i></dt><dd><dl><dt><i>Contact_Organization_Primary: </i></dt><dd><dl><dt><i>Contact_Organization: </i>South Carolina Department of Natural Resources</dt></dl></dd><dt><i>Contact_Position: </i>Spatial Data Manager</dt><dt><i>Contact_Address: </i></dt><dd><dl><dt><i>Address_Type: </i>mailing</dt><dt><i>Address: </i></dt><dd><pre id="fixvalue">Rembert C. Dennis Building P.O. Box 167</pre></dd><dt><i>City: </i>Columbia</dt><dt><i>State_or_Province: </i>SC</dt><dt><i>Postal_Code: </i>29202</dt><dt><i>Country: </i>US</dt></dl></dd><dt><i>Contact_Voice_Telephone: </i>803-734-9100</dt><dt><i>Contact_Facsimile_Telephone: </i>803-734-7001</dt><dt><i>Contact_Electronic_Mail_Address: </i>gisman@dnr.sc.gov</dt></dl></dd></dl></dd><dt><i>Distribution_Liability: </i></dt><dd><pre id="fixvalue">See access and use constraints information.</pre></dd><dt><i>Standard_Order_Process: </i></dt><dd><dl><dt><i>Digital_Form: </i></dt><dd><dl><dt><i>Digital_Transfer_Information: </i></dt><dd><dl><dt><i>Format_Name: </i>File Geodatabase Feature Class</dt></dl></dd><dt><i>Digital_Transfer_Option: </i></dt><dd><dl/></dd></dl></dd></dl></dd></dl></dd></dl><a href="#Top">Back to Top</a><a name="Metadata_Reference_Information"><hr/></a><dl><dt><i>Metadata_Reference_Information: </i></dt><dd><dl><dt><i>Metadata_Date: </i>20130218</dt><dt><i>Metadata_Contact: </i></dt><dd><dl><dt><i>Contact_Information: </i></dt><dd><dl><dt><i>Contact_Organization_Primary: </i></dt><dd><dl><dt><i>Contact_Organization: </i>SCDNR, Marine Resources Division, MRRI</dt><dt><i>Contact_Person: </i>Jessica Boynton</dt></dl></dd><dt><i>Contact_Position: </i>GIS Manager I</dt><dt><i>Contact_Address: </i></dt><dd><dl><dt><i>Address_Type: </i>mailing</dt><dt><i>Address: </i></dt><dd><pre id="fixvalue">P.O. Box 12559</pre></dd><dt><i>City: </i>Charleston</dt><dt><i>State_or_Province: </i>SC</dt><dt><i>Postal_Code: </i>29422</dt><dt><i>Country: </i>US</dt></dl></dd><dt><i>Contact_Voice_Telephone: </i>843-953-9163</dt><dt><i>Contact_Facsimile_Telephone: </i>843-953-9820</dt><dt><i>Contact_Electronic_Mail_Address: </i>boyntonj@dnr.sc.gov</dt></dl></dd></dl></dd><dt><i>Metadata_Standard_Name: </i>FGDC Content Standard for Digital Geospatial Metadata</dt><dt><i>Metadata_Standard_Version: </i>FGDC-STD-001-1998</dt><dt><i>Metadata_Time_Convention: </i>local time</dt></dl></dd></dl><a href="#Top">Back to Top</a></body></html>

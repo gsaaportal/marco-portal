@@ -1,0 +1,174 @@
+<html><head><title>TurtleNests_NC</title><link rel="schema.dc" href="http://dublincore.org/documents/dces/"/><meta name="dc.title" content="TurtleNests_NC"/><meta name="dc.creator" content="North Carolina Wildlife Resources Commission"/><meta name="dc.subject" content="Caretta caretta nesting Loggerhead sea turtle"/><meta name="dc.description" content="The North Carolina Wildlife Resources Commission (NCWRC) has been monitoring sea turtle nests since the 1970's and authorizes and trains participants to survey the beach to locate sea turtle nests. They also relocate nests when necessary, protect nests with predator-proof screening, monitor nests during incubation, and inventory nests after they emerge to determine hatch success. Nest protection project participants include individuals that belong to beach front communities, conservation organizations, federal, state, or local agencies and universities. All nests are verified by the presence of eggs or hatching activity. Standardized ground surveys are conducted daily starting in May. Participants are required to collect data on all nests including the species of turtle that laid the nest, date laid, and other management information. Additional information can be found at http://www.seaturtle.org/nestdb/?view=1. All nests reported for this dataset were laid by loggerheads between 2006 and 2011. Nesting data is reported as mean annual density (nest count/km.) for each beach and spans the years 2006 to 2011. If there were two or more years, the coefficient of variance of the mean was also provided."/><meta name="dc.type" content="data.vector digital data"/><meta name="dc.coverage.x.min" scheme="DD" content="-78.541926"/><meta name="dc.coverage.x.max" scheme="DD" content="-75.393359"/><meta name="dc.coverage.y.min" scheme="DD" content="33.756900"/><meta name="dc.coverage.y.max" scheme="DD" content="36.634209"/><meta name="dc.coverage.placeName" content="North Carolina"/><meta name="dc.coverage.t.min" content="20060101"/><meta name="dc.coverage.t.max" content="20100101"/><meta name="dc.rights" content="Access constraints: None;  Use constraints: Neither the State of South Carolina, the State of North Carolina, the Department of Natural Resources, the North Carolina Wildlife Resources Commission nor any of its employees, is responsible for any improper or incorrect use of the information described and/or contained herein, and assume no responsibility for the use of the information. The North Carolina Wildlife Resources Commission should be acknowledged as the data source in products derived from these data. The South Carolina Department of Natural Resources should be acknowledged as the GIS data source in products derived from these data."/><script type="text/javascript" language="JavaScript1.3">
+/* Onload - Find each <pre> element with an Id="fixvalue" and
+call fixvalue() function to parse text to respect line breaks,
+replace <pre> element with <div> elememt, and convert URL address
+strings in text to <a href> element. */
+
+window.onload = function() {
+	elem = document.getElementById("fixvalue");
+	while (Boolean(elem != null)) {
+		fixvalue(elem);
+		elem = document.getElementById("fixvalue");
+	}
+	window.focus()
+}
+	
+/* Fix value - Parse text in <pre> element to respect line breaks introduced in ArcCatalog
+by the metadata author who intentionally introduced single line breaks to start new lines
+or even more than one consecutive line break to further separate text to form paragraphs.
+Note, fixvalue() calls the addtext() function, which adds text to DIV elements, which are
+sequentially added to a parent DIV element to form separate lines and paragraphs of text. */
+
+function fixvalue(elem) {
+	elem.id = "";
+	var n
+	var val = String("");
+	var pos = Number(0);
+	// Make a newline character to use for basis for splitting string into 
+	// an array of strings that are processed and turned into separate div
+	// elements with either new line or paragraphic-like style.
+	var newline = String.fromCharCode(10);
+	var par = elem.parentNode;
+	if (elem.innerText) {
+		// Position of first newline character in IE
+		n = elem;
+		val = n.innerText;
+		pos = val.indexOf(newline);
+	} else {
+		// Position of first newline character in NS, Firefox
+		n = elem.childNodes[0];
+		val = n.nodeValue;
+		pos = val.indexOf(newline);
+	}
+	if (pos > 0) {
+		// Text string contains at least one white space character
+		var sValue = new String ("");
+		// Split entire text string value on newline character
+		// in order to create an array of string values to process	
+		var aValues = val.split(newline);
+		var padBottom = Number(0);
+		var add = Boolean("false");
+		// Loop thru each potential new line or paragraph and append <DIV>
+		// element and set its className accordingly.				
+		for (var i = 0; i <= aValues.length - 1; i++) {
+			var div = document.createElement("DIV");
+			sValue = aValues[i];
+			add = false;
+			for (var j = 0; j < sValue.length; j++) {
+				if (sValue.charCodeAt(j) > 32) {
+					add = true;
+					// window.alert("CHARACTER AT " + sValue.charAt(j) + " CHARCODE " + sValue.charCodeAt(j))
+					break;
+				}
+			}
+			if (add) {
+				if (i == 0) {
+					// Must clone and append label property (e.g. <b>Abstract</b>) to first <DIV>
+					// element, and then remove it from parent if at first element in aValues array.
+					prev = elem.previousSibling;
+					if (Boolean(prev != null)) {
+						var label = prev.cloneNode(true)
+						div.appendChild(label);
+						par.removeChild(prev);
+					}
+				}
+				// Now test to see whether to set style.paddingBottom to 0 or 4 for newline or 
+				// paragraph, respectively.  Look ahead and if all characters in the next element 
+				// in the aValues array (the next DIV element to make) are not white space then set
+				// style.paddingBottom = 0. Otherwise, set style.paddingBottom = 4 to separate the 
+				// the current <DIV> from the next <DIV> element. 			
+				padBottom = Number(0);
+				if (i < aValues.length - 1) {
+					// Assume paragraph-like separation between DIV elements
+					padBottom = Number(4);
+					// Look for non-white space characters in content for next DIV
+					var nextValue = aValues[i+1];
+					for (var k = 0; k < nextValue.length; k++) {
+						if (nextValue.charCodeAt(k) > 32) {
+							// Found a non-white space character
+							padBottom = Number(0);
+							// window.alert("CHARACTER AT " + nextval.charAt(k) + " CHARCODE " + nextval.charCodeAt(k))
+							break;
+						}
+					}
+				}
+				// Pad element
+				div.style.paddingLeft = 0;
+				div.style.paddingRight = 0;
+				div.style.paddingTop = 0;
+				div.style.paddingBottom = padBottom;
+				// Scan text for URL strings before adding text to div element
+				addtext(div,sValue);
+				// Add new div element to parent div element
+				par.appendChild(div);
+			}
+		}
+		par.removeChild(elem);
+	} else {
+		// No white space charaters in text string so can be added directly to parent DIV element.
+		par.removeChild(elem);
+		// Scan text for URL strings before adding text to div element
+		addtext(par,val);
+	}		
+}
+
+/* Add text - This function adds text to (inside) DIV element, but before doing so 
+searches for strings in the text that resemble URLs and converts them to hypertext
+elements and adds them to the div element as well. Searches for strings that begin 
+with "://" or "www." and converts them to <a href> elements. Add text function is 
+called by fixvalue function */ 
+ 
+function addtext(elem,txt) {
+	// Scan entire text value and test for presense of URL strings, 
+	// convert URL strings to Hypertext Elements, convert text strings
+	// between URL strings to Text Nodes and append all Hypertext
+	// Elements and Text Nodes to DIV element.
+	var start = new Number (0);
+	var end = new Number (0);
+	var url = new String("");
+	var urlpattern = /(\w+):\/\/([\w.]+)((\S)*)|www\.([\w.]+)((\S)*)/g;
+	var punctuation = /[\.\,\;\:\?\!\[\]\(\)\{\}\'\"]/;
+	var result
+	var elemText
+	while((result = urlpattern.exec(txt)) != null) {
+		var fullurl = result[0];
+		var protocol = result[1];
+		url = fullurl;
+		end = result.index;
+		if (start < end){
+			// Append Text Node to parent
+			elemText = document.createTextNode(txt.substring(start, end));
+			elem.appendChild(elemText);
+		}
+		var lastchar = fullurl.charAt(fullurl.length - 1);
+		// Remove last character from url if character is punctuation mark, bracket or parenthesis;
+		if (lastchar.match(punctuation) != null) {
+			// Remove next-to-last character from url if character is punctuation mark, bracket or parenthesis. For example the ")" in "),"
+			var nexttolastchar = fullurl.charAt(fullurl.length - 2);
+			if (nexttolastchar.match(punctuation) != null) {
+				url = fullurl.substring(0,fullurl.length - 2);		
+			} else {		
+				url = fullurl.substring(0,fullurl.length - 1);
+			}		
+		}
+		start = (result.index + url.length)
+		// Test to concatinate 'http://' to url if not already begininng with 'http://', 'https://' or 'ftp://'"
+		if (protocol == "") {
+			url = "http://" + url;
+		}
+		// Append Hypertext (anchor) Element to parent
+		elemText = document.createTextNode(url);
+		var elemAnchor = document.createElement("A");
+		elemAnchor.setAttribute("href", url);
+		elemAnchor.setAttribute("target", "viewer");
+		elemAnchor.appendChild(elemText);
+		elem.appendChild(elemAnchor);				
+	}
+	end = txt.length;
+	if (start < end) {
+		// Append Text Node that follows last Hypertext Element
+		elemText = document.createTextNode(txt.substring(start, end));
+		elem.appendChild(elemText);
+	}
+}
+</script></head><body><a name="Top"/><h1>TurtleNests_NC</h1><h2>Metadata:</h2><ul><li><a href="#Identification_Information">Identification_Information</a></li><li><a href="#Data_Quality_Information">Data_Quality_Information</a></li><li><a href="#Spatial_Data_Organization_Information">Spatial_Data_Organization_Information</a></li><li><a href="#Spatial_Reference_Information">Spatial_Reference_Information</a></li><li><a href="#Entity_and_Attribute_Information">Entity_and_Attribute_Information</a></li><li><a href="#Distributor1">Distribution_Information</a></li><li><a href="#Metadata_Reference_Information">Metadata_Reference_Information</a></li></ul><a name="Identification_Information"><hr/></a><dl><dt><i>Identification_Information: </i></dt><dd><dl><dt><i>Citation: </i></dt><dd><dl><dt><i>Citation_Information: </i></dt><dd><dl><dt><i>Originator: </i>North Carolina Wildlife Resources Commission</dt><dt><i>Title: </i></dt><dd>TurtleNests_NC</dd><dt><i>Geospatial_Data_Presentation_Form: </i>vector digital data</dt></dl></dd></dl></dd><dt><i>Description: </i></dt><dd><dl><dt><i>Abstract: </i></dt><dd><pre id="fixvalue">The North Carolina Wildlife Resources Commission (NCWRC) has been monitoring sea turtle nests since the 1970's and authorizes and trains participants to survey the beach to locate sea turtle nests. They also relocate nests when necessary, protect nests with predator-proof screening, monitor nests during incubation, and inventory nests after they emerge to determine hatch success. Nest protection project participants include individuals that belong to beach front communities, conservation organizations, federal, state, or local agencies and universities. All nests are verified by the presence of eggs or hatching activity. Standardized ground surveys are conducted daily starting in May. Participants are required to collect data on all nests including the species of turtle that laid the nest, date laid, and other management information. Additional information can be found at http://www.seaturtle.org/nestdb/?view=1. All nests reported for this dataset were laid by loggerheads between 2006 and 2011. Nesting data is reported as mean annual density (nest count/km.) for each beach and spans the years 2006 to 2011. If there were two or more years, the coefficient of variance of the mean was also provided.</pre></dd><dt><i>Purpose: </i></dt><dd><pre id="fixvalue">This GIS dataset was created for the purpose of describing the mean nest densities of loggerhead sea turtles on North Carolina beaches surveyed from 2006-2011 so that these biological resources can be considered for any planned energy development or other coastal use activity.</pre></dd></dl></dd><dt><i>Time_Period_of_Content: </i></dt><dd><dl><dt><i>Time_Period_Information: </i></dt><dd><dl><dt><i>Range_of_Dates/Times: </i></dt><dd><dl><dt><i>Beginning_Date: </i>20060101</dt><dt><i>Ending_Date: </i>20100101</dt></dl></dd></dl></dd><dt><i>Currentness_Reference: </i></dt><dd><pre id="fixvalue">Unknown</pre></dd></dl></dd><dt><i>Status: </i></dt><dd><dl><dt><i>Progress: </i>Complete</dt><dt><i>Maintenance_and_Update_Frequency: </i>None planned</dt></dl></dd><dt><i>Spatial_Domain: </i></dt><dd><dl><dt><i>Bounding_Coordinates: </i></dt><dd><dl><dt><i>West_Bounding_Coordinate: </i>-78.541926</dt><dt><i>East_Bounding_Coordinate: </i>-75.393359</dt><dt><i>North_Bounding_Coordinate: </i>36.634209</dt><dt><i>South_Bounding_Coordinate: </i>33.756900</dt></dl></dd></dl></dd><dt><i>Keywords: </i></dt><dd><dl><dt><i>Theme: </i></dt><dd><dl><dt><i>Theme_Keyword_Thesaurus: </i>None</dt><dt><i>Theme_Keyword: </i>Caretta caretta</dt><dt><i>Theme_Keyword: </i>nesting</dt><dt><i>Theme_Keyword: </i>Loggerhead sea turtle</dt></dl></dd><dt><i>Place: </i></dt><dd><dl><dt><i>Place_Keyword_Thesaurus: </i>None</dt><dt><i>Place_Keyword: </i>North Carolina</dt></dl></dd></dl></dd><dt><i>Access_Constraints: </i>None</dt><dt><i>Use_Constraints: </i></dt><dd><pre id="fixvalue">Neither the State of South Carolina, the State of North Carolina, the Department of Natural Resources, the North Carolina Wildlife Resources Commission nor any of its employees, is responsible for any improper or incorrect use of the information described and/or contained herein, and assume no responsibility for the use of the information. The North Carolina Wildlife Resources Commission should be acknowledged as the data source in products derived from these data. The South Carolina Department of Natural Resources should be acknowledged as the GIS data source in products derived from these data.</pre></dd><dt><i>Point_of_Contact: </i></dt><dd><dl><dt><i>Contact_Information: </i></dt><dd><dl><dt><i>Contact_Organization_Primary: </i></dt><dd><dl><dt><i>Contact_Organization: </i>North Carolina Wildlife Resources Commission</dt><dt><i>Contact_Person: </i>Matthew Godfrey</dt></dl></dd><dt><i>Contact_Address: </i></dt><dd><dl><dt><i>Address_Type: </i>physical</dt><dt><i>Address: </i></dt><dd><pre id="fixvalue">1507 Ann Street</pre></dd><dt><i>City: </i>Beaufort</dt><dt><i>State_or_Province: </i>NC</dt><dt><i>Postal_Code: </i>28516</dt></dl></dd><dt><i>Contact_Voice_Telephone: </i>252-728-1528</dt><dt><i>Contact_Electronic_Mail_Address: </i>matt.godfrey@ncwildlife.org</dt></dl></dd></dl></dd><dt><i>Native_Data_Set_Environment: </i></dt><dd> Version 6.2 (Build 9200) ; Esri ArcGIS 10.1.0.3035</dd></dl></dd></dl><a href="#Top">Back to Top</a><a name="Data_Quality_Information"><hr/></a><dl><dt><i>Data_Quality_Information: </i></dt><dd><dl><dt><i>Attribute_Accuracy: </i></dt><dd><dl><dt><i>Attribute_Accuracy_Report: </i></dt><dd><pre id="fixvalue">Beach length accuracy is variable and dependent on the method used to measure the survey extent or beach length (GPS, odometer, etc).</pre></dd></dl></dd><dt><i>Lineage: </i></dt><dd><dl><dt><i>Process_Step: </i></dt><dd><dl><dt><i>Process_Description: </i></dt><dd><pre id="fixvalue">GIS Process: The surveyed beach distanced was digitized from USDA 2012 NAIP imagery using start and stop lat/longs.</pre></dd><dt><i>Process_Contact: </i></dt><dd><dl><dt><i>Contact_Information: </i></dt><dd><dl><dt><i>Contact_Organization_Primary: </i></dt><dd><dl><dt><i>Contact_Organization: </i>SCDNR</dt><dt><i>Contact_Person: </i>Jessica Boynton</dt></dl></dd><dt><i>Contact_Position: </i>GIS Manager I</dt><dt><i>Contact_Address: </i></dt><dd><dl><dt><i>Address_Type: </i>physical</dt><dt><i>Address: </i></dt><dd><pre id="fixvalue">217 Fort Johnson Rd.</pre></dd><dt><i>City: </i>Charleston</dt><dt><i>State_or_Province: </i>SC</dt><dt><i>Postal_Code: </i>29405</dt><dt><i>Country: </i>US</dt></dl></dd><dt><i>Contact_Voice_Telephone: </i>843-953-9163</dt><dt><i>Contact_Facsimile_Telephone: </i>843-953-9820</dt><dt><i>Contact_Electronic_Mail_Address: </i>boyntonj@dnr.sc.gov</dt></dl></dd></dl></dd></dl></dd><dt><i>Process_Step: </i></dt><dd><dl><dt><i>Process_Description: </i></dt><dd><pre id="fixvalue">a. Field process: Nest Counts: Nest count data were collected during daily ground surveys by trained and permitted volunteers, paid staff from conservation organizations, federal, state, or local agencies and universities. Most surveys were performed at sunrise when field signs are clearest. The extents of the surveys were noted by various methods (GPS, landmarks, odometers, etc). All nests were verified by the presence of eggs or signs of emergence at the end of incubation. Data from 2009, 2010 and 2011 were entered into an online database management system (http://www.seaturtle.org/nestdb/?view=1).</pre></dd></dl></dd></dl></dd></dl></dd></dl><a href="#Top">Back to Top</a><a name="Spatial_Data_Organization_Information"><hr/></a><dl><dt><i>Spatial_Data_Organization_Information: </i></dt><dd><dl><dt><i>Direct_Spatial_Reference_Method: </i>Vector</dt><dt><i>Point_and_Vector_Object_Information: </i></dt><dd><dl><dt><i>SDTS_Terms_Description: </i></dt><dd><dl><dt><i>SDTS_Point_and_Vector_Object_Type: </i>String</dt><dt><i>Point_and_Vector_Object_Count: </i>20</dt></dl></dd></dl></dd></dl></dd></dl><a href="#Top">Back to Top</a><a name="Spatial_Reference_Information"><hr/></a><dl><dt><i>Spatial_Reference_Information: </i></dt><dd><dl><dt><i>Horizontal_Coordinate_System_Definition: </i></dt><dd><dl><dt><i>Planar: </i></dt><dd><dl><dt><i>Map_Projection: </i></dt><dd><dl><dt><i>Map_Projection_Name: </i>Transverse Mercator</dt><dt><i>Transverse_Mercator: </i></dt>Transverse Mercator<dd><dl><dt><i>Scale_Factor_at_Central_Meridian: </i>0.9996</dt><dt><i>Longitude_of_Central_Meridian: </i>-81.0</dt><dt><i>Latitude_of_Projection_Origin: </i>0.0</dt><dt><i>False_Easting: </i>500000.0</dt><dt><i>False_Northing: </i>0.0</dt></dl></dd></dl></dd><dt><i>Planar_Coordinate_Information: </i></dt><dd><dl><dt><i>Planar_Coordinate_Encoding_Method: </i>coordinate pair</dt><dt><i>Coordinate_Representation: </i></dt><dd><dl><dt><i>Abscissa_Resolution: </i>0.0001</dt><dt><i>Ordinate_Resolution: </i>0.0001</dt></dl></dd><dt><i>Planar_Distance_Units: </i></dt></dl></dd></dl></dd><dt><i>Geodetic_Model: </i></dt><dd><dl><dt><i>Horizontal_Datum_Name: </i>D North American 1983</dt><dt><i>Ellipsoid_Name: </i>GRS 1980</dt><dt><i>Semi-major_Axis: </i>6378137.0</dt><dt><i>Denominator_of_Flattening_Ratio: </i>298.257222101</dt></dl></dd></dl></dd></dl></dd></dl><a href="#Top">Back to Top</a><a name="Entity_and_Attribute_Information"><hr/></a><dl><dt><i>Entity_and_Attribute_Information: </i></dt><dd><dl><dt><i>Detailed_Description: </i></dt><dd><dl><dt><i>Entity_Type: </i></dt><dd><dl><dt><i>Entity_Type_Label: </i>TurtleNests_NC</dt></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>OBJECTID</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Internal feature number.</pre></dd><dt><i>Attribute_Definition_Source: </i></dt><dd><pre id="fixvalue">Esri</pre></dd><dt><i>Attribute_Domain_Values: </i></dt><dd><dl><dt><i>Unrepresentable_Domain: </i></dt><dd>Sequential unique whole numbers that are automatically generated.</dd></dl></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Shape</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Feature geometry.</pre></dd><dt><i>Attribute_Definition_Source: </i></dt><dd><pre id="fixvalue">Esri</pre></dd><dt><i>Attribute_Domain_Values: </i></dt><dd><dl><dt><i>Unrepresentable_Domain: </i></dt><dd>Coordinates defining the features.</dd></dl></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Location</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">The description of the beach surveyed.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>MeanNestDensity</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Mean nest density for each beach was calculated by summing all annual nest counts over the six years and dividing that by the total number of years (n = 6) to provide a mean nest count. The annual nest density (nests per kilometer) for each beach was calculated by dividing the mean nest count by the daily survey length in kilometers.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>N_Years</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Number of years surveyed.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>CV</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Coefficient of variance of mean nest density.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Shape_Length</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Length of feature in internal units.</pre></dd><dt><i>Attribute_Definition_Source: </i></dt><dd><pre id="fixvalue">Esri</pre></dd><dt><i>Attribute_Domain_Values: </i></dt><dd><dl><dt><i>Unrepresentable_Domain: </i></dt><dd>Positive real numbers that are automatically generated.</dd></dl></dd></dl></dd></dl></dd></dl></dd></dl><a href="#Top">Back to Top</a><a name="Distributor1"><hr/></a><dl><dt><i>Distribution_Information: </i></dt><dd><dl><dt><i>Distributor: </i></dt><dd><dl><dt><i>Contact_Information: </i></dt><dd><dl><dt><i>Contact_Organization_Primary: </i></dt><dd><dl><dt><i>Contact_Organization: </i>South Carolina Department of Natural Resources</dt></dl></dd><dt><i>Contact_Position: </i>Spatial Data Manager</dt><dt><i>Contact_Address: </i></dt><dd><dl><dt><i>Address_Type: </i>mailing and physical</dt><dt><i>Address: </i></dt><dd><pre id="fixvalue">P.O. Box 167 Rembert C. Dennis Building</pre></dd><dt><i>City: </i>Columbia</dt><dt><i>State_or_Province: </i>SC</dt><dt><i>Postal_Code: </i>29202</dt><dt><i>Country: </i>US</dt></dl></dd><dt><i>Contact_Voice_Telephone: </i>803-734-9100</dt><dt><i>Contact_Facsimile_Telephone: </i>803-734-7001</dt><dt><i>Contact_Electronic_Mail_Address: </i>gisman@dnr.sc.gov</dt></dl></dd></dl></dd><dt><i>Distribution_Liability: </i></dt><dd><pre id="fixvalue">See access and use constraints information.</pre></dd><dt><i>Standard_Order_Process: </i></dt><dd><dl><dt><i>Digital_Form: </i></dt><dd><dl><dt><i>Digital_Transfer_Information: </i></dt><dd><dl><dt><i>Format_Name: </i>File Geodatabase Feature Class</dt></dl></dd><dt><i>Digital_Transfer_Option: </i></dt><dd><dl/></dd></dl></dd></dl></dd></dl></dd></dl><a href="#Top">Back to Top</a><a name="Metadata_Reference_Information"><hr/></a><dl><dt><i>Metadata_Reference_Information: </i></dt><dd><dl><dt><i>Metadata_Date: </i>20130218</dt><dt><i>Metadata_Contact: </i></dt><dd><dl><dt><i>Contact_Information: </i></dt><dd><dl><dt><i>Contact_Organization_Primary: </i></dt><dd><dl><dt><i>Contact_Organization: </i>SCDNR</dt><dt><i>Contact_Person: </i>Jessica Boynton</dt></dl></dd><dt><i>Contact_Position: </i>GIS Manager I</dt><dt><i>Contact_Address: </i></dt><dd><dl><dt><i>Address_Type: </i>physical</dt><dt><i>Address: </i></dt><dd><pre id="fixvalue">217 Fort Johnson Rd.</pre></dd><dt><i>City: </i>Charleston</dt><dt><i>State_or_Province: </i>SC</dt><dt><i>Postal_Code: </i>29412</dt><dt><i>Country: </i>US</dt></dl></dd><dt><i>Contact_Voice_Telephone: </i>843-953-9163</dt><dt><i>Contact_Facsimile_Telephone: </i>843-953-9820</dt><dt><i>Contact_Electronic_Mail_Address: </i>boyntonj@dnr.sc.gov</dt></dl></dd></dl></dd><dt><i>Metadata_Standard_Name: </i>FGDC Content Standard for Digital Geospatial Metadata</dt><dt><i>Metadata_Standard_Version: </i>FGDC-STD-001-1998</dt><dt><i>Metadata_Time_Convention: </i>local time</dt></dl></dd></dl><a href="#Top">Back to Top</a></body></html>

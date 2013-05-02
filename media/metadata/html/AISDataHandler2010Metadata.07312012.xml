@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE metadata SYSTEM "http://www.fgdc.gov/metadata/fgdc-std-001-1998.dtd">
+<metadata>
+	<idinfo>
+		<citation>
+			<citeinfo>
+				<origin>Department of Commerce (DOC), National Oceanic and Atmospheric Administration (NOAA), National Ocean Service (NOS), Coastal Services Center (CSC)</origin>
+				<origin>Department of Interior (DOI), Bureau of Ocean Energy Management (BOEM)</origin>
+				<pubdate>20120613</pubdate>
+				<title>2010 United States Automatic Identification System Database</title>
+				<pubinfo>
+					<pubplace>Charleston, SC</pubplace>
+					<publish>NOAA's Ocean Service, Coastal Services Center (CSC)</publish>
+				</pubinfo>
+				<onlink>http://marinecadastre.gov/ais/</onlink>
+				<lworkcit><citeinfo><pubinfo/></citeinfo></lworkcit><origin>U.S. Department of Homeland Security, Coast Guard</origin><onlink>http://www.uscg.mil/acquisition/nais/default.asp</onlink></citeinfo>
+		</citation>
+		<descript>
+			<abstract>The 2010 United States Automatic Identification System Database contains vessel traffic data for planning purposes within the U.S. coastal waters. The database is composed of 204 self-contained File Geodatabases (FGDB). Each FGDB represents one month of data for a single UTM zone. The UTM zones represented cover the entire United States and include 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 16, 17, 18, and 19. Each FGDB consists of one feature class, four tables, and two relationship classes. The Broadcast point feature class contains the position reports, which have been pre-filtered to a one-minute time step. The Voyage table contains elements of the static data reports that are updated for each ship voyage. The Vessel table contains elements of the static data reports that are specific to a particular vessel. The BaseStations table lists the base stations collecting data for a particular month/UTM zone. The AttributeUnits table contains a list of units for each of the attribute fields in the Broadcast, Voyage, and Vessel tables. The BroadcastHasVessel relationship class relates the broadcast points to the vessel table records. The BroadcastHasVoyage relationship class relates the broadcast points to the voyage table records.</abstract>
+			<purpose>To support coastal planning and other activities pursuant to the Coastal Zone Management Act, Energy Policy Act, Magnuson-Stevens Fishery Conservation and Management Act, National Environmental Policy Act, Rivers and Harbors Act and the Submerged Lands Act.</purpose>
+		</descript>
+		<timeperd>
+			<timeinfo>
+				<rngdates>
+					<begdate>20100101</begdate>
+					<enddate>20101231</enddate>
+				</rngdates>
+			</timeinfo>
+			<current>publication date</current>
+		</timeperd>
+		<status>
+			<progress>Complete</progress>
+			<update>None planned</update>
+		</status>
+		<spdom>
+			<bounding>
+				<westbc>
+-180</westbc>
+				<eastbc>
+-66</eastbc>
+				<northbc>
+90</northbc>
+				<southbc>
+-90</southbc>
+			</bounding>
+		</spdom>
+		<keywords>
+			<theme>
+				<themekt>ISO 19115 Topic Category</themekt>
+				<themekey>planning</themekey>
+				<themekey>oceans</themekey>
+				<themekey>transportation</themekey>
+			</theme>
+			<theme>
+				<themekt>none</themekt>
+				<themekey>Nautical charting</themekey>
+				<themekey>AIS</themekey>
+				<themekey>Automatic Identification System</themekey>
+				<themekey>position report</themekey>
+				<themekey>static data report</themekey>
+				<themekey>vessel</themekey>
+				<themekey>voyage</themekey>
+				<themekey>coastal and marine spatial planning</themekey>
+				<themekey>ocean planning</themekey>
+			</theme>
+			<place>
+				<placekt>None</placekt>
+				<placekey>United States, Atlantic Ocean, Gulf of Mexico, Great Lakes, Pacific Ocean, Bering Sea, UTM Zone 1, UTM Zone 2, UTM Zone 3, UTM Zone 4, UTM Zone 5, UTM Zone 6, UTM Zone 7, UTM Zone 8, UTM Zone 9, UTM Zone 10, UTM Zone 11, UTM Zone 14, UTM Zone 15, UTM Zone 16, UTM Zone 17, UTM Zone 18, UTM Zone 19</placekey>
+			</place>
+			<stratum>
+				<stratkt>None</stratkt>
+				<stratkey>sea level</stratkey>
+			</stratum>
+		</keywords>
+		<accconst>None</accconst>
+		<useconst>None</useconst>
+	</idinfo>
+	<dataqual>
+		<logic>Point data.  No topology between points.</logic>
+		<complete>Points were filtered to a one-minute time step before publishing the data.  Vessel identification data was altered prior to distribution by encoding the MMSI numbers and removing the vessel name, IMO, and call sign information.  </complete>
+		<lineage>
+			<srcinfo>
+				<srccite>
+					<citeinfo>
+						<origin>U.S. Coast Guard</origin>
+						<pubdate>Unknown</pubdate>
+						<title>2010 NAIS Database</title>
+					</citeinfo>
+				</srccite>
+				<typesrc>disc</typesrc>
+				<srctime>
+					<timeinfo>
+						<rngdates>
+							<begdate>20100101</begdate>
+							<enddate>20101231</enddate>
+						</rngdates>
+					</timeinfo>
+					<srccurr>publication date</srccurr>
+				</srctime>
+				<srccitea>U.S.Coast Guard National AIS Program</srccitea>
+				<srccontr>Data received in 8760 hourly files of AIS messages for the entire United States.  </srccontr>
+			</srcinfo>
+			<procstep>
+				<procdesc>The data was divided spatially by UTM zone and aggregated temporally to monthly datasets using AISParser.  The data was then converted to FGDB using the AIS data model created for this project and a custom script which implements AISParser and ArcObjects.</procdesc>
+				<srcused>USCG National AIS Program</srcused>
+				<procdate>2012</procdate>
+				<proccont>
+					<cntinfo>
+						<cntorgp>
+							<cntorg>RPS-ASA</cntorg>
+						</cntorgp>
+						<cntaddr>
+							<addrtype>mailing and physical address</addrtype>
+							<address>55 Village Square Drive</address>
+							<city>South Kingstown</city>
+							<state>RI</state>
+							<postal>02879</postal>
+						</cntaddr>
+						<cntvoice>401-789-6224</cntvoice>
+					</cntinfo>
+				</proccont>
+			</procstep>
+		</lineage>
+		<posacc><horizpa><horizpar>Positional accuracy reflects the specifications and methods of the original data producer and has not been modified for the generation of this product.</horizpar></horizpa></posacc></dataqual>
+	<spref>
+		<horizsys>
+			<geograph>
+				<latres>1/10,000 minute</latres>
+				<longres>1/10,000 minute</longres>
+				<geogunit>Decimal degrees</geogunit>
+			</geograph>
+			<geodetic>
+				<horizdn>D_WGS_1984</horizdn>
+				<ellips>WGS_84</ellips>
+				<semiaxis>6356752.3142451793</semiaxis>
+			</geodetic>
+		</horizsys>
+	</spref>
+	<eainfo>
+		<detailed>
+			<enttyp>
+				<enttypl>
+Broadcast</enttypl>
+				<enttypd>point locations and attribute information from AIS position reports</enttypd>
+				<enttypds>MarineCadastre.gov</enttypds>
+			</enttyp>
+			<attr>
+				<attrlabl>ObjectID</attrlabl>
+				<attrdef>Unique ID for each row in the table</attrdef>
+				<attrdefs>MarineCadastre.gov</attrdefs>
+			</attr>
+			<attr>
+				<attrlabl>Shape</attrlabl>
+				<attrdef>Geometry type of the features</attrdef>
+				<attrdefs>ESRI</attrdefs>
+			</attr>
+			<attr>
+				<attrlabl>SOG</attrlabl>
+				<attrdef>Speed over Ground</attrdef>
+				<attrdefs>U.S. Coast Guard</attrdefs>
+				<attrdomv>
+					<rdom>
+						<rdommin>0</rdommin>
+						<rdommax>102.2</rdommax>
+						<attrunit>Knots</attrunit>
+						<attrmres>1/10 knot</attrmres>
+					</rdom>
+				</attrdomv>
+				<attrvai>
+				</attrvai>
+			</attr>
+			<attr>
+				<attrlabl>COG</attrlabl>
+				<attrdef>Course Over Ground</attrdef>
+				<attrdefs>U.S. Coast Guard</attrdefs>
+				<attrdomv>
+					<rdom>
+						<rdommin>0</rdommin>
+						<rdommax>3599</rdommax>
+						<attrunit>degrees</attrunit>
+						<attrmres>1/10 degree</attrmres>
+					</rdom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>Heading</attrlabl>
+				<attrdef>True Heading</attrdef>
+				<attrdefs>U.S. Coast Guard</attrdefs>
+				<attrdomv>
+					<rdom>
+						<rdommin>0</rdommin>
+						<rdommax>511</rdommax>
+						<attrunit>degrees</attrunit>
+						<attrmres>1 degree</attrmres>
+					</rdom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>ROT</attrlabl>
+				<attrdef>Rate of Turn</attrdef>
+				<attrdefs>U.S. Coast Guard</attrdefs>
+				<attrdomv>
+					<rdom>
+						<rdommin>-128</rdommin>
+						<rdommax>127</rdommax>
+						<attrunit>degrees per minute</attrunit>
+						<attrmres>degree</attrmres>
+					</rdom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>BaseDateTime</attrlabl>
+				<attrdef>Date and time the position message was received by the base station</attrdef>
+				<attrdefs>U.S. Coast Guard</attrdefs>
+				<attrdomv>
+					<rdom>
+						<rdommin>1/1/2010 00:00</rdommin>
+						<rdommax>12/31/2010 11:59</rdommax>
+						<attrunit>date and time</attrunit>
+						<attrmres>seconds</attrmres>
+					</rdom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>Status</attrlabl>
+				<attrdef>Code for navigational status</attrdef>
+				<attrdefs>U.S. Coast Guard</attrdefs>
+				<attrdomv>
+					<rdom>
+						<rdommin>0</rdommin>
+						<rdommax>15</rdommax>
+						<attrunit>N/A</attrunit>
+						<attrmres>N/A</attrmres>
+					</rdom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>VoyageID</attrlabl>
+				<attrdef>Primary key for the BroadcastHasVoyage relationship class</attrdef>
+				<attrdefs>MarineCadastre.gov</attrdefs>
+				<attrdomv>
+					<udom>Defined during data processing</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>MMSI</attrlabl>
+				<attrdef>Marine Mobile Service Identity (scrambled during processing) and primary key for the BroadcastHasVessel relationship class</attrdef>
+				<attrdefs>United States Coast Guard</attrdefs>
+				<attrdomv>
+					<rdom>
+						<rdommin>111111111</rdommin>
+						<rdommax>999999999</rdommax>
+						<attrunit>N/A</attrunit>
+						<attrmres>N/A</attrmres>
+					</rdom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>ReceiverType</attrlabl>
+				<attrdef>Type of message receiving unit: Base Station (b) or Receiver (r)</attrdef>
+				<attrdefs>MarineCadastre.gov</attrdefs>
+				<attrdomv>
+					<edom>
+						<edomv>b</edomv>
+						<edomvd>receiver type is Base Station</edomvd>
+						<edomvds>MarineCadastre.gov</edomvds>
+					</edom>
+					<edom>
+						<edomv>r</edomv>
+						<edomvd>receiver type is AIS receiver</edomvd>
+						<edomvds>MarineCadastre.gov</edomvds>
+					</edom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>ReceiverID</attrlabl>
+				<attrdef>ID number of the receiver</attrdef>
+				<attrdefs>U.S. Coast Guard</attrdefs>
+				<attrdomv>
+					<udom>assigned when receiver is actived</udom>
+				</attrdomv>
+			</attr>
+		</detailed>
+		<detailed>
+			<enttyp>
+				<enttypl>
+AttributeUnits</enttypl>
+				<enttypd>List of field names and associated units for each field in the FGDB</enttypd>
+				<enttypds>MarineCadastre.gov</enttypds>
+			</enttyp>
+			<attr>
+				<attrlabl>OID</attrlabl>
+				<attrdef>Unique ID for each row in the table</attrdef>
+				<attrdefs>MarineCadastre.gov</attrdefs>
+			</attr>
+			<attr>
+				<attrlabl>Attribute</attrlabl>
+				<attrdef>AIS database field name</attrdef>
+				<attrdefs>MarineCadastre.gov</attrdefs>
+				<attrdomv>
+					<udom>list of all attribute fields in the FGDB</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>Unit</attrlabl>
+				<attrdef>Units for the associated data field</attrdef>
+				<attrdefs>MarineCadastre.gov</attrdefs>
+				<attrdomv>
+					<udom>attribute units for all attribute fields in the FGDB</udom>
+				</attrdomv>
+			</attr>
+		</detailed>
+		<detailed>
+			<enttyp>
+				<enttypl>
+BaseStations</enttypl>
+				<enttypd>List of base stations receiving data for the specified month and UTM zone</enttypd>
+				<enttypds>MarineCadastre.gov</enttypds>
+			</enttyp>
+			<attr>
+				<attrlabl>OID</attrlabl>
+				<attrdef>Unique ID for each row in the table</attrdef>
+				<attrdefs>MarineCadastre.gov</attrdefs>
+			</attr>
+			<attr>
+				<attrlabl>MMSI</attrlabl>
+				<attrdef>Marine Mobile Service Identity (Scrambled)</attrdef>
+				<attrdefs>United States Coast Guard</attrdefs>
+				<attrdomv>
+					<rdom>
+						<rdommin>1111111</rdommin>
+						<rdommax>9999999</rdommax>
+						<attrunit>N/A</attrunit>
+						<attrmres>N/A</attrmres>
+					</rdom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>Longitude</attrlabl>
+				<attrdef>Longitude of the base station</attrdef>
+				<attrdefs>U.S. Coast Guard</attrdefs>
+				<attrdomv>
+					<rdom>
+						<rdommin>-180</rdommin>
+						<rdommax>180</rdommax>
+						<attrunit>degrees</attrunit>
+						<attrmres>1/600,000 degree</attrmres>
+					</rdom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>Latitude</attrlabl>
+				<attrdef>Latitude of the base station</attrdef>
+				<attrdefs>U.S. Coast Guard</attrdefs>
+				<attrdomv>
+					<rdom>
+						<rdommin>-90</rdommin>
+						<rdommax>90</rdommax>
+						<attrunit>degrees</attrunit>
+						<attrmres>1/600,000 degree</attrmres>
+					</rdom>
+				</attrdomv>
+			</attr>
+		</detailed>
+		<detailed>
+			<enttyp>
+				<enttypl>
+Vessel</enttypl>
+				<enttypd>Vessel related attribute information from AIS static data reports</enttypd>
+				<enttypds>MarineCadastre.gov</enttypds>
+			</enttyp>
+			<attr>
+				<attrlabl>OID</attrlabl>
+				<attrdef>Unique ID for each row in the table</attrdef>
+				<attrdefs>MarineCadastre.gov</attrdefs>
+			</attr>
+			<attr>
+				<attrlabl>MMSI</attrlabl>
+				<attrdef>Marine Mobile Service Identity (Scrambled) and foreign key for BroadcastHasVessel relationship class</attrdef>
+				<attrdefs>U.S. Coast Guard</attrdefs>
+				<attrdomv>
+					<rdom>
+						<rdommin>111111111</rdommin>
+						<rdommax>999999999</rdommax>
+						<attrunit>N/A</attrunit>
+						<attrmres>N/A</attrmres>
+					</rdom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>IMO</attrlabl>
+				<attrdef>International Maritime Organization ID</attrdef>
+				<attrdefs>U.S. Coast Guard</attrdefs>
+				<attrdomv>
+					<rdom>
+						<rdommin>0</rdommin>
+						<rdommax>999999999</rdommax>
+						<attrunit>N/A</attrunit>
+						<attrmres>N/A</attrmres>
+					</rdom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>CallSign</attrlabl>
+				<attrdef>Vessel call sign</attrdef>
+				<attrdefs>U.S. Coast Guard</attrdefs>
+				<attrdomv>
+					<udom>unique designation for a transmitting station</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>Name</attrlabl>
+				<attrdef>Vessel name</attrdef>
+				<attrdefs>U.S. Coast Guard</attrdefs>
+				<attrdomv>
+					<udom>assigned by vessel operator</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>VesselType</attrlabl>
+				<attrdef>Code for vessel type</attrdef>
+				<attrdefs>U.S. Coast Guard</attrdefs>
+				<attrdomv>
+					<rdom>
+						<rdommin>0</rdommin>
+						<rdommax>255</rdommax>
+						<attrunit>N/A</attrunit>
+						<attrmres>N/A</attrmres>
+					</rdom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>Length</attrlabl>
+				<attrdef>Vessel length</attrdef>
+				<attrdefs>United States Coast Guard</attrdefs>
+				<attrdomv>
+					<udom>calculated from vessel dimension components</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>Width</attrlabl>
+				<attrdef>Vessel width</attrdef>
+				<attrdefs>U.S. Coast Guard</attrdefs>
+				<attrdomv>
+					<udom>calculated from vessel dimension components</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>DimensionComponents</attrlabl>
+				<attrdef>Reference point for reported position. Also indicates the dimension of the vessel.</attrdef>
+				<attrdefs>U.S. Coast Guard</attrdefs>
+				<attrdomv>
+					<udom>comma delimited list of vessel dimension components used as a reference point for the reported position</udom>
+				</attrdomv>
+			</attr>
+		</detailed>
+		<detailed>
+			<enttyp>
+				<enttypl>
+Voyage</enttypl>
+				<enttypd>Voyage related attribute information from AIS static data reports</enttypd>
+			</enttyp>
+			<attr>
+				<attrlabl>OID</attrlabl>
+				<attrdef>Unique ID for each row in the table</attrdef>
+				<attrdefs>MarineCadastre.gov</attrdefs>
+			</attr>
+			<attr>
+				<attrlabl>VoyageID</attrlabl>
+				<attrdef>Foreign key for BroadcastHasVoyage relationship class</attrdef>
+				<attrdefs>MarineCadastre.gov</attrdefs>
+			</attr>
+			<attr>
+				<attrlabl>Destination</attrlabl>
+				<attrdef>Destination of the vessel</attrdef>
+				<attrdefs>U.S. Coast Guard</attrdefs>
+				<attrdomv>
+					<udom>assigned by ship operator</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>Cargo</attrlabl>
+				<attrdef>Code for vessel cargo</attrdef>
+				<attrdefs>U.S. Coast Guard</attrdefs>
+				<attrdomv>
+					<rdom>
+						<rdommin>0</rdommin>
+						<rdommax>255</rdommax>
+						<attrunit>N/A</attrunit>
+						<attrmres>N/A</attrmres>
+					</rdom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>Draught</attrlabl>
+				<attrdef>Maximum present static draught</attrdef>
+				<attrdefs>United States Coast Guard</attrdefs>
+				<attrdomv>
+					<rdom>
+						<rdommin>0</rdommin>
+						<rdommax>255</rdommax>
+						<attrunit>meters</attrunit>
+						<attrmres>1/10 meter</attrmres>
+					</rdom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>ETA</attrlabl>
+				<attrdef>Estimated time of arrival; MMDDHHMM UTC</attrdef>
+				<attrdefs>U.S. Coast Guard</attrdefs>
+				<attrdomv>
+					<udom>assigned by ship operator</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>StartTime</attrlabl>
+				<attrdef>Estimated voyage start time; MMDDHHMM UTC</attrdef>
+				<attrdefs>MarineCadastre.gov</attrdefs>
+				<attrdomv>
+					<udom>calculated from ship destination updates</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>EndTime</attrlabl>
+				<attrdef>Estimated voyage end time; MMDDHHMM UTC</attrdef>
+				<attrdefs>MarineCadastre.gov</attrdefs>
+				<attrdomv>
+					<udom>calculated from ship destination updates</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>MMSI</attrlabl>
+				<attrdef>Marine Mobile Service Identity (Scrambled)</attrdef>
+				<attrdefs>U.S. Coast Guard</attrdefs>
+				<attrdomv>
+					<rdom>
+						<rdommin>111111111</rdommin>
+						<rdommax>999999999</rdommax>
+						<attrunit>N/A</attrunit>
+						<attrmres>N/A</attrmres>
+					</rdom>
+				</attrdomv>
+			</attr>
+		</detailed>
+	</eainfo>
+	<distinfo>
+		<distrib>
+			<cntinfo>
+				<cntorgp>
+					<cntorg>NOAA Coastal Services Center</cntorg>
+				</cntorgp>
+				<cntpos>Clearinghouse Manager</cntpos>
+				<cntaddr>
+					<addrtype>mailing and physical address</addrtype>
+					<address>2234 South Hobson Avenue</address>
+					<city>Charleston</city>
+					<state>SC</state>
+					<postal>29405</postal>
+					<country>USA</country>
+				</cntaddr>
+				<cntvoice>1.843.740.1210</cntvoice>
+				<cntemail>clearinghouse@noaa.gov</cntemail>
+			</cntinfo>
+		</distrib>
+		<resdesc>Downloadable Data</resdesc>
+		<distliab>Users must assume responsibility to determine the appropriate use of these data. DATA SHOULD NOT BE USED FOR LEGALLY BINDING APPLICATIONS.</distliab>
+	</distinfo>
+	<metainfo>
+		<metd>20120613</metd>
+		<metc>
+			<cntinfo>
+				<cntorgp>
+					<cntorg>NOAA Coastal Services Center</cntorg>
+				</cntorgp>
+				<cntpos>Clearinghouse Manager</cntpos>
+				<cntaddr>
+					<addrtype>mailing and physical address</addrtype>
+					<address>2234 South Hobson Avenue</address>
+					<city>Charleston</city>
+					<state>SC</state>
+					<postal>29405</postal>
+					<country>USA</country>
+				</cntaddr>
+				<cntvoice>1.843.740.1210</cntvoice>
+				<cntemail>clearinghouse@noaa.gov</cntemail>
+			</cntinfo>
+		</metc>
+		<metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+		<metstdv>FGDC-STD-001-1998</metstdv>
+	</metainfo>
+</metadata>

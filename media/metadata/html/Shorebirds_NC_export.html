@@ -1,0 +1,174 @@
+<html><head><title>Shorebirds_NC</title><link rel="schema.dc" href="http://dublincore.org/documents/dces/"/><meta name="dc.title" content="Shorebirds_NC"/><meta name="dc.subject" content="Green heron Yellow-crowned night heron Common tern Double crested cormorant Gull-billed tern Cattle egret Great black-backed gull White Ibis Anhinga Woodstork Black-crowned night heron Great blue heron Black skimmer Forster's tern Colonial Waterbird Nesting Least bittern Little blue heron Herring gull Snowy egret Caspian tern Glossy Ibis White ibis Black crowned night heron Sandwich tern Brown Pelican Laughing Gull Tricolored heron"/><meta name="dc.description" content="This dataset shows colonial nesting waterbirds in coastal North Carolina. It is a subset from North Carolina's online colonial-nesting waterbird database (http://ncpaws.org/). The data included years 2006-2010, all available species, and was spatially selected to include nests within 5 miles of the coast"/><meta name="dc.type" content="data.vector digital data"/><meta name="dc.coverage.x.min" scheme="DD" content="-78.518087"/><meta name="dc.coverage.x.max" scheme="DD" content="-75.424823"/><meta name="dc.coverage.y.min" scheme="DD" content="33.781700"/><meta name="dc.coverage.y.max" scheme="DD" content="36.491753"/><meta name="dc.coverage.placeName" content="North Carolina"/><meta name="dc.coverage.placeName" content="coastal"/><meta name="dc.coverage.t.min" content="20060101"/><meta name="dc.coverage.t.max" content="20100101"/><meta name="dc.rights" content="Access constraints: None;  Use constraints: Neither the State of South Carolina, the Department of Natural Resources, nor any of its employees, is responsible for any improper or incorrect use of the information described and/or contained herein, and assume no responsibility for the use of the information. The North Carolina Wildlife Resources Commission should be acknowledged as the original data source in products derived from these data. The South Carolina Department of Natural Resources should also be acknowledged as the source of the GIS data files derived from the NC database."/><script type="text/javascript" language="JavaScript1.3">
+/* Onload - Find each <pre> element with an Id="fixvalue" and
+call fixvalue() function to parse text to respect line breaks,
+replace <pre> element with <div> elememt, and convert URL address
+strings in text to <a href> element. */
+
+window.onload = function() {
+	elem = document.getElementById("fixvalue");
+	while (Boolean(elem != null)) {
+		fixvalue(elem);
+		elem = document.getElementById("fixvalue");
+	}
+	window.focus()
+}
+	
+/* Fix value - Parse text in <pre> element to respect line breaks introduced in ArcCatalog
+by the metadata author who intentionally introduced single line breaks to start new lines
+or even more than one consecutive line break to further separate text to form paragraphs.
+Note, fixvalue() calls the addtext() function, which adds text to DIV elements, which are
+sequentially added to a parent DIV element to form separate lines and paragraphs of text. */
+
+function fixvalue(elem) {
+	elem.id = "";
+	var n
+	var val = String("");
+	var pos = Number(0);
+	// Make a newline character to use for basis for splitting string into 
+	// an array of strings that are processed and turned into separate div
+	// elements with either new line or paragraphic-like style.
+	var newline = String.fromCharCode(10);
+	var par = elem.parentNode;
+	if (elem.innerText) {
+		// Position of first newline character in IE
+		n = elem;
+		val = n.innerText;
+		pos = val.indexOf(newline);
+	} else {
+		// Position of first newline character in NS, Firefox
+		n = elem.childNodes[0];
+		val = n.nodeValue;
+		pos = val.indexOf(newline);
+	}
+	if (pos > 0) {
+		// Text string contains at least one white space character
+		var sValue = new String ("");
+		// Split entire text string value on newline character
+		// in order to create an array of string values to process	
+		var aValues = val.split(newline);
+		var padBottom = Number(0);
+		var add = Boolean("false");
+		// Loop thru each potential new line or paragraph and append <DIV>
+		// element and set its className accordingly.				
+		for (var i = 0; i <= aValues.length - 1; i++) {
+			var div = document.createElement("DIV");
+			sValue = aValues[i];
+			add = false;
+			for (var j = 0; j < sValue.length; j++) {
+				if (sValue.charCodeAt(j) > 32) {
+					add = true;
+					// window.alert("CHARACTER AT " + sValue.charAt(j) + " CHARCODE " + sValue.charCodeAt(j))
+					break;
+				}
+			}
+			if (add) {
+				if (i == 0) {
+					// Must clone and append label property (e.g. <b>Abstract</b>) to first <DIV>
+					// element, and then remove it from parent if at first element in aValues array.
+					prev = elem.previousSibling;
+					if (Boolean(prev != null)) {
+						var label = prev.cloneNode(true)
+						div.appendChild(label);
+						par.removeChild(prev);
+					}
+				}
+				// Now test to see whether to set style.paddingBottom to 0 or 4 for newline or 
+				// paragraph, respectively.  Look ahead and if all characters in the next element 
+				// in the aValues array (the next DIV element to make) are not white space then set
+				// style.paddingBottom = 0. Otherwise, set style.paddingBottom = 4 to separate the 
+				// the current <DIV> from the next <DIV> element. 			
+				padBottom = Number(0);
+				if (i < aValues.length - 1) {
+					// Assume paragraph-like separation between DIV elements
+					padBottom = Number(4);
+					// Look for non-white space characters in content for next DIV
+					var nextValue = aValues[i+1];
+					for (var k = 0; k < nextValue.length; k++) {
+						if (nextValue.charCodeAt(k) > 32) {
+							// Found a non-white space character
+							padBottom = Number(0);
+							// window.alert("CHARACTER AT " + nextval.charAt(k) + " CHARCODE " + nextval.charCodeAt(k))
+							break;
+						}
+					}
+				}
+				// Pad element
+				div.style.paddingLeft = 0;
+				div.style.paddingRight = 0;
+				div.style.paddingTop = 0;
+				div.style.paddingBottom = padBottom;
+				// Scan text for URL strings before adding text to div element
+				addtext(div,sValue);
+				// Add new div element to parent div element
+				par.appendChild(div);
+			}
+		}
+		par.removeChild(elem);
+	} else {
+		// No white space charaters in text string so can be added directly to parent DIV element.
+		par.removeChild(elem);
+		// Scan text for URL strings before adding text to div element
+		addtext(par,val);
+	}		
+}
+
+/* Add text - This function adds text to (inside) DIV element, but before doing so 
+searches for strings in the text that resemble URLs and converts them to hypertext
+elements and adds them to the div element as well. Searches for strings that begin 
+with "://" or "www." and converts them to <a href> elements. Add text function is 
+called by fixvalue function */ 
+ 
+function addtext(elem,txt) {
+	// Scan entire text value and test for presense of URL strings, 
+	// convert URL strings to Hypertext Elements, convert text strings
+	// between URL strings to Text Nodes and append all Hypertext
+	// Elements and Text Nodes to DIV element.
+	var start = new Number (0);
+	var end = new Number (0);
+	var url = new String("");
+	var urlpattern = /(\w+):\/\/([\w.]+)((\S)*)|www\.([\w.]+)((\S)*)/g;
+	var punctuation = /[\.\,\;\:\?\!\[\]\(\)\{\}\'\"]/;
+	var result
+	var elemText
+	while((result = urlpattern.exec(txt)) != null) {
+		var fullurl = result[0];
+		var protocol = result[1];
+		url = fullurl;
+		end = result.index;
+		if (start < end){
+			// Append Text Node to parent
+			elemText = document.createTextNode(txt.substring(start, end));
+			elem.appendChild(elemText);
+		}
+		var lastchar = fullurl.charAt(fullurl.length - 1);
+		// Remove last character from url if character is punctuation mark, bracket or parenthesis;
+		if (lastchar.match(punctuation) != null) {
+			// Remove next-to-last character from url if character is punctuation mark, bracket or parenthesis. For example the ")" in "),"
+			var nexttolastchar = fullurl.charAt(fullurl.length - 2);
+			if (nexttolastchar.match(punctuation) != null) {
+				url = fullurl.substring(0,fullurl.length - 2);		
+			} else {		
+				url = fullurl.substring(0,fullurl.length - 1);
+			}		
+		}
+		start = (result.index + url.length)
+		// Test to concatinate 'http://' to url if not already begininng with 'http://', 'https://' or 'ftp://'"
+		if (protocol == "") {
+			url = "http://" + url;
+		}
+		// Append Hypertext (anchor) Element to parent
+		elemText = document.createTextNode(url);
+		var elemAnchor = document.createElement("A");
+		elemAnchor.setAttribute("href", url);
+		elemAnchor.setAttribute("target", "viewer");
+		elemAnchor.appendChild(elemText);
+		elem.appendChild(elemAnchor);				
+	}
+	end = txt.length;
+	if (start < end) {
+		// Append Text Node that follows last Hypertext Element
+		elemText = document.createTextNode(txt.substring(start, end));
+		elem.appendChild(elemText);
+	}
+}
+</script></head><body><a name="Top"/><h1>Shorebirds_NC</h1><h2>Metadata:</h2><ul><li><a href="#Identification_Information">Identification_Information</a></li><li><a href="#Data_Quality_Information">Data_Quality_Information</a></li><li><a href="#Spatial_Data_Organization_Information">Spatial_Data_Organization_Information</a></li><li><a href="#Spatial_Reference_Information">Spatial_Reference_Information</a></li><li><a href="#Entity_and_Attribute_Information">Entity_and_Attribute_Information</a></li><li><a href="#Distributor1">Distribution_Information</a></li><li><a href="#Metadata_Reference_Information">Metadata_Reference_Information</a></li></ul><a name="Identification_Information"><hr/></a><dl><dt><i>Identification_Information: </i></dt><dd><dl><dt><i>Citation: </i></dt><dd><dl><dt><i>Citation_Information: </i></dt><dd><dl><dt><i>Title: </i></dt><dd>Shorebirds_NC</dd><dt><i>Geospatial_Data_Presentation_Form: </i>vector digital data</dt></dl></dd></dl></dd><dt><i>Description: </i></dt><dd><dl><dt><i>Abstract: </i></dt><dd><pre id="fixvalue">This dataset shows colonial nesting waterbirds in coastal North Carolina. It is a subset from North Carolina's online colonial-nesting waterbird database (http://ncpaws.org/). The data included years 2006-2010, all available species, and was spatially selected to include nests within 5 miles of the coast</pre></dd><dt><i>Purpose: </i></dt><dd><pre id="fixvalue">This GIS dataset was created for the purpose of describing the location and types of colonial waterbirds that nest along the North Carolina coastline so that these nesting activities can be considered for any planned energy development or other coastal use activities.</pre></dd></dl></dd><dt><i>Time_Period_of_Content: </i></dt><dd><dl><dt><i>Time_Period_Information: </i></dt><dd><dl><dt><i>Range_of_Dates/Times: </i></dt><dd><dl><dt><i>Beginning_Date: </i>20060101</dt><dt><i>Ending_Date: </i>20100101</dt></dl></dd></dl></dd><dt><i>Currentness_Reference: </i></dt><dd><pre id="fixvalue">Unknown</pre></dd></dl></dd><dt><i>Status: </i></dt><dd><dl><dt><i>Progress: </i>Complete</dt><dt><i>Maintenance_and_Update_Frequency: </i>None planned</dt></dl></dd><dt><i>Spatial_Domain: </i></dt><dd><dl><dt><i>Bounding_Coordinates: </i></dt><dd><dl><dt><i>West_Bounding_Coordinate: </i>-78.518087</dt><dt><i>East_Bounding_Coordinate: </i>-75.424823</dt><dt><i>North_Bounding_Coordinate: </i>36.491753</dt><dt><i>South_Bounding_Coordinate: </i>33.781700</dt></dl></dd></dl></dd><dt><i>Keywords: </i></dt><dd><dl><dt><i>Theme: </i></dt><dd><dl><dt><i>Theme_Keyword_Thesaurus: </i>None</dt><dt><i>Theme_Keyword: </i>Green heron</dt><dt><i>Theme_Keyword: </i>Yellow-crowned night heron</dt><dt><i>Theme_Keyword: </i>Common tern</dt><dt><i>Theme_Keyword: </i>Double crested cormorant</dt><dt><i>Theme_Keyword: </i>Gull-billed tern</dt><dt><i>Theme_Keyword: </i>Cattle egret</dt><dt><i>Theme_Keyword: </i>Great black-backed gull</dt><dt><i>Theme_Keyword: </i>White Ibis</dt><dt><i>Theme_Keyword: </i>Anhinga</dt><dt><i>Theme_Keyword: </i>Woodstork</dt><dt><i>Theme_Keyword: </i>Black-crowned night heron</dt><dt><i>Theme_Keyword: </i>Great blue heron</dt><dt><i>Theme_Keyword: </i>Black skimmer</dt><dt><i>Theme_Keyword: </i>Forster's tern</dt><dt><i>Theme_Keyword: </i>Colonial Waterbird Nesting</dt><dt><i>Theme_Keyword: </i>Least bittern</dt><dt><i>Theme_Keyword: </i>Little blue heron</dt><dt><i>Theme_Keyword: </i>Herring gull</dt><dt><i>Theme_Keyword: </i>Snowy egret</dt><dt><i>Theme_Keyword: </i>Caspian tern</dt><dt><i>Theme_Keyword: </i>Glossy Ibis</dt><dt><i>Theme_Keyword: </i>White ibis</dt><dt><i>Theme_Keyword: </i>Black crowned night heron</dt><dt><i>Theme_Keyword: </i>Sandwich tern</dt><dt><i>Theme_Keyword: </i>Brown Pelican</dt><dt><i>Theme_Keyword: </i>Laughing Gull</dt><dt><i>Theme_Keyword: </i>Tricolored heron</dt></dl></dd><dt><i>Place: </i></dt><dd><dl><dt><i>Place_Keyword_Thesaurus: </i>None</dt><dt><i>Place_Keyword: </i>North Carolina</dt><dt><i>Place_Keyword: </i>coastal</dt></dl></dd></dl></dd><dt><i>Access_Constraints: </i>None</dt><dt><i>Use_Constraints: </i></dt><dd><pre id="fixvalue">Neither the State of South Carolina, the Department of Natural Resources, nor any of its employees, is responsible for any improper or incorrect use of the information described and/or contained herein, and assume no responsibility for the use of the information. The North Carolina Wildlife Resources Commission should be acknowledged as the original data source in products derived from these data. The South Carolina Department of Natural Resources should also be acknowledged as the source of the GIS data files derived from the NC database.</pre></dd><dt><i>Point_of_Contact: </i></dt><dd><dl><dt><i>Contact_Information: </i></dt><dd><dl><dt><i>Contact_Organization_Primary: </i></dt><dd><dl><dt><i>Contact_Organization: </i>NC Wildlife Resources Commission</dt><dt><i>Contact_Person: </i>Sara Schweitzer</dt></dl></dd><dt><i>Contact_Position: </i>Coastal Waterbird Biologist</dt><dt><i>Contact_Address: </i></dt><dd><dl><dt><i>Address_Type: </i>physical</dt><dt><i>Address: </i></dt><dd><pre id="fixvalue">106 Ferret Run Lane</pre></dd><dt><i>City: </i>New Bern</dt><dt><i>State_or_Province: </i>NC</dt><dt><i>Postal_Code: </i>28562</dt><dt><i>Country: </i>US</dt></dl></dd><dt><i>Contact_Voice_Telephone: </i>252-639-8435</dt><dt><i>Contact_Electronic_Mail_Address: </i>sara.schweitzer@ncwildlife.org</dt></dl></dd></dl></dd><dt><i>Native_Data_Set_Environment: </i></dt><dd> Version 6.2 (Build 9200) ; Esri ArcGIS 10.1.0.3035</dd></dl></dd></dl><a href="#Top">Back to Top</a><a name="Data_Quality_Information"><hr/></a><dl><dt><i>Data_Quality_Information: </i></dt><dd><dl><dt><i>Lineage: </i></dt><dd><dl><dt><i>Process_Step: </i></dt><dd><dl><dt><i>Process_Description: </i></dt><dd><pre id="fixvalue">1.) Database export: All counties, years 2006-2010, all species, and all sites were selected. 2.) Spatial selection: The data was clipped to a 5 mile inland buffer of the NC coast. All data further inland were excluded. 4.) All metrics were computed in MS Access from source data provided. 5.)The number of unique surveys at a given site were computed using two sequential queries. In the first query, the number of unique visit dates was computed with respect to each location (group by) by calculating the number of different species seen (count) on a given visit date (group by). In the second query, the number of different survey dates (count) for each location (group by) was computed. 6.)Using a Cross Table Query with the following input information (row = location; column = species; cell value = sum), the total number of nests for each species (over the entire study period) was computed. 7.)The number of different species seen nesting at a given location over the entire study period was computed as the count of all nest counts >0 for a given location; thus, if a location reported one nesting species, all column values would be zero except the one species with nests. 8.) Exported out of Access and brought into ArcGIS as a point feature class.</pre></dd><dt><i>Process_Contact: </i></dt><dd><dl><dt><i>Contact_Information: </i></dt><dd><dl><dt><i>Contact_Organization_Primary: </i></dt><dd><dl><dt><i>Contact_Organization: </i>SCDNR, MRRI</dt><dt><i>Contact_Person: </i>Jessica Boynton and Mike Arendt</dt></dl></dd><dt><i>Contact_Position: </i>Boynton (GIS Manager I); Arendt (Wildlife Biologist III)</dt><dt><i>Contact_Address: </i></dt><dd><dl><dt><i>Address_Type: </i>physical</dt><dt><i>Address: </i></dt><dd><pre id="fixvalue">217 Fort Johnson Rd.</pre></dd><dt><i>City: </i>Charleston</dt><dt><i>State_or_Province: </i>SC</dt><dt><i>Postal_Code: </i>29412</dt><dt><i>Country: </i>US</dt></dl></dd><dt><i>Contact_Voice_Telephone: </i>843-953-9163 (Boynton)</dt><dt><i>Contact_Voice_Telephone: </i>843-953-9097 (Arendt)</dt><dt><i>Contact_Facsimile_Telephone: </i>843-953-9820</dt><dt><i>Contact_Electronic_Mail_Address: </i>boyntonj@dnr.sc.gov</dt><dt><i>Contact_Electronic_Mail_Address: </i>arendtm@dnr.sc.gov</dt></dl></dd></dl></dd></dl></dd></dl></dd></dl></dd></dl><a href="#Top">Back to Top</a><a name="Spatial_Data_Organization_Information"><hr/></a><dl><dt><i>Spatial_Data_Organization_Information: </i></dt><dd><dl><dt><i>Direct_Spatial_Reference_Method: </i>Vector</dt><dt><i>Point_and_Vector_Object_Information: </i></dt><dd><dl><dt><i>SDTS_Terms_Description: </i></dt><dd><dl><dt><i>SDTS_Point_and_Vector_Object_Type: </i>Entity point</dt><dt><i>Point_and_Vector_Object_Count: </i>101</dt></dl></dd></dl></dd></dl></dd></dl><a href="#Top">Back to Top</a><a name="Spatial_Reference_Information"><hr/></a><dl><dt><i>Spatial_Reference_Information: </i></dt><dd><dl><dt><i>Horizontal_Coordinate_System_Definition: </i></dt><dd><dl><dt><i>Planar: </i></dt><dd><dl><dt><i>Map_Projection: </i></dt><dd><dl><dt><i>Map_Projection_Name: </i>Transverse Mercator</dt><dt><i>Transverse_Mercator: </i></dt>Transverse Mercator<dd><dl><dt><i>Scale_Factor_at_Central_Meridian: </i>0.9996</dt><dt><i>Longitude_of_Central_Meridian: </i>-81.0</dt><dt><i>Latitude_of_Projection_Origin: </i>0.0</dt><dt><i>False_Easting: </i>500000.0</dt><dt><i>False_Northing: </i>0.0</dt></dl></dd></dl></dd><dt><i>Planar_Coordinate_Information: </i></dt><dd><dl><dt><i>Planar_Coordinate_Encoding_Method: </i>coordinate pair</dt><dt><i>Coordinate_Representation: </i></dt><dd><dl><dt><i>Abscissa_Resolution: </i>0.0001</dt><dt><i>Ordinate_Resolution: </i>0.0001</dt></dl></dd><dt><i>Planar_Distance_Units: </i></dt></dl></dd></dl></dd><dt><i>Geodetic_Model: </i></dt><dd><dl><dt><i>Horizontal_Datum_Name: </i>D North American 1983</dt><dt><i>Ellipsoid_Name: </i>GRS 1980</dt><dt><i>Semi-major_Axis: </i>6378137.0</dt><dt><i>Denominator_of_Flattening_Ratio: </i>298.257222101</dt></dl></dd></dl></dd></dl></dd></dl><a href="#Top">Back to Top</a><a name="Entity_and_Attribute_Information"><hr/></a><dl><dt><i>Entity_and_Attribute_Information: </i></dt><dd><dl><dt><i>Detailed_Description: </i></dt><dd><dl><dt><i>Entity_Type: </i></dt><dd><dl><dt><i>Entity_Type_Label: </i>Shorebirds_NC</dt></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>OBJECTID</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Internal feature number.</pre></dd><dt><i>Attribute_Definition_Source: </i></dt><dd><pre id="fixvalue">Esri</pre></dd><dt><i>Attribute_Domain_Values: </i></dt><dd><dl><dt><i>Unrepresentable_Domain: </i></dt><dd>Sequential unique whole numbers that are automatically generated.</dd></dl></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Shape</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Feature geometry.</pre></dd><dt><i>Attribute_Definition_Source: </i></dt><dd><pre id="fixvalue">Esri</pre></dd><dt><i>Attribute_Domain_Values: </i></dt><dd><dl><dt><i>Unrepresentable_Domain: </i></dt><dd>Coordinates defining the features.</dd></dl></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Site_Numbe</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Unique identifier for each site</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Site_Name</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Name of each site</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Lat</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Latitude of each site</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Lon</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Longitude of each site</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>N_surveys</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Number of surveys at a site between 2006-2010</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>N_species</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Number of species at a given site between 2006-2010</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Anhinga</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Total number of Anhinga nests at a given site between 2006 - 2010.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Black_Skim</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Total number of Black skimmer nests at a given site between 2006 - 2010.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Black_crow</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Total number of Black-crowned night heron nests at a given site between 2006 - 2010.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Brown_Peli</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Total number of Brown pelican nests at a given site between 2006 - 2010.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Caspian_Te</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Total number of Caspian tern nests at a given site between 2006 - 2010.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Cattle_Egr</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Total number of Cattle egret nests at a given site between 2006 - 2010.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Common_Ter</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Total number of Common tern nests at a given site between 2006 - 2010.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Double_cre</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Total number of Double-crested cormorant nests at a given site between 2006 - 2010.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Forster_s</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Total number of Forster's tern nests at a given site between 2006 - 2010.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Glossy_Ibi</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Total number of Glossy ibis nests at a given site between 2006 - 2010.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Great_Blac</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Total number of Great black backed heron nests at a given site between 2006 - 2010.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Great_Blue</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Total number of Great blue heron nests at a given site between 2006 - 2010.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Great_Egre</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Total number of Great egret nests at a given site between 2006 - 2010.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Green_Hero</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Total number of Green heron nests at a given site between 2006 - 2010.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Gull_bille</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Total number of Gull billed tern nests at a given site between 2006 - 2010.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Herring_Gu</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Total number of Herring gull nests at a given site between 2006 - 2010.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Laughing_G</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Total number of Laughing gull nests at a given site between 2006 - 2010.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Least_Bitt</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Total number of Least bittern nests at a given site between 2006 - 2010.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Least_Tern</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Total number of Least tern nests at a given site between 2006 - 2010.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Little_Blu</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Total number of Little blue heron nests at a given site between 2006 - 2010.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Royal_Tern</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Total number of Royal tern nests at a given site between 2006 - 2010.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Sandwich_T</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Total number of Sandwich tern nests at a given site between 2006 - 2010.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Snowy_Egre</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Total number of Snowy egret nests at a given site between 2006 - 2010.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Tricolored</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Total number of Tricolored heron nests at a given site between 2006 - 2010.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>White_Ibis</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Total number of White ibis nests at a given site between 2006 - 2010.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Wood_Stork</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Total number of Woodstork nests at a given site between 2006 - 2010.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Yellow_cro</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Total number of Yellow crowned night heron nests at a given site between 2006 - 2010.</pre></dd></dl></dd></dl></dd></dl></dd></dl><a href="#Top">Back to Top</a><a name="Distributor1"><hr/></a><dl><dt><i>Distribution_Information: </i></dt><dd><dl><dt><i>Distributor: </i></dt><dd><dl><dt><i>Contact_Information: </i></dt><dd><dl><dt><i>Contact_Organization_Primary: </i></dt><dd><dl><dt><i>Contact_Organization: </i>South Carolina Department of Natural Resources</dt></dl></dd><dt><i>Contact_Position: </i>Spatial Data Manager</dt><dt><i>Contact_Address: </i></dt><dd><dl><dt><i>Address_Type: </i>physical</dt><dt><i>Address: </i></dt><dd><pre id="fixvalue">Rembert C. Dennis Building P.O. Box 167</pre></dd><dt><i>City: </i>Columbia</dt><dt><i>State_or_Province: </i>SC</dt><dt><i>Postal_Code: </i>29202</dt><dt><i>Country: </i>US</dt></dl></dd><dt><i>Contact_Voice_Telephone: </i>803-734-9100</dt><dt><i>Contact_Facsimile_Telephone: </i>803-734-7001</dt><dt><i>Contact_Electronic_Mail_Address: </i>gisman@dnr.sc.gov</dt></dl></dd></dl></dd><dt><i>Distribution_Liability: </i></dt><dd><pre id="fixvalue">See access and use constraints information.</pre></dd><dt><i>Standard_Order_Process: </i></dt><dd><dl><dt><i>Digital_Form: </i></dt><dd><dl><dt><i>Digital_Transfer_Information: </i></dt><dd><dl><dt><i>Format_Name: </i>File Geodatabase Feature Class</dt></dl></dd><dt><i>Digital_Transfer_Option: </i></dt><dd><dl/></dd></dl></dd></dl></dd></dl></dd></dl><a href="#Top">Back to Top</a><a name="Metadata_Reference_Information"><hr/></a><dl><dt><i>Metadata_Reference_Information: </i></dt><dd><dl><dt><i>Metadata_Date: </i>20130218</dt><dt><i>Metadata_Contact: </i></dt><dd><dl><dt><i>Contact_Information: </i></dt><dd><dl><dt><i>Contact_Organization_Primary: </i></dt><dd><dl><dt><i>Contact_Organization: </i>SCDNR; MRRI</dt><dt><i>Contact_Person: </i>Jessica Boynton</dt></dl></dd><dt><i>Contact_Position: </i>GIS Manager I</dt><dt><i>Contact_Address: </i></dt><dd><dl><dt><i>Address_Type: </i>physical</dt><dt><i>Address: </i></dt><dd><pre id="fixvalue">217 Fort Johnson Rd.</pre></dd><dt><i>City: </i>Charleston</dt><dt><i>State_or_Province: </i>SC</dt><dt><i>Postal_Code: </i>29412</dt><dt><i>Country: </i>US</dt></dl></dd><dt><i>Contact_Voice_Telephone: </i>843-953-9163</dt><dt><i>Contact_Facsimile_Telephone: </i>843-953-9820</dt><dt><i>Contact_Electronic_Mail_Address: </i>boyntonj@dnr.sc.gov</dt></dl></dd></dl></dd><dt><i>Metadata_Standard_Name: </i>FGDC Content Standard for Digital Geospatial Metadata</dt><dt><i>Metadata_Standard_Version: </i>FGDC-STD-001-1998</dt><dt><i>Metadata_Time_Convention: </i>local time</dt></dl></dd></dl><a href="#Top">Back to Top</a></body></html>

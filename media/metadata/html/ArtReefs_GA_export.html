@@ -1,0 +1,174 @@
+<html><head><title>ArtReefs_GA</title><link rel="schema.dc" href="http://dublincore.org/documents/dces/"/><meta name="dc.title" content="ArtReefs_GA"/><meta name="dc.creator" content="Georgia Department of Natural Resources"/><meta name="dc.subject" content="artificial reef zones"/><meta name="dc.description" content="This shows the artificial reefs off the coast of Georgia. The goals of the Georgia artificial reef program are: 1.) The development of long-term fisheries habitat 2.) The creation of additional and more accessible recreational fishing opportunities 3.) The enhancement and support of local and regional fisheries management efforts. More information about the Georgia artificial reef program are available here: http://coastalgadnr.org/fb/ar."/><meta name="dc.type" content="data.vector digital data"/><meta name="dc.coverage.x.min" scheme="DD" content="-81.493712"/><meta name="dc.coverage.x.max" scheme="DD" content="-79.832583"/><meta name="dc.coverage.y.min" scheme="DD" content="30.763283"/><meta name="dc.coverage.y.max" scheme="DD" content="31.963193"/><meta name="dc.coverage.placeName" content="Georgia"/><meta name="dc.rights" content="Access constraints: None;  Use constraints: If these data are being used to avoid potential disturbance or destruction of artificial reefs, please contact GADNR to obtain the latest information. Neither the State of South Carolina, the Department of Natural Resources, nor any of its employees, is responsible for any improper or incorrect use of the information described and/or contained herein, and assume no responsibility for the use of the information. The Georgia Department of Natural Resources should be acknowledged as the data source in products derived from these data.The South Carolina Department of Natural Resources should be acknowledged as the GIS data source in products derived from these data."/><script type="text/javascript" language="JavaScript1.3">
+/* Onload - Find each <pre> element with an Id="fixvalue" and
+call fixvalue() function to parse text to respect line breaks,
+replace <pre> element with <div> elememt, and convert URL address
+strings in text to <a href> element. */
+
+window.onload = function() {
+	elem = document.getElementById("fixvalue");
+	while (Boolean(elem != null)) {
+		fixvalue(elem);
+		elem = document.getElementById("fixvalue");
+	}
+	window.focus()
+}
+	
+/* Fix value - Parse text in <pre> element to respect line breaks introduced in ArcCatalog
+by the metadata author who intentionally introduced single line breaks to start new lines
+or even more than one consecutive line break to further separate text to form paragraphs.
+Note, fixvalue() calls the addtext() function, which adds text to DIV elements, which are
+sequentially added to a parent DIV element to form separate lines and paragraphs of text. */
+
+function fixvalue(elem) {
+	elem.id = "";
+	var n
+	var val = String("");
+	var pos = Number(0);
+	// Make a newline character to use for basis for splitting string into 
+	// an array of strings that are processed and turned into separate div
+	// elements with either new line or paragraphic-like style.
+	var newline = String.fromCharCode(10);
+	var par = elem.parentNode;
+	if (elem.innerText) {
+		// Position of first newline character in IE
+		n = elem;
+		val = n.innerText;
+		pos = val.indexOf(newline);
+	} else {
+		// Position of first newline character in NS, Firefox
+		n = elem.childNodes[0];
+		val = n.nodeValue;
+		pos = val.indexOf(newline);
+	}
+	if (pos > 0) {
+		// Text string contains at least one white space character
+		var sValue = new String ("");
+		// Split entire text string value on newline character
+		// in order to create an array of string values to process	
+		var aValues = val.split(newline);
+		var padBottom = Number(0);
+		var add = Boolean("false");
+		// Loop thru each potential new line or paragraph and append <DIV>
+		// element and set its className accordingly.				
+		for (var i = 0; i <= aValues.length - 1; i++) {
+			var div = document.createElement("DIV");
+			sValue = aValues[i];
+			add = false;
+			for (var j = 0; j < sValue.length; j++) {
+				if (sValue.charCodeAt(j) > 32) {
+					add = true;
+					// window.alert("CHARACTER AT " + sValue.charAt(j) + " CHARCODE " + sValue.charCodeAt(j))
+					break;
+				}
+			}
+			if (add) {
+				if (i == 0) {
+					// Must clone and append label property (e.g. <b>Abstract</b>) to first <DIV>
+					// element, and then remove it from parent if at first element in aValues array.
+					prev = elem.previousSibling;
+					if (Boolean(prev != null)) {
+						var label = prev.cloneNode(true)
+						div.appendChild(label);
+						par.removeChild(prev);
+					}
+				}
+				// Now test to see whether to set style.paddingBottom to 0 or 4 for newline or 
+				// paragraph, respectively.  Look ahead and if all characters in the next element 
+				// in the aValues array (the next DIV element to make) are not white space then set
+				// style.paddingBottom = 0. Otherwise, set style.paddingBottom = 4 to separate the 
+				// the current <DIV> from the next <DIV> element. 			
+				padBottom = Number(0);
+				if (i < aValues.length - 1) {
+					// Assume paragraph-like separation between DIV elements
+					padBottom = Number(4);
+					// Look for non-white space characters in content for next DIV
+					var nextValue = aValues[i+1];
+					for (var k = 0; k < nextValue.length; k++) {
+						if (nextValue.charCodeAt(k) > 32) {
+							// Found a non-white space character
+							padBottom = Number(0);
+							// window.alert("CHARACTER AT " + nextval.charAt(k) + " CHARCODE " + nextval.charCodeAt(k))
+							break;
+						}
+					}
+				}
+				// Pad element
+				div.style.paddingLeft = 0;
+				div.style.paddingRight = 0;
+				div.style.paddingTop = 0;
+				div.style.paddingBottom = padBottom;
+				// Scan text for URL strings before adding text to div element
+				addtext(div,sValue);
+				// Add new div element to parent div element
+				par.appendChild(div);
+			}
+		}
+		par.removeChild(elem);
+	} else {
+		// No white space charaters in text string so can be added directly to parent DIV element.
+		par.removeChild(elem);
+		// Scan text for URL strings before adding text to div element
+		addtext(par,val);
+	}		
+}
+
+/* Add text - This function adds text to (inside) DIV element, but before doing so 
+searches for strings in the text that resemble URLs and converts them to hypertext
+elements and adds them to the div element as well. Searches for strings that begin 
+with "://" or "www." and converts them to <a href> elements. Add text function is 
+called by fixvalue function */ 
+ 
+function addtext(elem,txt) {
+	// Scan entire text value and test for presense of URL strings, 
+	// convert URL strings to Hypertext Elements, convert text strings
+	// between URL strings to Text Nodes and append all Hypertext
+	// Elements and Text Nodes to DIV element.
+	var start = new Number (0);
+	var end = new Number (0);
+	var url = new String("");
+	var urlpattern = /(\w+):\/\/([\w.]+)((\S)*)|www\.([\w.]+)((\S)*)/g;
+	var punctuation = /[\.\,\;\:\?\!\[\]\(\)\{\}\'\"]/;
+	var result
+	var elemText
+	while((result = urlpattern.exec(txt)) != null) {
+		var fullurl = result[0];
+		var protocol = result[1];
+		url = fullurl;
+		end = result.index;
+		if (start < end){
+			// Append Text Node to parent
+			elemText = document.createTextNode(txt.substring(start, end));
+			elem.appendChild(elemText);
+		}
+		var lastchar = fullurl.charAt(fullurl.length - 1);
+		// Remove last character from url if character is punctuation mark, bracket or parenthesis;
+		if (lastchar.match(punctuation) != null) {
+			// Remove next-to-last character from url if character is punctuation mark, bracket or parenthesis. For example the ")" in "),"
+			var nexttolastchar = fullurl.charAt(fullurl.length - 2);
+			if (nexttolastchar.match(punctuation) != null) {
+				url = fullurl.substring(0,fullurl.length - 2);		
+			} else {		
+				url = fullurl.substring(0,fullurl.length - 1);
+			}		
+		}
+		start = (result.index + url.length)
+		// Test to concatinate 'http://' to url if not already begininng with 'http://', 'https://' or 'ftp://'"
+		if (protocol == "") {
+			url = "http://" + url;
+		}
+		// Append Hypertext (anchor) Element to parent
+		elemText = document.createTextNode(url);
+		var elemAnchor = document.createElement("A");
+		elemAnchor.setAttribute("href", url);
+		elemAnchor.setAttribute("target", "viewer");
+		elemAnchor.appendChild(elemText);
+		elem.appendChild(elemAnchor);				
+	}
+	end = txt.length;
+	if (start < end) {
+		// Append Text Node that follows last Hypertext Element
+		elemText = document.createTextNode(txt.substring(start, end));
+		elem.appendChild(elemText);
+	}
+}
+</script></head><body><a name="Top"/><h1>ArtReefs_GA</h1><h2>Metadata:</h2><ul><li><a href="#Identification_Information">Identification_Information</a></li><li><a href="#Spatial_Data_Organization_Information">Spatial_Data_Organization_Information</a></li><li><a href="#Spatial_Reference_Information">Spatial_Reference_Information</a></li><li><a href="#Entity_and_Attribute_Information">Entity_and_Attribute_Information</a></li><li><a href="#Distributor1">Distribution_Information</a></li><li><a href="#Metadata_Reference_Information">Metadata_Reference_Information</a></li></ul><a name="Identification_Information"><hr/></a><dl><dt><i>Identification_Information: </i></dt><dd><dl><dt><i>Citation: </i></dt><dd><dl><dt><i>Citation_Information: </i></dt><dd><dl><dt><i>Originator: </i>Georgia Department of Natural Resources</dt><dt><i>Title: </i></dt><dd>ArtReefs_GA</dd><dt><i>Geospatial_Data_Presentation_Form: </i>vector digital data</dt></dl></dd></dl></dd><dt><i>Description: </i></dt><dd><dl><dt><i>Abstract: </i></dt><dd><pre id="fixvalue">This shows the artificial reefs off the coast of Georgia. The goals of the Georgia artificial reef program are: 1.) The development of long-term fisheries habitat 2.) The creation of additional and more accessible recreational fishing opportunities 3.) The enhancement and support of local and regional fisheries management efforts. More information about the Georgia artificial reef program are available here: http://coastalgadnr.org/fb/ar.</pre></dd><dt><i>Purpose: </i></dt><dd><pre id="fixvalue">This GIS dataset was created for purpose of describing artificial reef zones for the state of Georgia so that these data can be considered with respect to other data on coastal resources and activities.</pre></dd></dl></dd><dt><i>Status: </i></dt><dd><dl><dt><i>Progress: </i>Complete</dt><dt><i>Maintenance_and_Update_Frequency: </i>None planned</dt></dl></dd><dt><i>Spatial_Domain: </i></dt><dd><dl><dt><i>Bounding_Coordinates: </i></dt><dd><dl><dt><i>West_Bounding_Coordinate: </i>-81.493712</dt><dt><i>East_Bounding_Coordinate: </i>-79.832583</dt><dt><i>North_Bounding_Coordinate: </i>31.963193</dt><dt><i>South_Bounding_Coordinate: </i>30.763283</dt></dl></dd></dl></dd><dt><i>Keywords: </i></dt><dd><dl><dt><i>Theme: </i></dt><dd><dl><dt><i>Theme_Keyword_Thesaurus: </i>None</dt><dt><i>Theme_Keyword: </i>artificial reef zones</dt></dl></dd><dt><i>Place: </i></dt><dd><dl><dt><i>Place_Keyword_Thesaurus: </i>None</dt><dt><i>Place_Keyword: </i>Georgia</dt></dl></dd></dl></dd><dt><i>Access_Constraints: </i>None</dt><dt><i>Use_Constraints: </i></dt><dd><pre id="fixvalue">If these data are being used to avoid potential disturbance or destruction of artificial reefs, please contact GADNR to obtain the latest information. Neither the State of South Carolina, the Department of Natural Resources, nor any of its employees, is responsible for any improper or incorrect use of the information described and/or contained herein, and assume no responsibility for the use of the information. The Georgia Department of Natural Resources should be acknowledged as the data source in products derived from these data.The South Carolina Department of Natural Resources should be acknowledged as the GIS data source in products derived from these data.</pre></dd><dt><i>Point_of_Contact: </i></dt><dd><dl><dt><i>Contact_Information: </i></dt><dd><dl><dt><i>Contact_Organization_Primary: </i></dt><dd><dl><dt><i>Contact_Organization: </i>Georgia Department of Natural Resource - Marine Fisheries</dt><dt><i>Contact_Person: </i>Patrick Geer</dt></dl></dd><dt><i>Contact_Position: </i>Chief of Marine Fisheries</dt><dt><i>Contact_Address: </i></dt><dd><dl><dt><i>Address_Type: </i>physical</dt><dt><i>Address: </i></dt><dd><pre id="fixvalue">2 One Conservation Way, Suite 300</pre></dd><dt><i>City: </i>Brunswick</dt><dt><i>State_or_Province: </i>GA</dt><dt><i>Postal_Code: </i>31523</dt><dt><i>Country: </i>US</dt></dl></dd><dt><i>Contact_Voice_Telephone: </i>912/264-7218</dt><dt><i>Contact_Facsimile_Telephone: </i>912/262-2318</dt><dt><i>Contact_Electronic_Mail_Address: </i>Pat_Geer@dnr.state.ga.us</dt></dl></dd></dl></dd><dt><i>Native_Data_Set_Environment: </i></dt><dd> Version 6.2 (Build 9200) ; Esri ArcGIS 10.1.0.3035</dd></dl></dd></dl><a href="#Top">Back to Top</a><a name="Spatial_Data_Organization_Information"><hr/></a><dl><dt><i>Spatial_Data_Organization_Information: </i></dt><dd><dl><dt><i>Direct_Spatial_Reference_Method: </i>Vector</dt><dt><i>Point_and_Vector_Object_Information: </i></dt><dd><dl><dt><i>SDTS_Terms_Description: </i></dt><dd><dl><dt><i>SDTS_Point_and_Vector_Object_Type: </i>Entity point</dt><dt><i>Point_and_Vector_Object_Count: </i>300</dt></dl></dd></dl></dd></dl></dd></dl><a href="#Top">Back to Top</a><a name="Spatial_Reference_Information"><hr/></a><dl><dt><i>Spatial_Reference_Information: </i></dt><dd><dl><dt><i>Horizontal_Coordinate_System_Definition: </i></dt><dd><dl><dt><i>Planar: </i></dt><dd><dl><dt><i>Map_Projection: </i></dt><dd><dl><dt><i>Map_Projection_Name: </i>Transverse Mercator</dt><dt><i>Transverse_Mercator: </i></dt>Transverse Mercator<dd><dl><dt><i>Scale_Factor_at_Central_Meridian: </i>0.9996</dt><dt><i>Longitude_of_Central_Meridian: </i>-81.0</dt><dt><i>Latitude_of_Projection_Origin: </i>0.0</dt><dt><i>False_Easting: </i>500000.0</dt><dt><i>False_Northing: </i>0.0</dt></dl></dd></dl></dd><dt><i>Planar_Coordinate_Information: </i></dt><dd><dl><dt><i>Planar_Coordinate_Encoding_Method: </i>coordinate pair</dt><dt><i>Coordinate_Representation: </i></dt><dd><dl><dt><i>Abscissa_Resolution: </i>0.000000002220024164500956</dt><dt><i>Ordinate_Resolution: </i>0.000000002220024164500956</dt></dl></dd><dt><i>Planar_Distance_Units: </i></dt></dl></dd></dl></dd><dt><i>Geodetic_Model: </i></dt><dd><dl><dt><i>Horizontal_Datum_Name: </i>D North American 1983</dt><dt><i>Ellipsoid_Name: </i>GRS 1980</dt><dt><i>Semi-major_Axis: </i>6378137.0</dt><dt><i>Denominator_of_Flattening_Ratio: </i>298.257222101</dt></dl></dd></dl></dd></dl></dd></dl><a href="#Top">Back to Top</a><a name="Entity_and_Attribute_Information"><hr/></a><dl><dt><i>Entity_and_Attribute_Information: </i></dt><dd><dl><dt><i>Detailed_Description: </i></dt><dd><dl><dt><i>Entity_Type: </i></dt><dd><dl><dt><i>Entity_Type_Label: </i>ArtReefs_GA</dt></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>OBJECTID</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Internal feature number.</pre></dd><dt><i>Attribute_Definition_Source: </i></dt><dd><pre id="fixvalue">ESRI</pre></dd><dt><i>Attribute_Domain_Values: </i></dt><dd><dl><dt><i>Unrepresentable_Domain: </i></dt><dd>Sequential unique whole numbers that are automatically generated.</dd></dl></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>Shape</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Feature geometry.</pre></dd><dt><i>Attribute_Definition_Source: </i></dt><dd><pre id="fixvalue">ESRI</pre></dd><dt><i>Attribute_Domain_Values: </i></dt><dd><dl><dt><i>Unrepresentable_Domain: </i></dt><dd>Coordinates defining the features.</dd></dl></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>REEF_NAME</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">The name of the artificial reef.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>REEFCODE</dt></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>STRNUM</dt></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>STRCODE</dt></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>BUOYED</dt></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>DESCRIPTIO</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">The description of reef location.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>STRUCTURE</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">The type of structure used to make the reef.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>HEADING_DI</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Heading and Distance from Reef Buoy.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>LATDD</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Latitude degrees.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>LATMMMMM</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Latitude decimal minutes.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>LATITUDE</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Latitude in decimal degrees.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>LONDD</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Longitude degrees.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>LONMMMMM</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Longitude decimal minutes.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>LONGITUDE</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Longitude decimal degrees.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>PERMITTED_</dt></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>STR_TYPE</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Type of structure used to build the reef.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>PHOTO_LOC</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Location of photos of the artificial reef.</pre></dd></dl></dd><dt><i>Attribute: </i></dt><dd><dl><dt><i>Attribute_Label: </i>PHOTO_NAME</dt><dt><i>Attribute_Definition: </i></dt><dd><pre id="fixvalue">Photo name of the artificial reef.</pre></dd></dl></dd></dl></dd></dl></dd></dl><a href="#Top">Back to Top</a><a name="Distributor1"><hr/></a><dl><dt><i>Distribution_Information: </i></dt><dd><dl><dt><i>Distributor: </i></dt><dd><dl><dt><i>Contact_Information: </i></dt><dd><dl><dt><i>Contact_Organization_Primary: </i></dt><dd><dl><dt><i>Contact_Organization: </i>South Carolina Department of Natural Resources</dt></dl></dd><dt><i>Contact_Position: </i>Spatial Data Manager</dt><dt><i>Contact_Address: </i></dt><dd><dl><dt><i>Address_Type: </i>mailing</dt><dt><i>Address: </i></dt><dd><pre id="fixvalue">Rembert C. Dennis Building P.O. Box 167</pre></dd><dt><i>City: </i>Columbia</dt><dt><i>State_or_Province: </i>SC</dt><dt><i>Postal_Code: </i>29202</dt><dt><i>Country: </i>US</dt></dl></dd><dt><i>Contact_Voice_Telephone: </i>803-734-9100</dt><dt><i>Contact_Facsimile_Telephone: </i>803-734-7001</dt><dt><i>Contact_Electronic_Mail_Address: </i>gisman@dnr.sc.gov</dt></dl></dd></dl></dd><dt><i>Distribution_Liability: </i></dt><dd><pre id="fixvalue">See access and use constraints information.</pre></dd><dt><i>Standard_Order_Process: </i></dt><dd><dl><dt><i>Digital_Form: </i></dt><dd><dl><dt><i>Digital_Transfer_Information: </i></dt><dd><dl><dt><i>Format_Name: </i>File Geodatabase Feature Class</dt></dl></dd><dt><i>Digital_Transfer_Option: </i></dt><dd><dl/></dd></dl></dd></dl></dd></dl></dd></dl><a href="#Top">Back to Top</a><a name="Metadata_Reference_Information"><hr/></a><dl><dt><i>Metadata_Reference_Information: </i></dt><dd><dl><dt><i>Metadata_Date: </i>20130218</dt><dt><i>Metadata_Contact: </i></dt><dd><dl><dt><i>Contact_Information: </i></dt><dd><dl><dt><i>Contact_Organization_Primary: </i></dt><dd><dl><dt><i>Contact_Organization: </i>SCDNR, Marine Resources Division, MRRI</dt><dt><i>Contact_Person: </i>Jessica Boynton</dt></dl></dd><dt><i>Contact_Position: </i>GIS Manager I</dt><dt><i>Contact_Address: </i></dt><dd><dl><dt><i>Address_Type: </i>mailing</dt><dt><i>Address: </i></dt><dd><pre id="fixvalue">P.O. Box 12559</pre></dd><dt><i>City: </i>Charleston</dt><dt><i>State_or_Province: </i>SC</dt><dt><i>Postal_Code: </i>29422</dt><dt><i>Country: </i>US</dt></dl></dd><dt><i>Contact_Voice_Telephone: </i>843-953-9163</dt><dt><i>Contact_Facsimile_Telephone: </i>843-953-9820</dt><dt><i>Contact_Electronic_Mail_Address: </i>boyntonj@dnr.sc.gov</dt></dl></dd></dl></dd><dt><i>Metadata_Standard_Name: </i>FGDC Content Standard for Digital Geospatial Metadata</dt><dt><i>Metadata_Standard_Version: </i>FGDC-STD-001-1998</dt><dt><i>Metadata_Time_Convention: </i>local time</dt></dl></dd></dl><a href="#Top">Back to Top</a></body></html>
