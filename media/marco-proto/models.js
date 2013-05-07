@@ -782,7 +782,7 @@ function mapLinksModel() {
 
     self.getURL = function() {
         //return window.location.href;
-        return 'http://gsaaportal.org' + app.viewModel.currentURL();
+        return 'http://portal.midatlanticocean.org' + app.viewModel.currentURL();
     };
 
     self.shrinkURL = ko.observable();
