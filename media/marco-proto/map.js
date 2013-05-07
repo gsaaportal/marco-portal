@@ -11,31 +11,31 @@ app.init = function () {
     esriOcean = new OpenLayers.Layer.XYZ("ESRI Ocean", "http://services.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/${z}/${y}/${x}", {
         sphericalMercator: true,
         isBaseLayer: true,
-        numZoomLevels: 13,
+        //numZoomLevels: 13,
         attribution: "Sources: GEBCO, NOAA, CHS, OSU, UNH, CSUMB, National Geographic, DeLorme, NAVTEQ, and Esri"
     });
 
     openStreetMap = new OpenLayers.Layer.OSM("Open Street Map", "http://a.tile.openstreetmap.org/${z}/${x}/${y}.png", {
         sphericalMercator: true,
         isBaseLayer: true,
-        numZoomLevels: 13
+        //numZoomLevels: 13
     });
     googleStreet = new OpenLayers.Layer.Google("Google Streets", {
         sphericalMercator: true,
         isBaseLayer: true,
-        numZoomLevels: 13
+        //numZoomLevels: 13
     });
     googleTerrain = new OpenLayers.Layer.Google("Google Physical", {
         type: google.maps.MapTypeId.TERRAIN,
         sphericalMercator: true,
         isBaseLayer: true,
-        numZoomLevels: 13
+        //numZoomLevels: 13
     });
     googleSatellite = new OpenLayers.Layer.Google("Google Satellite", {
         type: google.maps.MapTypeId.SATELLITE,
         sphericalMercator: true,
         isBaseLayer: true,
-        numZoomLevels: 13
+        //numZoomLevels: 13
     });
 
     /*var bingHybrid = new OpenLayers.Layer.Bing( {
@@ -60,7 +60,7 @@ app.init = function () {
         },
         {
             isBaseLayer: true,
-            numZoomLevels: 13,
+            //numZoomLevels: 13,
             projection: "EPSG:102113"
         }
     );
