@@ -1154,7 +1154,8 @@ body.borderless #map-wrapper {
 		margin-top: 0px;
 	}
     #primary-content {
-        margin-top: 120px;
+        margin-top: 0px;
+        /*margin-top: 120px;*/
     }
 	#sidebar-nav {
 		position: relative;
