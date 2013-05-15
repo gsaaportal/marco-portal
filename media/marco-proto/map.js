@@ -493,7 +493,7 @@ app.addLayerToMap = function(layer, isVisible) {
                 }
             );
             //2013-02-20 DWR
-            layer.setVisibility(isVisible);
+            layer.layer.setVisibility(isVisible);
             app.map.addLayer(layer.layer);
         } else { //if XYZ with no utfgrid
             // adding layer to the map for the first time
