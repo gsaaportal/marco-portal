@@ -1,0 +1,128 @@
+[
+    {
+        "pk": 7,
+        "model": "flatblocks.flatblock",
+        "fields": {
+            "content": "map tiles",
+            "header": "",
+            "slug": "data_catalog_maptiles_link"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "flatblocks.flatblock",
+        "fields": {
+            "content": "Download Map Tiles",
+            "header": "",
+            "slug": "data_catalog_maptiles_link_tooltip"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "flatblocks.flatblock",
+        "fields": {
+            "content": "kml",
+            "header": "",
+            "slug": "data_catalog_kml_link"
+        }
+    },
+    {
+        "pk": 10,
+        "model": "flatblocks.flatblock",
+        "fields": {
+            "content": "Download to View in Google Earth",
+            "header": "",
+            "slug": "data_catalog_kml_link_tooltip"
+        }
+    },
+    {
+        "pk": 11,
+        "model": "flatblocks.flatblock",
+        "fields": {
+            "content": "data",
+            "header": "",
+            "slug": "data_catalog_data_link"
+        }
+    },
+    {
+        "pk": 12,
+        "model": "flatblocks.flatblock",
+        "fields": {
+            "content": "Download ESRI Formatted Dataset",
+            "header": "",
+            "slug": "data_catalog_data_link_tooltip"
+        }
+    },
+    {
+        "pk": 13,
+        "model": "flatblocks.flatblock",
+        "fields": {
+            "content": "description",
+            "header": "",
+            "slug": "data_catalog_factsheet_link"
+        }
+    },
+    {
+        "pk": 14,
+        "model": "flatblocks.flatblock",
+        "fields": {
+            "content": "View Description",
+            "header": "",
+            "slug": "data_catalog_factsheet_link_tooltip"
+        }
+    },
+    {
+        "pk": 15,
+        "model": "flatblocks.flatblock",
+        "fields": {
+            "content": "metadata",
+            "header": "",
+            "slug": "data_catalog_metadata_link"
+        }
+    },
+    {
+        "pk": 16,
+        "model": "flatblocks.flatblock",
+        "fields": {
+            "content": "Download Metadata",
+            "header": "",
+            "slug": "data_catalog_metadata_link_tooltip"
+        }
+    },
+    {
+        "pk": 17,
+        "model": "flatblocks.flatblock",
+        "fields": {
+            "content": "source",
+            "header": "",
+            "slug": "data_catalog_source_link"
+        }
+    },
+    {
+        "pk": 18,
+        "model": "flatblocks.flatblock",
+        "fields": {
+            "content": "Link to Dataset Source Provider",
+            "header": "",
+            "slug": "data_catalog_source_link_tooltip"
+        }
+    },
+    {
+        "pk": 19,
+        "model": "flatblocks.flatblock",
+        "fields": {
+            "content": "Cached Map Tiles",
+            "header": "",
+            "slug": "data_catalog_tiles_link_tooltip"
+        }
+    },
+    {
+        "pk": 20,
+        "model": "flatblocks.flatblock",
+        "fields": {
+            "content": "tiles",
+            "header": "",
+            "slug": "data_catalog_tiles_link"
+        }
+    }
+]
