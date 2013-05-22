@@ -95,7 +95,7 @@ class Layer(models.Model):
     name = models.CharField(max_length=100)
     slug_name = models.CharField(max_length=100, blank=True, null=True)
     layer_type = models.CharField(max_length=50, choices=TYPE_CHOICES)
-    url = models.CharField(max_length=255, blank=True, null=True)
+    url = models.CharField(max_length=2000, blank=True, null=True)
     shareable_url = models.BooleanField(default=True)
     arcgis_layers = models.CharField(max_length=255, blank=True, null=True)
     sublayers = models.ManyToManyField('self', blank=True, null=True)
