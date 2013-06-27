@@ -1,79 +1,87 @@
 {% extends 'base_with_sidebar.html' %}
 {% block main %}
 {% load flatblock_tags %}
-
+<!--
+The topic data for the page uses the ordering field from the database. It is 1 based, where here in the page it is 0 based. Make sure
+when adding a new topic, the ordering field is filled out!
+-->
 <div class="page-blocks learn-page">
-	<div class="row">
-		<div class="span5">
-			<div class="page-block">
-                <a href="/learn/topic/{{topics.0.name}}">
-                    <div class="info-image pull-left">
-                        <img src="{{MEDIA_URL}}gsaa/img/photos/learn_top_left.jpg"/>
-                        <img
-                            class="info-button"
-                            src="{{MEDIA_URL}}gsaa/img/vector-artwork/misc/i.png"
-                            data-title="<h5 class='primary'>Sapelo Island National Estuarine Research Reserve</h5><p><strong>Georgia</strong>, Sapelo Island</p><p class='photo-credits'>Photographer: Jim Couch, Georgia Department of Natural Resources</p>"
-                        >
-                    </div>
-                    <div class="clearfix">&nbsp;</div>
-                    <h4 class="primary">{{ topics.0.display_name }}</h4>
-                </a>
-				<p>
-                    {{ topics.0.description }}
-                    &nbsp;<a href="/learn/topic/{{topics.0.name}}" style="white-space:nowrap">
-                        <b><small>LEARN MORE </small><i class="icon-caret-right"></i></b>
-                    </a>
-                </p>
-			</div>
-		</div>
-		<div class="span5">
-			<div class="page-block">
-                {% if topics.3 %}
-                <a href="/learn/topic/{{topics.3.name}}">
-                    <div class="info-image pull-left">
-                        <img src="{{MEDIA_URL}}gsaa/img/photos/learn_top_right.jpg"/>
-                        <img
-                            class="info-button"
-                            src="{{MEDIA_URL}}gsaa/img/vector-artwork/misc/i.png"
-                            data-title="<h5 class='primary'>The SEALAND COMMITMENT in the ship channel off Sullivans Island heading for the Wando River container terminal.</h5><p><strong>Sullivans Island, South Carolina</strong> July 3, 2004</p><p class='photo-credits'>Photographer: Captain Albert E. Theberge, NOAA Corps (ret.)</p>"
-                        >
-                    </div>
-                    <div class="clearfix">&nbsp;</div>
-                    <h4 class="primary">{{ topics.3.display_name }}</h4>
-                </a>
-				<p>
-                    {{ topics.3.description }}
-                    &nbsp;<a href="/learn/topic/{{topics.3.name}}" style="white-space:nowrap">
-                        <b><small>LEARN MORE </small><i class="icon-caret-right"></i></b>
-                    </a>
-                </p>
-                {% endif %}
-			</div>
-		</div>
-	</div>
-    {% if topics.1 %}
-	<div class="row">
-		<div class="span5">
-			<div class="page-block">
-                <a href="/learn/topic/{{topics.1.name}}">
-                    <div class="info-image pull-left">
-                        <img src="{{MEDIA_URL}}gsaa/img/photos/learn_bottom_left.jpg"/>
-                        <img
-                            class="info-button"
-                            src="{{MEDIA_URL}}gsaa/img/vector-artwork/misc/i.png"
-                            data-title="<h5 class='primary'>Right whale and calf, 2005</h5><p class='photo-credits'>Credit: NOAA NMFS</p>"
-                        >
-                        <h4 class="primary">{{ topics.1.display_name }}</h4>
-                    </div>
-                </a>
-				<p>
-                    {{ topics.1.description }}
-                    <a href="/learn/topic/{{topics.1.name}}" class="pull-right">
-                        <b><small>LEARN MORE </small><i class="icon-caret-right"></i></b>
-                    </a>
-                </p>
-			</div>
-		</div>
+    <div class="row">
+      <div class="span5">
+        <div class="page-block">
+          <a href="/learn/topic/{{topics.0.name}}">
+            <div class="info-image pull-left">
+              <img src="{{MEDIA_URL}}gsaa/img/photos/learn_top_left.jpg"/>
+              <img
+              class="info-button"
+              src="{{MEDIA_URL}}gsaa/img/vector-artwork/misc/i.png"
+              data-title="<h5 class='primary'>Sapelo Island National Estuarine Research Reserve</h5><p><strong>Georgia</strong>, Sapelo Island</p><p class='photo-credits'>Photographer: Jim Couch, Georgia Department of Natural Resources</p>"
+              >
+            </div>
+            <div class="clearfix">&nbsp;</div>
+            <h4 class="primary">{{ topics.0.display_name }}</h4>
+          </a>
+          <p>
+            {{ topics.0.description }}
+            &nbsp;<a href="/learn/topic/{{topics.0.name}}" style="white-space:nowrap">
+            <b><small>LEARN MORE </small><i class="icon-caret-right"></i></b>
+            </a>
+          </p>
+        </div>
+      </div>
+      <div class="span5">
+        <div class="page-block">
+          {% if topics.1 %}
+            <a href="/learn/topic/{{topics.1.name}}">
+              <div class="info-image pull-left">
+                <img src="{{MEDIA_URL}}gsaa/img/photos/learn_top_right.jpg"/>
+                <img
+                class="info-button"
+                src="{{MEDIA_URL}}gsaa/img/vector-artwork/misc/i.png"
+                data-title="<h5 class='primary'>The SEALAND COMMITMENT in the ship channel off Sullivans Island heading for the Wando River container terminal.</h5><p><strong>Sullivans Island, South Carolina</strong> July 3, 2004</p><p class='photo-credits'>Photographer: Captain Albert E. Theberge, NOAA Corps (ret.)</p>"
+                >
+              </div>
+              <div class="clearfix">&nbsp;</div>
+              <h4 class="primary">{{ topics.1.display_name }}</h4>
+            </a>
+          <p>
+            {{ topics.1.description }}
+            &nbsp;<a href="/learn/topic/{{topics.1.name}}" style="white-space:nowrap">
+            <b><small>LEARN MORE </small><i class="icon-caret-right"></i></b>
+            </a>
+          </p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    {% if topics.3 %}
+      <div class="row">
+        <div class="span5">
+          <div class="page-block">
+            {% if topics.3 %}
+              <a href="/learn/topic/{{topics.3.name}}">
+                <div class="info-image pull-left">
+                  <img src="{{MEDIA_URL}}gsaa/img/photos/learn_bottom_left.jpg"/>
+                  <img
+                  class="info-button"
+                  src="{{MEDIA_URL}}gsaa/img/vector-artwork/misc/i.png"
+                  data-title="<h5 class='primary'>Right whale and calf, 2005</h5><p class='photo-credits'>Credit: NOAA NMFS</p>"
+                  >
+                </div>
+                <div class="clearfix">&nbsp;</div>
+                <h4 class="primary">{{ topics.3.display_name }}</h4>
+              </a>
+            <p>
+              {{ topics.3.description }}
+              &nbsp;<a href="/learn/topic/{{topics.3.name}}" style="white-space:nowrap">
+              <b><small>LEARN MORE </small><i class="icon-caret-right"></i></b>
+              </a>
+            </p>
+            {% endif %}
+          </div>
+        </div>
+
                 <!--
 		<div class="span5">
 			<div class="page-block">
@@ -94,7 +102,7 @@
 			</div>
 		</div>
                 -->
-	</div>
+      </div>
     {% endif %}
 </div>
 
