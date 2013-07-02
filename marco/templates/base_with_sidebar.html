@@ -1,4 +1,4 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% block body %}
             <div class="row">
                 <div class="span2">
@@ -11,6 +11,9 @@
                             </li>
                             <li {% if topic.name == 'sediment_management' %}class="active"{% endif %}>
                                 <a href="/learn/topic/port_maintenance">Port Maintenance and Expansion</a>
+                            </li>
+                            <li {% if topic.name == 'habitat_conservation' %}class="active"{% endif %}>
+                                <a href="/learn/topic/habitat_conservation">Habitat Conservation</a>
                             </li>
                         </ul>
                     </div>

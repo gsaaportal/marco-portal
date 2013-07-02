@@ -55,33 +55,32 @@ when adding a new topic, the ordering field is filled out!
       </div>
     </div>
 
-    {% if topics.3 %}
-      <div class="row">
-        <div class="span5">
-          <div class="page-block">
-            {% if topics.3 %}
-              <a href="/learn/topic/{{topics.3.name}}">
-                <div class="info-image pull-left">
-                  <img src="{{MEDIA_URL}}gsaa/img/photos/learn_bottom_left.jpg"/>
-                  <img
-                  class="info-button"
-                  src="{{MEDIA_URL}}gsaa/img/vector-artwork/misc/i.png"
-                  data-title="<h5 class='primary'>Right whale and calf, 2005</h5><p class='photo-credits'>Credit: NOAA NMFS</p>"
-                  >
-                </div>
-                <div class="clearfix">&nbsp;</div>
-                <h4 class="primary">{{ topics.3.display_name }}</h4>
-              </a>
-            <p>
-              {{ topics.3.description }}
-              &nbsp;<a href="/learn/topic/{{topics.3.name}}" style="white-space:nowrap">
-              <b><small>LEARN MORE </small><i class="icon-caret-right"></i></b>
-              </a>
-            </p>
-            {% endif %}
-          </div>
+    <div class="row">
+      <div class="span5">
+        <div class="page-block">
+          {% if topics.2 %}
+            <a href="/learn/topic/{{topics.2.name}}">
+              <div class="info-image pull-left">
+                <img src="{{MEDIA_URL}}gsaa/img/photos/learn_bottom_left.jpg"/>
+                <img
+                class="info-button"
+                src="{{MEDIA_URL}}gsaa/img/vector-artwork/misc/i.png"
+                data-title="<h5 class='primary'>Right whale and calf, 2005</h5><p class='photo-credits'>Credit: NOAA NMFS</p>"
+                >
+              </div>
+              <div class="clearfix">&nbsp;</div>
+              <h4 class="primary">{{ topics.2.display_name }}</h4>
+            </a>
+          <p>
+            {{ topics.2.description }}
+            &nbsp;<a href="/learn/topic/{{topics.2.name}}" style="white-space:nowrap">
+            <b><small>LEARN MORE </small><i class="icon-caret-right"></i></b>
+            </a>
+          </p>
+          {% endif %}
         </div>
-
+      </div>
+    </div>
                 <!--
 		<div class="span5">
 			<div class="page-block">
@@ -102,8 +101,6 @@ when adding a new topic, the ordering field is filled out!
 			</div>
 		</div>
                 -->
-      </div>
-    {% endif %}
 </div>
 
 <style type="text/css">
