@@ -56,15 +56,15 @@
             <div class="span1">
             </div>
         </div>
-        
+
         <div style="margin-top: 10px; margin-bottom: 20px; color: #666666; border-bottom: 1px solid #ccc; width: 90%">
         </div>
-        
+
         <h5>RELATED DATASETS</h5>
 		{% for layer in layers %}
             <div class="row-fluid">
                 <div class="span4">
-                    {{ layer.name }}	
+                    {{ layer.name }}
                 </div>
                 <div class="span4">
                     <a href="{{ layer.bookmark }}">
@@ -73,9 +73,9 @@
                     </a>
                 </div>
                 <div class="span4">
-                    <a href="/explore/catalog#{{ layer.slug }}">
+                    <a href="/explore/catalog#{{ layer.slug }}-links">
                         <img style="margin-right: 4px; width: 5%; height: 5%;" class="svg-link" src="{{MEDIA_URL}}gsaa/img/vector-artwork/misc/explore.svg">
-                        View in Data Catalog 
+                        View in Data Catalog
                     </a>
                 </div>
             </div>
@@ -98,7 +98,7 @@
             $("#working-waterfronts").popover();
         });
     };
-    
+
     //madrona.onShow(function(){
         //activeMapView( {{view.0.name}} );
     //});
@@ -136,10 +136,10 @@
 .svg-link {
   margin-bottom: 5px;
 }
-.popover-title { 
-    display: none; 
+.popover-title {
+    display: none;
 }
-.popover-content { 
+.popover-content {
     color: #030bd4;
     padding: 5px 10px;
     font-size: 12px;
