@@ -295,6 +295,7 @@ input[type="text"]:hover {
     $(document).ready( function() {
         var layers = [],
             layer_index = {},
+
             search =  function(val) {
                 var layer = layer_index[val];
 
@@ -315,8 +316,22 @@ input[type="text"]:hover {
             };
 
         if (window.location.hash) {
-            $(window).scrollTop($(window).scrollTop() - 100);
-            $(window.location.hash).closest('tr').effect("pulsate", {times:2 }, 500);
+          //To get the nested accordions to open up from the Learn page(or anything else that uses an anchor) we've got to get the
+          //parent elements of the desired layer, then force them open starting from the top down.The parentsUntil function returns all the
+          //parent elements of the one we are interested in up until it finds the one with a class of theme-group. theme-group is the top
+          //most containing element, for us it represents the layer grouping, such as Juridictions and Boundaries.
+          var parentDivs = $(window.location.hash).parentsUntil('[class~="theme-group"]');
+          for(var ndx = parentDivs.length - 1; ndx >= 0; ndx--)
+          {
+            if($(parentDivs[ndx]).hasClass('collapse'))
+            {
+              $(parentDivs[ndx]).collapse('show');
+            }
+          }
+          //This opens info/link for the layer we are interested in.
+          $(window.location.hash).collapse('show');
+          $(window).scrollTop($(window).scrollTop() - 100);
+          $(window.location.hash).closest('tr').effect("pulsate", {times:2 }, 500);
 
         }
 
