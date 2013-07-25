@@ -3,4 +3,4 @@
 GSAA is the Governors South Atlantic Alliance.
 
 * [Project development website](http://github.com/gsaaportal/)
-* [Official MARCO Website](http://www.gsaaportal.org)
+* [Official GSAA Portal Website](http://www.gsaaportal.org)
