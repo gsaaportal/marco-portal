@@ -57,10 +57,39 @@ function layerModel(options, parent) {
     self.getHTMLLegend = function(legendURL)
     {
       self.legendTable('Loading: ' + legendURL);
-      $.get(legendURL, function(data)
-      {
+
+
+      $.get('/proxy/get_legend_json?url=' + legendURL, function(data) {
         self.legendTable(data);
       });
+        /*
+        var jqxhr = $.get(legendURL, function(data, textStatus, jqxhr)
+        {
+          self.legendTable(data);
+        },
+        "html").fail(function(jqxhr, textStatus, errorMsg)
+      {
+        var errorBuf = "Unable to load: " + legendURL + " Status: " + jqxhr.status + " Status Msg: " + jqxhr.statusText + " " + jqxhr.responseText;
+        self.legendTable(errorBuf);
+      });
+      */
+      /*$.ajax(legendURL,
+        {
+          async : false,
+          type: "POST",
+          dataType: "HTML",
+          mimeType: "text/html",
+          success : function(data, textStatus, jqxhr)
+            {
+              self.legendTable(data);
+            },
+          error: function(jqxhr, textStatus, errorMsg)
+            {
+              var errorBuf = "Unable to load: " + legendURL + " Status: " + jqxhr.status + " Status Msg: " + jqxhr.statusText + " Response: " + jqxhr.responseText;
+              self.legendTable(errorBuf);
+            }
+        });*/
+
     };
 
     // set overview text for Learn More option
