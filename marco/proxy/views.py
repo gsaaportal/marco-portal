@@ -48,3 +48,35 @@ def getLegendJSON(request, url):
           return(HttpResponse(status=403))
 
     return(HttpResponse('Request could not be processed.'))
+
+def restQuery(request, url):
+    logger = logging.getLogger(__name__)
+    logger.info("Begin restQuery")
+    #logger.debug("Request: %s" % (request))
+    conn = httplib2.Http()
+    # optionally provide authentication for server
+    #conn.add_credentials('admin','admin-password')
+    if request.method == "GET":
+
+        getUrl = request.GET.get('url')
+        logger.debug(getUrl)
+        parsedURL = urlparse(getUrl)
+        logger.info("URL: %s" % (getUrl))
+        try:
+          results = requests.get(getUrl)
+        except Exception,e:
+          if(logger):
+            logger.exception(e)
+        else:
+          if(results.status_code == 200):
+            return HttpResponse(results.text)
+          return(HttpResponse(''))
+
+    elif request.method == "POST":
+        parsedURL = urlparse(url)
+        logger.info("URL: %s" % (url))
+        data = urlencode(request.POST)
+        resp, content = conn.request(url, request.method, data)
+        return HttpResponse(content)
+
+    return(HttpResponse('Request could not be processed.'))
