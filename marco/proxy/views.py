@@ -13,7 +13,7 @@ allowedDomain = "gsaaportal.org"
 def getLegendJSON(request, url):
     logger = logging.getLogger(__name__)
     logger.info("Begin getLegendJSON")
-    logger.debug("Request: %s" % (request))
+    #logger.debug("Request: %s" % (request))
     conn = httplib2.Http()
     # optionally provide authentication for server
     #conn.add_credentials('admin','admin-password')
@@ -22,6 +22,7 @@ def getLegendJSON(request, url):
         getUrl = request.GET.get('url')
         logger.debug(getUrl)
         parsedURL = urlparse(getUrl)
+        logger.info("URL: %s" % (getUrl))
         if(parsedURL.hostname == allowedDomain):
           try:
             results = requests.get(getUrl)
@@ -38,6 +39,7 @@ def getLegendJSON(request, url):
 
     elif request.method == "POST":
         parsedURL = urlparse(url)
+        logger.info("URL: %s" % (url))
         if(parsedURL.hostname == allowedDomain):
           data = urlencode(request.POST)
           resp, content = conn.request(url, request.method, data)
@@ -45,4 +47,4 @@ def getLegendJSON(request, url):
         else:
           return(HttpResponse(status=403))
 
-    return('')
+    return(HttpResponse('Request could not be processed.'))
