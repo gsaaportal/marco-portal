@@ -5,7 +5,7 @@ OpenLayers.Control.ArcGisRestIdentify = OpenLayers.Class(OpenLayers.Control, {
         clickTolerance:0,
         EVENT_TYPES: ["resultarrived", "arcfeaturequery"],
         outFields : "",
-        
+
         defaultHandlerOptions: {
                 'single': true,
                 'double': false,
@@ -25,7 +25,7 @@ OpenLayers.Control.ArcGisRestIdentify = OpenLayers.Class(OpenLayers.Control, {
                 );
                 OpenLayers.Control.prototype.initialize.apply(
                         this, arguments
-                ); 
+                );
                 var callbacks = {};
                 callbacks['click'] = this.doQuery;
                 this.handler = new OpenLayers.Handler.Click(
@@ -33,8 +33,8 @@ OpenLayers.Control.ArcGisRestIdentify = OpenLayers.Class(OpenLayers.Control, {
                         callbacks,
                         this.handlerOptions
                 );
-        }, 
-        
+        },
+
         activate: function () {
                 if (!this.active) {
                         this.handler.activate();
@@ -54,9 +54,9 @@ OpenLayers.Control.ArcGisRestIdentify = OpenLayers.Class(OpenLayers.Control, {
                 var lonlat = map.getLonLatFromViewPortPx(e.xy);
                 alert("You clicked near " + lonlat.lat + " N, " +
                                                                   + lonlat.lon + " E");*/
-        
+
         buildOptions: function(clickPosition,url){
-                
+
                 evtlonlat = this.map.getLonLatFromPixel(clickPosition);
                 var spatialRel = "esriSpatialRelIntersects";
                 var geometryType = "esriGeometryPoint";
@@ -68,12 +68,12 @@ OpenLayers.Control.ArcGisRestIdentify = OpenLayers.Class(OpenLayers.Control, {
                   urXY.x = clickPosition.x + this.clickTolerance;
                   urXY.y = clickPosition.y + this.clickTolerance;
                   var urUR = this.map.getLonLatFromPixel(urXY);
-                  
+
                   var llXY = new OpenLayers.Pixel();
                   llXY.x = clickPosition.x - this.clickTolerance;
                   llXY.y = clickPosition.y - this.clickTolerance;
                   var llLL = this.map.getLonLatFromPixel(llXY);
-                  
+
                   geometryType = "esriGeometryEnvelope";
                   geometry = llLL.lon + "," + llLL.lat + "," + urUR.lon + "," + urUR.lat;
                 }
@@ -88,12 +88,12 @@ OpenLayers.Control.ArcGisRestIdentify = OpenLayers.Class(OpenLayers.Control, {
                   returnGeometry:"true",
                   outFields : this.outFields
                 };
-                
+
                 var query = {
                         url:url,
                         headers: {"Content-type" : "application/json"},
                         params : queryoptions,
-                        proxy: '/proxy/get_legend_json/?url=',
+                        proxy: '/proxy/rest_query/?url=',
                         callback: function(request)
                         {
                           this.handleresult(request,clickPosition);
@@ -102,19 +102,19 @@ OpenLayers.Control.ArcGisRestIdentify = OpenLayers.Class(OpenLayers.Control, {
                 };
                 return query
         },
-        
+
         handleresult: function(result,xy){
                 this.events.triggerEvent("resultarrived",{
                         text:result.responseText,
                         xy:xy
                 });
         },
-        
+
         request: function(clickPosition){
                 queryOptions = this.buildOptions(clickPosition,this.url);
                 var request = OpenLayers.Request.GET(queryOptions);
         },
-        
+
         doQuery: function(e){
           this.events.triggerEvent("arcfeaturequery",{});
           this.request(e.xy);
