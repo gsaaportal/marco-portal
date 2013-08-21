@@ -415,7 +415,8 @@ app.addLayerToMap = function(layer, isVisible) {
               //esriQueryFields.push(layer.attributes[i].display);
               esriQueryFields.push(layer.attributes[i].field);
             }
-            layer.identifyControl = new OpenLayers.Control.ArcGisRestIdentify(
+            //layer.identifyControl = new OpenLayers.Control.ArcGisRestIdentify(
+            layer.identifyControl = new OpenLayers.Control.ArcGisRestQuery(
               {
                 eventListeners: {
                   arcfeaturequery : function()
