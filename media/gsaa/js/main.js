@@ -1,7 +1,7 @@
 
 
 /**
- * Show shadow under header when scroll position 
+ * Show shadow under header when scroll position
  * is not at the top.
  */
 // $(document).ready(function () {
@@ -56,7 +56,7 @@ $(document).ready(function () {
     // highlight active top level
     $('.sidebar-nav-section > h3 > a[href*="' + location.pathname.split("/")[1] + '"][class!="noselect"]').each(function () {
         $(this).parents('.sidebar-nav-section').addClass('active');
-    }); 
+    });
 });
 
 /**
@@ -67,12 +67,12 @@ $(document).ready(function () {
         interval: 4000
     });
 
-    $('#homeCarousel .carousel-indicators li').click(function () { 
+    $('#homeCarousel .carousel-indicators li').click(function () {
         var that = $(this);
-        
+
         $('#homeCarousel .carousel-indicators li').removeClass('active');
-        setTimeout(function () { 
-            that.addClass('active'); 
+        setTimeout(function () {
+            that.addClass('active');
         }, 10);
     });
 
@@ -91,14 +91,14 @@ $(document).ready(function () {
  *   fill: red;
  * }
  *
- * OR 
- * 
+ * OR
+ *
  * .img-tag-class:hover path {
  *   fill: red;
  * }
  *
  * http://stackoverflow.com/questions/11978995/how-to-change-color-of-svg-image-using-css-jquery-svg-image-replacement
- * 
+ *
  */
 $(document).ready(function () {
     jQuery('img.svg').each(function(){
@@ -128,18 +128,20 @@ $(document).ready(function () {
         });
 
     });
-});        
+});
 
 
 
 /**
  * Compensate for the fixed header when scrolling to mid-page anchors.
  */
+
 $(document).ready(function () {
     var hash = window.location.hash,
         offsettop = $('header').height(),
         speed = 300;
     if (hash !== '') {
-        $('html,body').animate({scrollTop: $(hash).offset().top - offsettop}, speed);
+      $('html,body').animate({scrollTop: $(hash).offset().top - offsettop}, speed);
     }
 });
+
