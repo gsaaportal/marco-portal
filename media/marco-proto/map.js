@@ -131,6 +131,13 @@ app.init = function () {
         app.viewModel.attributeData(false);
     };
     */
+    //Add a vector layer to draw our polygon selection on for use with the "Does layer have data here" ESRI quesry.
+    var polygonLayer = new OpenLayers.Layer.Vector("Polygon Layer");
+    map.addLayer(polygonLayer);
+    app.polygonDraw = new OpenLayers.Control.DrawFeature(polygonLayer, OpenLayers.Handler.Polygon, {
+      featureAdded : app.viewModel.selectionPolygonAdded
+    });
+    map.addControl(app.polygonDraw);
 
     app.map = map;
 
@@ -138,6 +145,7 @@ app.init = function () {
     //app.map.clickOutput = { time: 0, attributes: [] };
     app.map.clickOutput = { time: 0, attributes: {} };
 
+    /*
     //UTF Attribution
     map.UTFControl = new OpenLayers.Control.UTFGrid({
         //attributes: layer.attributes,
@@ -196,7 +204,7 @@ app.init = function () {
                                 var display = obj.display + ': ' + info.data[obj.field];
                                 attribute_objs.push({'display': display, 'data': ''});
                             } else {
-                                /*** SPECIAL CASE FOR ENDANGERED WHALE DATA ***/
+                                //**** SPECIAL CASE FOR ENDANGERED WHALE DATA
                                 var value = info.data[obj.field];
                                 if (value === 999999) {
                                     attribute_objs.push({'display': obj.display, 'data': 'No Survey Effort'});
@@ -240,7 +248,8 @@ app.init = function () {
             });
         }
     }; //end utfGridClickHandling
-
+    */
+    /*
     app.map.events.register("featureclick", null, function(e) {
         var layer = e.feature.layer.layerModel || e.feature.layer.scenarioModel;
         var date = new Date();
@@ -273,7 +282,8 @@ app.init = function () {
         app.viewModel.aggregatedAttributes(app.map.clickOutput.attributes);
 
     });
-
+    */
+    /*
     app.map.events.register("nofeatureclick", null, function(e) {
         var date = new Date();
         var newTime = date.getTime();
@@ -281,7 +291,7 @@ app.init = function () {
             app.viewModel.closeAttribution();
         }
     });
-
+    */
     app.markers = new OpenLayers.Layer.Markers( "Markers" );
     var size = new OpenLayers.Size(16,25);
     var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
@@ -408,15 +418,35 @@ app.addLayerToMap = function(layer, isVisible) {
             }
         }
         else if (layer.type === 'ArcRest') {
-            var identifyUrl = layer.url.replace('export', layer.arcgislayers + '/query');
+            var url = layer.url.replace('export','/identify');
+
+            /*
+            layer.identifyControl = new OpenLayers.Control.ArcGisRestIdentify({
+              url : url,
+              layerId: layer.arcgislayers,
+              freehand: true,
+              eventListeners: {
+                arcfeaturequery : function()
+                {
+                  //Show the identify tab.
+                  $('#identifyTab').tab('show');
+                },
+                //THis is the handler for the return click data.
+                resultarrived : function(responseText, xy)
+                {
+
+                }
+              }
+            });
+            */
+            url = layer.url.replace('export', layer.arcgislayers + '/query');
             var esriQueryFields = [];
             for(var i = 0; i < layer.attributes.length; i++)
             {
               //esriQueryFields.push(layer.attributes[i].display);
               esriQueryFields.push(layer.attributes[i].field);
             }
-            //layer.identifyControl = new OpenLayers.Control.ArcGisRestIdentify(
-            layer.identifyControl = new OpenLayers.Control.ArcGisRestQuery(
+            layer.queryControl = new OpenLayers.Control.ArcGisRestQuery(
               {
                 eventListeners: {
                   arcfeaturequery : function()
@@ -460,7 +490,7 @@ app.addLayerToMap = function(layer, isVisible) {
                     app.viewModel.attributeData(attributeObjs);
                   }
                 },
-                url : identifyUrl,
+                url : url,
                 layerid : layer.arcgislayers,
                 sr : 102113,
                 clickTolerance: 3,
@@ -483,7 +513,7 @@ app.addLayerToMap = function(layer, isVisible) {
             app.map.addLayer(layer.layer);
             //2013-02-20 DWR
             //ADd the identify control.
-            app.map.addControl(layer.identifyControl);
+            app.map.addControl(layer.queryControl);
 
         } else if (layer.type === 'WMS') {
             layer.layer = new OpenLayers.Layer.WMS(

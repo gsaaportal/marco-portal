@@ -38,6 +38,9 @@ function layerModel(options, parent) {
 
     if(self.type === 'ArcRest')
     {
+      //Control for doing a REST query for getting data from the layer when the user clicks on a point.
+      self.queryControl = null;
+      //Control for doing a REST identify for determining if the layer has data in the polygon.
       self.identifyControl = null;
     }
 
@@ -228,10 +231,10 @@ function layerModel(options, parent) {
             self.deactivateSublayer();
         }
         //DWR
-        //Deactivate the identifyControl on the layer if it has one.
-        if("identifyControl" in layer)
+        //Deactivate the queryControl on the layer if it has one.
+        if("queryControl" in layer)
         {
-          layer.identifyControl.deactivate();
+          layer.queryControl.deactivate();
         }
 
         layer.layer = null;
@@ -307,9 +310,9 @@ function layerModel(options, parent) {
         layer.activeSublayer().deactivateLayer();
         layer.activeSublayer(false);
         layer.visibleSublayer(false);
-        if("identifyControl" in layer)
+        if("queryControl" in layer)
         {
-          layer.identifyControl.deactivate();
+          layer.queryControl.deactivate();
         }
 
         layer.layer = null;
@@ -924,22 +927,22 @@ function viewModel() {
     self.visibleLayers.subscribe( function() {
         self.updateAttributeLayers();
         //DWR
-        //Disable the identifyControl on layers that have it when they are no longer visible.
+        //Disable the queryControl on layers that have it when they are no longer visible.
         var firstVisLayer = self.visibleLayers()[0];
         //Disable the identify controls
         $.each(self.activeLayers(), function(i, layer) {
-          if("identifyControl" in layer)               //User has clicked the Identify button
+          if("queryControl" in layer)               //User has clicked the Identify button
 
           {
             //If the layer is the first visible layer, enable the identify control.
-            if((app.viewModel.identifyFeatureActive()) &&
+            if((app.viewModel.queryFeatureActive()) &&
                (layer === firstVisLayer))
             {
-              layer.identifyControl.activate();
+              layer.queryControl.activate();
             }
             else
             {
-              layer.identifyControl.deactivate();
+              layer.queryControl.deactivate();
             }
           }
         });
@@ -1054,38 +1057,121 @@ function viewModel() {
     };
     self.featureRequested = ko.observable(false);
     //Layer Feature Identify
-    self.identifyFeatureActive = ko.observable(false);
+    self.queryFeatureActive = ko.observable(false);
     //Button handler for the identify feature function.
-    self.identifyFeature = function(self, event)
+    self.queryFeature = function(self, event)
     {
       //Toggle the state.
-      if(self.identifyFeatureActive() === false)
+      if(self.queryFeatureActive() === false)
       {
-        self.identifyFeatureActive(true);
+        self.queryFeatureActive(true);
         //Activate the Identify tab.
         $('#identifyTab').tab('show');
       }
       else
       {
-        self.identifyFeatureActive(false);
+        self.queryFeatureActive(false);
       }
-
       var layers = self.visibleLayers();
       $.each(layers, function(index, layer) {
-        if("identifyControl" in layer)
+        if("queryControl" in layer)
         {
-          //var layerNdx = app.viewModel.activeLayers.indexOf(layer);
-          if(self.identifyFeatureActive() &&
+          if(self.queryFeatureActive() &&
              (index === 0))
           {
-            layer.identifyControl.activate();
+            layer.queryControl.activate();
           }
           else
           {
-            layer.identifyControl.deactivate();
+            layer.queryControl.deactivate();
           }
         }
       });
+
+    };
+    //POlygon selection tool.
+    self.polygonSelectActive = ko.observable(false);
+    self.polygonIdentify = function(self, event)
+    {
+      //Toggle the state.
+      if(self.polygonSelectActive() === false)
+      {
+        self.polygonSelectActive(true);
+        //Activate the Identify tab.
+        $('#identifyTab').tab('show');
+        app.polygonDraw.activate();
+      }
+      else
+      {
+        self.polygonSelectActive(false);
+        app.polygonDraw.deactivate();
+      }
+    }
+    /*
+    self.esriLayerIdentify = new OpenLayers.Control.ArcGisRestIdentify(
+      {
+        proxy: "/proxy/rest_query/?url="
+      });
+    */
+    self.esriLayerIdentify = new OpenLayers.Control.ArcGisRestIdentify(
+      {
+        proxy : "/proxy/rest_query/?url="
+      }
+    );
+    self.selectionPolygonAdded = function(feature)
+    {
+      //var layers = self.layerIndex;
+      var layers = self.visibleLayers();
+      var layerCnt = layers.length
+      for(var i = 0; i < layerCnt; i++)
+      {
+        var vertices = feature.geometry.getVertices();
+        var geometry = [];
+        var wkt = new OpenLayers.Format.WKT()
+        var out = wkt.write(feature);
+        if(vertices.length)
+        {
+          for(var j = 0; j < vertices.length; j++)
+          {
+            var point = []
+            point.push(vertices[j].x);
+            point.push(vertices[j].y)
+            geometry.push(point);
+          }
+          var point = [];
+          point.push(vertices[0].x);
+          point.push(vertices[0].y)
+          //Append the first point last to close the polygon.
+          geometry.push(point);
+        }
+        var mapExtent = app.map.getExtent();
+        var url = layers[i].url.replace('export','/identify');
+
+        self.esriLayerIdentify.url = url;
+        srCode = app.map.getProjection().split(':');
+        self.esriLayerIdentify.sr = srCode[1];
+        self.esriLayerIdentify.layerId = layers[i].arcgislayers;
+        self.esriLayerIdentify.geometry = geometry;
+        self.esriLayerIdentify.geometryType = "esriGeometryPolygon";
+        self.esriLayerIdentify.tolerance = 2;
+        self.esriLayerIdentify.mapExtent = mapExtent.left + "," + mapExtent.bottom + "," + mapExtent.right + "," + mapExtent.top;
+        self.esriLayerIdentify.imageDisplay = app.map.getSize().w + "," + app.map.getSize().h + ",96";
+        self.esriLayerIdentify.request();
+        /*
+        var esriLayerIdentify = new OpenLayers.Control.ArcGisRestIdentify(
+        {
+          url: url,
+          layerId: layers[i].id,
+          proxy: "/proxy/rest_query/?url=",
+          geometry: geometry.join(),
+          geometryType: "esriGeometryPolygon",
+          tolerance: 2,
+          mapExtent: mapExtent.left + "," + mapExtent.bottom + "," + mapExtent.right + "," + mapExtent.top,
+          imageDisplay: app.map.getSize().x + "," + app.map.getSize().y + ",96"
+
+          });
+          */
+        }
 
     };
     // determines visibility of description overlay
@@ -1648,12 +1734,12 @@ function viewModel() {
             //If the layer has an identify control object and the user has enabled the identify tool, lets make sure the layer at the
             //top of the active list is the one we query.
 
-            if(("identifyControl" in layer) &&                        //Layer has identifyControl
-               (app.viewModel.identifyFeatureActive()))               //User has clicked the Identify button
+            if(("queryControl" in layer) &&                        //Layer has identifyControl
+               (app.viewModel.queryFeatureActive()))               //User has clicked the Identify button
 
             {
               //If the layer is at the top of the Z order, activate it for feature identify.
-              index === 300 ? layer.identifyControl.activate() : layer.identifyControl.deactivate();
+              index === 300 ? layer.queryControl.activate() : layer.queryControl.deactivate();
             }
 
             index--;

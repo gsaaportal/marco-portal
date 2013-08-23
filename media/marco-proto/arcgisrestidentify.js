@@ -1,15 +1,26 @@
 OpenLayers.Control.ArcGisBaseRest = OpenLayers.Class(OpenLayers.Control, {
+  //URL for the REST request.
+  url : null,
+  proxy : null,
+  handler : null,
+
+  //Rest parameters, descriptions taken from the ESRI API pages:http://help.arcgis.com/en/arcgisserver/10.0/apis/rest/
+  //Required
+  //The geometry to apply as the spatial filter.
+  //The structure of the geometry is the same as the structure of the json geometry objects returned by the ArcGIS REST API.
+  //In addition to the JSON structures, for envelopes and points, you can specify the geometry with a simpler comma-separated syntax.
+  geometry : "0,0",
+
+  // The response format. The default response format is json. Depeding on the type of request it can be: html, json, kmz, amf.
   f : 'json',
-  geometry : null,
-  geometryType: null,
-  sr: 4326,
-  EVENT_TYPES: ["resultarrived"],
+
+  //The type of geometry specified by the geometry parameter.
+  //The geometry type can be an envelope, point, line, or polygon.
+  geometryType : null,
+
+  EVENT_TYPES : ["resultarrived"],
 
   initialize: function(options) {
-    this.EVENT_TYPES =
-    OpenLayers.Control.ArcGisBaseRest .prototype.EVENT_TYPES.concat(
-            OpenLayers.Control.prototype.EVENT_TYPES
-    );
     OpenLayers.Control.prototype.initialize.apply(
             this, arguments
     );
@@ -28,89 +39,195 @@ OpenLayers.Control.ArcGisBaseRest = OpenLayers.Class(OpenLayers.Control, {
     return OpenLayers.Control.prototype.deactivate.apply(
             this, arguments
     );
-  }
+  },
 
 });
 
 OpenLayers.Control.ArcGisRestIdentify = OpenLayers.Class(OpenLayers.Control, {
-        eventListeners:null,
-        url:null,
-        clickTolerance:0,
-        EVENT_TYPES: ["resultarrived", "arcfeaturequery"],
-        //Rest parameters
-        layerid:null,
-        time : null,
-        layerTimeOptions : null,
-        tolerance: 1,
-        mapExtent: null,
-        imageDisplay: null,
-        returnGeometry: true,
-        maxAllowableOffset: null,
+  eventListeners:null,
+  layerId: null,
+  //We can ask for top, visible, all, see layers description below.
+  layersToId : 'all',
+  freehand : true,
+
+  url : null,
+  proxy : null,
+  handler : null,
+
+  EVENT_TYPES : ["resultarrived","arcfeatureidentify"],
+
+  //Rest parameters, descriptions taken from the ESRI API pages:http://help.arcgis.com/en/arcgisserver/10.0/apis/rest/
+  //Required
+  //The geometry to apply as the spatial filter.
+  //The structure of the geometry is the same as the structure of the json geometry objects returned by the ArcGIS REST API.
+  //In addition to the JSON structures, for envelopes and points, you can specify the geometry with a simpler comma-separated syntax.
+  geometry : "0,0",
+
+  // The response format. The default response format is json. Depeding on the type of request it can be: html, json, kmz, amf.
+  f : 'json',
+
+  //The type of geometry specified by the geometry parameter.
+  //The geometry type can be an envelope, point, line, or polygon.
+  geometryType : null,
+
+  defaultHandlerOptions :
+  {
+    freehand : true,
+  },
+  //Rest parameters, descriptions taken from the ESRI API pages:http://help.arcgis.com/en/arcgisserver/10.0/apis/rest/
+
+  //Required
+  //The extent or bounding box of the map currently being viewed.
+  //Unless the sr parameter has been specified, the mapExtent is assumed to be in the spatial reference of the map.
+  mapExtent: null,
+
+  //Required
+  //The screen image display parameters (width, height and DPI) of the map being currently viewed.
+  imageDisplay: null,
+
+  //Required
+  //The distance in screen pixels from the specified geometry within which the identify should be performed.
+  //The value for the tolerance is an integer.
+  tolerance:0,
+
+  //The layers to perform the identify operation on. There are three ways to specify which layers to identify on:
+  //top: Only the top-most layer at the specified location.
+  //visible: All visible layers at the specified location.
+  //all: All layers at the specified location.
+
+  layers: null,
+
+  //The well-known ID of the spatial reference of the input and output geometries as well as the mapExtent.
+  //If sr is not specified, the geometry and the mapExtent are assumed to be in the spatial reference of the map,
+  //and the output geometries are also in the spatial reference of the map.
+  sr: 4326,
+
+  // Allows you to filter the features of individual layers in the exported map by specifying definition expressions for those layers.
+  //Definition expression for a layer that is published with the service will be always honored.
+  layerDefs : null,
 
 
+  //The time instant or the time extent of the features to be identified.
+  time : null,
 
-        buildOptions: function(clickPosition,url){
+  //The time options per layer.
+  //Users can indicate whether or not the layer should use the time extent specified by the time parameter or not,
+  //whether to draw the layer features cumulatively or not and the time offsets for the layer.
+  layerTimeOptions : null,
 
-                evtlonlat = this.map.getLonLatFromPixel(clickPosition);
-                var spatialRel = "esriSpatialRelIntersects";
-                var geometryType = "esriGeometryPoint";
-                var geometry = evtlonlat.lon+","+evtlonlat.lat;
-                //If there is a click tolerance, let's calculate an envelope to use to check for any results.
-                if(this.clickTolerance > 0)
-                {
-                  var urXY = new OpenLayers.Pixel();
-                  urXY.x = clickPosition.x + this.clickTolerance;
-                  urXY.y = clickPosition.y + this.clickTolerance;
-                  var urUR = this.map.getLonLatFromPixel(urXY);
+  //If true, the resultset will include the geometries associated with each result. The default is true.
+  returnGeometry: true,
 
-                  var llXY = new OpenLayers.Pixel();
-                  llXY.x = clickPosition.x - this.clickTolerance;
-                  llXY.y = clickPosition.y - this.clickTolerance;
-                  var llLL = this.map.getLonLatFromPixel(llXY);
+  // This option can be used to specify the maximum allowable offset to be used for generalizing geometries returned by the identify operation.
+  //The maxAllowableOffset is in the units of the sr.
+  //If sr is not specified then maxAllowableOffset is assumed to be in the unit of the spatial reference of the map.
+  maxAllowableOffset: null,
 
-                  geometryType = "esriGeometryEnvelope";
-                  geometry = llLL.lon + "," + llLL.lat + "," + urUR.lon + "," + urUR.lat;
-                }
-                var queryoptions =
-                {
-                  geometry : geometry,
-                  geometryType : geometryType,
-                  inSR : this.sr,
-                  outSR : this.sr,
-                  spatialRel : spatialRel,
-                  f : "json",
-                  returnGeometry:"true",
-                  outFields : this.outFields
-                };
 
-                var query = {
-                        url:url,
-                        headers: {"Content-type" : "application/json"},
-                        params : queryoptions,
-                        proxy: '/proxy/rest_query/?url=',
-                        callback: function(request)
-                        {
-                          this.handleresult(request,clickPosition);
-                        },
-                        scope: this
-                };
-                return query
-        },
+  initialize: function(options)
+  {
+    //Call the base class initialize first.
+    OpenLayers.Control.prototype.initialize.apply(
+            this, arguments
+    );
 
-        handleresult: function(result,xy){
-                this.events.triggerEvent("resultarrived",{
-                        text:result.responseText,
-                        xy:xy
-                });
-        },
+    if(this.geometryType == null)
+    {
+      this.geometryType = "esriGeometryPolygon";
+    }
+    this.defaultHandlerOptions.freehand = options.freehand;
+    this.handlerOptions = OpenLayers.Util.extend(
+            {}, this.defaultHandlerOptions
+    );
+    //Event gets triggered when the query begins. Handle it to throw up a loading indicator and do other prep work for when the
+    //result arrives.
+    //this.EVENT_TYPES.push("arcfeatureidentify");
 
-        request: function(clickPosition){
-                queryOptions = this.buildOptions(clickPosition,this.url);
-                var request = OpenLayers.Request.GET(queryOptions);
-        },
+    //Register the doQuery function to handle the 'done' event fired when the user has completed drawing the polygon.
+    var callbacks = {};
+    callbacks['done'] = this.doQuery;
+    this.handler = new OpenLayers.Handler.Polygon(
+            this,
+            callbacks,
+            this.handlerOptions
+    );
+  },
 
-        doQuery: function(e){
-          this.events.triggerEvent("arcfeaturequery",{});
-          this.request(e.xy);
-        }
+  activate: function () {
+    if (!this.active) {
+            this.handler.activate();
+    }
+    return OpenLayers.Control.prototype.activate.apply(
+            this, arguments
+    );
+  },
+
+  deactivate: function () {
+    return OpenLayers.Control.prototype.deactivate.apply(
+            this, arguments
+    );
+  },
+
+  buildOptions: function()
+  {
+    var geometry;
+    if(this.geometryType == 'esriGeometryPolygon')
+    {
+      geometry = {rings : []};
+
+      geometry['rings'].push(this.geometry);
+
+      geometry = JSON.stringify(geometry);
+    }
+    else
+    {
+      geometry = this.geometry.join();
+    }
+    var queryoptions =
+    {
+      layers        : this.layersToId + ":" + this.layerId,
+      geometry      : geometry,
+      geometryType  : this.geometryType,
+      sr            : this.sr,
+      imageDisplay  : this.imageDisplay,
+      mapExtent     : this.mapExtent,
+      f             : this.f,
+      returnGeometry: this.returnGeometry,
+      tolerance     : this.tolerance
+    };
+
+
+    var query = {
+            url: this.url,
+            params : queryoptions,
+            proxy: this.proxy,
+            callback: function(request)
+            {
+              this.handleresult(request);
+            },
+            scope: this
+    };
+    return query
+  },
+
+  request: function(evt)
+  {
+    queryOptions = this.buildOptions();
+    var request = OpenLayers.Request.GET(queryOptions);
+  },
+
+  doQuery: function(evt)
+  {
+    this.events.triggerEvent("arcfeatureidentify",{});
+    this.request(evt);
+  },
+
+  handleresult: function(result)
+  {
+    this.events.triggerEvent("resultarrived",
+    {
+      text:result.responseText
+    });
+  },
+
 });
