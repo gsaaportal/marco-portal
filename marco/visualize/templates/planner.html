@@ -472,17 +472,15 @@
                                               <span>Print/Export</span>
                                           </a>
                                           <!--Identify Button-->
-                                          <a class="btn" id="btn-identify" data-bind="click: identifyFeature">
+                                          <a class="btn" id="btn-identify" data-bind="click: queryFeature">
                                               <i class="icon-search icon-large"></i>
                                               <span>Identify</span>
                                           </a>
                                           <!--Polygon Layer Search Button-->
-                                          <!--
-                                          <a class="btn" id="btn-identify" data-bind="click: identifyFeature">
+                                          <a class="btn" id="btn-identify" data-bind="click: polygonIdentify">
                                               <i class="icon-polygon-select icon-large"></i>
                                               <span>Polygon Select</span>
                                           </a>
-                                          -->
 
                                         </div>
                                     </div>
@@ -791,6 +789,8 @@
             {% if user.is_authenticated %} app.is_authenticated = true; {% endif %}
         </script>
 
+        <script src="{{MEDIA_URL}}/marco-proto/arcgisrestquery.js"></script>
+        <script src="{{MEDIA_URL}}/marco-proto/arcgisrestidentify.js"></script>
         <script src="{{MEDIA_URL}}/marco-proto/fixtures.js"></script>
         <script src="{{MEDIA_URL}}/marco-proto/map.js"></script>
         <script src="{{MEDIA_URL}}/marco-proto/state.js"></script>
@@ -805,10 +805,7 @@
         <script src="{{MEDIA_URL}}/marco-proto/printing.js"></script>
         <script src="{{MEDIA_URL}}/marco-proto/app.js"></script>
         <script src="{{MEDIA_URL}}/marco-proto/pageguide.js"></script>
-        <script src="{{MEDIA_URL}}/marco-proto/arcgisrestquery.js"></script>
-        <!--
-        <script src="{{MEDIA_URL}}/marco-proto/arcgisrestidentify.js"></script>
-        -->
+
         <!--[if gt IE 8]><!-->
         <script src="{{MEDIA_URL}}/marco-proto/assets/js/jquery.mousewheel.min.js"></script>
         <!--<![endif]-->
