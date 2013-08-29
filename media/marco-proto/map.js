@@ -419,26 +419,33 @@ app.addLayerToMap = function(layer, isVisible) {
         }
         else if (layer.type === 'ArcRest') {
             var url = layer.url.replace('export','/identify');
+            var srCode = app.map.getProjection().split(':');
 
-            /*
             layer.identifyControl = new OpenLayers.Control.ArcGisRestIdentify({
+              proxy: "/proxy/rest_query/?url=",
               url : url,
               layerId: layer.arcgislayers,
-              freehand: true,
+              sr : srCode[1],
+              tolerance : 2,
+
               eventListeners: {
-                arcfeaturequery : function()
+                arcfeaturequery : layer.arcFeatureQueryHandler,
+                resultarrived : layer.identifyQueryResultHandler
+                /*
+                function()
                 {
                   //Show the identify tab.
                   $('#identifyTab').tab('show');
                 },
                 //THis is the handler for the return click data.
-                resultarrived : function(responseText, xy)
+                resultarrived : function(responseText)
                 {
 
                 }
+                */
               }
             });
-            */
+
             url = layer.url.replace('export', layer.arcgislayers + '/query');
             var esriQueryFields = [];
             for(var i = 0; i < layer.attributes.length; i++)
@@ -453,23 +460,43 @@ app.addLayerToMap = function(layer, isVisible) {
                   {
                     //Show the identify tab.
                     $('#identifyTab').tab('show');
-                    //Remove the previous attributes.
-                    app.viewModel.attributeTitle(false);
-                    app.viewModel.attributeData(false);
+                    //app.viewModel.updateScrollBars();
                     app.viewModel.featureRequested(true);
+                    //Another query started, so clear last results.
+                    app.viewModel.attributeDataArray.remove(function(layerData) {
+                        if(layerData.title == layer.name)
+                        {
+                          return(true);
+                        }
+                        return(false);
+                      });
+
+                    app.viewModel.attributeDataArray.push({title : layer.name, attributes: [{'display' : '',
+                                  'data' : 'Querying...'}]});
                   },
                   //THis is the handler for the return click data.
                   resultarrived : function(responseText, xy)
                   {
                     app.viewModel.featureRequested(false);
+                    //app.viewModel.updateScrollBars();
+                    app.viewModel.attributeDataArray.remove(function(layerData) {
+                        if(layerData.title == layer.name)
+                        {
+                          return(true);
+                        }
+                        return(false);
+                      });
+
                     var jsonFormat = new OpenLayers.Format.JSON();
                     var returnJSON = jsonFormat.read(responseText.text);
                     //Activate the Identify tab.
                     $('#identifyTab').tab('show');
-                    app.viewModel.attributeTitle(layer.name);
-                    if('features' in returnJSON)
+
+                    var layerDataObj = {title : layer.name, attributes: []};
+                    if('features' in returnJSON && returnJSON['features'].length)
                     {
-                      var attributeObjs = []
+                      //var attributeObjs = []
+                      var attributeObjs = layerDataObj.attributes;
                       $.each(returnJSON['features'], function(index, feature)
                       {
                         if(index == 0)
@@ -483,12 +510,28 @@ app.addLayerToMap = function(layer, isVisible) {
                                                   'data' : attributeList[field.name]});
                             });
                           }
+                          else if('fieldAliases' in returnJSON)
+                          {
+                            $.each(returnJSON['fieldAliases'], function(fieldNdx, field)
+                            {
+                              attributeObjs.push({'display' : (field != "null") ? field : fieldNdx,
+                                                  'data' : attributeList[fieldNdx]});
+                            });
+
+                          }
                           return;
                         }
                       });
                     }
-                    app.viewModel.attributeData(attributeObjs);
+                    else
+                    {
+                      layerDataObj.attributes.push({'display' : '',
+                                          'data' : 'No records found.'});
+
+                    }
+                    app.viewModel.attributeDataArray.push(layerDataObj);
                   }
+
                 },
                 url : url,
                 layerid : layer.arcgislayers,

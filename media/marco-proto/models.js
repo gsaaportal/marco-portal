@@ -42,6 +42,9 @@ function layerModel(options, parent) {
       self.queryControl = null;
       //Control for doing a REST identify for determining if the layer has data in the polygon.
       self.identifyControl = null;
+
+      self.layerDataAvailable = ko.observable(null);
+
     }
 
 
@@ -235,6 +238,14 @@ function layerModel(options, parent) {
         if("queryControl" in layer)
         {
           layer.queryControl.deactivate();
+          app.viewModel.attributeDataArray.remove(function(layerData) {
+              if(layerData.title == layer.name)
+              {
+                return(true);
+              }
+              return(false);
+            });
+
         }
 
         layer.layer = null;
@@ -313,6 +324,14 @@ function layerModel(options, parent) {
         if("queryControl" in layer)
         {
           layer.queryControl.deactivate();
+          app.viewModel.attributeDataArray.remove(function(layerData) {
+              if(layerData.title == layer.name)
+              {
+                return(true);
+              }
+              return(false);
+            });
+
         }
 
         layer.layer = null;
@@ -637,6 +656,33 @@ function layerModel(options, parent) {
         layer.showSublayers(false);
     };
 
+    self.arcFeatureQueryHandler = function(evt)
+    {
+      self.layerDataAvailable(false)
+    }
+    self.identifyQueryResultHandler = function(requestResult)
+    {
+      //A successful return from the ESRI server is a JSON object in the form:
+      //results : []
+      // If the array is empty, there are no data for that layer in the provided polygon,
+      // if there are results, the data are present.
+      if('results' in requestResult)
+      {
+        if(requestResults['results'].length)
+        {
+          self.layerDataAvailable(true)
+        }
+        else
+        {
+          self.layerDataAvailable(false)
+        }
+      }
+      else
+      {
+        self.layerDataAvailable(false)
+      }
+    }
+
     return self;
 } // end layerModel
 
@@ -928,21 +974,29 @@ function viewModel() {
         self.updateAttributeLayers();
         //DWR
         //Disable the queryControl on layers that have it when they are no longer visible.
-        var firstVisLayer = self.visibleLayers()[0];
+        //var firstVisLayer = self.visibleLayers()[0];
         //Disable the identify controls
         $.each(self.activeLayers(), function(i, layer) {
           if("queryControl" in layer)               //User has clicked the Identify button
 
           {
             //If the layer is the first visible layer, enable the identify control.
-            if((app.viewModel.queryFeatureActive()) &&
-               (layer === firstVisLayer))
+            if(app.viewModel.queryFeatureActive())
             {
               layer.queryControl.activate();
             }
             else
             {
               layer.queryControl.deactivate();
+              //Delete any query results from the array.
+              app.viewModel.attributeDataArray.remove(function(layerData) {
+                  if(layerData.title == layer.name)
+                  {
+                    return(true);
+                  }
+                  return(false);
+                });
+
             }
           }
         });
@@ -1076,15 +1130,7 @@ function viewModel() {
       $.each(layers, function(index, layer) {
         if("queryControl" in layer)
         {
-          if(self.queryFeatureActive() &&
-             (index === 0))
-          {
-            layer.queryControl.activate();
-          }
-          else
-          {
-            layer.queryControl.deactivate();
-          }
+          layer.queryControl.activate();
         }
       });
 
@@ -1107,72 +1153,44 @@ function viewModel() {
         app.polygonDraw.deactivate();
       }
     }
-    /*
-    self.esriLayerIdentify = new OpenLayers.Control.ArcGisRestIdentify(
-      {
-        proxy: "/proxy/rest_query/?url="
-      });
-    */
-    self.esriLayerIdentify = new OpenLayers.Control.ArcGisRestIdentify(
-      {
-        proxy : "/proxy/rest_query/?url="
-      }
-    );
     self.selectionPolygonAdded = function(feature)
     {
+      $('#polygon-query-modal').modal('show');
+
+      var vertices = feature.geometry.getVertices();
+      var geometry = [];
+      if(vertices.length)
+      {
+        for(var j = 0; j < vertices.length; j++)
+        {
+          var point = []
+          point.push(vertices[j].x);
+          point.push(vertices[j].y)
+          geometry.push(point);
+        }
+        var point = [];
+        point.push(vertices[0].x);
+        point.push(vertices[0].y)
+        //Append the first point last to close the polygon.
+        geometry.push(point);
+
+      }
+      var mapExtent = app.map.getExtent();
       //var layers = self.layerIndex;
       var layers = self.visibleLayers();
       var layerCnt = layers.length
       for(var i = 0; i < layerCnt; i++)
       {
-        var vertices = feature.geometry.getVertices();
-        var geometry = [];
-        var wkt = new OpenLayers.Format.WKT()
-        var out = wkt.write(feature);
-        if(vertices.length)
+        var layer = layers[i];
+        if('identifyControl' in layer)
         {
-          for(var j = 0; j < vertices.length; j++)
-          {
-            var point = []
-            point.push(vertices[j].x);
-            point.push(vertices[j].y)
-            geometry.push(point);
-          }
-          var point = [];
-          point.push(vertices[0].x);
-          point.push(vertices[0].y)
-          //Append the first point last to close the polygon.
-          geometry.push(point);
+          layer.identifyControl.geometry     = geometry;
+          layer.identifyControl.geometryType = "esriGeometryPolygon";
+          layer.identifyControl.mapExtent    = mapExtent.left + "," + mapExtent.bottom + "," + mapExtent.right + "," + mapExtent.top;
+          layer.identifyControl.imageDisplay = app.map.getSize().w + "," + app.map.getSize().h + ",96";
+          layer.identifyControl.request();
         }
-        var mapExtent = app.map.getExtent();
-        var url = layers[i].url.replace('export','/identify');
-
-        self.esriLayerIdentify.url = url;
-        srCode = app.map.getProjection().split(':');
-        self.esriLayerIdentify.sr = srCode[1];
-        self.esriLayerIdentify.layerId = layers[i].arcgislayers;
-        self.esriLayerIdentify.geometry = geometry;
-        self.esriLayerIdentify.geometryType = "esriGeometryPolygon";
-        self.esriLayerIdentify.tolerance = 2;
-        self.esriLayerIdentify.mapExtent = mapExtent.left + "," + mapExtent.bottom + "," + mapExtent.right + "," + mapExtent.top;
-        self.esriLayerIdentify.imageDisplay = app.map.getSize().w + "," + app.map.getSize().h + ",96";
-        self.esriLayerIdentify.request();
-        /*
-        var esriLayerIdentify = new OpenLayers.Control.ArcGisRestIdentify(
-        {
-          url: url,
-          layerId: layers[i].id,
-          proxy: "/proxy/rest_query/?url=",
-          geometry: geometry.join(),
-          geometryType: "esriGeometryPolygon",
-          tolerance: 2,
-          mapExtent: mapExtent.left + "," + mapExtent.bottom + "," + mapExtent.right + "," + mapExtent.top,
-          imageDisplay: app.map.getSize().x + "," + app.map.getSize().y + ",96"
-
-          });
-          */
-        }
-
+      }
     };
     // determines visibility of description overlay
     self.showDescription = ko.observable();
@@ -1198,8 +1216,26 @@ function viewModel() {
     self.activeInfoSublayer = ko.observable(false);
 
     // attribute data
-    self.attributeTitle = ko.observable(false);
-    self.attributeData = ko.observable(false);
+    //Each visible layer gets queried, we use this array to store the individual layer results.
+    self.attributeDataArray = ko.observableArray();
+    self.attributeDataArray.subscribe( function() {
+      if(('#identify-tab').is(":visible"))
+      {
+        self.updateScrollBars();
+      }
+    });
+    /*
+    self.findQueryResults = function arrayObjectIndexOf(myArray, searchTerm, property)
+    {
+      for(var i = 0, len = myArray.length; i < len; i++)
+      {
+        if (myArray[i][property] === searchTerm)
+        {
+          return i;
+        }
+      }
+      return -1;
+    }*/
 
     self.aggregatedAttributes = ko.observable(false);
     self.aggregatedAttributesWidth = ko.observable('280px');
@@ -1250,23 +1286,6 @@ function viewModel() {
         }
     };
 
-    /*
-    self.getAttributeHTML = function() {
-        var html = "";
-        $.each(self.activeLayers(), function(i, layer) {
-            if (self.aggregatedAttributes()[layer.name]) {
-                html += "<h4>"+layer.name+".<h4>";
-                html += "<dl>";
-                $.each(self.aggregatedAttributes()[layer.name], function(j, attrs) {
-                    html += "<dt><span>"+attrs.display+"</span>:";
-                    html += "<span>"+attrs.data+"</span></dt>";
-                });
-                html += "</dl>";
-            }
-        });
-        return html;
-    };
-    */
     // hide tours for smaller screens
     self.hideTours = ko.observable(false);
 
@@ -1453,6 +1472,14 @@ function viewModel() {
             } else {
                 activeScrollpane.reinitialise();
             }
+
+            var idScrollpane = $('#identify-feature').data('jsp');
+            if (idScrollpane === undefined) {
+                $('#identify-feature').jScrollPane();
+            } else {
+                idScrollpane.reinitialise();
+            }
+
             var legendScrollpane = $('#legend-content').data('jsp');
             if (legendScrollpane === undefined) {
                 $('#legend-content').jScrollPane();
@@ -1730,18 +1757,6 @@ function viewModel() {
             // are above those that are at the end
             // also save the layer state
             app.setLayerZIndex(layer, index);
-            //2013-03-01
-            //If the layer has an identify control object and the user has enabled the identify tool, lets make sure the layer at the
-            //top of the active list is the one we query.
-
-            if(("queryControl" in layer) &&                        //Layer has identifyControl
-               (app.viewModel.queryFeatureActive()))               //User has clicked the Identify button
-
-            {
-              //If the layer is at the top of the Z order, activate it for feature identify.
-              index === 300 ? layer.queryControl.activate() : layer.queryControl.deactivate();
-            }
-
             index--;
         });
 

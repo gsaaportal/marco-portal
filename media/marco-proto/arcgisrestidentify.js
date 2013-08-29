@@ -54,6 +54,9 @@ OpenLayers.Control.ArcGisRestIdentify = OpenLayers.Class(OpenLayers.Control, {
   proxy : null,
   handler : null,
 
+  //resultarrived is the event fired when the server has returned the query requests. This will contain the data queried.
+  //arcfeatureidentify is the event fired when the server request is about to be made. This can be used to display a loading indicator
+  // or do any other pre-query preperations.
   EVENT_TYPES : ["resultarrived","arcfeatureidentify"],
 
   //Rest parameters, descriptions taken from the ESRI API pages:http://help.arcgis.com/en/arcgisserver/10.0/apis/rest/
@@ -218,7 +221,7 @@ OpenLayers.Control.ArcGisRestIdentify = OpenLayers.Class(OpenLayers.Control, {
 
   doQuery: function(evt)
   {
-    this.events.triggerEvent("arcfeatureidentify",{});
+    this.events.triggerEvent("arcfeatureidentify",evt);
     this.request(evt);
   },
 
