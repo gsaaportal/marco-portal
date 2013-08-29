@@ -1219,10 +1219,7 @@ function viewModel() {
     //Each visible layer gets queried, we use this array to store the individual layer results.
     self.attributeDataArray = ko.observableArray();
     self.attributeDataArray.subscribe( function() {
-      if(('#identify-tab').is(":visible"))
-      {
-        self.updateScrollBars();
-      }
+      self.updateScrollBars();
     });
     /*
     self.findQueryResults = function arrayObjectIndexOf(myArray, searchTerm, property)

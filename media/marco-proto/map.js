@@ -460,7 +460,6 @@ app.addLayerToMap = function(layer, isVisible) {
                   {
                     //Show the identify tab.
                     $('#identifyTab').tab('show');
-                    //app.viewModel.updateScrollBars();
                     app.viewModel.featureRequested(true);
                     //Another query started, so clear last results.
                     app.viewModel.attributeDataArray.remove(function(layerData) {
@@ -478,7 +477,6 @@ app.addLayerToMap = function(layer, isVisible) {
                   resultarrived : function(responseText, xy)
                   {
                     app.viewModel.featureRequested(false);
-                    //app.viewModel.updateScrollBars();
                     app.viewModel.attributeDataArray.remove(function(layerData) {
                         if(layerData.title == layer.name)
                         {
@@ -522,6 +520,11 @@ app.addLayerToMap = function(layer, isVisible) {
                           return;
                         }
                       });
+                    }
+                    else if( 'error' in returnJSON)
+                    {
+                      layerDataObj.attributes.push({'display' : 'Error',
+                                          'data' : returnJSON['error']['message']});
                     }
                     else
                     {

@@ -131,6 +131,10 @@ $(document).ready(function() {
   $('#activeTab[data-toggle="tab"]').on('shown', function(e) {
     app.viewModel.updateScrollBars();
   });
+  $('#identifyTab[data-toggle="tab"]').on('shown', function (e) {
+    app.viewModel.updateScrollBars();
+  });
+
   $('#designsTab[data-toggle="tab"]').on('shown', function(e) {
     app.viewModel.updateAllScrollBars();
     setTimeout(function() {$('.group-members-popover').popover({html: true, trigger: 'hover'});}, 2000);
