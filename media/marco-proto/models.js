@@ -17,7 +17,6 @@ function layerModel(options, parent) {
     self.legendType = null;
     self.legendSubTitle = options.legend_subtitle || false;
     self.legendTable = ko.observable(false);
-    self.topics = ko.observableArray();
     self.themes = ko.observableArray();
     //self.attributeTitle = options.attributes ? options.attributes.title : self.name;
     self.attributes = options.attributes ? options.attributes.attributes : [];
@@ -632,9 +631,6 @@ function layerModel(options, parent) {
 
     // display descriptive text below the map
     self.toggleDescription = function(layer) {
-		//DWR
-        //Turn off the topicInfo.
-        app.viewModel.showTopicDescription(false);
         if ( ! layer.infoActive() ) {
             self.showDescription(layer);
         } else {
@@ -723,109 +719,6 @@ function layerModel(options, parent) {
     return self;
 } // end layerModel
 
-
-function topicModel(options) {
-  var self = this;
-
-  // array of layers associated with the topic.
-  //self.layers = ko.observableArray();
-  self.themes = [];
-  self.layers =[];
-  self.display_name = options.display_name;
-  self.id = options.id;
-  self.description = options.description;
-  self.learn_link = options.learn_link;
-
-  self.topicActive = ko.observable(false);
-
-  self.activateTopic = function()
-  {
-    self.topicActive(true);
-    for(var i = 0; i < self.layers.length; i++)
-    {
-      var layerObj = self.layers[i];
-      //Check to see if the layer has sublayers.
-      if(layerObj.subLayers.length)
-      {
-        $.each(layerObj.subLayers, function(i, sublayer)
-        {
-          sublayer.activateLayer(false);
-        });
-      }
-      else
-      {
-        layerObj.activateLayer(false);
-      }
-    }
-  };
-  self.deactivateTopic = function()
-  {
-    self.topicActive(false);
-    for(var i = 0; i < self.layers.length; i++)
-    {
-      var layerObj = self.layers[i];
-      //Check to see if the layer has sublayers.
-      if(layerObj.subLayers.length)
-      {
-        $.each(layerObj.subLayers, function(i, sublayer)
-        {
-          sublayer.deactivateLayer();
-        });
-      }
-      else
-      {
-        layerObj.deactivateLayer();
-      }
-    }
-  };
-  /*
-  //Make the selected topic active/inactive depending on its current state.
-  self.toggleTopicActive = function(topic)
-  {
-    if(self.topicActive() === false)
-    {
-      self.activateTopic()
-    }
-    //Topic is active, user is attempting to deactivate it.
-    else
-    {
-      self.deactivateTopic()
-    }
-    app.viewModel.topicChange(topic);
-  }*/
-
-  //Event handler for the topic info window.
-  self.topicDescriptionActive = ko.observable(false);
-
-  app.viewModel.showTopicDescription.subscribe( function()
-  {
-    if( app.viewModel.showTopicDescription() === false )
-    {
-      self.topicDescriptionActive(false);
-    }
-  });
-
-  self.toggleTopicDescription = function(topic)
-  {
-    app.viewModel.showDescription(false);
-
-    //If the topic description window is already open, close it.
-    if ( topic.topicDescriptionActive() )
-    {
-      app.viewModel.showTopicDescription(false);
-    }
-    else
-    {
-      app.viewModel.showTopicDescription(false);
-      app.viewModel.activeTopicInfo(topic);
-      self.topicDescriptionActive(true);
-      app.viewModel.showTopicDescription(true);
-    }
-  };
-
-
-  return(self);
-}
 
 function themeModel(options) {
     var self = this;
@@ -1111,41 +1004,8 @@ function viewModel() {
 
     // last clicked layer for editing, etc
     self.activeLayer = ko.observable();
-	self.activeParentLayer = ko.observable();
+    self.activeParentLayer = ko.observable();
 
-    //2013-03-01  DWR
-    // determines visibility of topic description overlay
-    self.showTopicDescription = ko.observable();
-    self.activeTopicInfo = ko.observable(false);
-    self.activeTopic = ko.observable(false);
-    self.topics = ko.observableArray();
-    self.topicIndex = {};
-    //Topic change handler.
-    self.topicChange = function(currentTopic)
-    {
-      if(self.activeTopic())
-      {
-        self.activeTopic().deactivateTopic();
-        //Are we changing topics?
-        if(currentTopic.display_name != self.activeTopic().display_name)
-        {
-          self.activeTopic().deactivateTopic();
-          self.activeTopic(currentTopic);
-          self.activeTopic().activateTopic();
-        }
-        //Topic just clicked is the one we had, this means it is getting deactivated, so let's reset our active topic to be nothing.
-        else
-        {
-          self.activeTopic().deactivateTopic();
-          self.activeTopic(false);
-        }
-      }
-      else
-      {
-        self.activeTopic(currentTopic);
-        self.activeTopic().activateTopic();
-      }
-    };
     self.featureRequested = ko.observable(false);
     //Layer Feature Identify
     self.queryFeatureActive = ko.observable(false);
@@ -1220,7 +1080,7 @@ function viewModel() {
 
       }
       var mapExtent = app.map.getExtent();
-      
+
       var layerKeys = [];
       for(layerKey in self.layerIndex)
       {
@@ -1583,10 +1443,6 @@ function viewModel() {
         if ( ! app.pageguide.tourIsActive ) {
             app.viewModel.showMapAttribution();
         }
-    };
-    // close topic description
-    self.closeTopicDescription = function(self, event) {
-        self.showTopicDescription(false);
     };
 
     self.activateOverviewDropdown = function(model, event) {
