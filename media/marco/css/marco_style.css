@@ -1339,3 +1339,25 @@ body.borderless #map-wrapper {
   margin-right: auto;
   background:url(../img/ajax-loader.gif) no-repeat center center;
 }
+
+
+.dropdown-menu a {
+    clear: both;
+    color: #333333;
+    display: block;
+    font-weight: normal;
+    line-height: 20px;
+    padding: 3px 20px;
+    white-space: nowrap;
+}
+
+.icon-polygon-select:before {
+  content: url(../img/polygon_info_white.png);
+}
+
+#layer-data-accordion .layer .btn-group-layer {
+  width: 100%;
+}
+#layer-data-accordion li.layer {
+  margin-bottom: 2px;
+}

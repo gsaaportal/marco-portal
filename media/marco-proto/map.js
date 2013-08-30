@@ -131,6 +131,13 @@ app.init = function () {
         app.viewModel.attributeData(false);
     };
     */
+    //Add a vector layer to draw our polygon selection on for use with the "Does layer have data here" ESRI quesry.
+    var polygonLayer = new OpenLayers.Layer.Vector("Polygon Layer");
+    map.addLayer(polygonLayer);
+    app.polygonDraw = new OpenLayers.Control.DrawFeature(polygonLayer, OpenLayers.Handler.Polygon, {
+      featureAdded : app.viewModel.selectionPolygonAdded
+    });
+    map.addControl(app.polygonDraw);
 
     app.map = map;
 
@@ -138,6 +145,7 @@ app.init = function () {
     //app.map.clickOutput = { time: 0, attributes: [] };
     app.map.clickOutput = { time: 0, attributes: {} };
 
+    /*
     //UTF Attribution
     map.UTFControl = new OpenLayers.Control.UTFGrid({
         //attributes: layer.attributes,
@@ -196,7 +204,7 @@ app.init = function () {
                                 var display = obj.display + ': ' + info.data[obj.field];
                                 attribute_objs.push({'display': display, 'data': ''});
                             } else {
-                                /*** SPECIAL CASE FOR ENDANGERED WHALE DATA ***/
+                                //**** SPECIAL CASE FOR ENDANGERED WHALE DATA
                                 var value = info.data[obj.field];
                                 if (value === 999999) {
                                     attribute_objs.push({'display': obj.display, 'data': 'No Survey Effort'});
@@ -240,7 +248,8 @@ app.init = function () {
             });
         }
     }; //end utfGridClickHandling
-
+    */
+    /*
     app.map.events.register("featureclick", null, function(e) {
         var layer = e.feature.layer.layerModel || e.feature.layer.scenarioModel;
         var date = new Date();
@@ -273,7 +282,8 @@ app.init = function () {
         app.viewModel.aggregatedAttributes(app.map.clickOutput.attributes);
 
     });
-
+    */
+    /*
     app.map.events.register("nofeatureclick", null, function(e) {
         var date = new Date();
         var newTime = date.getTime();
@@ -281,7 +291,7 @@ app.init = function () {
             app.viewModel.closeAttribution();
         }
     });
-
+    */
     app.markers = new OpenLayers.Layer.Markers( "Markers" );
     var size = new OpenLayers.Size(16,25);
     var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
@@ -408,37 +418,82 @@ app.addLayerToMap = function(layer, isVisible) {
             }
         }
         else if (layer.type === 'ArcRest') {
-            var identifyUrl = layer.url.replace('export', layer.arcgislayers + '/query');
+            var url = layer.url.replace('export','/identify');
+            var srCode = app.map.getProjection().split(':');
+
+            layer.identifyControl = new OpenLayers.Control.ArcGisRestIdentify({
+              proxy: "/proxy/rest_query/?url=",
+              url : url,
+              layerId: layer.arcgislayers,
+              sr : srCode[1],
+              tolerance : 2,
+
+              eventListeners: {
+                arcfeaturequery : layer.arcFeatureQueryHandler,
+                resultarrived : layer.identifyQueryResultHandler
+                /*
+                function()
+                {
+                  //Show the identify tab.
+                  $('#identifyTab').tab('show');
+                },
+                //THis is the handler for the return click data.
+                resultarrived : function(responseText)
+                {
+
+                }
+                */
+              }
+            });
+
+            url = layer.url.replace('export', layer.arcgislayers + '/query');
             var esriQueryFields = [];
             for(var i = 0; i < layer.attributes.length; i++)
             {
               //esriQueryFields.push(layer.attributes[i].display);
               esriQueryFields.push(layer.attributes[i].field);
             }
-            layer.identifyControl = new OpenLayers.Control.ArcGisRestIdentify(
+            layer.queryControl = new OpenLayers.Control.ArcGisRestQuery(
               {
                 eventListeners: {
                   arcfeaturequery : function()
                   {
                     //Show the identify tab.
                     $('#identifyTab').tab('show');
-                    //Remove the previous attributes.
-                    app.viewModel.attributeTitle(false);
-                    app.viewModel.attributeData(false);
                     app.viewModel.featureRequested(true);
+                    //Another query started, so clear last results.
+                    app.viewModel.attributeDataArray.remove(function(layerData) {
+                      if(layerData.title == layer.name)
+                      {
+                        return(true);
+                      }
+                      return(false);
+                    });
+                    //Add a loading placeholder.
+                    app.viewModel.attributeDataArray.push({title : layer.name, attributes: [{'display' : '',
+                                  'data' : 'Querying...'}]});
                   },
                   //THis is the handler for the return click data.
                   resultarrived : function(responseText, xy)
                   {
                     app.viewModel.featureRequested(false);
+                    app.viewModel.attributeDataArray.remove(function(layerData) {
+                      if(layerData.title == layer.name)
+                      {
+                        return(true);
+                      }
+                      return(false);
+                    });
+
                     var jsonFormat = new OpenLayers.Format.JSON();
                     var returnJSON = jsonFormat.read(responseText.text);
                     //Activate the Identify tab.
                     $('#identifyTab').tab('show');
-                    app.viewModel.attributeTitle(layer.name);
-                    if('features' in returnJSON)
+
+                    var layerDataObj = {title : layer.name, attributes: []};
+                    if('features' in returnJSON && returnJSON['features'].length)
                     {
-                      var attributeObjs = []
+                      var attributeObjs = layerDataObj.attributes;
                       $.each(returnJSON['features'], function(index, feature)
                       {
                         if(index == 0)
@@ -452,14 +507,35 @@ app.addLayerToMap = function(layer, isVisible) {
                                                   'data' : attributeList[field.name]});
                             });
                           }
+                          else if('fieldAliases' in returnJSON)
+                          {
+                            $.each(returnJSON['fieldAliases'], function(fieldNdx, field)
+                            {
+                              attributeObjs.push({'display' : (field != "null") ? field : fieldNdx,
+                                                  'data' : attributeList[fieldNdx]});
+                            });
+
+                          }
                           return;
                         }
                       });
                     }
-                    app.viewModel.attributeData(attributeObjs);
+                    else if( 'error' in returnJSON)
+                    {
+                      layerDataObj.attributes.push({'display' : 'Error',
+                                          'data' : returnJSON['error']['message']});
+                    }
+                    else
+                    {
+                      layerDataObj.attributes.push({'display' : '',
+                                          'data' : 'No records found.'});
+
+                    }
+                    app.viewModel.attributeDataArray.push(layerDataObj);
                   }
+
                 },
-                url : identifyUrl,
+                url : url,
                 layerid : layer.arcgislayers,
                 sr : 102113,
                 clickTolerance: 3,
@@ -482,7 +558,7 @@ app.addLayerToMap = function(layer, isVisible) {
             app.map.addLayer(layer.layer);
             //2013-02-20 DWR
             //ADd the identify control.
-            app.map.addControl(layer.identifyControl);
+            app.map.addControl(layer.queryControl);
 
         } else if (layer.type === 'WMS') {
             layer.layer = new OpenLayers.Layer.WMS(

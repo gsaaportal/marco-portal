@@ -10,7 +10,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h3>Feedback</h3>
         </div>
-        <div class="modal-body">        
+        <div class="modal-body">
             <div class="control-group">
               <label class="control-label" for="name">Full Name</label>
               <div class="controls">
@@ -44,7 +44,7 @@
     <div class="modal-header" style="min-height: 20px;">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
     </div>
-    <div class="modal-body" style="text-align: center">  
+    <div class="modal-body" style="text-align: center">
       <div class="row-fluid">
         <div class="span7" data-bind="style: {display: hideTours() ? 'none': 'block'}, css: {span7: !hideTours()}">
             <h4>Tour the GSAA Data Visualizer</h4>
@@ -77,7 +77,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h3>Sharing</h3>
     </div>
-    <div class="modal-body" style="height: 200px; text-align: center; overflow: hidden;">  
+    <div class="modal-body" style="height: 200px; text-align: center; overflow: hidden;">
         <div class="row-fluid">
             <h4 class="sharing-header">Share my design with the following:</h4>
             <ul class="unstyled" id="sharing-groups" style="margin-left: 1px; height: 165px; outline: none;">
@@ -88,8 +88,8 @@
                                 <!--<input type="checkbox" style="margin-top: 0px; margin-bottom: 2px; margin-right: 3px;">-->
                                 <i class="check icon-large icon-check" data-bind="visible: $parent.groupIsSelected(group_name)"></i>
                                 <i class="check icon-large icon-check-empty" data-bind="visible: !$parent.groupIsSelected(group_name)"></i>
-                                <span data-bind="text: group_name"></span> 
-                                <a class="group-members-popover" rel="popover" data-bind="attr: {'data-content': $parent.groupMembers(group_name)}" data-original-title="Members"> 
+                                <span data-bind="text: group_name"></span>
+                                <a class="group-members-popover" rel="popover" data-bind="attr: {'data-content': $parent.groupMembers(group_name)}" data-original-title="Members">
                                     <i class="icon-group"> </i>
                                 </a>
                             </div>
@@ -112,31 +112,31 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h3>Map Links</h3>
     </div>
-    
-    <div class="modal-body" style="height: 165px; overflow: hidden"> 
+
+    <div class="modal-body" style="height: 165px; overflow: hidden">
         <div class="row-fluid" style="padding-top: 5px">
             <div>
-                Share this map with others  
+                Share this map with others
                 <span class="pull-right">
-                    <label> 
-                        <input class="short-url-checkbox" type="checkbox" data-bind="checked: shrinkURL" style="margin-top: 0px; margin-bottom: 3px"> 
-                        Short URL 
+                    <label>
+                        <input class="short-url-checkbox" type="checkbox" data-bind="checked: shrinkURL" style="margin-top: 0px; margin-bottom: 3px">
+                        Short URL
                     </label>
                 </span>
             </div>
             <div>
-                <input id="short-url" type="text" style="width: 96%" data-bind="attr: {value: getURL()}"> 
+                <input id="short-url" type="text" style="width: 96%" data-bind="attr: {value: getURL()}">
             </div>
-            <div style="padding-top: 12px; padding-bottom: 5px"> 
-                Embed this map in your own webpage 
-            </div> 
-            <div> 
-                <input id="iframe-html" type="text" style="width: 96%" data-bind="attr: {value: getIFrameHTML}"> 
-            </div> 
-            <div style="margin-top: -4px"> 
-                <a href="#" data-bind="click: openIFrameExample"> 
-                    Preview embedded map 
-                </a> 
+            <div style="padding-top: 12px; padding-bottom: 5px">
+                Embed this map in your own webpage
+            </div>
+            <div>
+                <input id="iframe-html" type="text" style="width: 96%" data-bind="attr: {value: getIFrameHTML}">
+            </div>
+            <div style="margin-top: -4px">
+                <a href="#" data-bind="click: openIFrameExample">
+                    Preview embedded map
+                </a>
             </div>
         </div>
     </div>
@@ -145,6 +145,70 @@
     </div>
 </div>
 
+<!-- Polygon Layer query modal -->
+<style>
+  #layer-data-accordion .layer_name
+  {
 
+  }
+</style>
+<div id="polygon-query-modal" class="modal fade hide">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Layer Data Available in Location(s)</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row-fluid" style="margin-top: 20px">
+          <div id="layer-data-accordion">
+            <div class="accordion" data-bind="foreach: themes">
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#themes_accordion" data-bind="attr: {href: '#theme_'+ id + '_layers'}">
+                  <span data-bind="text: name"></span>
+                  </a>
+                </div>
+                <div data-bind="attr: {id: 'theme_' + id + '_layers'}" class="accordion-body collapse">
+                  <div class="accordion-inner">
 
-
+                    <ul class="unstyled" data-bind="foreach: layers">
+                      <li class="layer">
+                        <button class="btn-group btn-group-layer" data-target="'#sublayers_' + id">
+                          <a class="layer_name btn btn-layer">
+                            <div style="font-weight: normal">
+                              <span style="padding-left: 2px;" data-bind="text: name"></span>
+                              <span class="caret" style="display:none" data-bind="visible: subLayers.length > 0"></span>
+                              <!-- ko if: subLayers.length == 0 -->
+                              <i class="" icon-remove icon-large"></i>
+                              <!-- /ko -->
+                            </div>
+                          </a>
+                          <!-- ko if: subLayers.length > 0 -->
+                          <ul class="dropdown-menu layer-menu" data-toggle="collapse" data-bind="attr: {id: 'sublayers_' + id}">
+                            <div class="collapse">
+                              <li data-bind="foreach: subLayers">
+                                <a class="sublayer-selection">
+                                  <span data-bind="text: name"></span>
+                                  <i class="icon-remove"></i>
+                                </a>
+                              </li>
+                            </div>
+                          </ul>
+                          <!-- /ko -->
+                       </button>
+                      </li>
+                    </ul> <!-- layers  -->
+                  </div>
+                </div>
+              </div>
+            </div>  <!-- foreach themes -->
+          </div>
+        </div> <!-- row -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

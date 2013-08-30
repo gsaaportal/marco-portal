@@ -16,12 +16,13 @@ app.onResize = function(percent) {
         $("#data-accordion").height(height - (($.browser.msie && $.browser.version < 9)? 130: 96));
         $("#designs-accordion").height(height - 20 - (($.browser.msie && $.browser.version < 9)? 130: 96));
         $("#active").height(height + 20 - (($.browser.msie && $.browser.version < 9)? 130: 96));
-    } 
+        $("#identify-feature").height(height + 20 - (($.browser.msie && $.browser.version < 9)? 130: 96));
+    }
     app.map.render('map');
   }
-  
+
   app.viewModel.updateAllScrollBars();
-  
+
   if (width < 946) {
     app.viewModel.hideTours(true);
   } else {
@@ -62,10 +63,10 @@ app.viewModel.loadLayersFromServer().done(function() {
   $('#loading').hide();
   // app.map.updateSize();
   app.onResize();
-  
+
   // trigger events that depend on the map
   $(document).trigger('map-ready');
-  
+
   // if we have the hash state go ahead and load it now
   if (app.hash) {
     app.loadStateFromHash(app.hash);
@@ -93,7 +94,7 @@ app.map.setCenter(new OpenLayers.LonLat(-73.852, 31.933).transform(
 $(document).ready(function() {
   app.onResize();
   $(window).resize(app.onResize);
-  
+
   //Do not display any warning for missing tiles
   OpenLayers.Util.onImageLoadError = function(){
     this.src = 'http://www.openlayers.org/api/img/blank.gif';
@@ -116,11 +117,11 @@ $(document).ready(function() {
     });
   });
 
-  
+
   $('.form-search').find('.btn').on('click', function(event) {
      $(event.target).closest('form').find('input').val(null).focus();
   });
-  
+
   //fixes a problem in which the data accordion scrollbar was reinitialized before the app switched back to the data tab
   //causing the data tab to appear empty
   //the following appears to fix that problem
@@ -130,21 +131,25 @@ $(document).ready(function() {
   $('#activeTab[data-toggle="tab"]').on('shown', function(e) {
     app.viewModel.updateScrollBars();
   });
+  $('#identifyTab[data-toggle="tab"]').on('shown', function (e) {
+    app.viewModel.updateScrollBars();
+  });
+
   $('#designsTab[data-toggle="tab"]').on('shown', function(e) {
     app.viewModel.updateAllScrollBars();
-    setTimeout(function() {$('.group-members-popover').popover({html: true, trigger: 'hover'});}, 2000); 
+    setTimeout(function() {$('.group-members-popover').popover({html: true, trigger: 'hover'});}, 2000);
   });
-  
+
   //the following appears to handle the bookmark sharing, while the earlier popover activation handles the design sharing
-  setTimeout(function() {$('.group-members-popover').popover({html: true, trigger: 'hover'});}, 2000); 
-    
+  setTimeout(function() {$('.group-members-popover').popover({html: true, trigger: 'hover'});}, 2000);
+
   //format the legend scrollbar
   //setTimeout(function() { $('#legend-content').jScrollPane(); }, 500);
   //setTimeout(function() { app.viewModel.updateScrollBars(); }, 500);
-  
+
   //resizable behavior for overview-overlay
-  //might not use the following after all... 
-  //(having problems setting minHeight, losing resizing ability 
+  //might not use the following after all...
+  //(having problems setting minHeight, losing resizing ability
   /*
   $("#overview-overlay").resizable({
     handles: 'n',
@@ -167,7 +172,7 @@ $(document).ready(function() {
               $('#fullscreen-error-overlay').show();
             }
           }, false);
-      } else {    
+      } else {
           $('#btn-fullscreen').on('click', function() {
             // fallback for browsers that don't support addEventListener
             $('#fullscreen-error-overlay').show();
@@ -203,7 +208,7 @@ $(document).ready(function() {
     // called when exiting full screen
     app.viewModel.isFullScreen(false);
     // return to normal size
-    // Not exactly comfortable with the following 2 calls to resize, 
+    // Not exactly comfortable with the following 2 calls to resize,
     // but ff kept having problems when other strategies were tried...
     //for firefox
     setTimeout( app.onResize(), 300);
@@ -220,20 +225,20 @@ $(document).ready(function() {
     }
     if ( app.fullscreen.pageguide ) {
         app.viewModel.showLayers(true);
-        setTimeout( function() { 
-            $.pageguide('open'); 
+        setTimeout( function() {
+            $.pageguide('open');
             if ($.pageguide().guide().id === 'default-guide') {
-                setTimeout( function() { 
+                setTimeout( function() {
                     $.pageguide('showStep', $.pageguide().guide().steps.length-1);
                 }, 300 );
-            }            
+            }
         }, 500 );
         app.fullscreen.pageguide = false;
     }
     //for chrome
     setTimeout( app.onResize, 300);
   };
-  
+
   // Basemaps button and drop-down behavior
   //hide basemaps drop-down on mouseout
   $('#basemaps').mouseleave( function(e) {
@@ -245,7 +250,7 @@ $(document).ready(function() {
         $('#SimpleLayerSwitcher_30').hide();
     }
   });
-  
+
   //hide basemaps drop-down on mouseout
   $('#SimpleLayerSwitcher_30').mouseleave( function() {
     $('#SimpleLayerSwitcher_30').hide();
@@ -253,51 +258,51 @@ $(document).ready(function() {
         $('#basemaps').removeClass('open');
     }
   });
-  
+
   //hide basemaps drop-down on mouseout
   $('#SimpleLayerSwitcher_30').mousedown( function() {
     if (!app.pageguide.preventBasemapsClose) {
         $('#basemaps').removeClass('open');
     }
   });
-  
+
   //hide basemaps drop-down on mouseout
   $('#SimpleLayerSwitcher_30').mouseenter( function() {
     $('#basemaps').addClass('open');
   });
-  
+
   $('#overview-overlay-dropdown').mouseleave( function() {
     $('#overview-overlay-dropdown').closest('.btn-group').removeClass('open');
   });
-  
+
   $('#opacity-popover').mouseleave( function() {
     app.viewModel.hideOpacity();
-  });  
-  
+  });
+
   $('#registration-modal').on('show', function() {
     $('.empty-input').val("");
   });
-  
+
   $('#sign-in-modal').on('show', function() {
     $('.empty-input').val("");
   });
-  
+
   $('#reset-password-modal').on('show', function() {
     $('.empty-input').val("");
   });
-  
+
   $(document).on('click', 'a[name="start-default-tour"]', function() {
     app.viewModel.startDefaultTour();
   });
-  
+
   $(document).on('click', '#continue-basic-tour', function() {
     app.viewModel.stepTwoOfBasicTour();
   });
-  
+
   $(document).on('click', '#start-data-tour', function() {
     app.viewModel.startDataTour();
   });
-  
+
   $(document).on('click', '#start-active-tour', function() {
     app.viewModel.startActiveTour();
   });
@@ -305,7 +310,7 @@ $(document).ready(function() {
   $(document).on('click', '#share-option', function() {
     app.viewModel.scenarios.initSharingModal();
   });
-  
+
     //$(document).on('click', '#share-option', function(a,b,c) {
     //    debugger;
     //});
@@ -313,7 +318,7 @@ $(document).ready(function() {
   $('a[data-toggle="tab"]').on('shown', function (e) {
     app.updateUrl();
   });
-  
+
 });
 
 $('#bookmark-form').on('submit', function(event) {
@@ -351,7 +356,7 @@ $(document).mousedown(function(e) {
   } else if (!$(e.target).closest("#bookmark-popover").length) {
     $('#bookmark-popover').hide();
   }
-  
+
   //ensure layer switcher is removed
   $('#SimpleLayerSwitcher_30').hide();
 

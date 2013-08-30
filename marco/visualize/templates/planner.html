@@ -379,35 +379,40 @@
                             <div class="tab-pane fade" id="identify-feature">
                               <div class="row-fluid">
                                 <div class="span12">
-                                  <div id="data-accordion">
-                                    <div data-bind="visible: attributeData() === false">
-                                        <div style="padding: 10px;">
-                                          <p>
-                                              No features identified.
-                                          </p>
-                                          <p>
-                                              Click the Identify button in the right hand menu bar.
-                                          </p>
-                                          <p>
-                                              Then click on a feature on the map. The top most layer in the Active Tab will be queried and the results presented here.
-                                          </p>
-                                        </div>
-                                        <div data-bind="visible: featureRequested">
-                                          <div id="feature-loading"></div>
-                                        </div>
+                                  <div data-bind="visible: attributeDataArray().length === 0">
+                                    <div style="padding: 10px;">
+                                      <p>
+                                          No features identified.
+                                      </p>
+                                      <p>
+                                        To enable, click the "i" button on the right hand toolbar.
+                                      </p>
+                                      <p>
+                                          Click on a feature on the map. All currently visible layers will be queried.
+                                      </p>
                                     </div>
-
-                                    <div data-bind="visible: attributeData" style="display: none">
-                                      <strong><span data-bind="text: attributeTitle()"></span></strong>
-                                      <dl data-bind="foreach: attributeData()">
-                                        <!--<dt data-bind="text: display"></dt>-->
-                                        <!--<dd data-bind="text: data"></dd>-->
-                                        <dt>
-                                          <span data-bind="text: display"></span><span data-bind="visible: display">:</span>
-                                          <span style="font-weight: normal" data-bind="text: data"></span>
-                                        </dt>
-                                      </dl>
+                                    <div data-bind="visible: featureRequested">
+                                      <div id="feature-loading"></div>
                                     </div>
+                                  </div>
+                                  <div data-bind="foreach: attributeDataArray">
+                                    <table class="table table-bordered table-condensed">
+                                      <thead>
+                                        <tr>
+                                          <h4><span data-bind="text: title"></span></h4>
+                                        </tr>
+                                      </thead>
+                                      <tbody data-bind="foreach: attributes">
+                                        <tr>
+                                          <td>
+                                            <span data-bind="text: display"></span>
+                                          </td>
+                                          <td>
+                                            <span data-bind="text: data"></span>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
                                   </div>
                                 </div>
                               </div>
@@ -472,9 +477,14 @@
                                               <span>Print/Export</span>
                                           </a>
                                           <!--Identify Button-->
-                                          <a class="btn" id="btn-identify" data-bind="click: identifyFeature">
-                                              <i class="icon-search icon-large"></i>
+                                          <a class="btn" id="btn-identify" data-bind="click: queryFeature, style: {color: queryFeatureActive() ? '#000000' : '#FFFFFF'}">
+                                              <i class="icon-info-sign icon-large"></i>
                                               <span>Identify</span>
+                                          </a>
+                                          <!--Polygon Layer Search Button-->
+                                          <a class="btn" id="btn-identify" data-bind="click: polygonIdentify">
+                                              <i class="icon-polygon-select icon-large"></i>
+                                              <span>Polygon Select</span>
                                           </a>
 
                                         </div>
@@ -532,7 +542,6 @@
                                             <span id="close-attribute-overlay" class="pull-right"><a href="#" style="position: absolute; top: 10px; right: 10px; opacity: .6;" class="btn btn-mini close" data-bind="click: closeAttribution"> x </a> </span>
                                         </div>
                                     </div>
-
                                     <!-- Bookmark Message -->
                                     <div id="error-overlay" data-bind="visible: error() === 'restoreState'" style="display:none">
                                         <div>
@@ -784,6 +793,8 @@
             {% if user.is_authenticated %} app.is_authenticated = true; {% endif %}
         </script>
 
+        <script src="{{MEDIA_URL}}/marco-proto/arcgisrestquery.js"></script>
+        <script src="{{MEDIA_URL}}/marco-proto/arcgisrestidentify.js"></script>
         <script src="{{MEDIA_URL}}/marco-proto/fixtures.js"></script>
         <script src="{{MEDIA_URL}}/marco-proto/map.js"></script>
         <script src="{{MEDIA_URL}}/marco-proto/state.js"></script>
@@ -798,7 +809,7 @@
         <script src="{{MEDIA_URL}}/marco-proto/printing.js"></script>
         <script src="{{MEDIA_URL}}/marco-proto/app.js"></script>
         <script src="{{MEDIA_URL}}/marco-proto/pageguide.js"></script>
-        <script src="{{MEDIA_URL}}/marco-proto/arcgisrestidentify.js"></script>
+
         <!--[if gt IE 8]><!-->
         <script src="{{MEDIA_URL}}/marco-proto/assets/js/jquery.mousewheel.min.js"></script>
         <!--<![endif]-->
