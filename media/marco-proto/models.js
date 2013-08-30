@@ -1130,7 +1130,14 @@ function viewModel() {
       $.each(layers, function(index, layer) {
         if("queryControl" in layer)
         {
-          layer.queryControl.activate();
+          if(self.queryFeatureActive())
+          {
+            layer.queryControl.activate();
+          }
+          else
+          {
+            layer.queryControl.deactivate();
+          }
         }
       });
 
