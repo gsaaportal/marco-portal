@@ -429,20 +429,24 @@ app.addLayerToMap = function(layer, isVisible) {
               tolerance : 2,
 
               eventListeners: {
-                arcfeaturequery : layer.arcFeatureQueryHandler,
-                resultarrived : layer.identifyQueryResultHandler
-                /*
-                function()
+                arcfeaturequery : function()
                 {
-                  //Show the identify tab.
-                  $('#identifyTab').tab('show');
+                  //When request is sent, reset the flag.
+                  layer.layerDataAvailable(false);
                 },
-                //THis is the handler for the return click data.
+
                 resultarrived : function(responseText)
                 {
-
+                  if('results' in responseText)
+                  {
+                    if(responseText['results'].length)
+                    {
+                      //There is layer data in the polygon requested, so set the observable true. This is reflected in the modal popup as either
+                      //an 'X' which is no data or a check mark for data.
+                      layer.layerDataAvailable(true);
+                    }
+                  }
                 }
-                */
               }
             });
 

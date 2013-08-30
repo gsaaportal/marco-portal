@@ -42,8 +42,8 @@ function layerModel(options, parent) {
       self.queryControl = null;
       //Control for doing a REST identify for determining if the layer has data in the polygon.
       self.identifyControl = null;
-
-      self.layerDataAvailable = ko.observable(null);
+            //WHen the layer is issued the identify request, if there are results there, this is set to true.
+      self.layerDataAvailable = ko.observable(false);
 
     }
 
@@ -64,38 +64,9 @@ function layerModel(options, parent) {
     {
       self.legendTable('Loading: ' + legendURL);
 
-
       $.get('/proxy/get_legend_json?url=' + legendURL, function(data) {
         self.legendTable(data);
       });
-        /*
-        var jqxhr = $.get(legendURL, function(data, textStatus, jqxhr)
-        {
-          self.legendTable(data);
-        },
-        "html").fail(function(jqxhr, textStatus, errorMsg)
-      {
-        var errorBuf = "Unable to load: " + legendURL + " Status: " + jqxhr.status + " Status Msg: " + jqxhr.statusText + " " + jqxhr.responseText;
-        self.legendTable(errorBuf);
-      });
-      */
-      /*$.ajax(legendURL,
-        {
-          async : false,
-          type: "POST",
-          dataType: "HTML",
-          mimeType: "text/html",
-          success : function(data, textStatus, jqxhr)
-            {
-              self.legendTable(data);
-            },
-          error: function(jqxhr, textStatus, errorMsg)
-            {
-              var errorBuf = "Unable to load: " + legendURL + " Status: " + jqxhr.status + " Status Msg: " + jqxhr.statusText + " Response: " + jqxhr.responseText;
-              self.legendTable(errorBuf);
-            }
-        });*/
-
     };
 
     // set overview text for Learn More option
@@ -1130,7 +1101,14 @@ function viewModel() {
       $.each(layers, function(index, layer) {
         if("queryControl" in layer)
         {
-          layer.queryControl.activate();
+          if(self.queryFeatureActive())
+          {
+            layer.queryControl.activate();
+          }
+          else
+          {
+            layer.queryControl.deactivate();
+          }
         }
       });
 
