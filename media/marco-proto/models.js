@@ -40,10 +40,76 @@ function layerModel(options, parent) {
     {
       //Control for doing a REST query for getting data from the layer when the user clicks on a point.
       self.queryControl = null;
-      //Control for doing a REST identify for determining if the layer has data in the polygon.
-      self.identifyControl = null;
             //WHen the layer is issued the identify request, if there are results there, this is set to true.
       self.layerDataAvailable = ko.observable(false);
+
+      var url = self.url.replace('export','/identify');
+      var srCode = app.map.getProjection().split(':');
+
+
+      self.arcfeatureidentify = function()
+      {
+        //When request is sent, reset the flag.
+        self.layerDataAvailable(false);
+      };
+      self.idresultarrived = function(responseText)
+      {
+        var jsonFormat = new OpenLayers.Format.JSON();
+        var returnJSON = jsonFormat.read(responseText.text);
+
+        if('results' in returnJSON)
+        {
+          if(returnJSON['results'].length)
+          {
+            //There is layer data in the polygon requested, so set the observable true. This is reflected in the modal popup as either
+            //an 'X' which is no data or a check mark for data.
+            self.layerDataAvailable(true);
+          }
+        }
+        else
+        {
+          self.layerDataAvailable(false);
+        }
+      };
+
+      //Control for doing a REST identify for determining if the layer has data in the polygon.
+      self.identifyControl = new OpenLayers.Control.ArcGisRestIdentify({
+        proxy: "/proxy/rest_query/?url=",
+        url : url,
+        layerId: self.arcgislayers,
+        sr : srCode[1],
+        tolerance : 2,
+
+        eventListeners: {
+          arcfeatureidentify : self.arcfeatureidentify
+          /*function()
+          {
+            //When request is sent, reset the flag.
+            this.layerDataAvailable(false);
+          }*/,
+
+          idresultarrived : self.idresultarrived
+          /*function(responseText)
+          {
+            var jsonFormat = new OpenLayers.Format.JSON();
+            var returnJSON = jsonFormat.read(responseText.text);
+
+            if('results' in returnJSON)
+            {
+              if(returnJSON['results'].length)
+              {
+                //There is layer data in the polygon requested, so set the observable true. This is reflected in the modal popup as either
+                //an 'X' which is no data or a check mark for data.
+                this.layerDataAvailable(true);
+              }
+            }
+            else
+            {
+              this.layerDataAvailable(false);
+            }
+          }*/
+        }
+      });
 
     }
 
@@ -1154,19 +1220,32 @@ function viewModel() {
 
       }
       var mapExtent = app.map.getExtent();
-      //var layers = self.layerIndex;
-      var layers = self.visibleLayers();
-      var layerCnt = layers.length
+      
+      var layerKeys = [];
+      for(layerKey in self.layerIndex)
+      {
+        layerKeys.push(layerKey);
+      }
+      layerKeys.sort();
+      var layerCnt = layerKeys.length;
+
+      //var layers = self.visibleLayers();
+      //var layerCnt = layers.length
+      //for(var i = 0; i < layerCnt; i++)
       for(var i = 0; i < layerCnt; i++)
       {
-        var layer = layers[i];
-        if('identifyControl' in layer)
+        //var layer = layers[i];
+        var layer = self.layerIndex[layerKeys[i]];
+        if(!layer.isCheckBoxLayer())
         {
-          layer.identifyControl.geometry     = geometry;
-          layer.identifyControl.geometryType = "esriGeometryPolygon";
-          layer.identifyControl.mapExtent    = mapExtent.left + "," + mapExtent.bottom + "," + mapExtent.right + "," + mapExtent.top;
-          layer.identifyControl.imageDisplay = app.map.getSize().w + "," + app.map.getSize().h + ",96";
-          layer.identifyControl.request();
+          if('identifyControl' in layer)
+          {
+            layer.identifyControl.geometry     = geometry;
+            layer.identifyControl.geometryType = "esriGeometryPolygon";
+            layer.identifyControl.mapExtent    = mapExtent.left + "," + mapExtent.bottom + "," + mapExtent.right + "," + mapExtent.top;
+            layer.identifyControl.imageDisplay = app.map.getSize().w + "," + app.map.getSize().h + ",96";
+            layer.identifyControl.doQuery(feature);
+          }
         }
       }
     };

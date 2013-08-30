@@ -418,7 +418,9 @@ app.addLayerToMap = function(layer, isVisible) {
             }
         }
         else if (layer.type === 'ArcRest') {
-            var url = layer.url.replace('export','/identify');
+
+            /*var url = layer.url.replace('export','/identify');
+
             var srCode = app.map.getProjection().split(':');
 
             layer.identifyControl = new OpenLayers.Control.ArcGisRestIdentify({
@@ -429,28 +431,35 @@ app.addLayerToMap = function(layer, isVisible) {
               tolerance : 2,
 
               eventListeners: {
-                arcfeaturequery : function()
+                arcfeatureidentify : function()
                 {
                   //When request is sent, reset the flag.
                   layer.layerDataAvailable(false);
                 },
 
-                resultarrived : function(responseText)
+                idresultarrived : function(responseText)
                 {
-                  if('results' in responseText)
+                  var jsonFormat = new OpenLayers.Format.JSON();
+                  var returnJSON = jsonFormat.read(responseText.text);
+
+                  if('results' in returnJSON)
                   {
-                    if(responseText['results'].length)
+                    if(returnJSON['results'].length)
                     {
                       //There is layer data in the polygon requested, so set the observable true. This is reflected in the modal popup as either
                       //an 'X' which is no data or a check mark for data.
                       layer.layerDataAvailable(true);
                     }
                   }
+                  else
+                  {
+                    layer.layerDataAvailable(false);
+                  }
                 }
               }
             });
-
-            url = layer.url.replace('export', layer.arcgislayers + '/query');
+            */
+            var url = layer.url.replace('export', layer.arcgislayers + '/query');
             var esriQueryFields = [];
             for(var i = 0; i < layer.attributes.length; i++)
             {
