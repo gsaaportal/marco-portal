@@ -1218,7 +1218,11 @@ function viewModel() {
     // attribute data
     //Each visible layer gets queried, we use this array to store the individual layer results.
     self.attributeDataArray = ko.observableArray();
+    //WHenever a change is made to the attributeDataArray, update the scroll bars for the tabs and sort the data in the attributeDataArray.
     self.attributeDataArray.subscribe( function() {
+      self.attributeDataArray().sort(function(left, right) {
+        return(left.title == right.title ? 0 : (left.title < right.title ? -1 : 1));
+      });
       self.updateScrollBars();
     });
     /*

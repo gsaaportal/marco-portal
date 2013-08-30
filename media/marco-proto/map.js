@@ -463,13 +463,13 @@ app.addLayerToMap = function(layer, isVisible) {
                     app.viewModel.featureRequested(true);
                     //Another query started, so clear last results.
                     app.viewModel.attributeDataArray.remove(function(layerData) {
-                        if(layerData.title == layer.name)
-                        {
-                          return(true);
-                        }
-                        return(false);
-                      });
-
+                      if(layerData.title == layer.name)
+                      {
+                        return(true);
+                      }
+                      return(false);
+                    });
+                    //Add a loading placeholder.
                     app.viewModel.attributeDataArray.push({title : layer.name, attributes: [{'display' : '',
                                   'data' : 'Querying...'}]});
                   },
@@ -478,12 +478,12 @@ app.addLayerToMap = function(layer, isVisible) {
                   {
                     app.viewModel.featureRequested(false);
                     app.viewModel.attributeDataArray.remove(function(layerData) {
-                        if(layerData.title == layer.name)
-                        {
-                          return(true);
-                        }
-                        return(false);
-                      });
+                      if(layerData.title == layer.name)
+                      {
+                        return(true);
+                      }
+                      return(false);
+                    });
 
                     var jsonFormat = new OpenLayers.Format.JSON();
                     var returnJSON = jsonFormat.read(responseText.text);
@@ -493,7 +493,6 @@ app.addLayerToMap = function(layer, isVisible) {
                     var layerDataObj = {title : layer.name, attributes: []};
                     if('features' in returnJSON && returnJSON['features'].length)
                     {
-                      //var attributeObjs = []
                       var attributeObjs = layerDataObj.attributes;
                       $.each(returnJSON['features'], function(index, feature)
                       {
