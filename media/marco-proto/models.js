@@ -51,18 +51,26 @@ function layerModel(options, parent) {
         //When request is sent, reset the flag.
         self.layerDataAvailable(false);
       };
-      self.idresultarrived = function(responseText)
+      self.idresultarrived = function(result)
       {
-        var jsonFormat = new OpenLayers.Format.JSON();
-        var returnJSON = jsonFormat.read(responseText.text);
-
-        if('results' in returnJSON)
+        var response = result.response;
+        if(response.status == 200)
         {
-          if(returnJSON['results'].length)
+          var jsonFormat = new OpenLayers.Format.JSON();
+          var returnJSON = jsonFormat.read(response.responseText);
+
+          if('results' in returnJSON)
           {
-            //There is layer data in the polygon requested, so set the observable true. This is reflected in the modal popup as either
-            //an 'X' which is no data or a check mark for data.
-            self.layerDataAvailable(true);
+            if(returnJSON['results'].length)
+            {
+              //There is layer data in the polygon requested, so set the observable true. This is reflected in the modal popup as either
+              //an 'X' which is no data or a check mark for data.
+              self.layerDataAvailable(true);
+            }
+          }
+          else
+          {
+            self.layerDataAvailable(false);
           }
         }
         else
@@ -72,6 +80,7 @@ function layerModel(options, parent) {
       };
 
       //Control for doing a REST identify for determining if the layer has data in the polygon.
+      /*
       self.identifyControl = new OpenLayers.Control.ArcGisRestIdentify({
         proxy: "/proxy/rest_query/?url=",
         url : url,
@@ -80,35 +89,11 @@ function layerModel(options, parent) {
         tolerance : 2,
 
         eventListeners: {
-          arcfeatureidentify : self.arcfeatureidentify
-          /*function()
-          {
-            //When request is sent, reset the flag.
-            this.layerDataAvailable(false);
-          }*/,
-
+          arcfeatureidentify : self.arcfeatureidentify,
           idresultarrived : self.idresultarrived
-          /*function(responseText)
-          {
-            var jsonFormat = new OpenLayers.Format.JSON();
-            var returnJSON = jsonFormat.read(responseText.text);
-
-            if('results' in returnJSON)
-            {
-              if(returnJSON['results'].length)
-              {
-                //There is layer data in the polygon requested, so set the observable true. This is reflected in the modal popup as either
-                //an 'X' which is no data or a check mark for data.
-                this.layerDataAvailable(true);
-              }
-            }
-            else
-            {
-              this.layerDataAvailable(false);
-            }
-          }*/
         }
       });
+      */
 
     }
 
@@ -778,6 +763,64 @@ function themeModel(options) {
         $('.layer-popover').hide();
     };
 
+    self.layerDataAvailable = ko.observableArray();
+    self.restIdentifyControls = [];
+    self.createIdControls = function()
+    {
+      self.addIdentifyEntry = function(layer)
+      {
+        var url = layer.url.replace('export','identify');
+
+        var curControl = null;
+        for(var j = 0; j < self.restIdentifyControls.length; j++)
+        {
+          //Check to see if we already have a control setup for this url, if so, we just add the layer index.
+          if(self.restIdentifyControls[j].url === url)
+          {
+            curControl = self.restIdentifyControls[j];
+            break;
+          }
+        }
+        //Url is not already in a control, so we create one.
+        if(curControl === null)
+        {
+          //Control for doing a REST identify for determining if the layer has data in the polygon.
+          curControl = new OpenLayers.Control.GSAAPolygonRestIdentify({
+            viewModel : app.viewModel,
+            proxy: "/proxy/rest_query/?url=",
+            url : url,
+            sr : srCode[1],
+            tolerance : 2
+          });
+          self.restIdentifyControls.push(curControl);
+        }
+        //Add the array index to use in the identify.
+        //curControl.layerIds.push(layer.arcgislayers);
+        curControl.layerModels.push(layer);
+
+      }
+      var srCode = app.map.getProjection().split(':');
+      for(var i = 0; i < self.layers().length; i++)
+      {
+        var layer = self.layers()[i];
+        if(layer.subLayers.length === 0)
+        {
+          if(layer.type === "ArcRest")
+          {
+            this.addIdentifyEntry(layer)
+          }
+        }
+        else
+        {
+          $.each(layer.subLayers, function(index, subLayer){
+            if(subLayer.type === "ArcRest")
+            {
+              self.addIdentifyEntry(subLayer);
+            }
+          });
+        }
+      }
+    };
     return self;
 } // end of themeModel
 
@@ -1047,8 +1090,7 @@ function viewModel() {
       if(self.polygonSelectActive() === false)
       {
         self.polygonSelectActive(true);
-        //Activate the Identify tab.
-        $('#identifyTab').tab('show');
+
         app.polygonDraw.activate();
       }
       else
@@ -1081,12 +1123,29 @@ function viewModel() {
       }
       var mapExtent = app.map.getExtent();
 
+      for(var i = 0; i < self.themes().length; i++)
+      {
+        var theme = self.themes()[i];
+        if(theme.restIdentifyControls.length)
+        {
+          for(var j = 0; j < theme.restIdentifyControls.length; j++)
+          {
+            var identifyControl = theme.restIdentifyControls[j];
+            identifyControl.geometry     = geometry;
+            identifyControl.geometryType = "esriGeometryPolygon";
+            identifyControl.mapExtent    = mapExtent.left + "," + mapExtent.bottom + "," + mapExtent.right + "," + mapExtent.top;
+            identifyControl.imageDisplay = app.map.getSize().w + "," + app.map.getSize().h + ",96";
+            identifyControl.doQuery(feature);
+          }
+        }
+      }
+      /*
       var layerKeys = [];
       for(layerKey in self.layerIndex)
       {
         layerKeys.push(layerKey);
       }
-      layerKeys.sort();
+      //layerKeys.sort();
       var layerCnt = layerKeys.length;
 
       //var layers = self.visibleLayers();
@@ -1108,6 +1167,7 @@ function viewModel() {
           }
         }
       }
+      */
     };
     // determines visibility of description overlay
     self.showDescription = ko.observable();

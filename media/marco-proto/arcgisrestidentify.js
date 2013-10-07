@@ -45,10 +45,12 @@ OpenLayers.Control.ArcGisBaseRest = OpenLayers.Class(OpenLayers.Control, {
 
 OpenLayers.Control.ArcGisRestIdentify = OpenLayers.Class(OpenLayers.Control, {
   eventListeners:null,
-  layerId: null,
+  freehand : true,
+
+  layerIds: null,
+
   //We can ask for top, visible, all, see layers description below.
   layersToId : 'all',
-  freehand : true,
 
   url : null,
   proxy : null,
@@ -129,11 +131,11 @@ OpenLayers.Control.ArcGisRestIdentify = OpenLayers.Class(OpenLayers.Control, {
 
   initialize: function(options)
   {
+    this.layerIds = [];
     //Call the base class initialize first.
     OpenLayers.Control.prototype.initialize.apply(
             this, arguments
     );
-
     if(this.geometryType == null)
     {
       this.geometryType = "esriGeometryPolygon";
@@ -186,9 +188,10 @@ OpenLayers.Control.ArcGisRestIdentify = OpenLayers.Class(OpenLayers.Control, {
     {
       geometry = this.geometry.join();
     }
+
     var queryoptions =
     {
-      layers        : this.layersToId + ":" + this.layerId,
+      layers        : this.layersToId + ":" + this.layerIds.join(),
       geometry      : geometry,
       geometryType  : this.geometryType,
       sr            : this.sr,
@@ -203,6 +206,7 @@ OpenLayers.Control.ArcGisRestIdentify = OpenLayers.Class(OpenLayers.Control, {
     var query = {
             url: this.url,
             params : queryoptions,
+            async: true,
             proxy: this.proxy,
             callback: function(request)
             {
@@ -229,7 +233,7 @@ OpenLayers.Control.ArcGisRestIdentify = OpenLayers.Class(OpenLayers.Control, {
   {
     this.events.triggerEvent("idresultarrived",
     {
-      text:result.responseText
+      response : result
     });
   },
 

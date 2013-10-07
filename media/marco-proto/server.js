@@ -18,41 +18,44 @@ app.viewModel.loadLayers = function(data) {
 
 	// load themes
 	$.each(data.themes, function(i, themeFixture) {
-		var layers = [],
-			theme = new themeModel(themeFixture);
-		$.each(themeFixture.layers, function(j, layer_id) {
-			// create a layerModel and add it to the list of layers
-			var layer = self.layerIndex[layer_id],
-				searchTerm = layer.name + ' (' + themeFixture.display_name + ')';
-			layer.themes.push(theme);
-			theme.layers.push(layer);
+          var layers = [],
+          theme = new themeModel(themeFixture);
+          $.each(themeFixture.layers, function(j, layer_id)
+          {
+            // create a layerModel and add it to the list of layers
+            var layer = self.layerIndex[layer_id],
+            searchTerm = layer.name + ' (' + themeFixture.display_name + ')';
+            layer.themes.push(theme);
+            theme.layers.push(layer);
 
-			if (!layer.subLayers.length) { //if the layer does not have sublayers
-                self.layerSearchIndex[searchTerm] = {
-                    layer: layer,
-                    theme: theme
-                };
-            } else { //if the layer has sublayers
-				$.each(layer.subLayers, function(i, subLayer) {
-					//var searchTerm = subLayer.name + ' (' + themeFixture.display_name + ')';
-                    var searchTerm = subLayer.name + ' (' + themeFixture.display_name + ' / ' + subLayer.parent.name + ')';
-					if (subLayer.name !== 'Data Under Development') {
-                        self.layerSearchIndex[searchTerm] = {
-                            layer: subLayer,
-                            theme: theme
-                        };
-                    }
-				});
-                layer.subLayers.sort( function(a,b) { return a.name.toUpperCase().localeCompare(b.name.toUpperCase()); } );
-			}
-
-		});
-        //sort by name
-        theme.layers.sort( function(a,b) { return a.name.toUpperCase().localeCompare(b.name.toUpperCase()); } );
-
-		self.themes.push(theme);
+            if (!layer.subLayers.length)
+            { //if the layer does not have sublayers
+              self.layerSearchIndex[searchTerm] = {
+                layer: layer,
+                theme: theme
+              };
+            }
+            else
+            { //if the layer has sublayers
+              $.each(layer.subLayers, function(i, subLayer) {
+                //var searchTerm = subLayer.name + ' (' + themeFixture.display_name + ')';
+                var searchTerm = subLayer.name + ' (' + themeFixture.display_name + ' / ' + subLayer.parent.name + ')';
+                if (subLayer.name !== 'Data Under Development') {
+                  self.layerSearchIndex[searchTerm] = {
+                  layer: subLayer,
+                  theme: theme
+                  };
+                }
+              });
+              layer.subLayers.sort( function(a,b) { return a.name.toUpperCase().localeCompare(b.name.toUpperCase()); } );
+            }
+          });
+          //sort by name
+          theme.layers.sort( function(a,b) { return a.name.toUpperCase().localeCompare(b.name.toUpperCase()); } );
+          theme.createIdControls();
+          self.themes.push(theme);
 	});
-        
+
 
 
 	app.typeAheadSource = (function () {
