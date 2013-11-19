@@ -33,7 +33,7 @@
 }
 
 
-/* limiting width unless we have time to address responsivness for phone sizes. 
+/* limiting width unless we have time to address responsivness for phone sizes.
 /*body{*/
    /*min-width:770px;*/
    /*width: auto !important;*/  /* Firefox will set width as auto */
@@ -58,7 +58,7 @@ p.indent { margin-left: 25px; }
 a, a:visited {
   color: #030BD4;
 }
-a.subtle, 
+a.subtle,
 a.subtle:visited {
   color: #000;
 }
@@ -274,7 +274,9 @@ footer h6 {
 
 .main-container {
   padding-top: 30px;
-  padding-bottom: 115px;
+  /*DWR 2013-11-19 Remove to clean up too much whitespace on homepage*/
+  /*padding-bottom: 115px;*/
+  padding-bottom: 10px;
 }
 
 
