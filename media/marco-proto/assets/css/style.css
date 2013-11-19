@@ -860,3 +860,31 @@ a.disabled-link:hover {
 .group-members-popover:hover {
   text-decoration: none;
 }
+
+#polygon-query a.btn {
+    border-left: 1px solid #CCCCCC;
+}
+
+.icon-polygon-select:before {
+  content: url(../img/polygon_info_white.png);
+}
+
+.icon-loader:before {
+  content: url(../img/loader-small.gif);
+}
+
+i.query-loader {
+  position: absolute;
+  right: 15px;
+}
+#polygon-query .query-loader {
+    margin-top: 2px;
+    right: 5px;
+}
+
+#layer-data-accordion .layer .btn-group-layer {
+  width: 100%;
+}
+#layer-data-accordion li.layer {
+  margin-bottom: 2px;
+}

@@ -131,6 +131,7 @@ OpenLayers.Control.ArcGisRestIdentify = OpenLayers.Class(OpenLayers.Control, {
 
   initialize: function(options)
   {
+    this.currentRqst = null;
     this.layerIds = [];
     //Call the base class initialize first.
     OpenLayers.Control.prototype.initialize.apply(
@@ -220,7 +221,8 @@ OpenLayers.Control.ArcGisRestIdentify = OpenLayers.Class(OpenLayers.Control, {
   request: function(evt)
   {
     queryOptions = this.buildOptions();
-    var request = OpenLayers.Request.GET(queryOptions);
+    //var request = OpenLayers.Request.GET(queryOptions);
+    this.currentRqst = OpenLayers.Request.GET(queryOptions);
   },
 
   doQuery: function(evt)
@@ -229,12 +231,22 @@ OpenLayers.Control.ArcGisRestIdentify = OpenLayers.Class(OpenLayers.Control, {
     this.request(evt);
   },
 
+  cancelRequest : function()
+  {
+    if(this.currentRqst)
+    {
+      this.currentRqst.abort();
+      //this.currentRqst = null;
+    }
+  },
+
   handleresult: function(result)
   {
     this.events.triggerEvent("idresultarrived",
     {
       response : result
     });
+    //this.currentRqst = null;
   },
 
 });

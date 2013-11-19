@@ -1,5 +1,4 @@
 app.init = function () {
-
     //to turn basemap indicator off (hide the plus sign)
     //see email from Matt on 7/26 2:24pm with list of controls
     var map = new OpenLayers.Map(null, {
@@ -20,6 +19,7 @@ app.init = function () {
         isBaseLayer: true,
         //numZoomLevels: 13
     });
+
     googleStreet = new OpenLayers.Layer.Google("Google Streets", {
         sphericalMercator: true,
         isBaseLayer: true,
@@ -73,14 +73,16 @@ app.init = function () {
     map.addControl(new SimpleLayerSwitcher());
 
     //Scale Bar
-    var scalebar = new OpenLayers.Control.ScaleBar( {
-        displaySystem: "english",
+    scalebar = new OpenLayers.Control.ScaleLine();
+
+    /*var scalebar = new OpenLayers.Control.ScaleBar( {
+        displaySystem: "english,metric",
         minWidth: 100, //default
         maxWidth: 150, //default
         divisions: 2, //default
         subdivisions: 2, //default
         showMinorMeasures: false //default
-    });
+    });*/
     map.addControl(scalebar);
 
     map.zoomBox = new OpenLayers.Control.ZoomBox( {
@@ -131,11 +133,43 @@ app.init = function () {
         app.viewModel.attributeData(false);
     };
     */
+    //Set the style of the select polygon.
+    var pgStyle = new OpenLayers.Style({
+        //fillColor: '#FFFFFF',
+        fillOpacity: 0,
+        strokeColor: '#0000d0',
+        strokeOpacity: 0.5,
+        strokeWidth: 2
+    });
+    var polygonLayer = new OpenLayers.Layer.Vector("Polygon Layer", {
+                                                    styleMap : new OpenLayers.StyleMap({'default' : pgStyle})
+      });
     //Add a vector layer to draw our polygon selection on for use with the "Does layer have data here" ESRI quesry.
-    var polygonLayer = new OpenLayers.Layer.Vector("Polygon Layer");
     map.addLayer(polygonLayer);
-    app.polygonDraw = new OpenLayers.Control.DrawFeature(polygonLayer, OpenLayers.Handler.Polygon, {
-      featureAdded : app.viewModel.selectionPolygonAdded
+    app.polygonDraw = new OpenLayers.Control.DrawFeature(polygonLayer,
+                                                          OpenLayers.Handler.Polygon,
+                                                          {
+                                                            featureAdded : app.viewModel.selectionPolygonAdded,
+                                                            callbacks : {
+                                                              //We want to check to see if we're drawing a new polygon. If we are, let's get
+                                                              //rid of the previous one from the screen.
+                                                              point : function(point)
+                                                              {
+                                                                //We have a polygon on the screen already, we're getting reading to create a new
+                                                                //one, so clear the old one.
+                                                                if(app.viewModel.polygonQueryGeom && app.viewModel.polygonQueryGeom.length)
+                                                                {
+                                                                  //Cancel any outstanding queries.
+                                                                  app.viewModel.cancelPolygonQuery();
+                                                                  //Remove the current polygon from the map.
+                                                                  this.layer.removeAllFeatures();
+                                                                  //Reset the polygon points array.
+                                                                  app.viewModel.polygonQueryGeom.length = 0;
+                                                                }
+                                                              }
+
+                                                            }
+
     });
     map.addControl(app.polygonDraw);
 

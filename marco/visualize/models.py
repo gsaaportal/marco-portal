@@ -7,8 +7,8 @@ from madrona.features.models import Feature
 
 @register
 class Bookmark(Feature):
-    url_hash = models.CharField(max_length=2050) 
-    
+    url_hash = models.CharField(max_length=2050)
+
     class Options:
-        verbose_name = 'MARCO Bookmark'
+        verbose_name = 'GSAA Bookmark'
         form = 'visualize.forms.BookmarkForm'

@@ -35,12 +35,13 @@ function layerModel(options, parent) {
 
     self.restLegend = [];
 
+    //WHen the layer is issued the identify request, if there are results there, this is set to true.
+    self.layerDataAvailable = ko.observable(false);
+
     if(self.type === 'ArcRest')
     {
       //Control for doing a REST query for getting data from the layer when the user clicks on a point.
       self.queryControl = null;
-            //WHen the layer is issued the identify request, if there are results there, this is set to true.
-      self.layerDataAvailable = ko.observable(false);
 
       var url = self.url.replace('export','/identify');
       var srCode = app.map.getProjection().split(':');
@@ -51,6 +52,7 @@ function layerModel(options, parent) {
         //When request is sent, reset the flag.
         self.layerDataAvailable(false);
       };
+      /*
       self.idresultarrived = function(result)
       {
         var response = result.response;
@@ -77,7 +79,7 @@ function layerModel(options, parent) {
         {
           self.layerDataAvailable(false);
         }
-      };
+      };*/
 
       //Control for doing a REST identify for determining if the layer has data in the polygon.
       /*
@@ -478,6 +480,67 @@ function layerModel(options, parent) {
 
     self.showSublayers = ko.observable(false);
 
+    //Work around for accordion issue with transitions and tabs.
+    self.showPGToolSublayers = ko.observable(false);
+    self.togglePGToolLayerActive = function(self,event)
+    {
+      var layer = this;
+      app.viewModel.activeLayer(layer);
+
+      //handle possible dropdown/sublayer behavior
+      if (layer.subLayers.length)
+      {
+        app.viewModel.activeParentLayer(layer);
+        if (!layer.activeSublayer())
+        { //if layer does not have an active sublayer, then show/hide drop down menu
+          if (!layer.showPGToolSublayers()) {
+              //show drop-down menu
+              layer.showPGToolSublayers(true);
+          }
+          else {
+              //hide drop-down menu
+              layer.showPGToolSublayers(false);
+          }
+        }
+        else if ( layer.type === 'checkbox' )
+        { //else if layer does have an active sublayer and it's checkbox (not radio)
+          if (!layer.showPGToolSublayers()) {
+              //show drop-down menu
+              layer.showPGToolSublayers(true);
+          }
+          else {
+              //hide drop-down menu
+              layer.showPGToolSublayers(false);
+          }
+        }
+        else if ( layer.type === 'radio' )
+        { //perhaps same behavior should
+          if (!layer.showPGToolSublayers()) {
+              //show drop-down menu
+              layer.showPGToolSublayers(true);
+          }
+          else {
+              //hide drop-down menu
+              layer.showPGToolSublayers(false);
+          }
+        }
+        else
+        {
+          //turn off layer
+          layer.deactivateLayer();
+          layer.showPGToolSublayers(false);
+        }
+        return;
+      }
+
+      if (layer.active()) { // if layer is active
+          layer.deactivateLayer();
+      } else { // otherwise layer is not currently active
+          layer.activateLayer();
+      }
+
+    };
+
     self.showSublayers.subscribe(function () {
         setTimeout(function () {
             if ( app.viewModel.activeLayer().subLayers.length > 1 ) {
@@ -504,31 +567,38 @@ function layerModel(options, parent) {
                 }
                 $('#mobile-data-right-button').show();
                 $('#mobile-map-right-button').hide();
-            } else if (!layer.activeSublayer()) { //if layer does not have an active sublayer, then show/hide drop down menu
+            }
+            else if (!layer.activeSublayer()) { //if layer does not have an active sublayer, then show/hide drop down menu
                 if (!layer.showSublayers()) {
                     //show drop-down menu
                     layer.showSublayers(true);
-                } else {
+                }
+                else {
                     //hide drop-down menu
                     layer.showSublayers(false);
                 }
-            } else if ( layer.type === 'checkbox' ) { //else if layer does have an active sublayer and it's checkbox (not radio)
+            }
+            else if ( layer.type === 'checkbox' ) { //else if layer does have an active sublayer and it's checkbox (not radio)
                 if (!layer.showSublayers()) {
                     //show drop-down menu
                     layer.showSublayers(true);
-                } else {
+                }
+                else {
                     //hide drop-down menu
                     layer.showSublayers(false);
                 }
-            } else if ( layer.type === 'radio' ) { //perhaps same behavior should
+            }
+            else if ( layer.type === 'radio' ) { //perhaps same behavior should
                 if (!layer.showSublayers()) {
                     //show drop-down menu
                     layer.showSublayers(true);
-                } else {
+                }
+                else {
                     //hide drop-down menu
                     layer.showSublayers(false);
                 }
-            } else {
+            }
+            else {
                 //turn off layer
                 layer.deactivateLayer();
                 layer.showSublayers(false);
@@ -674,6 +744,7 @@ function layerModel(options, parent) {
         layer.showSublayers(false);
     };
 
+    /*
     self.arcFeatureQueryHandler = function(evt)
     {
       self.layerDataAvailable(false)
@@ -700,7 +771,7 @@ function layerModel(options, parent) {
         self.layerDataAvailable(false)
       }
     }
-
+    */
     return self;
 } // end layerModel
 
@@ -759,12 +830,40 @@ function themeModel(options) {
         return false;
     };
 
+    self.pgToolThemeClick = function()
+    {
+      var theme = this;
+      // ensure data tab is activated
+      $('#polygonQueryTab').tab('show');
+
+      if (self.isPGToolOpenTheme(theme))
+      {
+          app.viewModel.openPGToolsThemes.remove(theme);
+          app.viewModel.updateScrollBars();
+      }
+      else
+      {
+          app.viewModel.openPGToolsThemes.push(theme);
+          app.viewModel.updateScrollBars();
+      }
+    };
+
+    //is in openThemes
+    self.isPGToolOpenTheme = function() {
+        var theme = this;
+
+        if (app.viewModel.openPGToolsThemes.indexOf(theme) !== -1) {
+            return true;
+        }
+        return false;
+    };
     self.hideTooltip = function(theme, event) {
         $('.layer-popover').hide();
     };
 
     self.layerDataAvailable = ko.observableArray();
     self.restIdentifyControls = [];
+    self.outstandingQueries = ko.observable(false);
     self.createIdControls = function()
     {
       self.addIdentifyEntry = function(layer)
@@ -786,6 +885,7 @@ function themeModel(options) {
         {
           //Control for doing a REST identify for determining if the layer has data in the polygon.
           curControl = new OpenLayers.Control.GSAAPolygonRestIdentify({
+            themeModel : self,
             viewModel : app.viewModel,
             proxy: "/proxy/rest_query/?url=",
             url : url,
@@ -807,7 +907,7 @@ function themeModel(options) {
         {
           if(layer.type === "ArcRest")
           {
-            this.addIdentifyEntry(layer)
+            this.addIdentifyEntry(layer);
           }
         }
         else
@@ -821,6 +921,31 @@ function themeModel(options) {
         }
       }
     };
+    self.idCntrlQueriesOutstanding = ko.observableArray([]);
+    self.doPolygonQuery = function(polygon, feature)
+    {
+      if(this.restIdentifyControls.length)
+      {
+        var mapExtent = app.map.getExtent();
+
+        //Used to enable/disable the loading indicators on the theme accordion.
+        this.outstandingQueries(true);
+        for(var j = 0; j < this.restIdentifyControls.length; j++)
+        {
+          //if(j === 6)
+          //{
+            var identifyControl = this.restIdentifyControls[j];
+            self.idCntrlQueriesOutstanding.push(identifyControl.url);
+
+            identifyControl.geometry     = polygon;
+            identifyControl.geometryType = "esriGeometryPolygon";
+            identifyControl.mapExtent    = mapExtent.left + "," + mapExtent.bottom + "," + mapExtent.right + "," + mapExtent.top;
+            identifyControl.imageDisplay = app.map.getSize().w + "," + app.map.getSize().h + ",96";
+            identifyControl.doQuery(feature);
+          //}
+        }
+      }
+    }
     return self;
 } // end of themeModel
 
@@ -1025,12 +1150,16 @@ function viewModel() {
         //throws client-side error in pageguide.js for some reason...
     };
 
-    // reference to open themes in accordion
+    // reference to open themes in data accordion
     self.openThemes = ko.observableArray();
 
     self.openThemes.subscribe( function() {
         app.updateUrl();
     });
+    //Themes open in the Polygon Tools query.
+    self.openPGToolsThemes = ko.observableArray();
+
+
 
     self.getOpenThemeIDs = function() {
         return $.map(self.openThemes(), function(theme) {
@@ -1099,76 +1228,60 @@ function viewModel() {
         app.polygonDraw.deactivate();
       }
     }
+    self.currentPolygonFeature = null;
     self.selectionPolygonAdded = function(feature)
     {
-      $('#polygon-query-modal').modal('show');
+      //$('#polygon-query-modal').modal('show');
+      $('#polygonQueryTab').tab('show');
 
       var vertices = feature.geometry.getVertices();
-      var geometry = [];
+      if(self.polygonQueryGeom)
+      {
+        self.polygonQueryGeom.length = 0;
+      }
+      else
+      {
+        self.polygonQueryGeom = [];
+      }
       if(vertices.length)
       {
         for(var j = 0; j < vertices.length; j++)
         {
-          var point = []
+          var point = [];
           point.push(vertices[j].x);
-          point.push(vertices[j].y)
-          geometry.push(point);
+          point.push(vertices[j].y);
+          self.polygonQueryGeom.push(point);
         }
         var point = [];
         point.push(vertices[0].x);
-        point.push(vertices[0].y)
+        point.push(vertices[0].y);
         //Append the first point last to close the polygon.
-        geometry.push(point);
+        self.polygonQueryGeom.push(point);
 
       }
-      var mapExtent = app.map.getExtent();
+      //var mapExtent = app.map.getExtent();
 
       for(var i = 0; i < self.themes().length; i++)
       {
-        var theme = self.themes()[i];
-        if(theme.restIdentifyControls.length)
-        {
-          for(var j = 0; j < theme.restIdentifyControls.length; j++)
-          {
-            var identifyControl = theme.restIdentifyControls[j];
-            identifyControl.geometry     = geometry;
-            identifyControl.geometryType = "esriGeometryPolygon";
-            identifyControl.mapExtent    = mapExtent.left + "," + mapExtent.bottom + "," + mapExtent.right + "," + mapExtent.top;
-            identifyControl.imageDisplay = app.map.getSize().w + "," + app.map.getSize().h + ",96";
-            identifyControl.doQuery(feature);
-          }
-        }
+        //if(i === 0)
+        //{
+          var theme = self.themes()[i];
+          theme.doPolygonQuery(self.polygonQueryGeom, feature);
+        //}
       }
-      /*
-      var layerKeys = [];
-      for(layerKey in self.layerIndex)
-      {
-        layerKeys.push(layerKey);
-      }
-      //layerKeys.sort();
-      var layerCnt = layerKeys.length;
-
-      //var layers = self.visibleLayers();
-      //var layerCnt = layers.length
-      //for(var i = 0; i < layerCnt; i++)
-      for(var i = 0; i < layerCnt; i++)
-      {
-        //var layer = layers[i];
-        var layer = self.layerIndex[layerKeys[i]];
-        if(!layer.isCheckBoxLayer())
-        {
-          if('identifyControl' in layer)
-          {
-            layer.identifyControl.geometry     = geometry;
-            layer.identifyControl.geometryType = "esriGeometryPolygon";
-            layer.identifyControl.mapExtent    = mapExtent.left + "," + mapExtent.bottom + "," + mapExtent.right + "," + mapExtent.top;
-            layer.identifyControl.imageDisplay = app.map.getSize().w + "," + app.map.getSize().h + ",96";
-            layer.identifyControl.doQuery(feature);
-          }
-        }
-      }
-      */
     };
+    //This aborts any outstanding queries from previous polygon query attempts.
+    self.cancelPolygonQuery = function()
+    {
+      for(var i = 0; i < self.themes().length; i++)
+      {
+        var theme = self.themes()[i];
+        $.each(theme.restIdentifyControls, function(ndx, restIdControl) {
+            restIdControl.cancelRequest();
+        });
+      }
+    };
+
     // determines visibility of description overlay
     self.showDescription = ko.observable();
     // determines visibility of expanded description overlay
@@ -1457,7 +1570,14 @@ function viewModel() {
             } else {
                 idScrollpane.reinitialise();
             }
-
+            /*
+            var idScrollpane = $('#polygon-query').data('jsp');
+            if (idScrollpane === undefined) {
+                $('#polygon-query').jScrollPane();
+            } else {
+                idScrollpane.reinitialise();
+            }
+            */
             var legendScrollpane = $('#legend-content').data('jsp');
             if (legendScrollpane === undefined) {
                 $('#legend-content').jScrollPane();
@@ -2164,6 +2284,7 @@ function viewModel() {
         return attrs;
     };
 
+    /*
     self.isSelectedLeaseBlock = function(name) {
         if (name === "OCS Lease Blocks") {
             return true;
@@ -2181,7 +2302,8 @@ function viewModel() {
         }
         return false;
     };
-
+    */
+    /*
     self.getOCSAttributes = function (title, data) {
         attrs = [];
         if ('BLOCK_LAB' in data) {
@@ -2219,12 +2341,6 @@ function viewModel() {
                     max_speed = data['WINDREV_MA'].toFixed(3),
                     min_range = (parseFloat(min_speed)-.125).toPrecision(3),
                     max_range = (parseFloat(max_speed)+.125).toPrecision(3);
-                /*if ( min_speed === max_speed ) {
-                    attrs.push({'display': 'Estimated Avg Wind Speed (m/s)', 'data': speed});
-                } else {
-                    var speed = (min_speed-.125) + ' to ' + (max_speed+.125);
-                    attrs.push({'display': 'Estimated Avg Wind Speed (m/s)', 'data': speed});
-                }*/
                 attrs.push({'display': 'Estimated Avg Wind Speed', 'data': min_range + ' to ' + max_range + ' m/s'});
             } else {
                 attrs.push({'display': 'Estimated Avg Wind Speed', 'data': 'Unknown'});
@@ -2401,8 +2517,7 @@ function viewModel() {
             }
         }
         return attrs;
-    };
-
+    };*/
     return self;
 } //end viewModel
 

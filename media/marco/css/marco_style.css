@@ -1074,6 +1074,42 @@ img + h3 {
 	width: 100%;
 }
 
+#save-data-popover .radio input {
+	width: 20%;
+}
+#save-data-popover .ui-spinner {
+	width: 55%;
+}
+
+
+#save-data-popover {
+	width: 460px;
+}
+#save-data-popover .arrow {
+	display: none;
+}
+
+#save-data-popover .alert {
+	margin-bottom: 10px;
+}
+
+#save-data-popover .print-title {
+	width: 418px;
+}
+
+#save-data-popover .well {
+	padding-top: 5px;
+	height: 210px;
+}
+#save-data-popover .well strong {
+	margin-left: -8px;
+}
+
+#save-data-popover .checkbox {
+	margin-left: 9px;
+
+
+
 body.print .tabs,
 body.print .user-btn,
 body.print #feedback-tab,
@@ -1351,13 +1387,3 @@ body.borderless #map-wrapper {
     white-space: nowrap;
 }
 
-.icon-polygon-select:before {
-  content: url(../img/polygon_info_white.png);
-}
-
-#layer-data-accordion .layer .btn-group-layer {
-  width: 100%;
-}
-#layer-data-accordion li.layer {
-  margin-bottom: 2px;
-}
