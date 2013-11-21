@@ -7,6 +7,7 @@ var webshot = require('./lib/webshot/lib/webshot.js'),
   gm = require('gm'),
   fs = require('fs'),
   phantom = require('node-phantom'),
+  archiver = require('archiver'),
   app = express(),
   server = http.createServer(app),
   io = require('socket.io').listen(server),
@@ -99,7 +100,8 @@ io.sockets.on('connection', function(socket) {
     //Webshot the PDF.
     var pdfPath =  null;
     var archive;
-    webshot(url, pdfDestFile, options, function(err) {
+    webshot(url, pdfDestFile, options, function(err)
+    {
       if(!err)
       {
         pdfPath =  socketUrl + '/download/' + filename + '.pdf';
@@ -122,56 +124,55 @@ io.sockets.on('connection', function(socket) {
         url = targetUrl + hash;
         console.log('PNG Webshot url:' + url);
         console.log('Webshot PNG destination file:' + pngDestFile);
-        webshot(url, pngDestFile, options, function(err) {
+        webshot(url, pngDestFile, options, function(err)
+        {
           if(!err)
           {
             mapPath =  socketUrl + '/download/' + filename + '.png';
             console.log('PNG webshot successful: '  + mapPath);
-            archive = new zip();
+
+            var zipFilepath = staticDir + filename + '.zip';
+            console.log('Zip file path: '  + zipFilepath);
+
+            //archive = new zip();
             var downloadPath;
-            archive.addFiles([{name: filename + '.pdf', path: pdfDestFile},
-                             {name: filename + '.png', path: pngDestFile}],
-              function (err) {
-                if (err)
-                {
-                  return console.log("err while adding files", err);
-                }
-                else
-                {
-                  var buff = archive.toBuffer();
-                  var zipFilepath = staticDir + filename + '.zip';
-                  downloadPath = socketUrl + '/download/' + filename + '.zip';
-                  fs.writeFile(zipFilepath, buff, function () {
-                      console.log("Finished writing zip file: " + zipFilepath);
-                      console.log("Zip file link: " + downloadPath);
-                  });
+            var zipOut = fs.createWriteStream(zipFilepath);
+            //Set the file close handler event.
+            zipOut.on('close', function()
+            {
+              console.log("Archive: " + zipFilepath + " is being written.");
+            });
 
-                  cb({
-                    thumb: null,
-                    download: downloadPath
-                  });
-                }
+            var archive = archiver('zip');
+            //Set error handler event.
+            archive.on('error', function(err)
+            {
+              console.log("ERROR archiver: " + err);
+            });
+            archive.pipe(zipOut);
+            archive.append(fs.createReadStream(pdfDestFile), {name: filename + '.pdf'});
+            archive.append(fs.createReadStream(pngDestFile), {name: filename + '.png'});
+            archive.finalize(function(err, bytes)
+            {
+              if(err)
+              {
+                throw err;
+              }
+              console.log("Archive zipped: " + bytes + " bytes.")
+              downloadPath = socketUrl + '/download/' + filename + '.zip';
+              cb({
+                thumb: null,
+                download: downloadPath
               });
-
+            });
           }
+          //PNG webshot error.
           else {
             console.log(err);
           }
-
         });
-
-
-        /*
-        var target =  staticDir + filename;
-        var path = socketUrl + '/' + filename;
-        var thumb = socketUrl + '/thumb-' + filename + '.pdf';
-        cb({
-          thumb: null,
-          path: path,
-          download: socketUrl + '/download/' + filename + '.pdf'
-        })
-        */
       }
+      //PDF webshot error.
       else {
         console.log(err);
       }
