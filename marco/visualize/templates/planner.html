@@ -557,9 +557,14 @@
                                               <span>Identify</span>
                                           </a>
                                           <!--Polygon Layer Search Button-->
-                                          <a class="btn" id="btn-identify" data-bind="click: polygonIdentify">
+                                          <a class="btn" id="btn-identify" data-bind="click: polygonIdentify, style: {color: polygonSelectActive() ? '#000000' : '#FFFFFF'}">
                                               <i class="icon-polygon-select icon-large"></i>
                                               <span>Polygon Select</span>
+                                          </a>
+                                          <!--Measure tool-->
+                                          <a class="btn" id="btn-measure-tool" data-bind="click: measurementTool.measureToolClick, style: {color: measurementTool.measureToolActive() ? '#000000' : '#FFFFFF'}">
+                                              <i class="icon-measure-tool icon-large" data-bind="style: {color: measurementTool.measureToolActive() ? '#000000' : '#FFFFFF'}"></i>
+                                              <span>Measure</span>
                                           </a>
                                         </div> <!-- /Buttons -->
 
@@ -740,9 +745,12 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div id="measurement-output">
 
+                                    </div>
                                 </div>
                             </div>
+                            <!-- row-fluid -->
                         </div>
                     </div>
                 </div>
@@ -888,6 +896,7 @@
         <script src="{{MEDIA_URL}}/marco-proto/server.js"></script>
         <script src="{{MEDIA_URL}}/marco-proto/printing.js"></script>
         <script src="{{MEDIA_URL}}/marco-proto/saveData.js"></script>
+        <script src="{{MEDIA_URL}}/marco-proto/measurementTool.js"></script>
         <script src="{{MEDIA_URL}}/marco-proto/app.js"></script>
         <script src="{{MEDIA_URL}}/marco-proto/pageguide.js"></script>
 

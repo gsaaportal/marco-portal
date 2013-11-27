@@ -87,31 +87,7 @@ app.viewModel.loadLayersFromServer().done(function() {
 // initialize the map
 app.init();
 
-//DWR 2013-11-13
-//If the polygon that represents a query is passed in, we want to create a vector layer to display it for the print map.
-/*
-if(app.viewModel.queryPolygon)
-{
-  console.log("processing query polygon");
-  var points = [];
-  var fromProj   = new OpenLayers.Projection("EPSG:102113");
-  var toProj = new OpenLayers.Projection("EPSG:4326");
 
-  for(var i = 0; i < app.viewModel.queryPolygon.length; i++)
-  {
-
-    pt = new OpenLayers.Geometry.Point(app.viewModel.queryPolygon[i]).transform(fromProj, toProj);
-    points.push(pt);
-  }
-  var ring = new OpenLayers.Geometry.LinearRing(points);
-  var polygon = new OpenLayers.Geometry.Polygon([ring]);
-
-  var feature = new OpenLayers.Feature.Vector(polygon);
-  var layer = new OpenLayers.Layer.Vector("QueryPolygon");
-  layer.addFeatures([feature]);
-  layer.setVisibility(true);
-  app.map.addLayer(layer);
-}*/
 
 //DWR
 app.map.setCenter(new OpenLayers.LonLat(-73.852, 31.933).transform(

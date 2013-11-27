@@ -245,3 +245,23 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<div style="display:none" id="measurement-tool-popover" class="popover fade left in" data-bind="with: measurementTool">
+  <div class="arrow">
+  </div>
+  <div class="popover-inner">
+      <h3 class="popover-title">
+          Measurement Tool
+      </h3>
+      <div class="popover-content">
+        <div class="row-fluid">
+          <span data-bind="text: englishDistance"></span>
+        </div>
+      </div>
+      <p class="pull-right">
+        <a class="btn" data-bind="click: closeWindow">Close</a>
+        <div class="clearfix"></div>
+      </p>
+
+  </div>
+</div>

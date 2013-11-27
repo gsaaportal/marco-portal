@@ -888,3 +888,7 @@ i.query-loader {
 #layer-data-accordion li.layer {
   margin-bottom: 2px;
 }
+
+.icon-measure-tool:before {
+  content: url(../img/measure_tool_white.png);
+}

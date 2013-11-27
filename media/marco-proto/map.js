@@ -65,6 +65,8 @@ app.init = function () {
         }
     );
 
+    //northIcon = new OpenLayers.Layer.Image({url: })
+
     map.addLayers([esriOcean, openStreetMap, googleStreet, googleTerrain, googleSatellite, nauticalCharts]);
 
     //map.addLayers([esriOcean]);
@@ -90,6 +92,10 @@ app.init = function () {
     });
 
     map.addControl(map.zoomBox);
+
+    map.addControl(new OpenLayers.Control.MousePosition({
+      numDigits: 3
+      }));
 
     // only allow onetime zooming with box
     map.events.register("zoomend", null, function () {
@@ -133,6 +139,9 @@ app.init = function () {
         app.viewModel.attributeData(false);
     };
     */
+
+    ////////////////////////////////////////////////////////////////////////////////
+    //Polygon query tool control
     //Set the style of the select polygon.
     var pgStyle = new OpenLayers.Style({
         //fillColor: '#FFFFFF',
@@ -172,6 +181,55 @@ app.init = function () {
 
     });
     map.addControl(app.polygonDraw);
+    //////////////////////////////////////////////////////////////////////////////////////////
+    //Measure tool control
+    var sketchSymbolizers = {
+        "Point": {
+            pointRadius: 4,
+            graphicName: "square",
+            fillColor: "white",
+            fillOpacity: 1,
+            strokeWidth: 1,
+            strokeOpacity: 1,
+            strokeColor: "#333333"
+        },
+        "Line": {
+            strokeWidth: 2,
+            strokeOpacity: 1,
+            strokeColor: "#666666"
+            //strokeDashstyle: "dash"
+        },
+        "Polygon": {
+            strokeWidth: 2,
+            strokeOpacity: 1,
+            strokeColor: "#666666",
+            fillColor: "white",
+            fillOpacity: 0.3
+        }
+    };
+    var measureStyle = new OpenLayers.Style();
+    measureStyle.addRules([
+        new OpenLayers.Rule({symbolizer: sketchSymbolizers})
+    ]);
+    var measureStyleMap = new OpenLayers.StyleMap({"default": measureStyle});
+    app.measureTool = new OpenLayers.Control.Measure(
+      OpenLayers.Handler.Path, {
+        persist: true,
+        displaySystem: 'english',
+        handlerOptions:
+        {
+          layerOptions:
+          {
+              //renderers: renderer,
+              styleMap: measureStyleMap
+          }
+        }
+      }
+    );
+
+    map.addControl(app.measureTool);
+    app.viewModel.measurementTool.setMeasureHandler(app.measureTool);
+    //////////////////////////////////////////////////////////////////////////////////////////
 
     app.map = map;
 

@@ -29,7 +29,7 @@ Searching...
             cx = '006763711666504423763:anwl8m04xli',
             search = window.location.search.substring(window.location.search.indexOf('=')+1),
             searchURL = domain + 'key=' + key + '&cx=' + cx + '&q=' + search + '&alt=json';
-        
+
         var search = function() {
             $.ajax({
                 async: false,
@@ -47,6 +47,10 @@ Searching...
                             var link = result.items[x].link,
                                 title = result.items[x].htmlTitle.substring(0, result.items[x].htmlTitle.indexOf('- GSAA')),
                                 snippet = result.items[x].snippet;
+                            if(title.length === 0)
+                            {
+                              title = result.items[x].htmlTitle;
+                            }
                             output += '<a href="' + link + '">' + title + '</a>';
                             output += '<div>' + snippet + '</div></li>';
                         }
@@ -54,7 +58,7 @@ Searching...
                     }
                     $('#google-search-results').html(output);
                 },
-                error: function(result) { 
+                error: function(result) {
                     debugger;
                 }
             });
@@ -63,8 +67,3 @@ Searching...
     });
 </script>
 {% endblock %}
-
-
-
-
-
