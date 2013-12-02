@@ -88,7 +88,6 @@ app.viewModel.loadLayersFromServer().done(function() {
 app.init();
 
 
-
 //DWR
 app.map.setCenter(new OpenLayers.LonLat(-73.852, 31.933).transform(
   new OpenLayers.Projection("EPSG:4326"),

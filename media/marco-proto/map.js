@@ -143,6 +143,8 @@ app.init = function () {
     ////////////////////////////////////////////////////////////////////////////////
     //Polygon query tool control
     //Set the style of the select polygon.
+    app.viewModel.polygonQueryTool.initializeMapControl(map);
+    /*
     var pgStyle = new OpenLayers.Style({
         //fillColor: '#FFFFFF',
         fillOpacity: 0,
@@ -181,8 +183,11 @@ app.init = function () {
 
     });
     map.addControl(app.polygonDraw);
+    */
     //////////////////////////////////////////////////////////////////////////////////////////
     //Measure tool control
+    app.viewModel.measurementTool.initializeMapControl(map);
+    /*
     var sketchSymbolizers = {
         "Point": {
             pointRadius: 4,
@@ -229,6 +234,7 @@ app.init = function () {
 
     map.addControl(app.measureTool);
     app.viewModel.measurementTool.setMeasureHandler(app.measureTool);
+    */
     //////////////////////////////////////////////////////////////////////////////////////////
 
     app.map = map;

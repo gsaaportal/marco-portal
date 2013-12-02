@@ -868,6 +868,9 @@ a.disabled-link:hover {
 .icon-polygon-select:before {
   content: url(../img/polygon_info_white.png);
 }
+.icon-polygon-select-active:before {
+  content: url(../img/polygon_info_black.png);
+}
 
 .icon-loader:before {
   content: url(../img/loader-small.gif);
@@ -891,4 +894,7 @@ i.query-loader {
 
 .icon-measure-tool:before {
   content: url(../img/measure_tool_white.png);
+}
+.icon-measure-tool-active:before {
+  content: url(../img/measure_tool_black.png);
 }

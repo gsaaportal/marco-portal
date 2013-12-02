@@ -1211,10 +1211,19 @@ function viewModel() {
       });
 
     };
+    //////////////////////////////////////////////////////
     //POlygon selection tool.
-    self.polygonSelectActive = ko.observable(false);
     self.polygonIdentify = function(self, event)
     {
+      self.polygonQueryTool.polygonIdentify(event);
+      self.measurementTool.enableControl(false);
+    };
+    /*self.polygonSelectActive = ko.observable(false);
+    self.polygonIdentify = function(self, event)
+    {
+      //self.polygonQueryTool.polygonIdentify(event);
+      self.measurementTool.enableControl(false);
+
       //Toggle the state.
       if(self.polygonSelectActive() === false)
       {
@@ -1227,7 +1236,9 @@ function viewModel() {
         self.polygonSelectActive(false);
         app.polygonDraw.deactivate();
       }
-    }
+
+    };
+
     self.currentPolygonFeature = null;
     self.selectionPolygonAdded = function(feature)
     {
@@ -1259,7 +1270,6 @@ function viewModel() {
         self.polygonQueryGeom.push(point);
 
       }
-      //var mapExtent = app.map.getExtent();
 
       for(var i = 0; i < self.themes().length; i++)
       {
@@ -1280,6 +1290,24 @@ function viewModel() {
             restIdControl.cancelRequest();
         });
       }
+    };*/
+    //////////////////////////////////////////////////////////////
+    self.measureToolClick = function(event)
+    {
+      //If the polygonQueryTool is enabled, disable it.
+      self.polygonQueryTool.enableControl(false);
+      //Pass the event off to the measurementTool object.
+      self.measurementTool.measureToolClick(event);
+      //Go through our other controls: Identify and Polygon Query and disable them if there are on.
+
+      self.queryFeatureActive(false);
+      var layers = self.visibleLayers();
+      $.each(layers, function(index, layer) {
+        if("queryControl" in layer)
+        {
+          layer.queryControl.deactivate();
+        }
+      });
     };
 
     // determines visibility of description overlay
@@ -2177,347 +2205,6 @@ function viewModel() {
         self.usernameError(false);
     };
 
-    self.getWindPlanningAreaAttributes = function (title, data) {
-        attrs = [];
-        if ('INFO' in data) {
-            var state = data.INFO,
-                first = state.indexOf("Call"),
-                second = state.indexOf("WEA"),
-                third = state.indexOf("RFI");
-            /*if (first !== -1) {
-                state = state.slice(0, first);
-            } else if (second !== -1) {
-                state = state.slice(0, second);
-            } else if (third !== -1) {
-                state = state.slice(0, third);
-            }*/
-            attrs.push({'display': '', 'data': state});
-        }
-        return attrs;
-    };
-
-    self.getSeaTurtleAttributes = function (title, data) {
-        attrs = [];
-        if ('ST_LK_NUM' in data && data['ST_LK_NUM']) {
-            //attrs.push({'display': 'Sightings', 'data': data['ST_LK_NUM']});
-            if (data['ST_LK_NUM'] === 99) {
-                attrs.push({'display': 'Insufficient Data available for this area', 'data': ''});
-            } else {
-                attrs.push({'display': 'Above Average Sightings for the following species:', 'data': ''});
-            }
-        } else {
-            attrs.push({'display': 'Sightings were in the normal range for all species', 'data': ''});
-        }
-
-        if ('ST_LK_NUM' in data && data['ST_LK_NUM'] ) {
-            if ('GREEN_LK' in data && data['GREEN_LK']) {
-                season = data['GREEN_LK'];
-                species = 'Green Sea Turtle';
-                sighting = species + ' (' + season + ') ';
-                attrs.push({'display': '', 'data': sighting});
-            }
-            if ('LEATH_LK' in data && data['LEATH_LK']) {
-                season = data['LEATH_LK'];
-                species = 'Leatherback Sea Turtle';
-                sighting = species + ' (' + season + ') ';
-                attrs.push({'display': '', 'data': sighting});
-            }
-            if ('LOGG_LK' in data && data['LOGG_LK']) {
-                season = data['LOGG_LK'];
-                species = 'Loggerhead Sea Turtle';
-                sighting = species + ' (' + season + ') ';
-                attrs.push({'display': '', 'data': sighting});
-            }
-        }
-        return attrs;
-    };
-
-    self.getToothedMammalAttributes = function (title, data) {
-        attrs = [];
-        if ('TOO_LK_NUM' in data && data['TOO_LK_NUM']) {
-            if (data['TOO_LK_NUM'] === 99) {
-                attrs.push({'display': 'Insufficient Data available for this area', 'data': ''});
-            } else {
-                attrs.push({'display': 'Above Average Sightings for the following species:', 'data': ''});
-            }
-        } else {
-            attrs.push({'display': 'Sightings were in the normal range for all species', 'data': ''});
-        }
-        if ('TOO_LK_NUM' in data && data['TOO_LK_NUM'] ) {
-            var season, species, sighting;
-            if ('SPERM_LK' in data && data['SPERM_LK']) {
-                season = data['SPERM_LK'];
-                species = 'Sperm Whale';
-                sighting = species + ' (' + season + ') ';
-                attrs.push({'display': '', 'data': sighting});
-            }
-            if ('BND_LK' in data && data['BND_LK']) {
-                season = data['BND_LK'];
-                species = 'Bottlenose Dolphin';
-                sighting = species + ' (' + season + ') ';
-                attrs.push({'display': '', 'data': sighting});
-            }
-            if ('STRIP_LK' in data && data['STRIP_LK']) {
-                season = data['STRIP_LK'];
-                species = 'Striped Dolphin';
-                sighting = species + ' (' + season + ') ';
-                attrs.push({'display': '', 'data': sighting});
-            }
-        }
-        return attrs;
-    };
-
-    self.getWindSpeedAttributes = function (title, data) {
-        attrs = [];
-        if ('SPEED_90' in data) {
-            var min_speed = (parseFloat(data['SPEED_90'])-0.125).toPrecision(3),
-                max_speed = (parseFloat(data['SPEED_90'])+0.125).toPrecision(3);
-            attrs.push({'display': 'Estimated Avg Wind Speed', 'data': min_speed + ' to ' + max_speed + ' m/s'});
-        }
-        return attrs;
-    };
-
-    self.adjustPartyCharterAttributes = function (attrs) {
-        for (var x=0; x<attrs.length; x=x+1) {
-            attrs[x].display = 'Total Trips (2000-2009)';
-        }
-        return attrs;
-    };
-
-    /*
-    self.isSelectedLeaseBlock = function(name) {
-        if (name === "OCS Lease Blocks") {
-            return true;
-        }
-        if (self.scenarios &&
-            self.scenarios.selectionFormModel &&
-            self.scenarios.selectionFormModel.selectedLeaseBlockLayer &&
-            self.scenarios.selectionFormModel.selectedLeaseBlocksLayerName === name) {
-            return true;
-        }
-        if (self.scenarios &&
-            self.scenarios.scenarioFormModel &&
-            self.scenarios.scenarioLeaseBlocksLayerName === name) {
-            return true;
-        }
-        return false;
-    };
-    */
-    /*
-    self.getOCSAttributes = function (title, data) {
-        attrs = [];
-        if ('BLOCK_LAB' in data) {
-            attrs.push({'display': 'OCS Block Number', 'data': data['BLOCK_LAB']});
-        } else if ('PROT_NUMB' in data) {
-            var blockLab = data['PROT_NUMB'].substring(data['PROT_NUMB'].indexOf('_')+1);
-            attrs.push({'display': 'OCS Block Number', 'data': blockLab});
-        }
-        if ('PROT_NUMBE' in data) {
-            attrs.push({'display': 'Protraction Number', 'data': data['PROT_NUMBE']});
-        }else if ('PROT_NUMB' in data) {
-            var protNumbe = data['PROT_NUMB'].substring(0,data['PROT_NUMB'].indexOf('_'));
-            attrs.push({'display': 'Protraction Number', 'data': protNumbe});
-        }
-        if ('PROT_NUMB' in data) {
-            if (self.scenarios &&
-                self.scenarios.selectionFormModel &&
-                self.scenarios.selectionFormModel.IE &&
-                self.scenarios.selectionFormModel.selectingLeaseBlocks()) {
-                var blockID = data['PROT_NUMB'],
-                    index = self.scenarios.selectionFormModel.selectedLeaseBlocks.indexOf(blockID);
-                if ( index === -1) {
-                    //add that lease block to the list of selected leaseblocks
-                    self.scenarios.selectionFormModel.selectedLeaseBlocks.push(blockID);
-                } else {
-                    //remove that lease block from the list of selected leaseblocks
-                    self.scenarios.selectionFormModel.selectedLeaseBlocks.splice(index, 1);
-                }
-            }
-        }
-        //Wind Speed
-        if ('WINDREV_MI' in data && 'WINDREV_MA' in data) {
-            if ( data['WINDREV_MI'] ) {
-                var min_speed = data['WINDREV_MI'].toFixed(3),
-                    max_speed = data['WINDREV_MA'].toFixed(3),
-                    min_range = (parseFloat(min_speed)-.125).toPrecision(3),
-                    max_range = (parseFloat(max_speed)+.125).toPrecision(3);
-                attrs.push({'display': 'Estimated Avg Wind Speed', 'data': min_range + ' to ' + max_range + ' m/s'});
-            } else {
-                attrs.push({'display': 'Estimated Avg Wind Speed', 'data': 'Unknown'});
-            }
-        }
-
-        //Distance to Coastal Substation
-        if ('SUBSTAMIN' in data && 'SUBSTMAX' in data) {
-            if (data['SUBSTAMIN'] !== 0 && data['SUBSTMAX'] !== 0) {
-                attrs.push({'display': 'Distance to Coastal Substation', 'data': data['SUBSTAMIN'].toFixed(0) + ' to ' + data['SUBSTMAX'].toFixed(0) + ' miles'});
-            } else {
-                attrs.push({'display': 'Distance to Coastal Substation Unknown', 'data': null});
-            }
-        }
-        //Distance to AWC Hubs
-        if ('AWCMI_MIN' in data && 'AWCMI_MAX' in data) {
-            attrs.push({'display': 'Distance to Proposed AWC Hub', 'data': data['AWCMI_MIN'].toFixed(0) + ' to ' + data['AWCMI_MAX'].toFixed(0) + ' miles'});
-        }
-
-        //Wind Planning Areas
-        if ('WEA2' in data && data['WEA2'] !== 0) {
-            var weaName = data['WEA2_NAME'],
-                stateName = weaName.substring(0, weaName.indexOf(' '));
-            if (stateName === 'New') {
-                stateName = 'New Jersey';
-            } else if (stateName === 'Rhode') {
-                stateName = 'Rhode Island / Massachusetts';
-            }
-            //if ( data['WEA2_NAME'].replace(/\s+/g, '') !== "" ) {
-            //TAKING THIS OUT TEMPORARILY UNTIL WE HAVE UPDATED THE DATA SUMMARY FOR WPAS AND LEASE AREAS
-            //attrs.push({'display': 'Within the ' + stateName + ' WPA', 'data': null});
-            //}
-        }
-
-        //Distance to Shipping Lanes
-        if ('TRAFFCMIN' in data && 'TRAFFCMAX' in data) {
-            attrs.push({'display': 'Distance to Shipping Lanes', 'data': data['TRAFFCMIN'].toFixed(0) + ' to ' + data['TRAFFCMAX'].toFixed(0) + ' miles'});
-        }
-        //Traffic Density (High/Low)
-        if ('AIS7_MEAN' in data) {
-            if ( data['AIS7_MEAN'] < 1 ) {
-                var rank = 'Low';
-            } else {
-                var rank = 'High';
-            }
-            attrs.push({'display': 'Commercial Ship Traffic Density', 'data': rank });
-        }
-
-        //Distance to Shore
-        if ('MI_MIN' in data && 'MI_MAX' in data) {
-            attrs.push({'display': 'Distance to Shore', 'data': data['MI_MIN'].toFixed(0) + ' to ' + data['MI_MAX'].toFixed(0) + ' miles'});
-        }
-
-        //Depth Range
-        if ('DEPTHM_MIN' in data && 'DEPTHM_MAX' in data) {
-            if ( data['DEPTHM_MIN'] ) {
-                //convert depth values to positive feet values (from negative meter values)
-                var max_depth = (-data['DEPTHM_MAX'] * 3.2808399).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-                    min_depth = (-data['DEPTHM_MIN'] * 3.2808399).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                attrs.push({'display': 'Depth Range', 'data': max_depth + ' to ' + min_depth + ' feet'});
-            } else {
-                attrs.push({'display': 'Depth Range', 'data': 'Unknown'});
-            }
-        }
-
-        //Seabed Form
-        if ('PCT_TOTAL' in data) {
-            if (data['PCT_TOTAL'] < 99.9) {
-                attrs.push({'display': 'Seabed Form', 'data': 'Unknown'});
-            } else {
-                attrs.push({'display': 'Seabed Form', 'data': ''});
-                if ('PCTDEPRESS' in data && Math.round(data['PCTDEPRESS']) > 0) {
-                    attrs.push({'tab': true, 'display': 'Depression (' + Math.round(data['PCTDEPRESS']) + '%)', 'data': ''});
-                }
-                if ('PCTHIGHFLA' in data && Math.round(data['PCTHIGHFLA']) > 0) {
-                    attrs.push({'tab': true, 'display': 'High Flat (' + Math.round(data['PCTHIGHFLA']) + '%)', 'data': ''});
-                }
-                if ('PCTHIGHSLO' in data && Math.round(data['PCTHIGHSLO']) > 0) {
-                    attrs.push({'tab': true, 'display': 'High Slope (' + Math.round(data['PCTHIGHSLO']) + '%)', 'data': ''});
-                }
-                if ('PCTLOWSLOP' in data && Math.round(data['PCTLOWSLOP']) > 0) {
-                    attrs.push({'tab': true, 'display': 'Low Slope (' + Math.round(data['PCTLOWSLOP']) + '%)', 'data': ''});
-                }
-                if ('PCTMIDFLAT' in data && Math.round(data['PCTMIDFLAT']) > 0) {
-                    attrs.push({'tab': true, 'display': 'Mid Flat (' + Math.round(data['PCTMIDFLAT']) + '%)', 'data': ''});
-                }
-                if ('PCTSIDESLO' in data && Math.round(data['PCTSIDESLO']) > 0) {
-                    attrs.push({'tab': true, 'display': 'Side Slope (' + Math.round(data['PCTSIDESLO']) + '%)', 'data': ''});
-                }
-                if ('PCTSTEEP' in data && Math.round(data['PCTSTEEP']) > 0) {
-                    attrs.push({'tab': true, 'display': 'Steep (' + Math.round(data['PCTSTEEP']) + '%)', 'data': ''});
-                }
-            }
-        }
-
-        //Coral Count
-        var coralCount = 0,
-            laceCount = 0,
-            blackCount = 0,
-            softCount = 0,
-            gorgoCount = 0,
-            hardCount = 0;
-        if ('FREQ_LACE' in data) {
-            laceCount = data['FREQ_LACE'];
-            coralCount += laceCount;
-        }
-        if ('FREQ_BLACK' in data) {
-            blackCount = data['FREQ_BLACK'];
-            coralCount += blackCount;
-        }
-        if ('FREQ_SOFT' in data) {
-            softCount = data['FREQ_SOFT'];
-            coralCount += softCount;
-        }
-        if ('FREQ_GORGO' in data) {
-            gorgoCount = data['FREQ_GORGO'];
-            coralCount += gorgoCount;
-        }
-        if ('FREQ_HARD' in data) {
-            hardCount = data['FREQ_HARD'];
-            coralCount += hardCount;
-        }
-        if (coralCount > 0) {
-            attrs.push({'display': 'Identified Corals', 'data': coralCount});
-            if (laceCount > 0) {
-                attrs.push({'tab': true, 'display': 'Lace Corals (' + laceCount + ')', 'data': ''});
-            }
-            if (blackCount > 0) {
-                attrs.push({'tab': true, 'display': 'Black/Thorny Corals (' + blackCount + ')', 'data': ''});
-            }
-            if (softCount > 0) {
-                attrs.push({'tab': true, 'display': 'Soft Corals (' + softCount + ')', 'data': ''});
-            }
-            if (gorgoCount > 0) {
-                attrs.push({'tab': true, 'display': 'Gorgonian Corals (' + gorgoCount + ')', 'data': ''});
-            }
-            if (hardCount > 0) {
-                attrs.push({'tab': true, 'display': 'Hard Corals (' + hardCount + ')', 'data': ''});
-            }
-        }
-        if ('FREQ_PENS' in data && data['FREQ_PENS'] > 0) {
-            var seaPenCount = data['FREQ_PENS'];
-            attrs.push({'display': 'Sea Pens Identified', 'data': seaPenCount});
-        }
-
-        //Shipwrecks
-        if ('BOEMSHPDEN' in data) {
-            attrs.push({'display': 'Number of Shipwrecks', 'data': data['BOEMSHPDEN']});
-        }
-
-        //Distance to Discharge Point Locations
-        if ('DISCHMEAN' in data) {
-            attrs.push({'display': 'Avg Distance to Offshore Discharge', 'data': data['DISCHMEAN'].toFixed(1) + ' miles'});
-        }
-        if ('DFLOWMEAN' in data) {
-            attrs.push({'display': 'Avg Distance to Flow-Only Offshore Discharge', 'data': data['DFLOWMEAN'].toFixed(1) + ' miles'});
-        }
-
-        //Dredge Disposal Locations
-        if ('DREDGE_LOC' in data) {
-            if (data['DREDGE_LOC'] > 0) {
-                attrs.push({'display': 'Contains a Dredge Disposal Location', 'data': ''});
-            } else {
-                attrs.push({'display': 'Does not contain a Dredge Disposal Location', 'data': ''});
-            }
-        }
-
-        //Unexploded Ordinances
-        if ('UXO' in data) {
-            if (data['UXO'] === 0) {
-                attrs.push({'display': 'No known Unexploded Ordnances', 'data': ''});
-            } else {
-                attrs.push({'display': 'Known to contain Unexploded Ordnance(s)', 'data': ''});
-            }
-        }
-        return attrs;
-    };*/
     return self;
 } //end viewModel
 

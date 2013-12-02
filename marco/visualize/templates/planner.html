@@ -557,13 +557,19 @@
                                               <span>Identify</span>
                                           </a>
                                           <!--Polygon Layer Search Button-->
+                                          <!--
                                           <a class="btn" id="btn-identify" data-bind="click: polygonIdentify, style: {color: polygonSelectActive() ? '#000000' : '#FFFFFF'}">
-                                              <i class="icon-polygon-select icon-large"></i>
+                                              <i data-bind="css: {'icon-polygon-select-active' : polygonSelectActive(), 'icon-polygon-select': !polygonSelectActive() }"></i>
+                                              <span>Polygon Select</span>
+                                          </a>
+                                          -->
+                                          <a class="btn" id="btn-identify" data-bind="click: polygonIdentify, style: {color: polygonQueryTool.polygonSelectActive() ? '#000000' : '#FFFFFF'}">
+                                              <i data-bind="css: {'icon-polygon-select-active' : polygonQueryTool.polygonSelectActive(), 'icon-polygon-select': !polygonQueryTool.polygonSelectActive() }"></i>
                                               <span>Polygon Select</span>
                                           </a>
                                           <!--Measure tool-->
-                                          <a class="btn" id="btn-measure-tool" data-bind="click: measurementTool.measureToolClick, style: {color: measurementTool.measureToolActive() ? '#000000' : '#FFFFFF'}">
-                                              <i class="icon-measure-tool icon-large" data-bind="style: {color: measurementTool.measureToolActive() ? '#000000' : '#FFFFFF'}"></i>
+                                          <a class="btn" id="btn-measure-tool" data-bind="click: measureToolClick, style: {color: measurementTool.measureToolActive() ? '#000000' : '#FFFFFF'}">
+                                              <i data-bind="css: {'icon-measure-tool-active' : measurementTool.measureToolActive(), 'icon-measure-tool': !measurementTool.measureToolActive() },style: {color: measurementTool.measureToolActive() ? '#000000' : '#FFFFFF'}"></i>
                                               <span>Measure</span>
                                           </a>
                                         </div> <!-- /Buttons -->
@@ -897,6 +903,7 @@
         <script src="{{MEDIA_URL}}/marco-proto/printing.js"></script>
         <script src="{{MEDIA_URL}}/marco-proto/saveData.js"></script>
         <script src="{{MEDIA_URL}}/marco-proto/measurementTool.js"></script>
+        <script src="{{MEDIA_URL}}/marco-proto/polygonQueryTool.js"></script>
         <script src="{{MEDIA_URL}}/marco-proto/app.js"></script>
         <script src="{{MEDIA_URL}}/marco-proto/pageguide.js"></script>
 
