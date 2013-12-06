@@ -8,6 +8,8 @@ import requests
 import logging
 import logging.config
 
+requestTimeout = 30   #Set a timeout of N seconds to throw an exception if the server hasn't responded.
+
 #PROXY_FORMAT = u"http://%s/%s" % (settings.PROXY_DOMAIN, u"%s")
 allowedDomain = "gsaaportal.org"
 def getLegendJSON(request, url):
@@ -63,7 +65,7 @@ def restQuery(request, url):
         parsedURL = urlparse(getUrl)
         logger.info("URL: %s" % (getUrl))
         try:
-          results = requests.get(getUrl)
+          results = requests.get(getUrl, timeout=requestTimeout)
         except Exception,e:
           if(logger):
             logger.exception(e)

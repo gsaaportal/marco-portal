@@ -141,9 +141,13 @@ app.init = function () {
     */
 
     ////////////////////////////////////////////////////////////////////////////////
-    //Polygon query tool control
-    //Set the style of the select polygon.
+    // ADD Polygon query tool control
     app.viewModel.polygonQueryTool.initializeMapControl(map);
+    // Add measure tool control.
+    app.viewModel.measurementTool.initializeMapControl(map);
+
+    //Set the style of the select polygon.
+
     /*
     var pgStyle = new OpenLayers.Style({
         //fillColor: '#FFFFFF',
@@ -186,7 +190,6 @@ app.init = function () {
     */
     //////////////////////////////////////////////////////////////////////////////////////////
     //Measure tool control
-    app.viewModel.measurementTool.initializeMapControl(map);
     /*
     var sketchSymbolizers = {
         "Point": {
@@ -517,46 +520,6 @@ app.addLayerToMap = function(layer, isVisible) {
         }
         else if (layer.type === 'ArcRest') {
 
-            /*var url = layer.url.replace('export','/identify');
-
-            var srCode = app.map.getProjection().split(':');
-
-            layer.identifyControl = new OpenLayers.Control.ArcGisRestIdentify({
-              proxy: "/proxy/rest_query/?url=",
-              url : url,
-              layerId: layer.arcgislayers,
-              sr : srCode[1],
-              tolerance : 2,
-
-              eventListeners: {
-                arcfeatureidentify : function()
-                {
-                  //When request is sent, reset the flag.
-                  layer.layerDataAvailable(false);
-                },
-
-                idresultarrived : function(responseText)
-                {
-                  var jsonFormat = new OpenLayers.Format.JSON();
-                  var returnJSON = jsonFormat.read(responseText.text);
-
-                  if('results' in returnJSON)
-                  {
-                    if(returnJSON['results'].length)
-                    {
-                      //There is layer data in the polygon requested, so set the observable true. This is reflected in the modal popup as either
-                      //an 'X' which is no data or a check mark for data.
-                      layer.layerDataAvailable(true);
-                    }
-                  }
-                  else
-                  {
-                    layer.layerDataAvailable(false);
-                  }
-                }
-              }
-            });
-            */
             var url = layer.url.replace('export', layer.arcgislayers + '/query');
             var esriQueryFields = [];
             for(var i = 0; i < layer.attributes.length; i++)

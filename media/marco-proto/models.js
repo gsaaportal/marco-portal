@@ -1184,6 +1184,11 @@ function viewModel() {
     //Button handler for the identify feature function.
     self.queryFeature = function(self, event)
     {
+      //Disable the measurement tool if it is enabled.
+      self.measurementTool.enableControl(false);
+      //Disable the polygon query tool.
+      self.polygonQueryTool.enableControl(false);
+
       //Toggle the state.
       if(self.queryFeatureActive() === false)
       {
@@ -1212,12 +1217,43 @@ function viewModel() {
 
     };
     //////////////////////////////////////////////////////
-    //POlygon selection tool.
+    //POlygon selection tool click handler.
     self.polygonIdentify = function(self, event)
     {
-      self.polygonQueryTool.polygonIdentify(event);
+      //Disable the measurement tool if it is enabled.
       self.measurementTool.enableControl(false);
+      //Enable the polygon query tool.
+      self.polygonQueryTool.polygonIdentify(event);
+      //If the query feature is active, deactivate it.
+      self.queryFeatureActive(false);
+      var layers = self.visibleLayers();
+      $.each(layers, function(index, layer) {
+        if("queryControl" in layer)
+        {
+          layer.queryControl.deactivate();
+        }
+      });
     };
+    //Measure tool click handler.
+    self.measureToolClick = function(event)
+    {
+      //If the polygonQueryTool is enabled, disable it.
+      self.polygonQueryTool.enableControl(false);
+      //Pass the event off to the measurementTool object.
+      self.measurementTool.measureToolClick(event);
+      //Go through our other controls: Identify and Polygon Query and disable them if there are on.
+
+      //If the query feature is active, deactivate it.
+      self.queryFeatureActive(false);
+      var layers = self.visibleLayers();
+      $.each(layers, function(index, layer) {
+        if("queryControl" in layer)
+        {
+          layer.queryControl.deactivate();
+        }
+      });
+    };
+
     /*self.polygonSelectActive = ko.observable(false);
     self.polygonIdentify = function(self, event)
     {
@@ -1292,23 +1328,6 @@ function viewModel() {
       }
     };*/
     //////////////////////////////////////////////////////////////
-    self.measureToolClick = function(event)
-    {
-      //If the polygonQueryTool is enabled, disable it.
-      self.polygonQueryTool.enableControl(false);
-      //Pass the event off to the measurementTool object.
-      self.measurementTool.measureToolClick(event);
-      //Go through our other controls: Identify and Polygon Query and disable them if there are on.
-
-      self.queryFeatureActive(false);
-      var layers = self.visibleLayers();
-      $.each(layers, function(index, layer) {
-        if("queryControl" in layer)
-        {
-          layer.queryControl.deactivate();
-        }
-      });
-    };
 
     // determines visibility of description overlay
     self.showDescription = ko.observable();
