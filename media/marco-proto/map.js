@@ -1,3 +1,4 @@
+
 app.init = function () {
     //to turn basemap indicator off (hide the plus sign)
     //see email from Matt on 7/26 2:24pm with list of controls
@@ -146,6 +147,10 @@ app.init = function () {
     // Add measure tool control.
     app.viewModel.measurementTool.initializeMapControl(map);
 
+
+    //Add the N icon
+    var compassIcon = new OpenLayers.CompassIcon('/media/marco-proto/assets/img/north-arrow.png');
+    map.addControl(compassIcon);
     //Set the style of the select polygon.
 
     /*
