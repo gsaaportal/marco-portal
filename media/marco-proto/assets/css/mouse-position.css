@@ -1,0 +1,25 @@
+div.olControlMousePosition {
+    color: #FFFFFF;
+    background: none repeat scroll 0 0 rgba(0, 60, 136, 0.5);
+    top: 1%;
+    right: 15%;
+    display: block;
+    font-family: "Helvetica Neue", Helvetica,Arial,sans-serif;
+    font-size: 14pt;
+    position: absolute;
+    height: 20px;
+}
+
+div.olControlScaleLine {
+  right: 10px;
+  left: auto;
+}
+
+div.mapIcon {
+  display: block;
+  bottom: 50px;
+  height: 32px;
+  width: 32px;
+  right: 10px;
+  left: auto;
+}
