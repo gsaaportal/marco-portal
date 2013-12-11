@@ -49,7 +49,7 @@ def getLegendJSON(request, url):
         else:
           return(HttpResponse(status=403))
 
-    return(HttpResponse('Request could not be processed.'))
+    return HttpResponse('Request could not be processed.')
 
 def restQuery(request, url):
     logger = logging.getLogger(__name__)
