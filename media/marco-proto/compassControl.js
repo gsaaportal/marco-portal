@@ -40,7 +40,7 @@ OpenLayers.CompassIcon = OpenLayers.Class(OpenLayers.Control, {
      */
     px: null,
 
-    displayClass: 'mapIcon',
+    displayClass: 'mapCompassIcon',
 
     map : null,
 
@@ -138,7 +138,7 @@ OpenLayers.CompassIcon = OpenLayers.Class(OpenLayers.Control, {
             //id, px, sz, imgURL,position, border, sizing,opacity, delayDisplay
             this.imageDiv = OpenLayers.Util.createAlphaImageDiv(id,
             null,
-            null, //this.size,
+            this.size,
             this.url,
             null,
             null,

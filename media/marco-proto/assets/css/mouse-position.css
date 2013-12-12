@@ -15,11 +15,8 @@ div.olControlScaleLine {
   left: auto;
 }
 
-div.mapIcon {
+div.mapCompassIcon {
   display: block;
   bottom: 50px;
-  height: 32px;
-  width: 32px;
-  right: 10px;
-  left: auto;
+  left: 5%;
 }

@@ -101,6 +101,8 @@ app.loadCompressedState = function(state) {
         app.print = true;
     }
     //DWR 2013-11-13
+    //Handles the saveData for the polygon query tool. If the data param is here, pick out the
+    //polygon to create the layer on the map. Also add the N compass point.
     if(state.data)
     {
 
@@ -135,6 +137,11 @@ app.loadCompressedState = function(state) {
       layer.addFeatures([feature]);
       layer.setVisibility(true);
       app.map.addLayer(layer);
+
+      //Add the N icon
+      var compassIcon = new OpenLayers.CompassIcon('/media/marco-proto/assets/img/north-arrow.png', {w: 32, h: 64});
+      app.map.addControl(compassIcon);
+
 
     }
 
