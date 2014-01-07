@@ -17,6 +17,7 @@ app.onResize = function(percent) {
         $("#designs-accordion").height(height - 20 - (($.browser.msie && $.browser.version < 9)? 130: 96));
         $("#active").height(height + 20 - (($.browser.msie && $.browser.version < 9)? 130: 96));
         $("#identify-feature").height(height + 20 - (($.browser.msie && $.browser.version < 9)? 130: 96));
+        $("#polygon-query").height(height + 20 - (($.browser.msie && $.browser.version < 9)? 130: 96));
     }
     app.map.render('map');
   }
@@ -85,6 +86,8 @@ app.viewModel.loadLayersFromServer().done(function() {
 
 // initialize the map
 app.init();
+
+
 //DWR
 app.map.setCenter(new OpenLayers.LonLat(-73.852, 31.933).transform(
   new OpenLayers.Projection("EPSG:4326"),

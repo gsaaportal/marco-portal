@@ -50,7 +50,7 @@
             </div>
             <div id="map-view" class="span7">
                 {% for view in views %}
-                    <iframe id="{{view.name}}-iframe" class="map-view-iframe" src="{{domain}}/embed/map/#{{view.url_hash}}&logo=false" width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                    <iframe onload="mapLoaded()" id="{{view.name}}-iframe" class="map-view-iframe" src="{{domain}}/embed/map/#{{view.url_hash}}&logo=false" width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                 {% endfor %}
             </div>
             <div class="span1">
@@ -88,21 +88,39 @@
 
 
 <script type="text/javascript" charset="utf-8">
-    window.onload = function() {
-        //$('#map-view-list .accordion-body').first().collapse('show');
-        //$('#map-view .map-view-iframe').first().show();
-        $(function () {
-            $("#healthy-ecosystems").popover();
-            $("#resilient-communities").popover();
-            $("#clean-waters").popover();
-            $("#working-waterfronts").popover();
-        });
-    };
+  var iframeLoaded = false;
+  var fromPage = unescape(document.referrer);
 
-    //madrona.onShow(function(){
-        //activeMapView( {{view.0.name}} );
-    //});
+  window.onload = function() {
+      //$('#map-view-list .accordion-body').first().collapse('show');
+      //$('#map-view .map-view-iframe').first().show();
+      $('body').focus();
+      $(function () {
+          $("#healthy-ecosystems").popover();
+          $("#resilient-communities").popover();
+          $("#clean-waters").popover();
+          $("#working-waterfronts").popover();
+      });
+      //console.log("Window " + window.history.length);
+      //console.log("Parent " + parent.history.length);
+
+      iframeLoaded = true;
+  };
+  function mapLoaded()
+  {
+    //Attempt to fix quirky behavior in older IEs were the page has an iframe and it handles the browser back button
+    //to just reload the iframe. The iframe onload function here gets called before the parents onload above. We use
+    //this to then see if the mapLoaded function is called again, it's because the user has clicked the back buton on the browser.
+    if(iframeLoaded)
+    {
+      window.open(fromPage, '_self', '', false);
+    }
+  }
+  //madrona.onShow(function(){
+      //activeMapView( {{view.0.name}} );
+  //});
 </script>
+
 
 <style type="text/css">
 #map-view-pane {

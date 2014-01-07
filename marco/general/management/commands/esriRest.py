@@ -20,7 +20,9 @@ class esriRest(dict):
     try:
       results = self.queryRestData(self.restUrl, params)
     except Exception,e:
-      self.logger.exception(e)
+      if(self.logger):
+        self.logger.exception(e)
+      raise
     else:
       if(results.status_code == 200):
         #self.jsonResults = json.loads(results.text)

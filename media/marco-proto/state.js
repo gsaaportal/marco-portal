@@ -1,6 +1,6 @@
 // represents whether or not restoreState is currently being updated
-// example use:  saveStateMode will be false when a user is viewing a bookmark 
-app.saveStateMode = true; 
+// example use:  saveStateMode will be false when a user is viewing a bookmark
+app.saveStateMode = true;
 
 // save the state of app
 app.getState = function () {
@@ -9,10 +9,11 @@ app.getState = function () {
                 layers = $.map(app.viewModel.activeLayers(), function(layer) {
                     //return {id: layer.id, opacity: layer.opacity(), isVisible: layer.visible()};
                     return [ layer.id, layer.opacity(), layer.visible() ];
-                });   
-    return {
+                });
+
+    var retVal = {
         x: center.lon.toFixed(2),
-        y: center.lat.toFixed(2), 
+        y: center.lat.toFixed(2),
         z: app.map.getZoom(),
         logo: app.viewModel.showLogo(),
         dls: layers.reverse(),
@@ -23,10 +24,12 @@ app.getState = function () {
         layers: app.viewModel.showLayers() ? 'true': 'false'
         //and active tab
     };
+
+    return(retVal);
 };
 
 $(document).on('map-ready', function () {
-    app.state = app.getState();
+  app.state = app.getState();
 });
 
 app.layersAreLoaded = false;
@@ -49,10 +52,10 @@ app.establishLayerLoadState = function () {
             }
         }, 100);
     }
-        
+
 };
 // load compressed state (the url was getting too long so we're compressing it
-app.loadCompressedState = function(state) { 
+app.loadCompressedState = function(state) {
     // turn off active laters
     // create a copy of the activeLayers list and use that copy to iteratively deactivate
     var activeLayers = $.map(app.viewModel.activeLayers(), function(layer) {
@@ -68,7 +71,7 @@ app.loadCompressedState = function(state) {
             var id = state.dls[x+2],
                 opacity = state.dls[x+1],
                 isVisible = state.dls[x];
-                
+
             if (app.viewModel.layerIndex[id]) {
                 app.viewModel.layerIndex[id].activateLayer();
                 app.viewModel.layerIndex[id].opacity(opacity);
@@ -87,14 +90,61 @@ app.loadCompressedState = function(state) {
             $('#designsTab').tab('show'); //to activate the loading of designs
        }
     }
-    
+
     if (state.logo === 'false') {
         app.viewModel.hideLogo();
     }
-    
+
+
     if (state.print === 'true') {
         app.printMode();
+        app.print = true;
     }
+    //DWR 2013-11-13
+    //Handles the saveData for the polygon query tool. If the data param is here, pick out the
+    //polygon to create the layer on the map. Also add the N compass point.
+    if(state.data)
+    {
+
+      var jsonData;
+      //For some reason the $.deparam function adds an empty array when pulling apart the data={} part that contains the
+      //layer and polygon data.
+      if(typeof(state.data).toLowerCase() === "string")
+      {
+        jsonData = state.data;
+      }
+      else
+      {
+        jsonData = state.data[1];
+      }
+      jsonData = JSON.parse(jsonData);
+
+      app.viewModel.queryPolygon = jsonData.polygon;
+      var points = [];
+      var fromProj = new OpenLayers.Projection("EPSG:4326");
+      var toProj   = new OpenLayers.Projection("EPSG:102113");
+
+      for(var i = 0; i < jsonData.polygon.length; i++)
+      {
+        var origPt = jsonData.polygon[i];
+        points.push(new OpenLayers.Geometry.Point(origPt[0], origPt[1]).transform(fromProj, toProj));
+      }
+      var ring = new OpenLayers.Geometry.LinearRing(points);
+      var polygon = new OpenLayers.Geometry.Polygon([ring]);
+
+      var feature = new OpenLayers.Feature.Vector(polygon);
+      var layer = new OpenLayers.Layer.Vector("QueryPolygon");
+      layer.addFeatures([feature]);
+      layer.setVisibility(true);
+      app.map.addLayer(layer);
+
+      //Add the N icon
+      var compassIcon = new OpenLayers.CompassIcon('/media/marco-proto/assets/img/north-arrow.png', {w: 32, h: 64});
+      app.map.addControl(compassIcon);
+
+
+    }
+
     if (state.borderless === 'true') {
         app.borderLess();
     }
@@ -120,14 +170,14 @@ app.loadCompressedState = function(state) {
                     }
                 }
             });
-        } 
+        }
     }
-    
+
     //if (app.embeddedMap) {
     if ( $(window).width() < 768 || app.embeddedMap ) {
         state.tab = "data";
     }
-    
+
     // active tab -- the following prevents theme and data layers from loading in either tab (not sure why...disbling for now)
     // it appears the dataTab show in state.themes above was causing the problem...?
     // timeout worked, but then realized that removing datatab show from above worked as well...
@@ -140,7 +190,7 @@ app.loadCompressedState = function(state) {
     } else {
         setTimeout( function() { $('#dataTab').tab('show'); }, 200 );
     }
-    
+
     if ( state.legends && state.legends === 'true' ) {
         app.viewModel.showLegend(true);
     } else {
@@ -165,13 +215,13 @@ app.loadCompressedState = function(state) {
     //app.map.setCenter(
     //    new OpenLayers.LonLat(state.x, state.y).transform(
     //        new OpenLayers.Projection("EPSG:4326"), new OpenLayers.Projection("EPSG:900913") ), state.z);
-    
+
     // is url is indicating a login request then show the login modal
     // /visualize/#login=true
-    if (!app.is_authenticated && state.login) { // not sure 
+    if (!app.is_authenticated && state.login) { // not sure
         $('#sign-in-modal').modal('show');
     }
-    
+
 };
 
 app.setMapPosition = function(x, y, z) {
@@ -200,6 +250,13 @@ app.loadState = function(state) {
 
     if (state.print === 'true') {
         app.printMode();
+        app.print = true;
+    }
+    //DWR 2013-11-13
+    if(state.data)
+    {
+      var jsonData = JSON.parse(state.data);
+      app.queryPolygon = jsonData.polygon;
     }
     if (state.borderless === 'true') {
         app.borderLess();
@@ -210,7 +267,7 @@ app.loadState = function(state) {
         return layer;
     });
     //var activeLayers = $.extend({}, app.viewModel.activeLayers());
-    
+
     // turn on the layers that should be active
     app.viewModel.deactivateAllLayers();
     if (state.activeLayers) {
@@ -227,7 +284,7 @@ app.loadState = function(state) {
             }
        });
     }
-    
+
     if (state.basemap) {
         app.map.setBaseLayer(app.map.getLayersByName(state.basemap.name)[0]);
     }
@@ -248,10 +305,10 @@ app.loadState = function(state) {
                         app.viewModel.openThemes.remove(theme);
                     }
                 });
-            } 
+            }
         }
     }
-    
+
     if ( state.legends && state.legends.visible === "true" ) {
         app.viewModel.showLegend(true);
     } else {
@@ -270,14 +327,14 @@ app.loadState = function(state) {
         app.viewModel.mapTitle(state.title);
     }
 
-    
+
     // Google.v3 uses EPSG:900913 as projection, so we have to
     // transform our coordinates
     if (state.location) {
         app.map.setCenter(new OpenLayers.LonLat(state.location.x, state.location.y).transform(
         new OpenLayers.Projection("EPSG:4326"), new OpenLayers.Projection("EPSG:900913")), state.location.zoom);
     }
-    
+
     // is url is indicating a login request then show the login modal
     if (!app.is_authenticated && state.login) {
         $('#sign-in-modal').modal('show');
@@ -286,14 +343,14 @@ app.loadState = function(state) {
 
 // load the state from the url hash
 
-app.loadStateFromHash = function (hash) { 
+app.loadStateFromHash = function (hash) {
     app.loadState($.deparam(hash.slice(1)));
 };
 
 // update the hash
 app.updateUrl = function () {
     var state = app.getState();
-    
+
     // save the restore state
     if (app.saveStateMode) {
         app.restoreState = state;
@@ -301,5 +358,3 @@ app.updateUrl = function () {
     window.location.hash = $.param(state);
     app.viewModel.currentURL(window.location.pathname + window.location.hash);
 };
-
-

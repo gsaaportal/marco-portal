@@ -45,10 +45,12 @@ OpenLayers.Control.ArcGisBaseRest = OpenLayers.Class(OpenLayers.Control, {
 
 OpenLayers.Control.ArcGisRestIdentify = OpenLayers.Class(OpenLayers.Control, {
   eventListeners:null,
-  layerId: null,
+  freehand : true,
+
+  layerIds: null,
+
   //We can ask for top, visible, all, see layers description below.
   layersToId : 'all',
-  freehand : true,
 
   url : null,
   proxy : null,
@@ -57,7 +59,7 @@ OpenLayers.Control.ArcGisRestIdentify = OpenLayers.Class(OpenLayers.Control, {
   //resultarrived is the event fired when the server has returned the query requests. This will contain the data queried.
   //arcfeatureidentify is the event fired when the server request is about to be made. This can be used to display a loading indicator
   // or do any other pre-query preperations.
-  EVENT_TYPES : ["resultarrived","arcfeatureidentify"],
+  EVENT_TYPES : ["idresultarrived","arcfeatureidentify"],
 
   //Rest parameters, descriptions taken from the ESRI API pages:http://help.arcgis.com/en/arcgisserver/10.0/apis/rest/
   //Required
@@ -129,11 +131,12 @@ OpenLayers.Control.ArcGisRestIdentify = OpenLayers.Class(OpenLayers.Control, {
 
   initialize: function(options)
   {
+    this.currentRqst = null;
+    this.layerIds = [];
     //Call the base class initialize first.
     OpenLayers.Control.prototype.initialize.apply(
             this, arguments
     );
-
     if(this.geometryType == null)
     {
       this.geometryType = "esriGeometryPolygon";
@@ -186,9 +189,10 @@ OpenLayers.Control.ArcGisRestIdentify = OpenLayers.Class(OpenLayers.Control, {
     {
       geometry = this.geometry.join();
     }
+
     var queryoptions =
     {
-      layers        : this.layersToId + ":" + this.layerId,
+      layers        : this.layersToId + ":" + this.layerIds.join(),
       geometry      : geometry,
       geometryType  : this.geometryType,
       sr            : this.sr,
@@ -203,6 +207,7 @@ OpenLayers.Control.ArcGisRestIdentify = OpenLayers.Class(OpenLayers.Control, {
     var query = {
             url: this.url,
             params : queryoptions,
+            async: true,
             proxy: this.proxy,
             callback: function(request)
             {
@@ -216,7 +221,8 @@ OpenLayers.Control.ArcGisRestIdentify = OpenLayers.Class(OpenLayers.Control, {
   request: function(evt)
   {
     queryOptions = this.buildOptions();
-    var request = OpenLayers.Request.GET(queryOptions);
+    //var request = OpenLayers.Request.GET(queryOptions);
+    this.currentRqst = OpenLayers.Request.GET(queryOptions);
   },
 
   doQuery: function(evt)
@@ -225,12 +231,22 @@ OpenLayers.Control.ArcGisRestIdentify = OpenLayers.Class(OpenLayers.Control, {
     this.request(evt);
   },
 
+  cancelRequest : function()
+  {
+    if(this.currentRqst)
+    {
+      this.currentRqst.abort();
+      //this.currentRqst = null;
+    }
+  },
+
   handleresult: function(result)
   {
-    this.events.triggerEvent("resultarrived",
+    this.events.triggerEvent("idresultarrived",
     {
-      text:result.responseText
+      response : result
     });
+    //this.currentRqst = null;
   },
 
 });

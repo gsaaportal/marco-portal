@@ -10,6 +10,7 @@ from madrona.features import get_feature_by_uid
 import settings
 from models import *
 from data_manager.models import *
+import logging
 
 def show_planner(request, template='planner.html'):
     try:
@@ -19,16 +20,16 @@ def show_planner(request, template='planner.html'):
     context = {'MEDIA_URL': settings.MEDIA_URL, 'SOCKET_URL': socket_url, 'login': 'true'}
     if settings.UNDER_MAINTENANCE_TEMPLATE:
         return render_to_response('under_maintenance.html', RequestContext(request, context))
-    return render_to_response(template, RequestContext(request, context)) 
-    
+    return render_to_response(template, RequestContext(request, context))
+
 def show_embedded_map(request, template='map.html'):
     context = {'MEDIA_URL': settings.MEDIA_URL}
-    return render_to_response(template, RequestContext(request, context)) 
-    
+    return render_to_response(template, RequestContext(request, context))
+
 def show_mobile_map(request, template='mobile-map.html'):
     context = {'MEDIA_URL': settings.MEDIA_URL}
-    return render_to_response(template, RequestContext(request, context)) 
-    
+    return render_to_response(template, RequestContext(request, context))
+
 def get_sharing_groups(request):
     from madrona.features import user_sharing_groups
     from functools import cmp_to_key
@@ -49,42 +50,42 @@ def get_sharing_groups(request):
             'group_slug': slugify(group.name)+'-sharing',
             'members': sorted_members
         })
-    return HttpResponse(dumps(json))    
-     
+    return HttpResponse(dumps(json))
+
 '''
-'''    
+'''
 def share_bookmark(request):
     group_names = request.POST.getlist('groups[]')
     bookmark_uid = request.POST['bookmark']
     bookmark = get_feature_by_uid(bookmark_uid)
-    
+
     viewable, response = bookmark.is_viewable(request.user)
     if not viewable:
         return response
-        
+
     #remove previously shared with groups, before sharing with new list
     bookmark.share_with(None)
-    
+
     groups = []
     for group_name in group_names:
         groups.append(Group.objects.get(name=group_name))
-        
+
     bookmark.share_with(groups, append=False)
-    
+
     return HttpResponse("", status=200)
-    
+
 '''
-'''    
+'''
 def get_bookmarks(request):
     #sync the client-side bookmarks with the server side bookmarks
     #update the server-side bookmarks and return the new list
-    try:        
+    try:
         bookmark_dict = parser.parse(request.POST.urlencode())['bookmarks']
     except:
         bookmark_dict = {}
     try:
         #loop through the list from the client
-        #if user, bm_name, and bm_state match then skip 
+        #if user, bm_name, and bm_state match then skip
         #otherwise, add to the db
         for key,bookmark in bookmark_dict.items():
             try:
@@ -92,22 +93,22 @@ def get_bookmarks(request):
             except Bookmark.DoesNotExist:
                 new_bookmark = Bookmark(user=request.user, name=bookmark['name'], url_hash=bookmark['hash'])
                 new_bookmark.save()
-            except: 
+            except:
                 continue
-    
-        #grab all bookmarks belonging to this user 
-        #serialize bookmarks into 'name', 'hash' objects and return simplejson dump 
+
+        #grab all bookmarks belonging to this user
+        #serialize bookmarks into 'name', 'hash' objects and return simplejson dump
         content = []
         bookmark_list = Bookmark.objects.filter(user=request.user)
         for bookmark in bookmark_list:
             sharing_groups = [group.name for group in bookmark.sharing_groups.all()]
-            content.append({ 
-                'uid': bookmark.uid, 
+            content.append({
+                'uid': bookmark.uid,
                 'name': bookmark.name,
-                'hash': bookmark.url_hash, 
+                'hash': bookmark.url_hash,
                 'sharing_groups': sharing_groups
             })
-        
+
         shared_bookmarks = Bookmark.objects.shared_with_user(request.user)
         for bookmark in shared_bookmarks:
             if bookmark not in bookmark_list:
@@ -116,7 +117,7 @@ def get_bookmarks(request):
                 content.append({
                     'uid': bookmark.uid,
                     'name': bookmark.name,
-                    'hash': bookmark.url_hash, 
+                    'hash': bookmark.url_hash,
                     'shared': True,
                     'shared_by_username': username,
                     'shared_by_name': actual_name
@@ -124,16 +125,16 @@ def get_bookmarks(request):
         return HttpResponse(simplejson.dumps(content), mimetype="application/json", status=200)
     except:
         return HttpResponse(status=304)
-    
-def remove_bookmark(request): 
+
+def remove_bookmark(request):
     try:
         bookmark_uid = request.POST['uid']
         bookmark = get_feature_by_uid(bookmark_uid)
-        
+
         viewable, response = bookmark.is_viewable(request.user)
         if not viewable:
             return response
-        
+
         bookmark.delete()
         return HttpResponse(status=200)
     except:
@@ -147,12 +148,30 @@ def add_bookmark(request):
         content = []
         content.append({
             'uid': bookmark.uid,
-            'name': bookmark.name, 
-            'hash': bookmark.url_hash, 
+            'name': bookmark.name,
+            'hash': bookmark.url_hash,
             'sharing_groups': sharing_groups
         })
         print 'returning content'
         return HttpResponse(simplejson.dumps(content), mimetype="application/json", status=200)
     except:
         return HttpResponse(status=304)
-        
+
+def create_polygon_query_client_file(request):
+  logger = logging.getLogger(__name__)
+  logger.info("Begin create_polygon_query_client_file")
+  retVal = None
+  try:
+
+    if request.is_ajax():
+      jsonData = simplejson.loads(request.raw_post_data)
+      logger.debug('Data: "%s"' % jsonData)
+
+    retVal =  HttpResponse('lalala', status=200)
+  except Exception,e:
+    logger.exception(e)
+    retVal = HttpResponse(status=304)
+
+  logger.info("End create_polygon_query_client_file")
+
+  return(retVal)

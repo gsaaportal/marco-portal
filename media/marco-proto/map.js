@@ -1,5 +1,5 @@
-app.init = function () {
 
+app.init = function () {
     //to turn basemap indicator off (hide the plus sign)
     //see email from Matt on 7/26 2:24pm with list of controls
     var map = new OpenLayers.Map(null, {
@@ -20,6 +20,7 @@ app.init = function () {
         isBaseLayer: true,
         //numZoomLevels: 13
     });
+
     googleStreet = new OpenLayers.Layer.Google("Google Streets", {
         sphericalMercator: true,
         isBaseLayer: true,
@@ -65,6 +66,8 @@ app.init = function () {
         }
     );
 
+    //northIcon = new OpenLayers.Layer.Image({url: })
+
     map.addLayers([esriOcean, openStreetMap, googleStreet, googleTerrain, googleSatellite, nauticalCharts]);
 
     //map.addLayers([esriOcean]);
@@ -73,14 +76,16 @@ app.init = function () {
     map.addControl(new SimpleLayerSwitcher());
 
     //Scale Bar
-    var scalebar = new OpenLayers.Control.ScaleBar( {
-        displaySystem: "english",
+    scalebar = new OpenLayers.Control.ScaleLine();
+
+    /*var scalebar = new OpenLayers.Control.ScaleBar( {
+        displaySystem: "english,metric",
         minWidth: 100, //default
         maxWidth: 150, //default
         divisions: 2, //default
         subdivisions: 2, //default
         showMinorMeasures: false //default
-    });
+    });*/
     map.addControl(scalebar);
 
     map.zoomBox = new OpenLayers.Control.ZoomBox( {
@@ -88,6 +93,10 @@ app.init = function () {
     });
 
     map.addControl(map.zoomBox);
+
+    map.addControl(new OpenLayers.Control.MousePosition({
+      numDigits: 3
+      }));
 
     // only allow onetime zooming with box
     map.events.register("zoomend", null, function () {
@@ -131,13 +140,19 @@ app.init = function () {
         app.viewModel.attributeData(false);
     };
     */
-    //Add a vector layer to draw our polygon selection on for use with the "Does layer have data here" ESRI quesry.
-    var polygonLayer = new OpenLayers.Layer.Vector("Polygon Layer");
-    map.addLayer(polygonLayer);
-    app.polygonDraw = new OpenLayers.Control.DrawFeature(polygonLayer, OpenLayers.Handler.Polygon, {
-      featureAdded : app.viewModel.selectionPolygonAdded
-    });
-    map.addControl(app.polygonDraw);
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // ADD Polygon query tool control
+    app.viewModel.polygonQueryTool.initializeMapControl(map);
+    // Add measure tool control.
+    app.viewModel.measurementTool.initializeMapControl(map);
+
+
+    //Add the N icon
+    //var compassIcon = new OpenLayers.CompassIcon('/media/marco-proto/assets/img/north-arrow.png', {h: 64, w: 64});
+    //map.addControl(compassIcon);
+
+    //////////////////////////////////////////////////////////////////////////////////////////
 
     app.map = map;
 
@@ -418,35 +433,8 @@ app.addLayerToMap = function(layer, isVisible) {
             }
         }
         else if (layer.type === 'ArcRest') {
-            var url = layer.url.replace('export','/identify');
-            var srCode = app.map.getProjection().split(':');
 
-            layer.identifyControl = new OpenLayers.Control.ArcGisRestIdentify({
-              proxy: "/proxy/rest_query/?url=",
-              url : url,
-              layerId: layer.arcgislayers,
-              sr : srCode[1],
-              tolerance : 2,
-
-              eventListeners: {
-                arcfeaturequery : layer.arcFeatureQueryHandler,
-                resultarrived : layer.identifyQueryResultHandler
-                /*
-                function()
-                {
-                  //Show the identify tab.
-                  $('#identifyTab').tab('show');
-                },
-                //THis is the handler for the return click data.
-                resultarrived : function(responseText)
-                {
-
-                }
-                */
-              }
-            });
-
-            url = layer.url.replace('export', layer.arcgislayers + '/query');
+            var url = layer.url.replace('export', layer.arcgislayers + '/query');
             var esriQueryFields = [];
             for(var i = 0; i < layer.attributes.length; i++)
             {

@@ -17,7 +17,6 @@ function layerModel(options, parent) {
     self.legendType = null;
     self.legendSubTitle = options.legend_subtitle || false;
     self.legendTable = ko.observable(false);
-    self.topics = ko.observableArray();
     self.themes = ko.observableArray();
     //self.attributeTitle = options.attributes ? options.attributes.title : self.name;
     self.attributes = options.attributes ? options.attributes.attributes : [];
@@ -36,14 +35,67 @@ function layerModel(options, parent) {
 
     self.restLegend = [];
 
+    //WHen the layer is issued the identify request, if there are results there, this is set to true.
+    self.layerDataAvailable = ko.observable(false);
+
     if(self.type === 'ArcRest')
     {
       //Control for doing a REST query for getting data from the layer when the user clicks on a point.
       self.queryControl = null;
-      //Control for doing a REST identify for determining if the layer has data in the polygon.
-      self.identifyControl = null;
 
-      self.layerDataAvailable = ko.observable(null);
+      var url = self.url.replace('export','/identify');
+      var srCode = app.map.getProjection().split(':');
+
+
+      self.arcfeatureidentify = function()
+      {
+        //When request is sent, reset the flag.
+        self.layerDataAvailable(false);
+      };
+      /*
+      self.idresultarrived = function(result)
+      {
+        var response = result.response;
+        if(response.status == 200)
+        {
+          var jsonFormat = new OpenLayers.Format.JSON();
+          var returnJSON = jsonFormat.read(response.responseText);
+
+          if('results' in returnJSON)
+          {
+            if(returnJSON['results'].length)
+            {
+              //There is layer data in the polygon requested, so set the observable true. This is reflected in the modal popup as either
+              //an 'X' which is no data or a check mark for data.
+              self.layerDataAvailable(true);
+            }
+          }
+          else
+          {
+            self.layerDataAvailable(false);
+          }
+        }
+        else
+        {
+          self.layerDataAvailable(false);
+        }
+      };*/
+
+      //Control for doing a REST identify for determining if the layer has data in the polygon.
+      /*
+      self.identifyControl = new OpenLayers.Control.ArcGisRestIdentify({
+        proxy: "/proxy/rest_query/?url=",
+        url : url,
+        layerId: self.arcgislayers,
+        sr : srCode[1],
+        tolerance : 2,
+
+        eventListeners: {
+          arcfeatureidentify : self.arcfeatureidentify,
+          idresultarrived : self.idresultarrived
+        }
+      });
+      */
 
     }
 
@@ -64,38 +116,9 @@ function layerModel(options, parent) {
     {
       self.legendTable('Loading: ' + legendURL);
 
-
       $.get('/proxy/get_legend_json?url=' + legendURL, function(data) {
         self.legendTable(data);
       });
-        /*
-        var jqxhr = $.get(legendURL, function(data, textStatus, jqxhr)
-        {
-          self.legendTable(data);
-        },
-        "html").fail(function(jqxhr, textStatus, errorMsg)
-      {
-        var errorBuf = "Unable to load: " + legendURL + " Status: " + jqxhr.status + " Status Msg: " + jqxhr.statusText + " " + jqxhr.responseText;
-        self.legendTable(errorBuf);
-      });
-      */
-      /*$.ajax(legendURL,
-        {
-          async : false,
-          type: "POST",
-          dataType: "HTML",
-          mimeType: "text/html",
-          success : function(data, textStatus, jqxhr)
-            {
-              self.legendTable(data);
-            },
-          error: function(jqxhr, textStatus, errorMsg)
-            {
-              var errorBuf = "Unable to load: " + legendURL + " Status: " + jqxhr.status + " Status Msg: " + jqxhr.statusText + " Response: " + jqxhr.responseText;
-              self.legendTable(errorBuf);
-            }
-        });*/
-
     };
 
     // set overview text for Learn More option
@@ -457,6 +480,67 @@ function layerModel(options, parent) {
 
     self.showSublayers = ko.observable(false);
 
+    //Work around for accordion issue with transitions and tabs.
+    self.showPGToolSublayers = ko.observable(false);
+    self.togglePGToolLayerActive = function(self,event)
+    {
+      var layer = this;
+      app.viewModel.activeLayer(layer);
+
+      //handle possible dropdown/sublayer behavior
+      if (layer.subLayers.length)
+      {
+        app.viewModel.activeParentLayer(layer);
+        if (!layer.activeSublayer())
+        { //if layer does not have an active sublayer, then show/hide drop down menu
+          if (!layer.showPGToolSublayers()) {
+              //show drop-down menu
+              layer.showPGToolSublayers(true);
+          }
+          else {
+              //hide drop-down menu
+              layer.showPGToolSublayers(false);
+          }
+        }
+        else if ( layer.type === 'checkbox' )
+        { //else if layer does have an active sublayer and it's checkbox (not radio)
+          if (!layer.showPGToolSublayers()) {
+              //show drop-down menu
+              layer.showPGToolSublayers(true);
+          }
+          else {
+              //hide drop-down menu
+              layer.showPGToolSublayers(false);
+          }
+        }
+        else if ( layer.type === 'radio' )
+        { //perhaps same behavior should
+          if (!layer.showPGToolSublayers()) {
+              //show drop-down menu
+              layer.showPGToolSublayers(true);
+          }
+          else {
+              //hide drop-down menu
+              layer.showPGToolSublayers(false);
+          }
+        }
+        else
+        {
+          //turn off layer
+          layer.deactivateLayer();
+          layer.showPGToolSublayers(false);
+        }
+        return;
+      }
+
+      if (layer.active()) { // if layer is active
+          layer.deactivateLayer();
+      } else { // otherwise layer is not currently active
+          layer.activateLayer();
+      }
+
+    };
+
     self.showSublayers.subscribe(function () {
         setTimeout(function () {
             if ( app.viewModel.activeLayer().subLayers.length > 1 ) {
@@ -483,31 +567,38 @@ function layerModel(options, parent) {
                 }
                 $('#mobile-data-right-button').show();
                 $('#mobile-map-right-button').hide();
-            } else if (!layer.activeSublayer()) { //if layer does not have an active sublayer, then show/hide drop down menu
+            }
+            else if (!layer.activeSublayer()) { //if layer does not have an active sublayer, then show/hide drop down menu
                 if (!layer.showSublayers()) {
                     //show drop-down menu
                     layer.showSublayers(true);
-                } else {
+                }
+                else {
                     //hide drop-down menu
                     layer.showSublayers(false);
                 }
-            } else if ( layer.type === 'checkbox' ) { //else if layer does have an active sublayer and it's checkbox (not radio)
+            }
+            else if ( layer.type === 'checkbox' ) { //else if layer does have an active sublayer and it's checkbox (not radio)
                 if (!layer.showSublayers()) {
                     //show drop-down menu
                     layer.showSublayers(true);
-                } else {
+                }
+                else {
                     //hide drop-down menu
                     layer.showSublayers(false);
                 }
-            } else if ( layer.type === 'radio' ) { //perhaps same behavior should
+            }
+            else if ( layer.type === 'radio' ) { //perhaps same behavior should
                 if (!layer.showSublayers()) {
                     //show drop-down menu
                     layer.showSublayers(true);
-                } else {
+                }
+                else {
                     //hide drop-down menu
                     layer.showSublayers(false);
                 }
-            } else {
+            }
+            else {
                 //turn off layer
                 layer.deactivateLayer();
                 layer.showSublayers(false);
@@ -595,9 +686,6 @@ function layerModel(options, parent) {
 
     // display descriptive text below the map
     self.toggleDescription = function(layer) {
-		//DWR
-        //Turn off the topicInfo.
-        app.viewModel.showTopicDescription(false);
         if ( ! layer.infoActive() ) {
             self.showDescription(layer);
         } else {
@@ -656,6 +744,7 @@ function layerModel(options, parent) {
         layer.showSublayers(false);
     };
 
+    /*
     self.arcFeatureQueryHandler = function(evt)
     {
       self.layerDataAvailable(false)
@@ -682,113 +771,10 @@ function layerModel(options, parent) {
         self.layerDataAvailable(false)
       }
     }
-
+    */
     return self;
 } // end layerModel
 
-
-function topicModel(options) {
-  var self = this;
-
-  // array of layers associated with the topic.
-  //self.layers = ko.observableArray();
-  self.themes = [];
-  self.layers =[];
-  self.display_name = options.display_name;
-  self.id = options.id;
-  self.description = options.description;
-  self.learn_link = options.learn_link;
-
-  self.topicActive = ko.observable(false);
-
-  self.activateTopic = function()
-  {
-    self.topicActive(true);
-    for(var i = 0; i < self.layers.length; i++)
-    {
-      var layerObj = self.layers[i];
-      //Check to see if the layer has sublayers.
-      if(layerObj.subLayers.length)
-      {
-        $.each(layerObj.subLayers, function(i, sublayer)
-        {
-          sublayer.activateLayer(false);
-        });
-      }
-      else
-      {
-        layerObj.activateLayer(false);
-      }
-    }
-  };
-  self.deactivateTopic = function()
-  {
-    self.topicActive(false);
-    for(var i = 0; i < self.layers.length; i++)
-    {
-      var layerObj = self.layers[i];
-      //Check to see if the layer has sublayers.
-      if(layerObj.subLayers.length)
-      {
-        $.each(layerObj.subLayers, function(i, sublayer)
-        {
-          sublayer.deactivateLayer();
-        });
-      }
-      else
-      {
-        layerObj.deactivateLayer();
-      }
-    }
-  };
-  /*
-  //Make the selected topic active/inactive depending on its current state.
-  self.toggleTopicActive = function(topic)
-  {
-    if(self.topicActive() === false)
-    {
-      self.activateTopic()
-    }
-    //Topic is active, user is attempting to deactivate it.
-    else
-    {
-      self.deactivateTopic()
-    }
-    app.viewModel.topicChange(topic);
-  }*/
-
-  //Event handler for the topic info window.
-  self.topicDescriptionActive = ko.observable(false);
-
-  app.viewModel.showTopicDescription.subscribe( function()
-  {
-    if( app.viewModel.showTopicDescription() === false )
-    {
-      self.topicDescriptionActive(false);
-    }
-  });
-
-  self.toggleTopicDescription = function(topic)
-  {
-    app.viewModel.showDescription(false);
-
-    //If the topic description window is already open, close it.
-    if ( topic.topicDescriptionActive() )
-    {
-      app.viewModel.showTopicDescription(false);
-    }
-    else
-    {
-      app.viewModel.showTopicDescription(false);
-      app.viewModel.activeTopicInfo(topic);
-      self.topicDescriptionActive(true);
-      app.viewModel.showTopicDescription(true);
-    }
-  };
-
-
-  return(self);
-}
 
 function themeModel(options) {
     var self = this;
@@ -844,10 +830,122 @@ function themeModel(options) {
         return false;
     };
 
+    self.pgToolThemeClick = function()
+    {
+      var theme = this;
+      // ensure data tab is activated
+      $('#polygonQueryTab').tab('show');
+
+      if (self.isPGToolOpenTheme(theme))
+      {
+          app.viewModel.openPGToolsThemes.remove(theme);
+          app.viewModel.updateScrollBars();
+      }
+      else
+      {
+          app.viewModel.openPGToolsThemes.push(theme);
+          app.viewModel.updateScrollBars();
+      }
+    };
+
+    //is in openThemes
+    self.isPGToolOpenTheme = function() {
+        var theme = this;
+
+        if (app.viewModel.openPGToolsThemes.indexOf(theme) !== -1) {
+            return true;
+        }
+        return false;
+    };
     self.hideTooltip = function(theme, event) {
         $('.layer-popover').hide();
     };
 
+    self.layerDataAvailable = ko.observableArray();
+    self.restIdentifyControls = [];
+    self.outstandingQueries = ko.observable(false);
+    self.createIdControls = function()
+    {
+      self.addIdentifyEntry = function(layer)
+      {
+        var url = layer.url.replace('export','identify');
+
+        var curControl = null;
+        for(var j = 0; j < self.restIdentifyControls.length; j++)
+        {
+          //Check to see if we already have a control setup for this url, if so, we just add the layer index.
+          if(self.restIdentifyControls[j].url === url)
+          {
+            curControl = self.restIdentifyControls[j];
+            break;
+          }
+        }
+        //Url is not already in a control, so we create one.
+        if(curControl === null)
+        {
+          //Control for doing a REST identify for determining if the layer has data in the polygon.
+          curControl = new OpenLayers.Control.GSAAPolygonRestIdentify({
+            themeModel : self,
+            viewModel : app.viewModel,
+            proxy: "/proxy/rest_query/?url=",
+            url : url,
+            sr : srCode[1],
+            tolerance : 2
+          });
+          self.restIdentifyControls.push(curControl);
+        }
+        //Add the array index to use in the identify.
+        //curControl.layerIds.push(layer.arcgislayers);
+        curControl.layerModels.push(layer);
+
+      }
+      var srCode = app.map.getProjection().split(':');
+      for(var i = 0; i < self.layers().length; i++)
+      {
+        var layer = self.layers()[i];
+        if(layer.subLayers.length === 0)
+        {
+          if(layer.type === "ArcRest")
+          {
+            this.addIdentifyEntry(layer);
+          }
+        }
+        else
+        {
+          $.each(layer.subLayers, function(index, subLayer){
+            if(subLayer.type === "ArcRest")
+            {
+              self.addIdentifyEntry(subLayer);
+            }
+          });
+        }
+      }
+    };
+    self.idCntrlQueriesOutstanding = ko.observableArray([]);
+    self.doPolygonQuery = function(polygon, feature)
+    {
+      if(this.restIdentifyControls.length)
+      {
+        var mapExtent = app.map.getExtent();
+
+        //Used to enable/disable the loading indicators on the theme accordion.
+        this.outstandingQueries(true);
+        for(var j = 0; j < this.restIdentifyControls.length; j++)
+        {
+          //if(j === 6)
+          //{
+            var identifyControl = this.restIdentifyControls[j];
+            self.idCntrlQueriesOutstanding.push(identifyControl.url);
+
+            identifyControl.geometry     = polygon;
+            identifyControl.geometryType = "esriGeometryPolygon";
+            identifyControl.mapExtent    = mapExtent.left + "," + mapExtent.bottom + "," + mapExtent.right + "," + mapExtent.top;
+            identifyControl.imageDisplay = app.map.getSize().w + "," + app.map.getSize().h + ",96";
+            identifyControl.doQuery(feature);
+          //}
+        }
+      }
+    }
     return self;
 } // end of themeModel
 
@@ -1052,12 +1150,16 @@ function viewModel() {
         //throws client-side error in pageguide.js for some reason...
     };
 
-    // reference to open themes in accordion
+    // reference to open themes in data accordion
     self.openThemes = ko.observableArray();
 
     self.openThemes.subscribe( function() {
         app.updateUrl();
     });
+    //Themes open in the Polygon Tools query.
+    self.openPGToolsThemes = ko.observableArray();
+
+
 
     self.getOpenThemeIDs = function() {
         return $.map(self.openThemes(), function(theme) {
@@ -1074,47 +1176,19 @@ function viewModel() {
 
     // last clicked layer for editing, etc
     self.activeLayer = ko.observable();
-	self.activeParentLayer = ko.observable();
+    self.activeParentLayer = ko.observable();
 
-    //2013-03-01  DWR
-    // determines visibility of topic description overlay
-    self.showTopicDescription = ko.observable();
-    self.activeTopicInfo = ko.observable(false);
-    self.activeTopic = ko.observable(false);
-    self.topics = ko.observableArray();
-    self.topicIndex = {};
-    //Topic change handler.
-    self.topicChange = function(currentTopic)
-    {
-      if(self.activeTopic())
-      {
-        self.activeTopic().deactivateTopic();
-        //Are we changing topics?
-        if(currentTopic.display_name != self.activeTopic().display_name)
-        {
-          self.activeTopic().deactivateTopic();
-          self.activeTopic(currentTopic);
-          self.activeTopic().activateTopic();
-        }
-        //Topic just clicked is the one we had, this means it is getting deactivated, so let's reset our active topic to be nothing.
-        else
-        {
-          self.activeTopic().deactivateTopic();
-          self.activeTopic(false);
-        }
-      }
-      else
-      {
-        self.activeTopic(currentTopic);
-        self.activeTopic().activateTopic();
-      }
-    };
     self.featureRequested = ko.observable(false);
     //Layer Feature Identify
     self.queryFeatureActive = ko.observable(false);
     //Button handler for the identify feature function.
     self.queryFeature = function(self, event)
     {
+      //Disable the measurement tool if it is enabled.
+      self.measurementTool.enableControl(false);
+      //Disable the polygon query tool.
+      self.polygonQueryTool.enableControl(false);
+
       //Toggle the state.
       if(self.queryFeatureActive() === false)
       {
@@ -1142,16 +1216,55 @@ function viewModel() {
       });
 
     };
-    //POlygon selection tool.
-    self.polygonSelectActive = ko.observable(false);
+    //////////////////////////////////////////////////////
+    //POlygon selection tool click handler.
     self.polygonIdentify = function(self, event)
     {
+      //Disable the measurement tool if it is enabled.
+      self.measurementTool.enableControl(false);
+      //Enable the polygon query tool.
+      self.polygonQueryTool.polygonIdentify(event);
+      //If the query feature is active, deactivate it.
+      self.queryFeatureActive(false);
+      var layers = self.visibleLayers();
+      $.each(layers, function(index, layer) {
+        if("queryControl" in layer)
+        {
+          layer.queryControl.deactivate();
+        }
+      });
+    };
+    //Measure tool click handler.
+    self.measureToolClick = function(event)
+    {
+      //If the polygonQueryTool is enabled, disable it.
+      self.polygonQueryTool.enableControl(false);
+      //Pass the event off to the measurementTool object.
+      self.measurementTool.measureToolClick(event);
+      //Go through our other controls: Identify and Polygon Query and disable them if there are on.
+
+      //If the query feature is active, deactivate it.
+      self.queryFeatureActive(false);
+      var layers = self.visibleLayers();
+      $.each(layers, function(index, layer) {
+        if("queryControl" in layer)
+        {
+          layer.queryControl.deactivate();
+        }
+      });
+    };
+
+    /*self.polygonSelectActive = ko.observable(false);
+    self.polygonIdentify = function(self, event)
+    {
+      //self.polygonQueryTool.polygonIdentify(event);
+      self.measurementTool.enableControl(false);
+
       //Toggle the state.
       if(self.polygonSelectActive() === false)
       {
         self.polygonSelectActive(true);
-        //Activate the Identify tab.
-        $('#identifyTab').tab('show');
+
         app.polygonDraw.activate();
       }
       else
@@ -1159,46 +1272,63 @@ function viewModel() {
         self.polygonSelectActive(false);
         app.polygonDraw.deactivate();
       }
-    }
+
+    };
+
+    self.currentPolygonFeature = null;
     self.selectionPolygonAdded = function(feature)
     {
-      $('#polygon-query-modal').modal('show');
+      //$('#polygon-query-modal').modal('show');
+      $('#polygonQueryTab').tab('show');
 
       var vertices = feature.geometry.getVertices();
-      var geometry = [];
+      if(self.polygonQueryGeom)
+      {
+        self.polygonQueryGeom.length = 0;
+      }
+      else
+      {
+        self.polygonQueryGeom = [];
+      }
       if(vertices.length)
       {
         for(var j = 0; j < vertices.length; j++)
         {
-          var point = []
+          var point = [];
           point.push(vertices[j].x);
-          point.push(vertices[j].y)
-          geometry.push(point);
+          point.push(vertices[j].y);
+          self.polygonQueryGeom.push(point);
         }
         var point = [];
         point.push(vertices[0].x);
-        point.push(vertices[0].y)
+        point.push(vertices[0].y);
         //Append the first point last to close the polygon.
-        geometry.push(point);
+        self.polygonQueryGeom.push(point);
 
       }
-      var mapExtent = app.map.getExtent();
-      //var layers = self.layerIndex;
-      var layers = self.visibleLayers();
-      var layerCnt = layers.length
-      for(var i = 0; i < layerCnt; i++)
+
+      for(var i = 0; i < self.themes().length; i++)
       {
-        var layer = layers[i];
-        if('identifyControl' in layer)
-        {
-          layer.identifyControl.geometry     = geometry;
-          layer.identifyControl.geometryType = "esriGeometryPolygon";
-          layer.identifyControl.mapExtent    = mapExtent.left + "," + mapExtent.bottom + "," + mapExtent.right + "," + mapExtent.top;
-          layer.identifyControl.imageDisplay = app.map.getSize().w + "," + app.map.getSize().h + ",96";
-          layer.identifyControl.request();
-        }
+        //if(i === 0)
+        //{
+          var theme = self.themes()[i];
+          theme.doPolygonQuery(self.polygonQueryGeom, feature);
+        //}
       }
     };
+    //This aborts any outstanding queries from previous polygon query attempts.
+    self.cancelPolygonQuery = function()
+    {
+      for(var i = 0; i < self.themes().length; i++)
+      {
+        var theme = self.themes()[i];
+        $.each(theme.restIdentifyControls, function(ndx, restIdControl) {
+            restIdControl.cancelRequest();
+        });
+      }
+    };*/
+    //////////////////////////////////////////////////////////////
+
     // determines visibility of description overlay
     self.showDescription = ko.observable();
     // determines visibility of expanded description overlay
@@ -1487,7 +1617,14 @@ function viewModel() {
             } else {
                 idScrollpane.reinitialise();
             }
-
+            /*
+            var idScrollpane = $('#polygon-query').data('jsp');
+            if (idScrollpane === undefined) {
+                $('#polygon-query').jScrollPane();
+            } else {
+                idScrollpane.reinitialise();
+            }
+            */
             var legendScrollpane = $('#legend-content').data('jsp');
             if (legendScrollpane === undefined) {
                 $('#legend-content').jScrollPane();
@@ -1533,10 +1670,6 @@ function viewModel() {
         if ( ! app.pageguide.tourIsActive ) {
             app.viewModel.showMapAttribution();
         }
-    };
-    // close topic description
-    self.closeTopicDescription = function(self, event) {
-        self.showTopicDescription(false);
     };
 
     self.activateOverviewDropdown = function(model, event) {
@@ -2089,352 +2222,6 @@ function viewModel() {
     };
     self.turnOffUsernameError = function() {
         self.usernameError(false);
-    };
-
-    self.getWindPlanningAreaAttributes = function (title, data) {
-        attrs = [];
-        if ('INFO' in data) {
-            var state = data.INFO,
-                first = state.indexOf("Call"),
-                second = state.indexOf("WEA"),
-                third = state.indexOf("RFI");
-            /*if (first !== -1) {
-                state = state.slice(0, first);
-            } else if (second !== -1) {
-                state = state.slice(0, second);
-            } else if (third !== -1) {
-                state = state.slice(0, third);
-            }*/
-            attrs.push({'display': '', 'data': state});
-        }
-        return attrs;
-    };
-
-    self.getSeaTurtleAttributes = function (title, data) {
-        attrs = [];
-        if ('ST_LK_NUM' in data && data['ST_LK_NUM']) {
-            //attrs.push({'display': 'Sightings', 'data': data['ST_LK_NUM']});
-            if (data['ST_LK_NUM'] === 99) {
-                attrs.push({'display': 'Insufficient Data available for this area', 'data': ''});
-            } else {
-                attrs.push({'display': 'Above Average Sightings for the following species:', 'data': ''});
-            }
-        } else {
-            attrs.push({'display': 'Sightings were in the normal range for all species', 'data': ''});
-        }
-
-        if ('ST_LK_NUM' in data && data['ST_LK_NUM'] ) {
-            if ('GREEN_LK' in data && data['GREEN_LK']) {
-                season = data['GREEN_LK'];
-                species = 'Green Sea Turtle';
-                sighting = species + ' (' + season + ') ';
-                attrs.push({'display': '', 'data': sighting});
-            }
-            if ('LEATH_LK' in data && data['LEATH_LK']) {
-                season = data['LEATH_LK'];
-                species = 'Leatherback Sea Turtle';
-                sighting = species + ' (' + season + ') ';
-                attrs.push({'display': '', 'data': sighting});
-            }
-            if ('LOGG_LK' in data && data['LOGG_LK']) {
-                season = data['LOGG_LK'];
-                species = 'Loggerhead Sea Turtle';
-                sighting = species + ' (' + season + ') ';
-                attrs.push({'display': '', 'data': sighting});
-            }
-        }
-        return attrs;
-    };
-
-    self.getToothedMammalAttributes = function (title, data) {
-        attrs = [];
-        if ('TOO_LK_NUM' in data && data['TOO_LK_NUM']) {
-            if (data['TOO_LK_NUM'] === 99) {
-                attrs.push({'display': 'Insufficient Data available for this area', 'data': ''});
-            } else {
-                attrs.push({'display': 'Above Average Sightings for the following species:', 'data': ''});
-            }
-        } else {
-            attrs.push({'display': 'Sightings were in the normal range for all species', 'data': ''});
-        }
-        if ('TOO_LK_NUM' in data && data['TOO_LK_NUM'] ) {
-            var season, species, sighting;
-            if ('SPERM_LK' in data && data['SPERM_LK']) {
-                season = data['SPERM_LK'];
-                species = 'Sperm Whale';
-                sighting = species + ' (' + season + ') ';
-                attrs.push({'display': '', 'data': sighting});
-            }
-            if ('BND_LK' in data && data['BND_LK']) {
-                season = data['BND_LK'];
-                species = 'Bottlenose Dolphin';
-                sighting = species + ' (' + season + ') ';
-                attrs.push({'display': '', 'data': sighting});
-            }
-            if ('STRIP_LK' in data && data['STRIP_LK']) {
-                season = data['STRIP_LK'];
-                species = 'Striped Dolphin';
-                sighting = species + ' (' + season + ') ';
-                attrs.push({'display': '', 'data': sighting});
-            }
-        }
-        return attrs;
-    };
-
-    self.getWindSpeedAttributes = function (title, data) {
-        attrs = [];
-        if ('SPEED_90' in data) {
-            var min_speed = (parseFloat(data['SPEED_90'])-0.125).toPrecision(3),
-                max_speed = (parseFloat(data['SPEED_90'])+0.125).toPrecision(3);
-            attrs.push({'display': 'Estimated Avg Wind Speed', 'data': min_speed + ' to ' + max_speed + ' m/s'});
-        }
-        return attrs;
-    };
-
-    self.adjustPartyCharterAttributes = function (attrs) {
-        for (var x=0; x<attrs.length; x=x+1) {
-            attrs[x].display = 'Total Trips (2000-2009)';
-        }
-        return attrs;
-    };
-
-    self.isSelectedLeaseBlock = function(name) {
-        if (name === "OCS Lease Blocks") {
-            return true;
-        }
-        if (self.scenarios &&
-            self.scenarios.selectionFormModel &&
-            self.scenarios.selectionFormModel.selectedLeaseBlockLayer &&
-            self.scenarios.selectionFormModel.selectedLeaseBlocksLayerName === name) {
-            return true;
-        }
-        if (self.scenarios &&
-            self.scenarios.scenarioFormModel &&
-            self.scenarios.scenarioLeaseBlocksLayerName === name) {
-            return true;
-        }
-        return false;
-    };
-
-    self.getOCSAttributes = function (title, data) {
-        attrs = [];
-        if ('BLOCK_LAB' in data) {
-            attrs.push({'display': 'OCS Block Number', 'data': data['BLOCK_LAB']});
-        } else if ('PROT_NUMB' in data) {
-            var blockLab = data['PROT_NUMB'].substring(data['PROT_NUMB'].indexOf('_')+1);
-            attrs.push({'display': 'OCS Block Number', 'data': blockLab});
-        }
-        if ('PROT_NUMBE' in data) {
-            attrs.push({'display': 'Protraction Number', 'data': data['PROT_NUMBE']});
-        }else if ('PROT_NUMB' in data) {
-            var protNumbe = data['PROT_NUMB'].substring(0,data['PROT_NUMB'].indexOf('_'));
-            attrs.push({'display': 'Protraction Number', 'data': protNumbe});
-        }
-        if ('PROT_NUMB' in data) {
-            if (self.scenarios &&
-                self.scenarios.selectionFormModel &&
-                self.scenarios.selectionFormModel.IE &&
-                self.scenarios.selectionFormModel.selectingLeaseBlocks()) {
-                var blockID = data['PROT_NUMB'],
-                    index = self.scenarios.selectionFormModel.selectedLeaseBlocks.indexOf(blockID);
-                if ( index === -1) {
-                    //add that lease block to the list of selected leaseblocks
-                    self.scenarios.selectionFormModel.selectedLeaseBlocks.push(blockID);
-                } else {
-                    //remove that lease block from the list of selected leaseblocks
-                    self.scenarios.selectionFormModel.selectedLeaseBlocks.splice(index, 1);
-                }
-            }
-        }
-        //Wind Speed
-        if ('WINDREV_MI' in data && 'WINDREV_MA' in data) {
-            if ( data['WINDREV_MI'] ) {
-                var min_speed = data['WINDREV_MI'].toFixed(3),
-                    max_speed = data['WINDREV_MA'].toFixed(3),
-                    min_range = (parseFloat(min_speed)-.125).toPrecision(3),
-                    max_range = (parseFloat(max_speed)+.125).toPrecision(3);
-                /*if ( min_speed === max_speed ) {
-                    attrs.push({'display': 'Estimated Avg Wind Speed (m/s)', 'data': speed});
-                } else {
-                    var speed = (min_speed-.125) + ' to ' + (max_speed+.125);
-                    attrs.push({'display': 'Estimated Avg Wind Speed (m/s)', 'data': speed});
-                }*/
-                attrs.push({'display': 'Estimated Avg Wind Speed', 'data': min_range + ' to ' + max_range + ' m/s'});
-            } else {
-                attrs.push({'display': 'Estimated Avg Wind Speed', 'data': 'Unknown'});
-            }
-        }
-
-        //Distance to Coastal Substation
-        if ('SUBSTAMIN' in data && 'SUBSTMAX' in data) {
-            if (data['SUBSTAMIN'] !== 0 && data['SUBSTMAX'] !== 0) {
-                attrs.push({'display': 'Distance to Coastal Substation', 'data': data['SUBSTAMIN'].toFixed(0) + ' to ' + data['SUBSTMAX'].toFixed(0) + ' miles'});
-            } else {
-                attrs.push({'display': 'Distance to Coastal Substation Unknown', 'data': null});
-            }
-        }
-        //Distance to AWC Hubs
-        if ('AWCMI_MIN' in data && 'AWCMI_MAX' in data) {
-            attrs.push({'display': 'Distance to Proposed AWC Hub', 'data': data['AWCMI_MIN'].toFixed(0) + ' to ' + data['AWCMI_MAX'].toFixed(0) + ' miles'});
-        }
-
-        //Wind Planning Areas
-        if ('WEA2' in data && data['WEA2'] !== 0) {
-            var weaName = data['WEA2_NAME'],
-                stateName = weaName.substring(0, weaName.indexOf(' '));
-            if (stateName === 'New') {
-                stateName = 'New Jersey';
-            } else if (stateName === 'Rhode') {
-                stateName = 'Rhode Island / Massachusetts';
-            }
-            //if ( data['WEA2_NAME'].replace(/\s+/g, '') !== "" ) {
-            //TAKING THIS OUT TEMPORARILY UNTIL WE HAVE UPDATED THE DATA SUMMARY FOR WPAS AND LEASE AREAS
-            //attrs.push({'display': 'Within the ' + stateName + ' WPA', 'data': null});
-            //}
-        }
-
-        //Distance to Shipping Lanes
-        if ('TRAFFCMIN' in data && 'TRAFFCMAX' in data) {
-            attrs.push({'display': 'Distance to Shipping Lanes', 'data': data['TRAFFCMIN'].toFixed(0) + ' to ' + data['TRAFFCMAX'].toFixed(0) + ' miles'});
-        }
-        //Traffic Density (High/Low)
-        if ('AIS7_MEAN' in data) {
-            if ( data['AIS7_MEAN'] < 1 ) {
-                var rank = 'Low';
-            } else {
-                var rank = 'High';
-            }
-            attrs.push({'display': 'Commercial Ship Traffic Density', 'data': rank });
-        }
-
-        //Distance to Shore
-        if ('MI_MIN' in data && 'MI_MAX' in data) {
-            attrs.push({'display': 'Distance to Shore', 'data': data['MI_MIN'].toFixed(0) + ' to ' + data['MI_MAX'].toFixed(0) + ' miles'});
-        }
-
-        //Depth Range
-        if ('DEPTHM_MIN' in data && 'DEPTHM_MAX' in data) {
-            if ( data['DEPTHM_MIN'] ) {
-                //convert depth values to positive feet values (from negative meter values)
-                var max_depth = (-data['DEPTHM_MAX'] * 3.2808399).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-                    min_depth = (-data['DEPTHM_MIN'] * 3.2808399).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                attrs.push({'display': 'Depth Range', 'data': max_depth + ' to ' + min_depth + ' feet'});
-            } else {
-                attrs.push({'display': 'Depth Range', 'data': 'Unknown'});
-            }
-        }
-
-        //Seabed Form
-        if ('PCT_TOTAL' in data) {
-            if (data['PCT_TOTAL'] < 99.9) {
-                attrs.push({'display': 'Seabed Form', 'data': 'Unknown'});
-            } else {
-                attrs.push({'display': 'Seabed Form', 'data': ''});
-                if ('PCTDEPRESS' in data && Math.round(data['PCTDEPRESS']) > 0) {
-                    attrs.push({'tab': true, 'display': 'Depression (' + Math.round(data['PCTDEPRESS']) + '%)', 'data': ''});
-                }
-                if ('PCTHIGHFLA' in data && Math.round(data['PCTHIGHFLA']) > 0) {
-                    attrs.push({'tab': true, 'display': 'High Flat (' + Math.round(data['PCTHIGHFLA']) + '%)', 'data': ''});
-                }
-                if ('PCTHIGHSLO' in data && Math.round(data['PCTHIGHSLO']) > 0) {
-                    attrs.push({'tab': true, 'display': 'High Slope (' + Math.round(data['PCTHIGHSLO']) + '%)', 'data': ''});
-                }
-                if ('PCTLOWSLOP' in data && Math.round(data['PCTLOWSLOP']) > 0) {
-                    attrs.push({'tab': true, 'display': 'Low Slope (' + Math.round(data['PCTLOWSLOP']) + '%)', 'data': ''});
-                }
-                if ('PCTMIDFLAT' in data && Math.round(data['PCTMIDFLAT']) > 0) {
-                    attrs.push({'tab': true, 'display': 'Mid Flat (' + Math.round(data['PCTMIDFLAT']) + '%)', 'data': ''});
-                }
-                if ('PCTSIDESLO' in data && Math.round(data['PCTSIDESLO']) > 0) {
-                    attrs.push({'tab': true, 'display': 'Side Slope (' + Math.round(data['PCTSIDESLO']) + '%)', 'data': ''});
-                }
-                if ('PCTSTEEP' in data && Math.round(data['PCTSTEEP']) > 0) {
-                    attrs.push({'tab': true, 'display': 'Steep (' + Math.round(data['PCTSTEEP']) + '%)', 'data': ''});
-                }
-            }
-        }
-
-        //Coral Count
-        var coralCount = 0,
-            laceCount = 0,
-            blackCount = 0,
-            softCount = 0,
-            gorgoCount = 0,
-            hardCount = 0;
-        if ('FREQ_LACE' in data) {
-            laceCount = data['FREQ_LACE'];
-            coralCount += laceCount;
-        }
-        if ('FREQ_BLACK' in data) {
-            blackCount = data['FREQ_BLACK'];
-            coralCount += blackCount;
-        }
-        if ('FREQ_SOFT' in data) {
-            softCount = data['FREQ_SOFT'];
-            coralCount += softCount;
-        }
-        if ('FREQ_GORGO' in data) {
-            gorgoCount = data['FREQ_GORGO'];
-            coralCount += gorgoCount;
-        }
-        if ('FREQ_HARD' in data) {
-            hardCount = data['FREQ_HARD'];
-            coralCount += hardCount;
-        }
-        if (coralCount > 0) {
-            attrs.push({'display': 'Identified Corals', 'data': coralCount});
-            if (laceCount > 0) {
-                attrs.push({'tab': true, 'display': 'Lace Corals (' + laceCount + ')', 'data': ''});
-            }
-            if (blackCount > 0) {
-                attrs.push({'tab': true, 'display': 'Black/Thorny Corals (' + blackCount + ')', 'data': ''});
-            }
-            if (softCount > 0) {
-                attrs.push({'tab': true, 'display': 'Soft Corals (' + softCount + ')', 'data': ''});
-            }
-            if (gorgoCount > 0) {
-                attrs.push({'tab': true, 'display': 'Gorgonian Corals (' + gorgoCount + ')', 'data': ''});
-            }
-            if (hardCount > 0) {
-                attrs.push({'tab': true, 'display': 'Hard Corals (' + hardCount + ')', 'data': ''});
-            }
-        }
-        if ('FREQ_PENS' in data && data['FREQ_PENS'] > 0) {
-            var seaPenCount = data['FREQ_PENS'];
-            attrs.push({'display': 'Sea Pens Identified', 'data': seaPenCount});
-        }
-
-        //Shipwrecks
-        if ('BOEMSHPDEN' in data) {
-            attrs.push({'display': 'Number of Shipwrecks', 'data': data['BOEMSHPDEN']});
-        }
-
-        //Distance to Discharge Point Locations
-        if ('DISCHMEAN' in data) {
-            attrs.push({'display': 'Avg Distance to Offshore Discharge', 'data': data['DISCHMEAN'].toFixed(1) + ' miles'});
-        }
-        if ('DFLOWMEAN' in data) {
-            attrs.push({'display': 'Avg Distance to Flow-Only Offshore Discharge', 'data': data['DFLOWMEAN'].toFixed(1) + ' miles'});
-        }
-
-        //Dredge Disposal Locations
-        if ('DREDGE_LOC' in data) {
-            if (data['DREDGE_LOC'] > 0) {
-                attrs.push({'display': 'Contains a Dredge Disposal Location', 'data': ''});
-            } else {
-                attrs.push({'display': 'Does not contain a Dredge Disposal Location', 'data': ''});
-            }
-        }
-
-        //Unexploded Ordinances
-        if ('UXO' in data) {
-            if (data['UXO'] === 0) {
-                attrs.push({'display': 'No known Unexploded Ordnances', 'data': ''});
-            } else {
-                attrs.push({'display': 'Known to contain Unexploded Ordnance(s)', 'data': ''});
-            }
-        }
-        return attrs;
     };
 
     return self;
