@@ -232,9 +232,6 @@
                             <li class="identify">
                                 <a href="#identify-feature" data-toggle="tab" id="identifyTab">Identify</a>
                             </li>
-                            <li class="polygon-data">
-                                <a href="#polygon-query" data-toggle="tab" id="polygonQueryTab">Query</a>
-                            </li>
                         </ul>
                         <!-- tab body -->
                         <div id="myTabContent" class="tab-content">
@@ -420,80 +417,6 @@
                               </div>
                             </div>
                             <!-- /Identify-tab-->
-                            <!-- Data Available For Selection Tab -->
-                            <div class="tab-pane fade" id="polygon-query">
-                              <div class="span12">
-                                <!-- data accordion -->
-                                <div id="data-accordion">
-                                  <div class="accordion" data-bind="foreach: themes">
-                                    <div class="accordion-group">
-                                      <div class="accordion-heading" data-bind="click: pgToolThemeClick, css: { 'active': isPGToolOpenTheme() }">
-                                        <div>
-                                          <a class="accordion-toggle"> <!--event: {'hover': showDescription}-->
-                                              <span data-bind="text: name">Themes</span>
-                                              <span><i class="" data-bind="css : { 'icon-large query-loader icon-loader' : idCntrlQueriesOutstanding().length > 0, '' : idCntrlQueriesOutstanding().length === 0}"></i></span>
-                                          </a>
-                                        </div>
-                                      </div>
-                                      <div class="accordion-body collapse" data-bind="css: { 'in': isPGToolOpenTheme() }">
-                                        <div class="accordion-inner">
-                                          <ul  class="unstyled" data-bind="foreach: { data: layers, as: 'layer' }">
-                                            <li class="layer" data-bind="css: { nosublayers: subLayers.length === 0 }">
-                                              <div class="btn-group btn-group-layer" data-bind="css: {'open': showPGToolSublayers() }, attr: {name: layer.name}, visible: layer.layerDataAvailable">
-
-                                                <a class="btn btn-layer" data-bind="css: { 'active': active(), 'not-active': ! active() }, click: togglePGToolLayerActive">
-                                                  <div style="font-weight: normal">
-                                                    <span style="padding-left: 2px;" data-bind="text: layer.name"></span>
-                                                    <span class="caret" style="display:none" data-bind="visible: layer.subLayers.length > 0"></span>
-                                                    <i class="check icon-large icon-check" data-bind="visible: active() && visible()"></i>
-                                                    <i class="check icon-large icon-check-empty" data-bind="visible: active() && !visible()"></i>
-                                                  </div>
-                                                </a>
-                                                <!-- ko if: subLayers.length > 0 -->
-                                                <!-- ko if: !isCheckBoxLayer() -->
-                                                <ul class="dropdown-menu layer-menu" data-bind="event: { mouseleave: closeMenu }, foreach: { data: subLayers, as 'subLayer' }">
-                                                  <!-- ko if: layerDataAvailable() -->
-                                                  <li>
-                                                    <a class="sublayer-selection" data-bind="click: togglePGToolLayerActive">
-                                                      <span data-bind="style: {visibility: subLayer.active() ? 'visible': 'hidden' }">• </span>
-                                                      <span data-bind="text: subLayer.name"></span>
-                                                    </a>
-                                                  </li>
-                                                  <!-- /ko -->
-                                                </ul>
-                                                <!-- /ko -->
-                                                <!-- ko if: isCheckBoxLayer() -->
-                                                <ul class="dropdown-menu layer-menu" data-bind="event: { mouseleave: closeMenu }, foreach: { data: subLayers, as: 'subLayer' }">
-                                                  <!-- ko if: layerDataAvailable() -->
-                                                  <li>
-                                                    <a class="sublayer-selection" data-bind="click: togglePGToolLayerActive">
-                                                      <span style="margin-left: -10px">
-                                                        <i class="icon-check" data-bind="style: {display: subLayer.active() ? 'inline': 'none' }"></i>
-                                                        <i style="opacity: .4" class="icon-check-empty" data-bind="style: {display: ! subLayer.active() ? 'inline': 'none' }"></i>
-                                                      </span>
-                                                      <span data-bind="text: subLayer.name"></span>
-                                                    </a>
-                                                  </li>
-                                                  <!-- /ko -->
-                                                </ul>
-                                                <!-- /ko -->
-                                                <!-- /ko -->
-                                              </div>
-                                            </li>
-                                          </ul>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <!-- /data-accordion -->
-                                <div>
-                                  <button class="btn" data-bind="click: saveData.showSaveDataDialog">Save Results</button>
-                                </div>
-                              </div>
-                              <!-- span12 -->
-                            </div>
-                            <!-- /Data Available For Selection Tab -->
                         </div>
                     </div>
                 </div>
