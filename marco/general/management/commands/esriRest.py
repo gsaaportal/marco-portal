@@ -9,6 +9,7 @@ class esriRest(dict):
   def __init__(self, restUrl, logger=True):
     self.restUrl = restUrl
     self.logger = None
+    self.results = None
     if(logger):
       self.logger = logging.getLogger(__name__)
     dict.__init__(self, {})
@@ -18,19 +19,18 @@ class esriRest(dict):
     if(self.logger):
       self.logger.debug("Query REST JSON data: %s" % (self.restUrl))
     try:
-      results = self.queryRestData(self.restUrl, params)
+      self.queryRestData(self.restUrl, params)
     except Exception,e:
       if(self.logger):
         self.logger.exception(e)
       raise
     else:
-      if(results.status_code == 200):
-        #self.jsonResults = json.loads(results.text)
-        dict.__init__(self, json.loads(results.text))
+      if(self.results and self.results.status_code == 200):
+        dict.__init__(self, json.loads(self.results.text))
         return(True)
       else:
         if(self.logger):
-          self.logger.error("Query failed. Code: %d Reason: %s" % (results.status_code, results.reason))
+          self.logger.error("Query failed. Code: %d Reason: %s" % (self.results.status_code, self.results.reason))
     return(False)
     
   def queryRestData(self, url, params):
