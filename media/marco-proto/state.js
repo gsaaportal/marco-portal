@@ -95,7 +95,6 @@ app.loadCompressedState = function(state) {
         app.viewModel.hideLogo();
     }
 
-
     if (state.print === 'true') {
         app.printMode();
         app.print = true;
@@ -207,6 +206,12 @@ app.loadCompressedState = function(state) {
     // map title for print view
     if (state.title) {
         app.viewModel.mapTitle(state.title);
+    }
+    if(app.print)
+    {
+      //Add the N icon
+      var compassIcon = new OpenLayers.CompassIcon('/media/marco-proto/assets/img/north-arrow.png', {w: 32, h: 64});
+      app.map.addControl(compassIcon);
     }
 
     // Google.v3 uses EPSG:900913 as projection, so we have to
