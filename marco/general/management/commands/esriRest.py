@@ -5,6 +5,8 @@ import logging
 import xmltodict
 import codecs
 
+requestTimeout = 30
+
 class esriRest(dict):
   def __init__(self, restUrl, logger=True):
     self.restUrl = restUrl
@@ -34,7 +36,7 @@ class esriRest(dict):
     return(False)
     
   def queryRestData(self, url, params):
-    self.results = requests.get(url, params=params)
+    self.results = requests.get(url, params=params, timeout=requestTimeout)
     return(self.results)
 
   def __getattr__(self, item):
