@@ -1,19 +1,19 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% block body %}
-            <div class="row">
-                <div class="span12">
+  <div class="row">
+    <div class="span12">
 
-                    <div id="homeCarousel" class="carousel slide">
-                      <ol class="carousel-indicators unstyled">
-                        <li data-target="#homeCarousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#homeCarousel" data-slide-to="1"></li>
-                        <li data-target="#homeCarousel" data-slide-to="2"></li>
-                        <li data-target="#homeCarousel" data-slide-to="3"></li>
-                        <!-- <li data-target="#homeCarousel" data-slide-to="4"></li> -->
-                      </ol>
-                      <!-- Carousel items -->
-                      <div class="carousel-inner">
-                        <!-- <div class="active item item1">
+      <div id="homeCarousel" class="carousel slide">
+        <ol class="carousel-indicators unstyled">
+          <li data-target="#homeCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#homeCarousel" data-slide-to="1"></li>
+          <li data-target="#homeCarousel" data-slide-to="2"></li>
+          <li data-target="#homeCarousel" data-slide-to="3"></li>
+          <!-- <li data-target="#homeCarousel" data-slide-to="4"></li> -->
+        </ol>
+        <!-- Carousel items -->
+        <div class="carousel-inner">
+          <!-- <div class="active item item1">
                             <img class="img-rounded" src="{{MEDIA_URL}}gsaa/img/photos/home_1_carousel.jpg" alt>
                             <img 
                                 class="info-button" 
@@ -31,120 +31,120 @@
                                 </div>
                             </div>
                         </div> -->
-                        <div class="active item info-image">
-                            <img class="img-rounded" src="{{MEDIA_URL}}gsaa/img/photos/home_2_carousel.jpg" alt>
-                            <img 
-                                class="info-button" 
-                                src="{{MEDIA_URL}}gsaa/img/vector-artwork/misc/i.png"
-                                data-title="<h5 class='primary'>Wrightsville Beach is packed with UNCW students on the day before the semester begins.</h5><p><strong>Wilmington, NC</strong></p><p class='photo-credits'>Photographer: UNCW/Laura Johnston</p>"
-                            >
-                            <div class="carousel-caption">
-                                <div class="caption-box">
-                                    <h4 style="font-size: 16px;">Beach Renourishment</h4>
-                                    <p>
-                                        <a class="subtle" href="/learn/topic/beach_renourishment">
-                                            Learn more&nbsp;&nbsp;<i class="icon-caret-right"></i>
-                                        </a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item info-image">
-                            <img class="img-rounded" src="{{MEDIA_URL}}gsaa/img/photos/home_3_carousel.jpg" alt>
-                            <img 
-                                class="info-button" 
-                                src="{{MEDIA_URL}}gsaa/img/vector-artwork/misc/i.png"
-                                data-title="<h5 class='primary'>Port of Savannah</h5><p class='photo-credits'>Photographer: Erika Nortemann, TNC</p>"
-                            >
-                            <div class="carousel-caption">
-                                <div class="caption-box">
-                                    <h4>Port maintenance & expansion</h4>
-                                    <p>
-                                        <a class="subtle" href="/learn/topic/port_maintenance">
-                                            Learn more&nbsp;&nbsp;<i class="icon-caret-right"></i>
-                                        </a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item info-image">
-                            <img class="img-rounded" src="{{MEDIA_URL}}gsaa/img/photos/home_4_carousel.jpg" alt>
-                            <img 
-                                class="info-button" 
-                                src="{{MEDIA_URL}}gsaa/img/vector-artwork/misc/i.png"
-                                data-title="<h5 class='primary'>Student intern Jessica Lowcher sorts through a collection of 20-month-old oysters at UNC Wilmington's shellfish hatchery.</h5><p><strong>Wilmington, NC</strong></p><p class='photo-credits'>Photographer: UNCW / Jamie Moncrief</p>"
-                            >
-                            <div class="carousel-caption">
-                                <div class="caption-box">
-                                    <h4>Visualize</h4>
-                                    <p>
-                                        <a class="subtle" href="/visualize">
-                                            Launch portal tools&nbsp;&nbsp;<i class="icon-caret-right"></i>
-                                        </a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item info-image">
-                            <img class="img-rounded" src="{{MEDIA_URL}}gsaa/img/photos/home_5_carousel.jpg" alt>
-                            <img 
-                                class="info-button" 
-                                src="{{MEDIA_URL}}gsaa/img/vector-artwork/misc/i.png"
-                                data-title="<h5 class='primary'>Members of the Marine Quest Cape Crusaders Camp dip their nets into the waters of Banks Channel during a trip to Wrightsville Beach July 9, 2010.</h5><p><strong>Wilmington, NC</strong></p><p class='photo-credits'>Photographer: UNCW / Jamie Moncrief</p>"
-                            >
-                            <div class="carousel-caption">
-                                <div class="caption-box">
-                                    <h4>Visit the GSAA</h4>
-                                    <p>
-                                        <a class="subtle" href="http://www.southatlanticalliance.org/">
-                                            Launch site&nbsp;&nbsp;<i class="icon-caret-right"></i>
-                                        </a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                      </div>
-                    </div>
-
-                </div>
+          <div class="active item info-image">
+            <img class="img-rounded" src="{{MEDIA_URL}}gsaa/img/photos/home_2_carousel.jpg" alt>
+            <img
+              class="info-button"
+              src="{{MEDIA_URL}}gsaa/img/vector-artwork/misc/i.png"
+              data-title="<h5 class='primary'>Wrightsville Beach is packed with UNCW students on the day before the semester begins.</h5><p><strong>Wilmington, NC</strong></p><p class='photo-credits'>Photographer: UNCW/Laura Johnston</p>"
+              >
+            <div class="carousel-caption">
+              <div class="caption-box">
+                <h4 style="font-size: 16px;">Beach Renourishment</h4>
+                <p>
+                  <a class="subtle" href="/learn/topic/beach_renourishment">
+                    Learn more&nbsp;&nbsp;<i class="icon-caret-right"></i>
+                  </a>
+                </p>
+              </div>
             </div>
-
-
-            <div class="row home-main-nav-row">
-                <div class="span4 item">
-                    <a class="subtle" href="/learn">
-                        <div>
-                            <h3>
-                                LEARN
-                                <img class="svg svg-link" src="{{MEDIA_URL}}gsaa/img/vector-artwork/misc/learn.svg">
-                            </h3>
-                            <p class="nowrap">Understanding <span class="nowrap">the range of regional ocean planning needs <i class="icon-caret-right"></i></span></p>
-                        </div>
-                    </a>
-                </div>
-                <div class="span4 item">
-                    <a class="subtle" href="/explore">
-                        <div>
-                            <h3>
-                                EXPLORE
-                                <img class="svg svg-link" src="{{MEDIA_URL}}gsaa/img/vector-artwork/misc/explore.svg">
-                            </h3>
-                            <p>Access our most current data <i class="icon-caret-right"></i></p>
-                        </div>
-                    </a>
-                </div>
-                <div class="span4 item">
-                    <a class="subtle" href="/visualize">
-                        <div>
-                            <h3>
-                                VISUALIZE
-                                <img class="svg svg-link" src="{{MEDIA_URL}}gsaa/img/vector-artwork/misc/visualize.svg">
-                            </h3>
-                            <p>Launch our map and tools <i class="icon-caret-right"></i></p>
-                        </div>
-                    </a>
-                </div>
+          </div>
+          <div class="item info-image">
+            <img class="img-rounded" src="{{MEDIA_URL}}gsaa/img/photos/home_3_carousel.jpg" alt>
+            <img
+              class="info-button"
+              src="{{MEDIA_URL}}gsaa/img/vector-artwork/misc/i.png"
+              data-title="<h5 class='primary'>Port of Savannah</h5><p class='photo-credits'>Photographer: Erika Nortemann, TNC</p>"
+              >
+            <div class="carousel-caption">
+              <div class="caption-box">
+                <h4>Port maintenance & expansion</h4>
+                <p>
+                  <a class="subtle" href="/learn/topic/port_maintenance">
+                    Learn more&nbsp;&nbsp;<i class="icon-caret-right"></i>
+                  </a>
+                </p>
+              </div>
             </div>
+          </div>
+          <div class="item info-image">
+            <img class="img-rounded" src="{{MEDIA_URL}}gsaa/img/photos/home_4_carousel.jpg" alt>
+            <img
+              class="info-button"
+              src="{{MEDIA_URL}}gsaa/img/vector-artwork/misc/i.png"
+              data-title="<h5 class='primary'>Student intern Jessica Lowcher sorts through a collection of 20-month-old oysters at UNC Wilmington's shellfish hatchery.</h5><p><strong>Wilmington, NC</strong></p><p class='photo-credits'>Photographer: UNCW / Jamie Moncrief</p>"
+              >
+            <div class="carousel-caption">
+              <div class="caption-box">
+                <h4>Visualize</h4>
+                <p>
+                  <a class="subtle" href="/visualize">
+                    Launch portal tools&nbsp;&nbsp;<i class="icon-caret-right"></i>
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="item info-image">
+            <img class="img-rounded" src="{{MEDIA_URL}}gsaa/img/photos/home_5_carousel.jpg" alt>
+            <img
+              class="info-button"
+              src="{{MEDIA_URL}}gsaa/img/vector-artwork/misc/i.png"
+              data-title="<h5 class='primary'>Members of the Marine Quest Cape Crusaders Camp dip their nets into the waters of Banks Channel during a trip to Wrightsville Beach July 9, 2010.</h5><p><strong>Wilmington, NC</strong></p><p class='photo-credits'>Photographer: UNCW / Jamie Moncrief</p>"
+              >
+            <div class="carousel-caption">
+              <div class="caption-box">
+                <h4>Visit the GSAA</h4>
+                <p>
+                  <a class="subtle" href="http://www.southatlanticalliance.org/">
+                    Launch site&nbsp;&nbsp;<i class="icon-caret-right"></i>
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="row home-main-nav-row">
+    <div class="span4 item">
+      <a class="subtle" href="/learn">
+        <div>
+          <h3>
+            LEARN
+            <img class="svg svg-link" src="{{MEDIA_URL}}gsaa/img/vector-artwork/misc/learn.svg">
+          </h3>
+          <p class="nowrap">Understanding <span class="nowrap">the range of regional ocean planning needs <i class="icon-caret-right"></i></span></p>
+        </div>
+      </a>
+    </div>
+    <div class="span4 item">
+      <a class="subtle" href="/explore">
+        <div>
+          <h3>
+            EXPLORE
+            <img class="svg svg-link" src="{{MEDIA_URL}}gsaa/img/vector-artwork/misc/explore.svg">
+          </h3>
+          <p>Access our most current data <i class="icon-caret-right"></i></p>
+        </div>
+      </a>
+    </div>
+    <div class="span4 item">
+      <a class="subtle" href="/visualize">
+        <div>
+          <h3>
+            VISUALIZE
+            <img class="svg svg-link" src="{{MEDIA_URL}}gsaa/img/vector-artwork/misc/visualize.svg">
+          </h3>
+          <p>Launch our map and tools <i class="icon-caret-right"></i></p>
+        </div>
+      </a>
+    </div>
+  </div>
 
 
 
