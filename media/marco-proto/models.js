@@ -1254,7 +1254,7 @@ function viewModel() {
       });
     };
 
-    /*self.polygonSelectActive = ko.observable(false);
+    self.polygonSelectActive = ko.observable(false);
     self.polygonIdentify = function(self, event)
     {
       //self.polygonQueryTool.polygonIdentify(event);
@@ -1326,7 +1326,7 @@ function viewModel() {
             restIdControl.cancelRequest();
         });
       }
-    };*/
+    };
     //////////////////////////////////////////////////////////////
 
     // determines visibility of description overlay
@@ -1373,7 +1373,7 @@ function viewModel() {
         }
       }
       return -1;
-    }*/
+    }
 
     self.aggregatedAttributes = ko.observable(false);
     self.aggregatedAttributesWidth = ko.observable('280px');
@@ -1412,7 +1412,7 @@ function viewModel() {
         self.aggregatedAttributes(false);
         app.markers.clearMarkers();
     };
-
+    */
     self.updateMarker = function(lonlat) {
         app.markers.clearMarkers();
         app.marker = new OpenLayers.Marker(lonlat, app.markers.icon);
