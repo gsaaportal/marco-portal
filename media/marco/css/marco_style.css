@@ -1387,3 +1387,17 @@ body.borderless #map-wrapper {
     white-space: nowrap;
 }
 
+.icon-polygon-select:before {
+  content: url(../img/polygon_info_white.png);
+}
+
+.icon-loader:before {
+  content: url(.../img/ajax-loader.gif);
+}
+
+#layer-data-accordion .layer .btn-group-layer {
+  width: 100%;
+}
+#layer-data-accordion li.layer {
+  margin-bottom: 2px;
+}
