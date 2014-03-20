@@ -32,6 +32,12 @@ var defaultGuide = {
       arrow: {offsetX: 65, offsetY: 10}
     },
     {
+      target: '#polygonQueryTab',
+      content: $('#help-text-polygonQueryTab').html(),
+      direction: 'top',
+      arrow: {offsetX: 65, offsetY: 10}
+    },
+    {
       target: '#topics-frame',
       content: $('#help-text-topicsButtons').html(),
       direction: 'top',
@@ -121,7 +127,7 @@ var defaultGuideOverrides = {
         //The right toolbar.
         else if ($(this).data('idx') === 6)
         {
-          $('#pageGuideMessage').height(175);
+          $('#pageGuideMessage').height(205);
         }
 
         else {
