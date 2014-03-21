@@ -127,7 +127,7 @@ var defaultGuideOverrides = {
         //The right toolbar.
         else if ($(this).data('idx') === 6)
         {
-          $('#pageGuideMessage').height(205);
+          $('#pageGuideMessage').height(225);
         }
 
         else {
