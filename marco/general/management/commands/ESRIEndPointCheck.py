@@ -80,16 +80,25 @@ def checkLayer(inputQueue, resultQueue):
         print "%s querying enpoint: %s Index: %s" % (current_process().name, row[1], row[2])
 
         if(esriRestEndpoint.queryRestJSON()):
-          remoteName = esriRestEndpoint.__getattr__('name')
           responseTime = None
           if hasattr(esriRestEndpoint.results, 'elapsed'):
             responseTime = esriRestEndpoint.results.elapsed
-          if(remoteName and remoteName.strip() != localName.strip()):
+
+          if('error' not in esriRestEndpoint):
+            remoteName = esriRestEndpoint.__getattr__('name')
+            if(remoteName and remoteName.strip() != localName.strip()):
+              result = layerTestResult(index=row[3],
+                                       localLayerName=localName,
+                                       url=row[1],
+                                       esriIndex=row[2],
+                                       remoteLayerName=remoteName,
+                                       responseTime=responseTime)
+          else:
             result = layerTestResult(index=row[3],
                                      localLayerName=localName,
                                      url=row[1],
                                      esriIndex=row[2],
-                                     remoteLayerName=remoteName,
+                                     error=esriRestEndpoint['error'],
                                      responseTime=responseTime)
         else:
           errorStr = "Query failed. Code: %d Reason: %s"\
