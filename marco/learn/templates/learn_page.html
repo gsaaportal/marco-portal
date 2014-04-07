@@ -80,6 +80,30 @@ when adding a new topic, the ordering field is filled out!
           {% endif %}
         </div>
       </div>
+      <div class="span5">
+        <div class="page-block">
+          {% if topics.3 %}
+            <a href="/learn/topic/{{topics.3.name}}">
+              <div class="info-image pull-left">
+                <img src="{{MEDIA_URL}}gsaa/img/photos/SandySoundside.jpg"/>
+                <img
+                class="info-button"
+                src="{{MEDIA_URL}}gsaa/img/vector-artwork/misc/i.png"
+                data-title="<h5 class='primary'><p></p>"
+                >
+              </div>
+              <div class="clearfix">&nbsp;</div>
+              <h4 class="primary">{{ topics.3.display_name }}</h4>
+            </a>
+          <p>
+            {{ topics.3.description }}
+            &nbsp;<a href="/learn/topic/{{topics.3.name}}" style="white-space:nowrap">
+            <b><small>LEARN MORE </small><i class="icon-caret-right"></i></b>
+            </a>
+          </p>
+          {% endif %}
+        </div>
+      </div>
     </div>
                 <!--
 		<div class="span5">
