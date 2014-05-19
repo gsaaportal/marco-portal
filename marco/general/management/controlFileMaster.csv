@@ -155,7 +155,7 @@ Boat Ramps,Boat Ramps (Florida),Boat Ramps,Fish and Wildlife Research Institute,
 Boat Ramps (South Carolina),Boat Ramps (South Carolina),Boat Ramps,South Carolina Department of Natural Resources,,,Recreational Activities,,,http://129.252.139.110/gsaa/rest/services/BoatRamps/MapServer,1,,,,,http://129.252.139.110/gsaa/rest/services/BoatRamps/MapServer/generateKml?docName=&l%3A1=on&layers=1&layerOptions=nonComposite,,,Public access boat ramps throughout South Carolina,Public access boat ramps throughout South Carolina
 Boat Ramps (North Carolina),Boat Ramps (North Carolina),Boat Ramps,North Carolina Wildlife Resources Commission,,,Recreational Activities,,,http://129.252.139.110/gsaa/rest/services/BoatRamps/MapServer,0,,,,,http://129.252.139.110/gsaa/rest/services/BoatRamps/MapServer/generateKml?docName=&l%3A0=on&layers=0&layerOptions=nonComposite,,,Public access boat ramps throughout North Carolina,Public access boat ramps throughout North Carolina
 Boat Ramps (Georgia),Boat Ramps (Georgia),Boat Ramps,Georgia Department of Natural Resources,,,Recreational Activities,,,http://129.252.139.110/gsaa/rest/services/BoatRamps/MapServer,2,,,,,http://129.252.139.110/gsaa/rest/services/BoatRamps/MapServer/generateKml?docName=&l%3A0=on&layers=2&layerOptions=nonComposite,,,Public access boat ramps throughout Georgia,Public access boat ramps throughout Georgia
-Coastal Hazard Vulnerability Assessment (AMBUR-HVA),Coastal Hazard Vulnerability Assessment (AMBUR-HVA),,,,Habitat,Coastal and Marine Models,,,,,,,,,,,,,"The GovernorsÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬_Ã‚Â¬ÃƒÂ¢Ã¢â‚¬_Ã‚Â¢ South Atlantic Alliance supported the development of a new
+Coastal Hazard Vulnerability Assessment (AMBUR-HVA),Coastal Hazard Vulnerability Assessment (AMBUR-HVA),,,,Habitat,Coastal and Marine Models,,,,,,,,,,,,,"The Governors' South Atlantic Alliance supported the development of a new
 coastal hazard vulnerability assessment tool as one of their regional
 initiatives. A project team of scientists and managers from GA (C. Alexander,
 Skidaway Institute of Oceanography; C. Jackson, Georgia Southern Univ.; J.
@@ -164,11 +164,11 @@ Univ.; K. Richardson, NC Dept. Environment and Natural Resources), SC (S.
 Howard, SC Geological Survey; J. Boynton, SC Dept. of Health and Environmental
 Control) and FL (J. Jaeger, Univ. Florida; J. Dennis, FL Dept. Economic
 Opportunity) collaborated to design a simple, defensible and robust tool that
-would meet managersÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬_Ã‚Â¬ÃƒÂ¢Ã¢â‚¬_Ã‚Â¢ needs. C. Jackson implemented the groupÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬_Ã‚Â¬ÃƒÂ¢Ã¢â‚¬_Ã‚Â¢s vision for the
+would meet managers' needs. C. Jackson implemented the group's vision for the
 tool by building new features and capabilities into an existing tool for
-analyzing shoreline change (Analysis of Moving Boundaries Using ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬_Ã‚Â¬Ãƒâ€_Ã…â€œRÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬_Ã‚Â¬ÃƒÂ¢Ã¢â‚¬_Ã‚Â¢ ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬_Ã‚Â¬ÃƒÂ¢Ã¢â€_Â¬Ã…â€œ Shoreline
+analyzing shoreline change (Analysis of Moving Boundaries Using R- Shoreline
 Change Analysis (AMBUR-SCA); Jackson et al., 2012). The new tool (Analysis of
-Moving Boundaries Using ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬_Ã‚Â¬Ãƒâ€_Ã…â€œRÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬_Ã‚Â¬ÃƒÂ¢Ã¢â‚¬_Ã‚Â¢ ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬_Ã‚Â¬ÃƒÂ¢Ã¢â€_Â¬Ã…â€œ Hazard Vulnerability Analysis (AMBUR-HVA))
+Moving Boundaries Using R-Hazard Vulnerability Analysis (AMBUR-HVA))
 evaluates and ranks individual and composite vulnerabilities to shoreline change
 over both spatial and temporal dimensions (determined using AMBUR-SCA),
 inundation from storm and riverine flooding (using SLOSH and FEMA data), and
