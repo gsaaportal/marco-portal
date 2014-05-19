@@ -156,6 +156,11 @@ Boat Ramps (South Carolina),http://129.252.139.110/gsaa/rest/services/BoatRamps/
 Boat Ramps (North Carolina),http://129.252.139.110/gsaa/rest/services/BoatRamps/MapServer,0
 Boat Ramps (Georgia),http://129.252.139.110/gsaa/rest/services/BoatRamps/MapServer,2
 "Combined Shoreline Change, Inundation, and Social Vulnerability",http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,10
+Shoreline Change Rate,http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,4
+Shoreline Change Vulnerability,http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,6
+Inundation Vulnerability,http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,7
+Social Vulnerability,http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,8
+Combined Inundation and Social Vulnerability,http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,9
 Historic (1933 - 1952),http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,1
 Intermediate (1972 - 1984),http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,2
 Modern (2002 - 2012),http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,3
