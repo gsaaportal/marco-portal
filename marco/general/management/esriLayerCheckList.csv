@@ -161,6 +161,6 @@ Shoreline Change Vulnerability,http://gchp.skio.usg.edu/rest/services/Server/GSA
 Inundation Vulnerability,http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,7
 Social Vulnerability,http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,8
 Combined Inundation and Social Vulnerability,http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,9
-Historic (1933 - 1952),http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,1
+Historic (1933 - 1956),http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,1
 Intermediate (1972 - 1984),http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,2
-Modern (2002 - 2012),http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,3
+Modern (1999 - 2012),http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,3
