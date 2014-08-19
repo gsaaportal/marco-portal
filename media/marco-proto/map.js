@@ -520,6 +520,7 @@ app.addLayerToMap = function(layer, isVisible) {
 
                     }
                     app.viewModel.attributeDataArray.push(layerDataObj);
+                    app.viewModel.updateScrollBars();
                   }
 
                 },
