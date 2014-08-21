@@ -431,7 +431,10 @@
                                         <div>
                                           <a class="accordion-toggle"> <!--event: {'hover': showDescription}-->
                                               <span data-bind="text: name">Themes</span>
+                                              <span><i class="icon-large query-loader icon-loader" data-bind="visible : idCntrlQueriesOutstanding().length > 0"></i></span>
+                                              <!--
                                               <span><i class="" data-bind="css : { 'icon-large query-loader icon-loader' : idCntrlQueriesOutstanding().length > 0, '' : idCntrlQueriesOutstanding().length === 0}"></i></span>
+                                              -->
                                           </a>
                                         </div>
                                       </div>
