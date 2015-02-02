@@ -112,5 +112,18 @@ OpenLayers.Control.GSAAPolygonRestIdentify = OpenLayers.Class(OpenLayers.Control
     {
       this.enableLayerDataAvailable(false);
     }
+    //No outstanding queries, do the layer count.
+    if(this.themeModel.idCntrlQueriesOutstanding().length == 0)
+    {
+      var layerAvail = 0;
+      $.each(this.themeModel.layers(), function(ndx, layer)
+      {
+        if(layer.layerDataAvailable())
+        {
+          layerAvail += 1;
+        }
+      });
+      this.themeModel.pgAvailableLayerDataCnt(layerAvail);
+    }
   }
 });
