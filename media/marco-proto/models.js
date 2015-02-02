@@ -544,7 +544,6 @@ function layerModel(options, parent) {
     self.showSublayers.subscribe(function () {
         setTimeout(function () {
             if ( app.viewModel.activeLayer().subLayers.length > 1 ) {
-              app.viewModel.updateScrollBars();
                 //$('.layer').find('.open .layer-menu').jScrollPane();
             }
         });
@@ -922,9 +921,12 @@ function themeModel(options) {
         }
       }
     };
+
+    self.pgAvailableLayerDataCnt = ko.observable(0);
     self.idCntrlQueriesOutstanding = ko.observableArray([]);
     self.doPolygonQuery = function(polygon, feature)
     {
+      self.pgAvailableLayerDataCnt(0);
       if(this.restIdentifyControls.length)
       {
         var mapExtent = app.map.getExtent();
@@ -1221,6 +1223,9 @@ function viewModel() {
     //POlygon selection tool click handler.
     self.polygonIdentify = function(self, event)
     {
+      //Switch to the query tab.
+      $('#polygonQueryTab').tab('show');
+
       //Disable the measurement tool if it is enabled.
       self.measurementTool.enableControl(false);
       //Enable the polygon query tool.
@@ -1255,7 +1260,7 @@ function viewModel() {
       });
     };
 
-    self.polygonSelectActive = ko.observable(false);
+    /*self.polygonSelectActive = ko.observable(false);
     self.polygonIdentify = function(self, event)
     {
       //self.polygonQueryTool.polygonIdentify(event);
@@ -1327,7 +1332,7 @@ function viewModel() {
             restIdControl.cancelRequest();
         });
       }
-    };
+    };*/
     //////////////////////////////////////////////////////////////
 
     // determines visibility of description overlay
@@ -1374,7 +1379,7 @@ function viewModel() {
         }
       }
       return -1;
-    }
+    }*/
 
     self.aggregatedAttributes = ko.observable(false);
     self.aggregatedAttributesWidth = ko.observable('280px');
@@ -1413,7 +1418,7 @@ function viewModel() {
         self.aggregatedAttributes(false);
         app.markers.clearMarkers();
     };
-    */
+
     self.updateMarker = function(lonlat) {
         app.markers.clearMarkers();
         app.marker = new OpenLayers.Marker(lonlat, app.markers.icon);
