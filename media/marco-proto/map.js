@@ -105,9 +105,9 @@ app.init = function () {
         }
     });
 
-    map.addControl(new OpenLayers.Control.MousePosition({
-      numDigits: 3
-      }));
+    // map.addControl(new OpenLayers.Control.MousePosition({
+    //     element: document.getElementById('pos')
+    // }));
 
     map.events.register("moveend", null, function () {
         // update the url when we move
