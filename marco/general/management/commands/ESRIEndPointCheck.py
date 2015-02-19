@@ -255,9 +255,16 @@ def main():
     errorList = []
     for result in finalResults:
       if(result.remoteLayerName):
-        diffList.append(str(result))
+        try:
+          diffList.append(str(result))
+        except UnicodeEncodeError,e:
+          traceback.print_exc(e)
+          errorList.append(e)
       else:
-        errorList.append(str(result))
+        try:
+          errorList.append(str(result))
+        except UnicodeEncodeError,e:
+          traceback.print_exc(e)
 
     body = "The following local layer names did not match the remote ESRI layer names.\n"
     if(len(diffList)):
