@@ -259,7 +259,7 @@ def main():
           diffList.append(str(result))
         except UnicodeEncodeError,e:
           traceback.print_exc(e)
-          errorList.append(e)
+          errorList.append(str(e))
       else:
         try:
           errorList.append(str(result))
