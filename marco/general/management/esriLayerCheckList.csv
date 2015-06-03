@@ -112,8 +112,8 @@ Combined Inundation and Social Vulnerability,http://gchp.skio.usg.edu/rest/servi
 Historic (1933 - 1956),http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,1
 Intermediate (1972 - 1984),http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,2
 Modern (1999 - 2012),http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,3
-Outer Continental Shelf Lease Blocks,http://gis.boemre.gov/arcgis/rest/services/BOEM_BSEE/MMC_Layers/MapServer,11
-Limit of OCSLA 8(g) zone,http://gis.boemre.gov/arcgis/rest/services/BOEM_BSEE/MMC_Layers/MapServer,7
+BOEM OCS Lease Blocks,http://gis.boemre.gov/arcgis/rest/services/BOEM_BSEE/MMC_Layers/MapServer,11
+BOEM Limit of OCSLA 8(g) zone,http://gis.boemre.gov/arcgis/rest/services/BOEM_BSEE/MMC_Layers/MapServer,7
 Submerged Lands Act Boundary,http://gis.boemre.gov/arcgis/rest/services/BOEM_BSEE/MMC_Layers/MapServer,8
 12NM Territorial Sea,http://maritimeboundaries.noaa.gov/arcgis/rest/services/MaritimeBoundaries/US_Maritime_Limits_Boundaries/MapServer,1
 24NM Contiguous Zone,http://maritimeboundaries.noaa.gov/arcgis/rest/services/MaritimeBoundaries/US_Maritime_Limits_Boundaries/MapServer,2
