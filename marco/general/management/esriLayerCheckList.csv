@@ -1,165 +1,1 @@
-REST LAYER,REST Endpoint,REST Array Number
-Principal Ports, http://csc.noaa.gov/arcgis/rest/services/MarineCadastre/NavigationAndMarineTransportation/MapServer,2
-Impaired Waters 2012 (South Carolina),http://129.252.139.110/gsaa/rest/services/303DWaters/MapServer,0
-Impaired Waters 2012 (North Carolina),http://129.252.139.110/gsaa/rest/services/303DWaters/MapServer,1
-Impaired Waters 2013 (Florida),http://129.252.139.110/gsaa/rest/services/303DWaters/MapServer,2
-Streams and Beaches 2010,http://129.252.139.110/gsaa/rest/services/303DWaters/MapServer,4
-"Lakes, Sounds Harbors 2010",http://129.252.139.110/gsaa/rest/services/303DWaters/MapServer,5
-Boat Ramps (South Carolina),http://129.252.139.110/gsaa/rest/services/BoatRamps/MapServer,1
-Boat Ramps (North Carolina),http://129.252.139.110/gsaa/rest/services/BoatRamps/MapServer,0
-Boat Ramps (Georgia),http://129.252.139.110/gsaa/rest/services/BoatRamps/MapServer,2
-CBRS_Polygons_Nov2012,http://129.252.139.110/gsaa/rest/services/gsaa/MapServer,9
-waterway,http://129.252.139.110/gsaa/rest/services/gsaa/MapServer,4
-USGS Coastal Vulnerability,http://129.252.139.110/gsaa/rest/services/gsaa/MapServer,6
-Atlantic,http://129.252.139.110/gsaa/rest/services/gsaa/MapServer,7
-rail_lines,http://129.252.139.110/gsaa/rest/services/gsaa/MapServer,3
-Avian Fauna,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,22
-Piping Plover Critical Habitat,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,23
-Coastal Wading Bird Nests (Florida),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,24
-Shorebird Nests (North Carolina),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,25
-Shorebird Nests (South Carolina),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,26
-Shorebird Nests (Georgia),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,27
-Shorebird Nests (Florida),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,28
-Fish_Deep,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,29
-MARMAP- SEFIS Sampling Grid,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,30
-Red Porgy (Trap),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,31
-Red Snapper (Trap),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,32
-Sand Perch (Trap),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,33
-Scamp Grouper (Trap),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,34
-Scup (Trap),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,35
-Spottail Pinfish (Trap),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,36
-Spotted Moray Eel (Trap),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,37
-Tomtate (Trap),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,38
-Vermillion Snapper (Trap),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,39
-White Grunt (Trap),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,40
-Golden Tilefish (Long Bottom Longline),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,41
-Snowy Grouper (Long Bottom Longline),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,42
-Blackbelly Rosefish (Short Bottom Longline),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,43
-Golden Tilefish (Short Bottom Longline),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,44
-Red Grouper (Short Bottom Longline),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,45
-Scamp Grouper (Short Bottom Longline),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,46
-Snowy Grouper (Short Bottom Longline),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,47
-Bank Sea Bass (Trap),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,48
-Black Sea Bass (Trap),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,49
-Gag Grouper (Trap),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,50
-Grey Triggerfish (Trap),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,51
-Knobbed Porgy (Trap),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,52
-Red Grouper (Trap),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,53
-Shallow Water Finfish,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,54
-Weakfish,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,55
-Spot,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,56
-Southern Kingfish,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,57
-Atlantic Sharpnose Shark,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,58
-Bluefish,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,59
-Atlantic Croaker,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,60
-Shallow Water Crustaceans,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,61
-White Shrimp,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,62
-Brown Shrimp,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,63
-Marine Mammals,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,64
-North American Right Whale Sightings,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,65
-Sea Turtles,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,66
-Loggerhead Turtle Nests (North Carolina),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,67
-Loggerhead Turtle Nests (South Carolina),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,68
-Loggerhead Turtle Nests (Georgia),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,69
-Loggerhead Turtle Nests (Florida),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,70
-Green Turtle Nests (Florida),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,71
-Hawksbill Turtle Nests (Florida),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,72
-Kemp's Ridley Turtle Nests (Florida),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,73
-Leatherback Turtle Nests (Florida),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,74
-Loggerhead Sea Turtle Trawl Survey,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,75
-Kemp's Ridley Sea Turtle Trawl Survey,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,76
-Loggerhead Sea Turtle SEAMAP Survey,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,77
-Ocean Dredge Material Disposal Areas,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,1
-ODMDS (North Carolina),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,2
-ODMDS (South Carolina),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,3
-ODMDS (Georgia),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,4
-ODMDS (Florida),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,5
-Artificial Reefs,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,6
-Artificial Reefs (North Carolina),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,7
-Artificial Reefs (South Carolina),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,8
-Artificial Reefs (Georgia),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,9
-Artificial Reefs (Florida),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,10
-Commercial Finfish Landings,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,11
-ACCSP Fish Landings By Area Code,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,12
-ACCSP Fish Landings By Latitude and Species,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,13
-Shrimp Landings (North Carolina),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,15
-Shrimp Landings (South Carolina),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,16
-Shrimp Landings (Georgia),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,17
-Shrimp Landings (Florida),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,18
-RockShrimp VMS Records,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,20
-AverageSandDepth,http://129.252.139.110/gsaa/rest/services/SCDNRLayers/MapServer,42
-AveragePercentSand,http://129.252.139.110/gsaa/rest/services/SCDNRLayers/MapServer,43
-AveragePhi,http://129.252.139.110/gsaa/rest/services/SCDNRLayers/MapServer,44
-sediment_class,http://129.252.139.110/gsaa/rest/services/sediment/MapServer,2
-benthic_hardbottom,http://129.252.139.110/gsaa/rest/services/sediment/MapServer,3
-DRAFT Estimated Sediment Grain Size (mm),http://50.18.215.52/arcgis/rest/services/EasternDivision/SABMA_TNCdatadeliverableSECOORA1draft/MapServer,0
-Commercial Vessel Density October 2009-2010,http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/CommercialVesselDensityOctober2009_2010/MapServer,0
-Critical Habitat Designations,http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/PhysicalOceanographicAndMarineHabitat/MapServer,10
-"Shipping Fairways, Lanes, and Zones",http://seamlessrnc.nauticalcharts.noaa.gov/arcgis/rest/services/ThemeLayer/ShippingLanesAndRegulations/MapServer,0
-Unexploded Ordnances,http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/NavigationAndMarineTransportation/MapServer,10
-Bathymetric Contours,http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/PhysicalOceanographicAndMarineHabitat/MapServer,7
-Undersea Feature Place Names,http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/PhysicalOceanographicAndMarineHabitat/MapServer,0
-Wrecks and Obstructions,http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/NavigationAndMarineTransportation/MapServer,1
-DOD Offshore Wind Mission Compatibility Assessments,http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/OceanEnergy/MapServer,4
-MPAs - nonNMFS,http://egisws02.nos.noaa.gov/ArcGIS/rest/services/MPA/MPAs_nonNMFS/MapServer,0
-U.S. Medium Resolution Shoreline,http://egisws02.nos.noaa.gov/ArcGIS/rest/services/NOAA_Shoreline/NOAA_Medium_Resolution_Shoreline/MapServer,0
-"Combined Shoreline Change, Inundation, and Social Vulnerability",http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,10
-Shoreline Change Rate,http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,4
-Shoreline Change Vulnerability,http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,6
-Inundation Vulnerability,http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,7
-Social Vulnerability,http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,8
-Combined Inundation and Social Vulnerability,http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,9
-Historic (1933 - 1956),http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,1
-Intermediate (1972 - 1984),http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,2
-Modern (1999 - 2012),http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,3
-BOEM OCS Lease Blocks,http://gis.boemre.gov/arcgis/rest/services/BOEM_BSEE/MMC_Layers/MapServer,11
-BOEM Limit of OCSLA 8(g) zone,http://gis.boemre.gov/arcgis/rest/services/BOEM_BSEE/MMC_Layers/MapServer,7
-Submerged Lands Act Boundary,http://gis.boemre.gov/arcgis/rest/services/BOEM_BSEE/MMC_Layers/MapServer,8
-12NM Territorial Sea,http://maritimeboundaries.noaa.gov/arcgis/rest/services/MaritimeBoundaries/US_Maritime_Limits_Boundaries/MapServer,1
-24NM Contiguous Zone,http://maritimeboundaries.noaa.gov/arcgis/rest/services/MaritimeBoundaries/US_Maritime_Limits_Boundaries/MapServer,2
-200NM EEZ and Maritime Boundaries,http://maritimeboundaries.noaa.gov/arcgis/rest/services/MaritimeBoundaries/US_Maritime_Limits_Boundaries/MapServer,3
-Boat Ramps ,http://ocean.floridamarine.org/arcgis/rest/services/FWC_GIS/MRGIS/MapServer,33
-Shellfish Harvest Areas-Non-winter,http://ocean.floridamarine.org/arcgis/rest/services/FWC_GIS/MRGIS/MapServer,83
-Shellfish Harvest Areas-Winter,http://ocean.floridamarine.org/arcgis/rest/services/FWC_GIS/MRGIS/MapServer,84
-Dolphin-Wahoo EFH-HAPC,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_EFH/MapServer,7
-Coastal Migratory Pelagics EFH-HAPC,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_EFH/MapServer,5
-Shrimp EFH-HAPC,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_EFH/MapServer,9
-Spiny Lobster EFH-HAPC,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_EFH/MapServer,10
-Snapper Grouper EFH-HAPC,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_EFH/MapServer,8
-"Coral, Coral Reef, Live/Hard Bottom EFH-HAPC",http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_EFH/MapServer,6
-Tilefish EFH-HAPC,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_EFH/MapServer,4
-Dolphin-Wahoo EFH,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_EFH/MapServer,14
-Shrimp EFH,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_EFH/MapServer,16
-Spiny Lobster EFH,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_EFH/MapServer,18
-Coastal Migratory Pelagics EFH,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_EFH/MapServer,12
-Golden Crab EFH,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_EFH/MapServer,15
-Snapper Grouper EFH,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_EFH/MapServer,17
-"Coral, Coral Reef, Live/Hard Bottom EFH",http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_EFH/MapServer,13
-SAFMC Restrictions,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_Regulations/MapServer,17
-All Restrictions,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_Regulations/MapServer,18
-Bottom Longlines Restrictions,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_Regulations/MapServer,19
-Black Sea Bass Pots Restrictions,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_Regulations/MapServer,20
-Sargassum Restrictions,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_Regulations/MapServer,21
-Fish Traps Restrictions,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_Regulations/MapServer,22
-Roller Rig Trawls Restrictions,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_Regulations/MapServer,23
-Octocoral Gear Restrictions,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_Regulations/MapServer,24
-Deepwater Snapper Grouper MPAs,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_Regulations/MapServer,8
-Golden Crab Fishery Access Areas,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_Regulations/MapServer,11
-Shrimp Fishery Access Areas,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_Regulations/MapServer,12
-Deepwater Coral HAPCs,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_Regulations/MapServer,13
-Oculina HAPC,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_Regulations/MapServer,14
-Experimental Closed Area,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_Regulations/MapServer,15
-Oculina Boundaries,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_Regulations/MapServer,16
-SEAMAP Bottom Mapping,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_Regulations/MapServer,3
-Golden Crab Fishery Access Areas,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_Regulations/MapServer,11
-"Bottlenose Dolphin, Atlantic Winter",http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/MarineMammalsAndSeaTurtles/MapServer,9
-"Bottlenose Dolphin, Atlantic Fall",http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/MarineMammalsAndSeaTurtles/MapServer,59
-"Bottlenose Dolphin, Atlantic Spring",http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/MarineMammalsAndSeaTurtles/MapServer,25
-"Bottlenose Dolphin, Atlantic Summer",http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/MarineMammalsAndSeaTurtles/MapServer,44
-Marine Jurisdictions,,
-States,,
-Counties,,
-Shipping and Navigation,,
-Military Areas,,
-"Transportation-onshore (rail, roads, water)",,
-Bottom Habitat/Sediment,,
+REST LAYER,REST Endpoint,REST Array NumberPrincipal Ports,http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/NavigationAndMarineTransportation/MapServer,2Impaired Waters 2012 (South Carolina),http://129.252.139.110/gsaa/rest/services/303DWaters/MapServer,0Impaired Waters 2012 (North Carolina),http://129.252.139.110/gsaa/rest/services/303DWaters/MapServer,1Impaired Waters 2013 (Florida),http://129.252.139.110/gsaa/rest/services/303DWaters/MapServer,2Streams and Beaches 2010,http://129.252.139.110/gsaa/rest/services/303DWaters/MapServer,4"Lakes, Sounds Harbors 2010",http://129.252.139.110/gsaa/rest/services/303DWaters/MapServer,5Boat Ramps (South Carolina),http://129.252.139.110/gsaa/rest/services/BoatRamps/MapServer,1Boat Ramps (North Carolina),http://129.252.139.110/gsaa/rest/services/BoatRamps/MapServer,0Boat Ramps (Georgia),http://129.252.139.110/gsaa/rest/services/BoatRamps/MapServer,2CBRS_Polygons_Nov2012,http://129.252.139.110/gsaa/rest/services/gsaa/MapServer,9waterway,http://129.252.139.110/gsaa/rest/services/gsaa/MapServer,4USGS Coastal Vulnerability,http://129.252.139.110/gsaa/rest/services/gsaa/MapServer,6Atlantic,http://129.252.139.110/gsaa/rest/services/gsaa/MapServer,7rail_lines,http://129.252.139.110/gsaa/rest/services/gsaa/MapServer,3Avian Fauna,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,22Piping Plover Critical Habitat,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,23Coastal Wading Bird Nests (Florida),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,24Shorebird Nests (North Carolina),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,25Shorebird Nests (South Carolina),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,26Shorebird Nests (Georgia),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,27Shorebird Nests (Florida),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,28Fish_Deep,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,29MARMAP- SEFIS Sampling Grid,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,30Red Porgy (Trap),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,31Red Snapper (Trap),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,32Sand Perch (Trap),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,33Scamp Grouper (Trap),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,34Scup (Trap),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,35Spottail Pinfish (Trap),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,36Spotted Moray Eel (Trap),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,37Tomtate (Trap),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,38Vermillion Snapper (Trap),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,39White Grunt (Trap),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,40Golden Tilefish (Long Bottom Longline),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,41Snowy Grouper (Long Bottom Longline),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,42Blackbelly Rosefish (Short Bottom Longline),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,43Golden Tilefish (Short Bottom Longline),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,44Red Grouper (Short Bottom Longline),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,45Scamp Grouper (Short Bottom Longline),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,46Snowy Grouper (Short Bottom Longline),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,47Bank Sea Bass (Trap),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,48Black Sea Bass (Trap),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,49Gag Grouper (Trap),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,50Grey Triggerfish (Trap),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,51Knobbed Porgy (Trap),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,52Red Grouper (Trap),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,53Shallow Water Finfish,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,54Weakfish,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,55Spot,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,56Southern Kingfish,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,57Atlantic Sharpnose Shark,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,58Bluefish,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,59Atlantic Croaker,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,60Shallow Water Crustaceans,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,61White Shrimp,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,62Brown Shrimp,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,63Marine Mammals,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,64North American Right Whale Sightings,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,65Sea Turtles,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,66Loggerhead Turtle Nests (North Carolina),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,67Loggerhead Turtle Nests (South Carolina),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,68Loggerhead Turtle Nests (Georgia),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,69Loggerhead Turtle Nests (Florida),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,70Green Turtle Nests (Florida),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,71Hawksbill Turtle Nests (Florida),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,72Kemp's Ridley Turtle Nests (Florida),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,73Leatherback Turtle Nests (Florida),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,74Loggerhead Sea Turtle Trawl Survey,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,75Kemp's Ridley Sea Turtle Trawl Survey,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,76Loggerhead Sea Turtle SEAMAP Survey,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,77Ocean Dredge Material Disposal Areas,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,1ODMDS (North Carolina),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,2ODMDS (South Carolina),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,3ODMDS (Georgia),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,4ODMDS (Florida),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,5Artificial Reefs,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,6Artificial Reefs (North Carolina),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,7Artificial Reefs (South Carolina),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,8Artificial Reefs (Georgia),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,9Artificial Reefs (Florida),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,10Commercial Finfish Landings,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,11ACCSP Fish Landings By Area Code,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,12ACCSP Fish Landings By Latitude and Species,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,13Shrimp Landings (North Carolina),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,15Shrimp Landings (South Carolina),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,16Shrimp Landings (Georgia),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,17Shrimp Landings (Florida),http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,18RockShrimp VMS Records,http://129.252.139.110/gsaa/rest/services/SCDNR/MapServer,20AverageSandDepth,http://129.252.139.110/gsaa/rest/services/SCDNRLayers/MapServer,42AveragePercentSand,http://129.252.139.110/gsaa/rest/services/SCDNRLayers/MapServer,43AveragePhi,http://129.252.139.110/gsaa/rest/services/SCDNRLayers/MapServer,44sediment_class,http://129.252.139.110/gsaa/rest/services/sediment/MapServer,2benthic_hardbottom,http://129.252.139.110/gsaa/rest/services/sediment/MapServer,3DRAFT Estimated Sediment Grain Size (mm),http://50.18.215.52/arcgis/rest/services/EasternDivision/SABMA_TNCdatadeliverableSECOORA1draft/MapServer,0Commercial Vessel Density October 2009-2010,http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/CommercialVesselDensityOctober2009_2010/MapServer,0Critical Habitat Designations,http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/PhysicalOceanographicAndMarineHabitat/MapServer,10Shipping Lanes and Regulations,http://seamlessrnc.nauticalcharts.noaa.gov/arcgis/rest/services/ThemeLayer/ShippingLanesAndRegulations/MapServer,0Unexploded Ordnances,http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/NavigationAndMarineTransportation/MapServer,10Bathymetric Contours,http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/PhysicalOceanographicAndMarineHabitat/MapServer,7Undersea Feature Place Names,http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/PhysicalOceanographicAndMarineHabitat/MapServer,0Wrecks and Obstructions,http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/NavigationAndMarineTransportation/MapServer,1DOD Offshore Wind Mission Compatibility Assessments,http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/OceanEnergy/MapServer,4MPAs - nonNMFS,http://egisws02.nos.noaa.gov/ArcGIS/rest/services/MPA/MPAs_nonNMFS/MapServer,0U.S. Medium Resolution Shoreline,http://egisws02.nos.noaa.gov/ArcGIS/rest/services/NOAA_Shoreline/NOAA_Medium_Resolution_Shoreline/MapServer,0"Combined Shoreline Change, Inundation, and Social Vulnerability",http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,10Shoreline Change Rate,http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,4Shoreline Change Vulnerability,http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,6Inundation Vulnerability,http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,7Social Vulnerability,http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,8Combined Inundation and Social Vulnerability,http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,9Historic (1933 - 1956),http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,1Intermediate (1972 - 1984),http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,2Modern (1999 - 2012),http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,3BOEM OCS Lease Blocks,http://gis.boemre.gov/arcgis/rest/services/BOEM_BSEE/MMC_Layers/MapServer,11BOEM Limit of OCSLA 8(g) zone,http://gis.boemre.gov/arcgis/rest/services/BOEM_BSEE/MMC_Layers/MapServer,7Submerged Lands Act Boundary,http://gis.boemre.gov/arcgis/rest/services/BOEM_BSEE/MMC_Layers/MapServer,812NM Territorial Sea,http://maritimeboundaries.noaa.gov/arcgis/rest/services/MaritimeBoundaries/US_Maritime_Limits_Boundaries/MapServer,124NM Contiguous Zone,http://maritimeboundaries.noaa.gov/arcgis/rest/services/MaritimeBoundaries/US_Maritime_Limits_Boundaries/MapServer,2200NM EEZ and Maritime Boundaries,http://maritimeboundaries.noaa.gov/arcgis/rest/services/MaritimeBoundaries/US_Maritime_Limits_Boundaries/MapServer,3Boat Ramps ,http://ocean.floridamarine.org/arcgis/rest/services/FWC_GIS/MRGIS/MapServer,33Shellfish Harvest Areas-Non-winter,http://ocean.floridamarine.org/arcgis/rest/services/FWC_GIS/MRGIS/MapServer,83Shellfish Harvest Areas-Winter,http://ocean.floridamarine.org/arcgis/rest/services/FWC_GIS/MRGIS/MapServer,84Dolphin-Wahoo EFH-HAPC,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_EFH/MapServer,7Coastal Migratory Pelagics EFH-HAPC,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_EFH/MapServer,5Shrimp EFH-HAPC,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_EFH/MapServer,9Spiny Lobster EFH-HAPC,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_EFH/MapServer,10Snapper Grouper EFH-HAPC,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_EFH/MapServer,8"Coral, Coral Reef, Live/Hard Bottom EFH-HAPC",http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_EFH/MapServer,6Tilefish EFH-HAPC,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_EFH/MapServer,4Dolphin-Wahoo EFH,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_EFH/MapServer,14Shrimp EFH,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_EFH/MapServer,16Spiny Lobster EFH,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_EFH/MapServer,18Coastal Migratory Pelagics EFH,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_EFH/MapServer,12Golden Crab EFH,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_EFH/MapServer,15Snapper Grouper EFH,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_EFH/MapServer,17"Coral, Coral Reef, Live/Hard Bottom EFH",http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_EFH/MapServer,13SAFMC Restrictions,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_Regulations/MapServer,17All Restrictions,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_Regulations/MapServer,18Bottom Longlines Restrictions,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_Regulations/MapServer,19Black Sea Bass Pots Restrictions,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_Regulations/MapServer,20Sargassum Restrictions,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_Regulations/MapServer,21Fish Traps Restrictions,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_Regulations/MapServer,22Roller Rig Trawls Restrictions,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_Regulations/MapServer,23Octocoral Gear Restrictions,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_Regulations/MapServer,24Deepwater Snapper Grouper MPAs,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_Regulations/MapServer,8Golden Crab Fishery Access Areas,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_Regulations/MapServer,11Shrimp Fishery Access Areas,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_Regulations/MapServer,12Deepwater Coral HAPCs,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_Regulations/MapServer,13Oculina HAPC,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_Regulations/MapServer,14Experimental Closed Area,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_Regulations/MapServer,15Oculina Boundaries,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_Regulations/MapServer,16SEAMAP Bottom Mapping,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_Regulations/MapServer,3Golden Crab Fishery Access Areas,http://ocean.floridamarine.org/ArcGIS/rest/services/SAFMC/SAFMC_Regulations/MapServer,11"Bottlenose Dolphin, Atlantic Winter",http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/MarineMammalsAndSeaTurtles/MapServer,9"Bottlenose Dolphin, Atlantic Fall",http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/MarineMammalsAndSeaTurtles/MapServer,59"Bottlenose Dolphin, Atlantic Spring",http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/MarineMammalsAndSeaTurtles/MapServer,25"Bottlenose Dolphin, Atlantic Summer",http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/MarineMammalsAndSeaTurtles/MapServer,44Marine Jurisdictions,,States,,Counties,,Shipping and Navigation,,Military Areas,,"Transportation-onshore (rail, roads, water)",,Bottom Habitat/Sediment,,
