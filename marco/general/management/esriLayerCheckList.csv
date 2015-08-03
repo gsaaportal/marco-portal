@@ -94,13 +94,13 @@ sediment_class,http://129.252.139.110/gsaa/rest/services/sediment/MapServer,2
 benthic_hardbottom,http://129.252.139.110/gsaa/rest/services/sediment/MapServer,3
 DRAFT Estimated Sediment Grain Size (mm),http://50.18.215.52/arcgis/rest/services/EasternDivision/SABMA_TNCdatadeliverableSECOORA1draft/MapServer,0
 Commercial Vessel Density October 2009-2010,http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/CommercialVesselDensityOctober2009_2010/MapServer,0
-Critical Habitat Designations,http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/NationalViewer/MapServer,35
+Critical Habitat Designations,http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/PhysicalOceanographicAndMarineHabitat/MapServer,10
 "Shipping Fairways, Lanes, and Zones",http://seamlessrnc.nauticalcharts.noaa.gov/arcgis/rest/services/ThemeLayer/ShippingLanesAndRegulations/MapServer,0
-Unexploded Ordnances,http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/NationalViewer/MapServer,27
-Bathymetric Contours,http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/NationalViewer/MapServer,14
-Undersea Feature Place Names,http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/NationalViewer/MapServer,0
-Wrecks and Obstructions,http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/NationalViewer/MapServer,3
-DOD Offshore Wind Mission Compatibility Assessments,http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/NationalViewer/MapServer,32
+Unexploded Ordnances,http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/NavigationAndMarineTransportation/MapServer,10
+Bathymetric Contours,http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/PhysicalOceanographicAndMarineHabitat/MapServer,7
+Undersea Feature Place Names,http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/PhysicalOceanographicAndMarineHabitat/MapServer,0
+Wrecks and Obstructions,http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/NavigationAndMarineTransportation/MapServer,1
+DOD Offshore Wind Mission Compatibility Assessments,http://coast.noaa.gov/arcgis/rest/services/MarineCadastre/OceanEnergy/MapServer,4
 MPAs - nonNMFS,http://egisws02.nos.noaa.gov/ArcGIS/rest/services/MPA/MPAs_nonNMFS/MapServer,0
 U.S. Medium Resolution Shoreline,http://egisws02.nos.noaa.gov/ArcGIS/rest/services/NOAA_Shoreline/NOAA_Medium_Resolution_Shoreline/MapServer,0
 "Combined Shoreline Change, Inundation, and Social Vulnerability",http://gchp.skio.usg.edu/rest/services/Server/GSAA/MapServer,10
